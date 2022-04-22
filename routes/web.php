@@ -1,5 +1,7 @@
 <?php
 
+
+use League\Flysystem\Config;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -16,6 +18,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('mm',function(){
+    config()->set('err_message.keys.secret', "value");
+    return config('err_message.keys.secret');
 });
 
 Route::group(

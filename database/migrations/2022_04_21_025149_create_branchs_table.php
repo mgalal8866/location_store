@@ -14,7 +14,7 @@ class CreateBranchsTable extends Migration
     public function up()
     {
         Schema::create('branchs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('store_id');
             $table->unsignedBigInteger('category_id');
 			$table->string('name', 250);
@@ -22,9 +22,9 @@ class CreateBranchsTable extends Migration
             $table->text('address')->nullable();
             $table->string('lat', 250);
             $table->string('lng', 250);
-            $table->integer('view', 11)->default(0)->comment('المشاهدات');
-            $table->integer('product_num', 20)->default(0);
-            $table->integer('top', 11)->default(0)->comment('تميز الفرع');
+            $table->integer('view')->default(0)->comment('المشاهدات');
+            $table->integer('product_num')->default(0);
+            $table->integer('top')->default(0)->comment('تميز الفرع');
             $table->string('opentime', 250)->comment('وقت فتح');
             $table->string('closetime', 250)->comment('وقت اغلاق');
             $table->date('start_date')->comment('تاريخ بدايه التفعيل');

@@ -1,7 +1,4 @@
-[
-{"type":"header","version":"5.0.2","comment":"Export to JSON plugin for PHPMyAdmin"},
-{"type":"database","name":"test"},
-{"type":"table","name":"cities","database":"test","data":
+
 [
 {"id":"1","city_id":"1","region_name_ar":"15 مايو","region_name_en":"15 May"},
 {"id":"2","city_id":"1","region_name_ar":"الازبكية","region_name_en":"Al Azbakeyah"},
@@ -399,6 +396,4 @@
 {"id":"394","city_id":"27","region_name_ar":"طما","region_name_en":"Tama"},
 {"id":"395","city_id":"27","region_name_ar":"طهطا","region_name_en":"Tahta"},
 {"id":"396","city_id":"27","region_name_ar":"الكوثر","region_name_en":"Alkawthar"}
-]
-}
 ]

@@ -1,7 +1,4 @@
-[
-{"type":"header","version":"5.0.2","comment":"Export to JSON plugin for PHPMyAdmin"},
-{"type":"database","name":"test"},
-{"type":"table","name":"citys","database":"test","data":
+
 [
 {"id":"1","city_name_ar":"القاهرة","city_name_en":"Cairo"},
 {"id":"2","city_name_ar":"الجيزة","city_name_en":"Giza"},
@@ -31,5 +28,4 @@
 {"id":"26","city_name_ar":"شمال سيناء","city_name_en":"North Sinai"},
 {"id":"27","city_name_ar":"سوهاج","city_name_en":"Sohag"}
 ]
-}
-]
+

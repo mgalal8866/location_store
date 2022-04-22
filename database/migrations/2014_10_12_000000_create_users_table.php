@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('mobile')->unique();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->tinyInteger('gender')->nullable()->comment('[0 = ذكر] [1 = أنثى]');
-            $table->string('mobile')->unique();
             $table->string('device_token');
             $table->string('ip_address');
             $table->rememberToken();
