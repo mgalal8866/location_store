@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\citys;
+use App\Models\cities;
 use Illuminate\Http\Request;
 
-class CitysController extends Controller
+class CitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CitysController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\citys  $citys
+     * @param  \App\Models\cities  $cities
      * @return \Illuminate\Http\Response
      */
-    public function show(citys $citys)
+    public function show(cities $cities)
     {
         //
     }
@@ -52,10 +52,10 @@ class CitysController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\citys  $citys
+     * @param  \App\Models\cities  $cities
      * @return \Illuminate\Http\Response
      */
-    public function edit(citys $citys)
+    public function edit(cities $citys)
     {
         //
     }
@@ -67,7 +67,7 @@ class CitysController extends Controller
      * @param  \App\Models\citys  $citys
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, citys $citys)
+    public function update(Request $request, Cities $citys)
     {
         //
     }
@@ -78,7 +78,7 @@ class CitysController extends Controller
      * @param  \App\Models\citys  $citys
      * @return \Illuminate\Http\Response
      */
-    public function destroy(citys $citys)
+    public function destroy(Cities $citys)
     {
         //
     }
