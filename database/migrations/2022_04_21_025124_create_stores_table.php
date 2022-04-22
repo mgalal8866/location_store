@@ -19,6 +19,8 @@ class CreateStoresTable extends Migration
 			$table->string('name', 250);
             $table->string('slug')->nullable();
             $table->tinyInteger('active')->default('1');
+            $table->date('start_date')->comment('تاريخ بدايه التفعيل');
+            $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل');
             $table->softDeletes();
             $table->timestamps();
         });
