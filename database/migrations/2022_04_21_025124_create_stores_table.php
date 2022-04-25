@@ -16,11 +16,12 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
 			$table->string('name', 250);
             $table->string('slug')->nullable();
-            $table->tinyInteger('active')->default('1');
-            $table->date('start_date')->comment('تاريخ بدايه التفعيل');
-            $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل');
+            $table->tinyInteger('active')->default('0')->comment('[0 = مفعل] [1 = غير مفعل]');
+            $table->date('start_date')->comment('تاريخ بدايه التفعيل')->nullable();
+            $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -9,4 +9,9 @@ class regions extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function city()
+    {
+        return $this->belongsTo(cities::class);
+    }
 }

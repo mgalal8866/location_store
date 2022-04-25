@@ -16,7 +16,6 @@ class CreateBranchsTable extends Migration
         Schema::create('branchs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('store_id');
-            $table->unsignedBigInteger('category_id');
 			$table->string('name', 250);
             $table->string('slug')->nullable();
             $table->text('address')->nullable();
@@ -25,11 +24,11 @@ class CreateBranchsTable extends Migration
             $table->integer('view')->default(0)->comment('المشاهدات');
             $table->integer('product_num')->default(0);
             $table->integer('top')->default(0)->comment('تميز الفرع');
-            $table->string('opentime', 250)->comment('وقت فتح');
-            $table->string('closetime', 250)->comment('وقت اغلاق');
-            $table->date('start_date')->comment('تاريخ بدايه التفعيل');
-            $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل');
-            $table->tinyInteger('active')->default('1');
+            $table->string('opentime', 250)->comment('وقت فتح')->nullable();
+            $table->string('closetime', 250)->comment('وقت اغلاق')->nullable();
+            $table->date('start_date')->comment('تاريخ بدايه التفعيل')->nullable();
+            $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل')->nullable();
+            $table->tinyInteger('active')->default('0')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->softDeletes();
 			$table->timestamps();
         });

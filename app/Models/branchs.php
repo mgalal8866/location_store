@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class branchs extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function store()
+    {
+        return $this->belongsTo(stores::class);
+    }
 }
