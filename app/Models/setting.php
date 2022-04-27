@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class setting extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public function getSplashAttribute($val){
+        return ($val !== null ) ? asset('assets/images/app/' . $val) : asset('assets/images/noimg.png');
+    }
 }
