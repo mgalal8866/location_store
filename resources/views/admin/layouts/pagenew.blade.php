@@ -1,0 +1,15 @@
+@extends('admin.layouts.master')
+@section('title')
+Hi
+@stop
+@section('css')
+@section('page')
+@endsection
+@section('page1')
+@endsection
+@section('page2')
+@endsection
+@section('content')
+@endsection
+@section('js')
+@endsection

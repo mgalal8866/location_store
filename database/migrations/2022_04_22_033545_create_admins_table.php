@@ -18,9 +18,10 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('mobile')->unique();
             $table->timestamp('mobile_verified_at')->nullable();
+            $table->string('password');
             $table->tinyInteger('gender')->nullable()->comment('[0 = ذكر] [1 = أنثى]');
-            $table->string('device_token');
-            $table->string('ip_address');
+            $table->string('device_token')->nullable();
+            $table->string('ip_address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 
 use League\Flysystem\Config;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -16,17 +17,18 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('mm',function(){
     config()->set('err_message.keys.secret', "value");
     return config('err_message.keys.secret');
 });
-
+Auth::routes();
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'auth:admin' ]
     ], function(){ //...
+        Route::get('home', function () {
+            return view('admin.layouts.pagenew');
+        })->name('home');
     });
