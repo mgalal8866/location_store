@@ -1,7 +1,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="{{ route('home') }}" class="brand-link">
+        <a href="{{ route('city') }}" class="brand-link">
             <img src="{{ URL::asset('assets/pharm.png')}}" alt="Pharm Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
         </a>
@@ -55,13 +55,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('home') }}" class="nav-link">
+                                <a href="{{route('city') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p> {{ __('tran.view') . __('tran.product') }}</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('home') }}" class="nav-link">
+                                <a href="{{route('city') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p> {{ __('tran.new') . __('tran.product') }}</p>
                                 </a>
@@ -72,7 +72,7 @@
 
                     @can('menu category')
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas  fa-city"></i>
                             <p>
                                 {{ __('tran.categories') }}
@@ -83,7 +83,7 @@
                     @endcan
                     @can('menu unit')
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-city"></i>
                             <p>
                                 {{__('tran.city')}}
@@ -95,7 +95,7 @@
 
                     @can('menu order')
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.order') }}
@@ -108,7 +108,7 @@
                     @can('menu warehouse')
                     <li class="nav-header">{{ __('tran.warehouse') }}</li>
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.warehouse') }}
@@ -122,7 +122,7 @@
                     <li class="nav-header">{{ __('tran.accounts') }}</li>
                     @can('view admin')
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.adminaccount') }}
@@ -134,7 +134,7 @@
                     @endcan
                     @can('menu brand')
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.brandaccount') }}
@@ -146,7 +146,7 @@
 
                     @can('menu roles')
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.roles') }}
@@ -159,7 +159,7 @@
                     @can('menu setting')
                     <li class="nav-header">{{ __('tran.settings') }}</li>
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.maininfo') }}
@@ -167,7 +167,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('home') }}" class="nav-link">
+                        <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 {{ __('tran.maininfo') }}

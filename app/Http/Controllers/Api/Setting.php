@@ -13,6 +13,6 @@ class Setting extends Controller
 {
     use GeneralTrait;
     public function app(){
-        return $this->returnData('splash',ModelsSetting::get());
+        return $this->returnData('Settingapp',ModelsSetting::select('splash')->get());
     }
 }
