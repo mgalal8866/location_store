@@ -13,14 +13,26 @@ class CategoriesController extends Controller
     use GeneralTrait;
     public function getcategories()
     {
-      $category =  categories::parent()->select('id','name','slug','active')->whereActive(0)
+      $category =  categories::parent()->select('id','name','slug','active','image')->whereActive(0)
         ->with(['childrens' => function($q){
-            $q->select('id','parent_id','name','slug','active')->whereActive(0);
+            $q->select('id','parent_id','name','slug','active','image')->whereActive(0);
                 $q->with(['childrens' => function($qq){
-                    $qq->select('id','parent_id','name','slug','active')->whereActive(0);
+                    $qq->select('id','parent_id','name','slug','active','image')->whereActive(0);
                 }]);
             }])->get();
-        return $this->returnData('categories',$category,'');
+        return $this->returnData('categories',$category,'success');
+
+    }
+    public function getsubcategories(Request $request)
+    {
+      $category =  categories::select('id','name','slug','active','image')->whereParentId($request->id)
+        ->with(['childrens' => function($q){
+            $q->select('id','parent_id','name','slug','active','image')->whereActive(0);
+                // $q->with(['childrens' => function($qq){
+                //     $qq->select('id','parent_id','name','slug','active','image')->whereActive(0);
+                // }]);
+            }])->get();
+        return $this->returnData('sub',$category,'done');
 
     }
 }

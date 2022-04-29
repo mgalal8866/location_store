@@ -11,25 +11,20 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-/**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        // $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-
 
     public function login(Request $request){
 
     	$validator = Validator::make($request->all(), [
             'mobile' => 'required',
             'password' => 'required|string|min:6',
+            'ip_address' => $request->ip()
         ],
         [
-            'mobile' => 'برجاء ادخال رقم التليفون',
-            'password.required' => 'الباسورد مطلوب'
+            'mobile' => config('err_message.alert.mobile'),
+            'password.required' => config('err_message.alert.password_required')
         ]);
 
 
@@ -38,9 +33,15 @@ class AuthController extends Controller
         }
 
         if (!$token = auth('api')->attempt($validator->validated())) {
-
-            return response()->json(['status' => 'false','msg' => 'برجاء التحقق من رقم التليفون او الباسورد'], 200);
+            return response()->json(['status' => 'false','msg' =>  config('err_message.err.login')], 200);
         }
+        $user = new ResourcesUser(  auth('api')->user());
+
+        if(!$request->ip() == null){
+            $user->update([
+                'ip_address' => $request->ip()
+            ]);
+         }
 
         return $this->createNewToken($token,$request->device_token);
     }
@@ -51,6 +52,9 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'mobile' => 'required|string|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+            'region_id'=>'string',
+            'city_id'=>'string',
+            'gender' =>'string'
         ]);
 
         if($validator->fails()){
@@ -62,15 +66,16 @@ class AuthController extends Controller
                     ['password' => bcrypt($request->password)]
                 ));
         return response()->json([
-            'message' => 'User successfully registered',
-            'user' => new ResourcesUser($user)
+            'user' => new ResourcesUser($user),
+            'status' => 'true',
+            'msg' => config('err_message.success.register')
         ], 200);
     }
 
     public function logout() {
         auth('api')->logout();
 
-        return response()->json(['message' => 'User successfully signed out']);
+        return response()->json(['message' => config('err_message.success.logout')]);
     }
 
     public function refresh() {
@@ -82,16 +87,20 @@ class AuthController extends Controller
     }
 
     protected function createNewToken($token,$device_token){
-        $user = new ResourcesUser(  auth('api')->user());
+        $user = new ResourcesUser( auth('api')->user());
         if(!$device_token == null){
-        $user->update(['device_token' => $device_token]);
-    }
+        $user->update([
+            'device_token' => $device_token
+          ]);
+            }
         return response()->json([
 
         'access_token' => $token,
         'token_type' => 'bearer',
         'expires_in' => auth('api')->factory()->getTTL() * 6000,
         'user' =>  $user,
+        'status' => 'true',
+        'msg' => config('err_message.success.login')
         ]);
     }
 

@@ -14,4 +14,8 @@ class cities extends Model
     {
         return $this->hasMany(regions::class);
     }
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

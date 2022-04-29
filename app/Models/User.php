@@ -23,24 +23,38 @@ class User extends Authenticatable implements JWTSubject
     'gender',
     'name',
     'ip_address',
-    'device_token'];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    'device_token',
+    'city_id',
+    'region_id'];
+    public function city()
+    {
+        return $this->belongsTo(cities::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(regions::class);
+    }
+    public function getImageAttribute($val){
+        return ($val !== null ) ? asset('assets/images/' . $val) : asset('assets/images/noimage.jpg');
+    }
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+
     protected $casts = [
         'mobile_verified_at' => 'datetime',
     ];
+
+    public function getGenderAttribute($val)
+    {
+        if($val == 0){
+            return 'ذكر';
+        }else{
+            return 'أنثى';
+        };
+    }
 
     public function getJWTIdentifier()
     {

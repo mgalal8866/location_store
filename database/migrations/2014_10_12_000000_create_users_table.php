@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender')->nullable()->comment('[0 = ذكر] [1 = أنثى]');
             $table->string('device_token')->nullable();
             $table->string('ip_address')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('region_id')->nullable();
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

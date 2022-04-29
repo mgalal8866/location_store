@@ -26,4 +26,7 @@ class categories extends Model
     {
         return $this->belongsTo(self::class,'parent_id');
     }
+    public function getImageAttribute($val){
+        return ($val !== null ) ? asset('assets/images/' . $val) : asset('assets/images/noimage.jpg');
+    }
 }

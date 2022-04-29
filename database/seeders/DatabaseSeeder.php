@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             // feek::class,
             create_city_regions::class,
             PermissionTableseeder::class,
-            CreateAdminUserSeeder::class
+            CreateAdminUserSeeder::class,
+            Createtestdata::class
         ]);
     }
 }

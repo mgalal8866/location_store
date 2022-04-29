@@ -28,11 +28,6 @@ class CreateAdminUserSeeder extends Seeder
             'mobile' => '01024346011',
             'password' => bcrypt('01024346011')
         ]);
-
-
-
-
-
         $role = Role::create(['guard_name' => 'admin', 'name' => 'Super Admin']);
         $permissions = Permission::where('guard_name', 'admin')->pluck('id', 'id')->all();
         $role->syncPermissions($permissions);

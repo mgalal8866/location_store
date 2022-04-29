@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
 			$table->string('name', 250);
             $table->text('slug')->nullable();
+            $table->string('image')->nullable();
             $table->tinyInteger('active')->default('0')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->softDeletes();
 			$table->timestamps();

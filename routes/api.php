@@ -14,6 +14,10 @@ use App\Http\Controllers\Api\Setting;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/ms', function () {
+      return  config('err_message.config')['lang_for_felid'];
+});
 Route::get('/settingapp', [Setting::class, 'app']);
 Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
@@ -36,7 +40,7 @@ Route::get('/vistor/{id}', function($id){DB::table('branchs')->whereId($id)->inc
 
 
 Route::get('/getcategories', [CategoriesController::class,'getcategories']);
-
+Route::post('/getsubcategories', [CategoriesController::class,'getsubcategories']);
 });
 
 
