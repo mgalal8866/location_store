@@ -15,12 +15,17 @@ class CreateBranchsTable extends Migration
     {
         Schema::create('branchs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('store_id');
-			$table->string('name', 250);
+            $table->unsignedBigInteger('stores_id');
+			$table->string('name', 250)->nullable();
             $table->string('slug')->nullable();
             $table->text('address')->nullable();
-            $table->string('lat', 250);
-            $table->string('lng', 250);
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('phone')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('region_id')->nullable();
+            $table->string('lat', 250)->nullable();
+            $table->string('lng', 250)->nullable();
             $table->integer('view')->default(0)->comment('المشاهدات');
             $table->integer('product_num')->default(0);
             $table->integer('top')->default(0)->comment('تميز الفرع');
@@ -29,6 +34,7 @@ class CreateBranchsTable extends Migration
             $table->date('start_date')->comment('تاريخ بدايه التفعيل')->nullable();
             $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل')->nullable();
             $table->tinyInteger('active')->default('0')->comment('[0 = مفعل] [1 = غير مفعل]');
+            $table->tinyInteger('accept')->default('1')->comment('[0 = مقبول] [1 =  انتظار] [2 = مرفوض ]');
             $table->softDeletes();
 			$table->timestamps();
         });

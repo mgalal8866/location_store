@@ -9,7 +9,11 @@ class regions extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+    Public function getNameAttribute()
+    {
+        $region_name = 'region_name_'.config('err_message.config.lang_for_felid');
+        return $this->$region_name;
+    }
     public function city()
     {
         return $this->belongsTo(cities::class);

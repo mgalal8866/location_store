@@ -25,14 +25,14 @@ class CategoriesController extends Controller
     }
     public function getsubcategories(Request $request)
     {
-      $category =  categories::select('id','name','slug','active','image')->whereParentId($request->id)
+      $category =  categories::select('id','name','slug','active','image')->whereParentId($request->id)->where('parent_id','!=', null)
         ->with(['childrens' => function($q){
             $q->select('id','parent_id','name','slug','active','image')->whereActive(0);
                 // $q->with(['childrens' => function($qq){
                 //     $qq->select('id','parent_id','name','slug','active','image')->whereActive(0);
                 // }]);
             }])->get();
-        return $this->returnData('sub',$category,'done');
+        return $this->returnData('sub',$category, $category->count()>0?'Done':'Cant Find');
 
     }
 }

@@ -10,6 +10,6 @@ class setting extends Model
     use HasFactory;
     protected $guarded = [];
     public function getSplashAttribute($val){
-        return ($val !== null ) ? asset('assets/images/' . $val) : asset('/images/noimage.jpg');
+        return ($val !== null ) ? asset('assets/images/' . $val) : asset('assets/images/noimage.jpg');
     }
 }

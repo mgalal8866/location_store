@@ -31,11 +31,18 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
 Route::get('/getcity', [CitiesController::class,'getcity']);
 Route::post('/getregionsbycity', [CitiesController::class,'getregions']);
 
+
 Route::get('/getstores', [StoresController::class,'getstores']);
+Route::post('/newstore', [StoresController::class,'newstore']);
+Route::get('/storevistor/{store_id}', [StoresController::class,'storevistor']);
+
 Route::get('/ff', function(){return auth('api')->user()->id;});
 
 Route::get('/getbranches', [BranchesController::class,'getbranches']);
-Route::get('/vistor/{id}', function($id){DB::table('branchs')->whereId($id)->increment('view');});
+Route::post('/branch/byid', [BranchesController::class,'getbranchbyid']);
+Route::get('/search/{query}', [BranchesController::class,'search']);
+
+// Route::get('/vistor/{id}', function($id){});
 // Route::get('/comments/{id}/{rate}', function($id,$rate){DB::table('comments')->whereId($id)->increment('review',$rate);});
 
 

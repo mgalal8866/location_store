@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class products extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function branch()
+    {
+        return $this->belongsTo(branchs::class);
+    }
 }
