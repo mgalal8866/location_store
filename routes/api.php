@@ -26,10 +26,11 @@ Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function (
 
 });
 
-Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
-
 Route::get('/getcity', [CitiesController::class,'getcity']);
 Route::post('/getregionsbycity', [CitiesController::class,'getregions']);
+
+
+Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
 
 
 Route::get('/getstores', [StoresController::class,'getstores']);
