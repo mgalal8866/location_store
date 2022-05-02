@@ -25,7 +25,8 @@ class User extends Authenticatable implements JWTSubject
     'ip_address',
     'device_token',
     'city_id',
-    'region_id'];
+    'region_id',
+    'image',];
     public function city()
     {
         return $this->belongsTo(cities::class);

@@ -55,7 +55,9 @@ use GeneralTrait;
             'password' => 'required|string|confirmed|min:6',
             'region_id'=>'string',
             'city_id'=>'string',
-            'gender' =>'string'
+            'gender' =>'string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
         ]);
 
         if($validator->fails()){
