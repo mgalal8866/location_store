@@ -240,12 +240,8 @@ trait GeneralTrait
     }
     public function notificationFCM($title =null,$body =null, $user=null,$icon =null,$image =null,$link =null,$click =null){
 
-        $firebaseToken =   User::whereHas(
-            'roles', function($q){
-                $q->where('name', 'admin');
-            }
-        )->whereNotNull('device_token')->pluck('device_token');
-       // dd(  $firebaseToken);
+        $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
+     
         $SERVER_API_KEY = env('FCM_SERVER_KEY');
         $data = [
             "registration_ids" => $firebaseToken,

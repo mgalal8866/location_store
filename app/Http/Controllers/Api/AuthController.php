@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as ResourcesUser;
 use App\Models\User;
@@ -14,7 +15,7 @@ class AuthController extends Controller
     public function __construct() {
         // $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-
+use GeneralTrait;
     public function login(Request $request){
 
     	$validator = Validator::make($request->all(), [
@@ -75,7 +76,7 @@ class AuthController extends Controller
     public function logout() {
         auth('api')->logout();
 
-        return response()->json(['message' => config('err_message.success.logout')]);
+        return  $this->returnSuccessMessage(config('err_message.success.logout') );
     }
 
     public function refresh() {

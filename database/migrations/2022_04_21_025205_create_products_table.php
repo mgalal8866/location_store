@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('slug')->nullable();
             $table->date('start_date')->comment('تاريخ بدايه التفعيل');
             $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل');
-            $table->tinyInteger('active')->default('0')->comment('[0 = مفعل] [1 = غير مفعل]');
+            $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->softDeletes();
             $table->timestamps();
         });

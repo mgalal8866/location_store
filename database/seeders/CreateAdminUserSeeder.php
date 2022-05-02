@@ -21,6 +21,9 @@ class CreateAdminUserSeeder extends Seeder
             'name' => 'Brand',
             'mobile' => '01024346010',
             'password' => bcrypt('01024346010'),
+            'city_id' => 3,
+            'region_id' => 8,
+            'gender' =>0
         ]);
 
         $admin = admin::create([

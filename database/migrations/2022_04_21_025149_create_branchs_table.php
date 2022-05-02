@@ -33,7 +33,7 @@ class CreateBranchsTable extends Migration
             $table->string('closetime', 250)->comment('وقت اغلاق')->nullable();
             $table->date('start_date')->comment('تاريخ بدايه التفعيل')->nullable();
             $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل')->nullable();
-            $table->tinyInteger('active')->default('0')->comment('[0 = مفعل] [1 = غير مفعل]');
+            $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->tinyInteger('accept')->default('1')->comment('[0 = مقبول] [1 =  انتظار] [2 = مرفوض ]');
             $table->softDeletes();
 			$table->timestamps();

@@ -22,7 +22,7 @@ Route::get('/settingapp', [Setting::class, 'app']);
 Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/logout', [AuthController::class, 'logout'])->middleware('jwt.verify');
 
 });
 
