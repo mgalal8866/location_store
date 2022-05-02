@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\BranchesController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\Setting;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -18,6 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/ms', function () {
       return  config('err_message.config')['lang_for_felid'];
 });
+
+Route::get('/not', [CitiesController::class,'notifi']);
+
 Route::get('/settingapp', [Setting::class, 'app']);
 Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);

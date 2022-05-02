@@ -19,4 +19,10 @@ class CitiesController extends Controller
     public function getregions(Request $request){
        return$this->returnData('regions',region::collection(regions::whereCityId($request->id_city)->get()),'');
     }
+    public function notifi(){
+
+       return $this->returnData('',$this->notificationFCM('test','Note'),'') ;
+
+
+    }
 }
