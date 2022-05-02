@@ -59,6 +59,11 @@ use GeneralTrait;
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
+        if($request->has('image')) {
+            $filepath = $this->uploadimages('category', $request->image);
+            $request->request->add(['filepath' => $filepath]);
+        }else{
+            $request->request->add(['filepath'=>null]);}
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -66,7 +71,8 @@ use GeneralTrait;
 
         $user = User::create(array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)]
+                    ['password' => bcrypt($request->password)
+                    ,'image' => $request->filepath]
                 ));
         return response()->json([
             'user' => new ResourcesUser($user),
