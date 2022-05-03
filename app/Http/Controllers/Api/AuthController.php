@@ -40,7 +40,8 @@ use GeneralTrait;
 
         if(!$request->ip() == null){
             $user->update([
-                'ip_address' => $request->ip()
+                'ip_address' => $request->ip(),
+                'device_token' =>$request->device_token
             ]);
          }
 
@@ -60,7 +61,7 @@ use GeneralTrait;
 
         ]);
         if($request->has('image')) {
-            $filepath = $this->uploadimages('category', $request->image);
+            $filepath = $this->uploadimages('user', $request->image);
             $request->request->add(['filepath' => $filepath]);
         }else{
             $request->request->add(['filepath'=>null]);}
@@ -72,12 +73,51 @@ use GeneralTrait;
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)
-                    ,'image' => $request->filepath]
+                    ,'image' => $request->filepath,
+                    'ip_address' => $request->ip()]
                 ));
         return response()->json([
             'user' => new ResourcesUser($user),
             'status' => 'true',
             'msg' => config('err_message.success.register')
+        ], 200);
+    }
+
+
+    public function editprofile(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|between:2,100',
+            // 'mobile' => 'required|string|max:100|unique:users',
+            'password' => '',
+            'region_id'=>'',
+            'city_id'=>'',
+            'gender' =>'string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $user = auth('api')->user();
+
+        if($request->has('image')) {
+            $filepath = $this->uploadimages('user', $request->image);
+            $request->request->add(['filepath' => $filepath]);
+        }else{
+            $request->request->add(['filepath'=>  $user->getAttributes()['image']]);}
+
+
+        $user->update(array_merge(
+            $validator->validated(),
+            ['password' => bcrypt($request->password)
+            ,'image' => $request->filepath,
+            'ip_address' => $request->ip(),
+            'device_token'=>$request->device_token]
+        ));
+        return response()->json([
+            'user' => new ResourcesUser($user),
+            'status' => 'true',
+            'msg' => config('err_message.success.editprofile')
         ], 200);
     }
 

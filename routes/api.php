@@ -35,7 +35,7 @@ Route::post('/getregionsbycity', [CitiesController::class,'getregions']);
 
 
 Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
-
+    Route::post('/editprofile', [AuthController::class, 'editprofile']);
 
 Route::get('/getstores', [StoresController::class,'getstores']);
 Route::post('/newstore', [StoresController::class,'newstore']);

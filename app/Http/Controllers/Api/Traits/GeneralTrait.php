@@ -241,11 +241,10 @@ trait GeneralTrait
     public function notificationFCM($title =null,$body =null, $user=null,$icon =null,$image =null,$link =null,$click =null){
 
         $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
-
-        return $firebaseToken;
+        // return $firebaseToken;
         $SERVER_API_KEY = env('FCM_SERVER_KEY');
         $data = [
-            "registration_ids" =>$firebaseToken,
+            "registration_ids" => $firebaseToken,
             "notification" => [
                 "title" => $title,
                 "body" => $body,

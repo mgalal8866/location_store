@@ -2,9 +2,12 @@
 
 
 use League\Flysystem\Config;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashborad\Citits;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\DashbordController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -19,6 +22,33 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+
+// route::get('/gen',[DashbordController::class,'gennoti']);
+Route::get('/gen', function () {
+    // $credentialsFilePath = File::get('public/omardair-3a1cb-firebase-adminsdk-44tq7-0ae1e434ac.json') ;
+    // $client = new \go();
+    // $client->setAuthConfig($credentialsFilePath);
+    // $client->addScope('https://www.googleapis.com/auth/firebase.messaging');
+    // $client->refreshTokenWithAssertion();
+    // $token = $client->getAccessToken();
+    // return $token['access_token'];
+    return view('gen');
+});
+
+Route::get('/firebase', function () {
+
+    return view('firebase');
+});
+Route::get('/saveToken', function(Request $request)
+{
+
+
+    // $user = Auth::user();
+    // $user->update(['device_token'=>$request->token]);
+    // return response()->json(['token saved successfully.']);
+}
+)->name('save-token');
+// route::get('/gen',[DashbordController::class,'gennoti']);
 
 Route::get('mm',function(){
     config()->set('err_message.keys.secret', "value");

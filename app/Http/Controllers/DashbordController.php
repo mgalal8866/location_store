@@ -26,4 +26,7 @@ class DashbordController extends Controller
             ,'countcomments','countusers' ,'countcategory'
         ));
     }
+
+
+   
 }
