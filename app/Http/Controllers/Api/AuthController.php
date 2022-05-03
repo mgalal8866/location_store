@@ -74,7 +74,8 @@ use GeneralTrait;
                     $validator->validated(),
                     ['password' => bcrypt($request->password)
                     ,'image' => $request->filepath,
-                    'ip_address' => $request->ip()]
+                    'ip_address' => $request->ip(),
+                    'device_token' =>$request->device_token]
                 ));
         return response()->json([
             'user' => new ResourcesUser($user),
