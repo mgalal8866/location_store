@@ -248,10 +248,16 @@ trait GeneralTrait
             "notification" => [
                 "title" => $title,
                 "body" => $body,
-                "icon" => $icon,
-                "image" => $image,
-                "fcm_options.link"=> $link,
+                "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
+                "image" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
+                "fcm_options.link" => $link,
                 "click_action" => $click,
+
+            ],
+            "actions"=> [
+                "title"=> "Like",
+                  "action"=> "like",
+                  "icon"=> "icons/heart.png"
             ],
         ];
         $dataString = json_encode($data);

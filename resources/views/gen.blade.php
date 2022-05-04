@@ -4,7 +4,7 @@
     {{-- <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" /> --}}
   </head>
   <body>
- 
+
     <h1>Welcome to My Awesome App</h1>
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
@@ -61,7 +61,14 @@
                         console.log('User Chat Token Error catch');
                     });
 
-
+    //     messaging.onMessage(function (payload) {
+    //     const title = payload.notification.title;
+    //     const options = {
+    //         body: payload.notification.title,
+    //         icon: payload.notification.icon,
+    //     };
+    //     new Notification(title, options);
+    // });
         </script>
   </body>
 </html>

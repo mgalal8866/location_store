@@ -51,8 +51,11 @@ Auth::routes();
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
+
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'auth:admin' ]
+
     ], function(){
+
         Route::get('/dashborad',[DashbordController::class,'index'])->name('dashborad');
         Route::get('/city',Citits::class)->name('city');
         Route::get('/users',Citits::class)->name('users');
@@ -61,8 +64,6 @@ Route::group(
         Route::get('/store/branchse',Citits::class)->name('branches');
         Route::get('/user/comments',Citits::class)->name('comments');
 
-
-        //...
         Route::get('home', function () {
             return view('admin.layouts.pagenew');
         })->name('home');

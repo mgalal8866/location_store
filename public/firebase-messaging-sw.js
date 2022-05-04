@@ -10,7 +10,23 @@ firebase.initializeApp({
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
+self.addEventListener('notificationclick', function(event) {
+    console.log('[firebase-messaging-sw.js] Received background message ');
+    if (event.action === 'like') {
+        // Like button was clicked
 
+        const photoId = event.notification.photoId;
+        like(photoId);
+    }
+    else if (event.action === 'unsubscribe') {
+        // Unsubscribe button was clicked
+
+        const notificationType = event.action.data.notificationType;
+        unsubscribe(notificationType);
+    }
+
+    event.notification.close();
+ });
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
