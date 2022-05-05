@@ -16,4 +16,13 @@ class comments extends Model
 
         return $Branch;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function branch()
+    {
+        return $this->belongsTo(branchs::class);
+    }
 }

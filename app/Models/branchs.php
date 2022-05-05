@@ -30,4 +30,9 @@ class branchs extends Model
     {
         return $this->hasMany(products::class);
     }
+
+    public function comments()
+    {
+        return $this->belongsTo(comments::class);
+    }
 }

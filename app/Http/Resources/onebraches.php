@@ -15,7 +15,7 @@ class onebraches extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->stores->name,
+            // 'name' => $this->stores->name,
             'address' => $this->address,
             'image' => $this->image,
             'description' => $this->description,
@@ -28,6 +28,12 @@ class onebraches extends JsonResource
             'phone' => $this->phone,
             'visetor' => $this->view,
             'id' => $this->id,
+            'comments' =>[
+                // 'user_name' =>  $this->comments,
+                'user_id' => $this->comments,
+                // 'comment' => $this->comments->comment,
+                'rating'  => 's'
+            ]
         ];
     }
 }
