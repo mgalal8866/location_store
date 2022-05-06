@@ -33,6 +33,6 @@ class branchs extends Model
 
     public function comments()
     {
-        return $this->belongsTo(comments::class);
+        return $this->hasMany(comments::class,'branch_id');
     }
 }

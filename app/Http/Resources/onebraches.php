@@ -28,12 +28,7 @@ class onebraches extends JsonResource
             'phone' => $this->phone,
             'visetor' => $this->view,
             'id' => $this->id,
-            'comments' =>[
-                // 'user_name' =>  $this->comments,
-                'user_id' => $this->comments,
-                // 'comment' => $this->comments->comment,
-                'rating'  => 's'
-            ]
+            'comments' =>  comment::collection($this->comments)
         ];
     }
 }
