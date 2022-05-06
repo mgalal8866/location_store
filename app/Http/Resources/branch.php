@@ -13,10 +13,10 @@ class branch extends JsonResource
         $count = comments::getrating($this->id)->count();
         $sum = comments::getrating($this->id)->sum('review');
         return [
+            'id' => $this->id,
             'name' => $this->stores->name,
             'image' => $this->image,
-            'id' => $this->id,
-            'rating' => $sum/$count
+            'rating' => ($count != 0)?$sum/$count:0
         ];
     }
 }

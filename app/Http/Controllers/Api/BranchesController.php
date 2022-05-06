@@ -18,7 +18,7 @@ class BranchesController extends Controller
         branchs::whereActive(0)->
         whereCityId(auth('api')->user()->city_id)->
         whereRegionId(auth('api')->user()->region_id)
-        ->get()),'Done');
+        ->latest()->paginate(10))->response()->getData(true),'Done');
     }
 
     public function  getbranchbyid(Request $request)
