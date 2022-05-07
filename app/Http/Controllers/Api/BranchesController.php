@@ -21,6 +21,17 @@ class BranchesController extends Controller
         ->latest()->paginate(10))->response()->getData(true),'Done');
     }
 
+    public function getbranchesbyid(Request $request)
+    {
+       
+        return $this->returnData('branches',branch::collection(
+        branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request){
+            $q->whereCategoryId($request->category_id);
+        })->whereCityId(auth('api')->user()->city_id)->
+        whereRegionId(auth('api')->user()->region_id)
+        ->latest()->paginate(10))->response()->getData(true),'Done');
+    }
+
     public function  getbranchbyid(Request $request)
     {
         return $this->returnData('branches',onebraches::collection(
