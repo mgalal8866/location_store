@@ -28,7 +28,7 @@ class branchs extends Model
     }
     public function product()
     {
-        return $this->hasMany(products::class);
+        return $this->hasMany(products::class,'branch_id');
     }
 
     public function comments()

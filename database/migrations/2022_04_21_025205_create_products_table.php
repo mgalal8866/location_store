@@ -18,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('branch_id');
 			$table->string('name', 250);
             $table->string('slug')->nullable();
-            $table->date('start_date')->comment('تاريخ بدايه التفعيل');
-            $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل');
+            $table->string('price')->nullable();
+            $table->date('start_date')->nullable()->comment('تاريخ بدايه التفعيل');
+            $table->date('expiry_date')->nullable()->comment('تاريخ انتهاءالتفعيل');
             $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->softDeletes();
             $table->timestamps();

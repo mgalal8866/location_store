@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CitiesController;
 use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\BranchesController;
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\Setting;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Models\comments;
@@ -50,19 +51,62 @@ Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function (
 
 Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::post('/editprofile', [AuthController::class, 'editprofile']);
+
 /**************************  StoresController ********************************** */
     Route::get('/getstores', [StoresController::class,'getstores']);
     Route::post('/newstore', [StoresController::class,'newstore']);
     Route::get('/storevistor/{store_id}', [StoresController::class,'storevistor']);
 /**************************  BRANCHES ********************************** */
     Route::get('/ff', function(){return auth('api')->user()->id;});
+
 /**************************  BranchesController ********************************** */
     Route::get('/getbranches', [BranchesController::class,'getbranches']);
     Route::post('/branch/byid', [BranchesController::class,'getbranchbyid']);
     Route::get('/search/{query}', [BranchesController::class,'search']);
+/**************************  BranchesController ********************************** */
+
 /**************************  CategoriesController ********************************** */
     Route::get('/getcategories', [CategoriesController::class,'getcategories']);
     Route::post('/getsubcategories', [CategoriesController::class,'getsubcategories']);
+/**************************  CategoriesController ********************************** */
+
+/**************************  ProductController ********************************** */
+
+// Route::post('/insert/product',  function(Request $request){
+
+//      $files= $request->file('image');
+
+    // foreach ($files as $file) {
+
+        // $extension = $file->getClientOriginalExtension();
+
+        // $check = in_array($extension,$allowedfileExtension);
+
+        // if($check) {
+            // foreach($request->image as $mediaFiles) {
+
+            //     $path = $mediaFiles->store('public/images');
+            //     $name = $mediaFiles->getClientOriginalName();
+            //     return $path;
+                //store image file into directory and db
+                // $save = new Image();
+                // $save->title = $name;
+                // $save->path = $path;
+                // $save->save();
+            // }
+        // } else {
+        //     return response()->json(['invalid_file_format'], 422);
+        // }
+
+        // return response()->json(['file_uploaded'], 200);
+
+    // }
+// });
+
+    Route::post('/insert/product', [ProductController::class,'insert_product']);
+    Route::post('/get/product/by/branch', [ProductController::class,'get_product']);
+/**************************  ProductController ********************************** */
+
 });
 
 

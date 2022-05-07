@@ -14,4 +14,8 @@ class products extends Model
     {
         return $this->belongsTo(branchs::class);
     }
+    public function product_images()
+    {
+        return $this->hasMany(product_images::class);
+    }
 }
