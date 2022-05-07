@@ -18,10 +18,10 @@ class categories extends Model
     {
             return $this->hasMany(self::class,'parent_id');
     }
-    public function warehouse_product()
-    {
-        return $this->hasOne(Warehouse_product::class);
-    }
+    // public function warehouse_product()
+    // {
+    //     return $this->hasOne(Warehouse_product::class);
+    // }
     Public function _parent()
     {
         return $this->belongsTo(self::class,'parent_id');

@@ -13,14 +13,15 @@ class CategoriesController extends Controller
     use GeneralTrait;
     public function getcategories()
     {
-      $category =  categories::parent()->select('id','name','slug','active','image')->whereActive(0)
+      $category =  categories::parent()->select('id','parent_id','name','slug','active','image')->whereActive(0)
         ->with(['childrens' => function($q){
             $q->select('id','parent_id','name','slug','active','image')->whereActive(0);
                 $q->with(['childrens' => function($qq){
                     $qq->select('id','parent_id','name','slug','active','image')->whereActive(0);
                 }]);
             }])->get();
-        return $this->returnData('categories',$category,'success');
+            // $category =  categories::parent()->select('id','name','slug','active','image')->whereActive(0)->get();
+        return $this->returnData('categories',category::collection($category),'success');
 
     }
     public function getsubcategories(Request $request)
