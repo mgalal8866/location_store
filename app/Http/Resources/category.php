@@ -17,6 +17,6 @@ class category extends JsonResource
         $data = parent::toArray($request);
         $data["children"] =  $this->childrens->count() ? true : false;
         return $data;
-        // return parent::toArray($request);
+       
     }
 }

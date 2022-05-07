@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'c8e2303f35f952104b0282a7f9d86268b6888232',
+        'reference' => 'e1313a21b4f84cfff6a640d3b4c012fa8d3fe3a0',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -155,7 +155,7 @@
             'install_path' => __DIR__ . '/../fzaninotto/faker',
             'aliases' => array(),
             'reference' => '848d8125239d7dbf8ab25cb7f054f1a630e68c2e',
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.0.4',
@@ -409,7 +409,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'c8e2303f35f952104b0282a7f9d86268b6888232',
+            'reference' => 'e1313a21b4f84cfff6a640d3b4c012fa8d3fe3a0',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

@@ -8752,7 +8752,6 @@
         "facade/ignition",
         "facade/ignition-contracts",
         "filp/whoops",
-        "fzaninotto/faker",
         "hamcrest/hamcrest-php",
         "mockery/mockery",
         "myclabs/deep-copy",
