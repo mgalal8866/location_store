@@ -10,13 +10,14 @@ class branch extends JsonResource
 
     public function toArray($request)
     {
+
         $count = comments::getrating($this->id)->count();
-        $sum = comments::getrating($this->id)->sum('review');
+        $sum = comments::getrating($this->id)->sum('rating');
         return [
             'id' => $this->id,
             'name' => $this->stores->name,
             'image' => $this->image,
-            'rating' => ($count != 0)?$sum/$count:0
+            'rating' => ($count != 0)?$sum/$count:0,
         ];
     }
 }

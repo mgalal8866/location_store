@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Http\Resources\branch;
+use App\Http\Resources\branchesCollection;
 use App\Http\Resources\onebraches;
 use App\Models\branchs;
 
@@ -23,13 +24,15 @@ class BranchesController extends Controller
 
     public function getbranchesbyid(Request $request)
     {
-       
-        return $this->returnData('branches',branch::collection(
-        branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request){
+
+        $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request){
             $q->whereCategoryId($request->category_id);
         })->whereCityId(auth('api')->user()->city_id)->
         whereRegionId(auth('api')->user()->region_id)
-        ->latest()->paginate(10))->response()->getData(true),'Done');
+        ->latest()->paginate(10);
+        //
+        // return $this->returnData('branches',branch::collection($branches)->response()->getData(true)   ,'Done');
+        return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 
     public function  getbranchbyid(Request $request)
