@@ -9,12 +9,14 @@ use App\Http\Resources\branch;
 use App\Http\Resources\branchesCollection;
 use App\Http\Resources\onebraches;
 use App\Models\branchs;
+use App\Models\User;
 
 class BranchesController extends Controller
 {
     use GeneralTrait;
     public function getbranches()
     {
+        
         return $this->returnData('branches',branch::collection(
         branchs::whereActive(0)->
         whereCityId(auth('api')->user()->city_id)->
