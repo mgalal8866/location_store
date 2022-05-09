@@ -21,9 +21,10 @@ class DashbordController extends Controller
             $countproduct = products::count();
             $countcomments = comments::count();
             $countcategory = categories::count();
+            $fonts = fonts::whereIsDefault(1)->get();
         return view('admin.livewire.dashborad',compact(
             'countcities','countregions','countstores','countproduct'
-            ,'countcomments','countusers' ,'countcategory'
+            ,'countcomments','countusers' ,'countcategory','fonts'
         ));
     }
 

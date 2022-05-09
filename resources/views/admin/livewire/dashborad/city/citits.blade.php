@@ -10,24 +10,26 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Action</th>
+                        <th width="240">Action</th>
                         {{-- <th style="width: 40px">Label</th> --}}
                     </tr>
                     </thead>
                     <tbody>
-                        @forelse ( $cities as $city )
+                        @forelse ( $cities  as $city )
                         <tr>
                             <td>{{$loop->index +1}}</td>
                             <td>{{$city->name}}</td>
                             <td>
-                              <button class="btn btn-info  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="fas fa-pencil-alt"></i>{{ __('tran.edit') }}</button>
-                              <button class="btn btn-danger  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="fas fa-pencil-alt"></i>{{ __('tran.edit') }}</button>
-
+                                <button class="btn btn-info  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="far fa-eye"></i>{{ __('tran.show') }}</button>
+                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"><i class="fas fa-pencil-alt"></i>{{ __('tran.edit') }}</button>
+                                <button class="btn btn-danger  btn-sm"  data-toggle="modal" data-target="#modal-edit"><i class="fas fa-trash-alt"></i>{{ __('tran.delete') }}</button>
                             </td>
-                            {{-- <td><span class="badge bg-danger">55%</span></td> --}}
                         </tr>
                         @empty
-
+                            <tr>
+                            <td colspen="2"> No Data</td>
+                            
+                        </tr>
                         @endforelse
 
 

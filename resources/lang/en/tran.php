@@ -1,7 +1,9 @@
 <?php
 
 return [
-
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'show' => 'Show',
     'city' => 'City',
     'cities' => 'City',
     'users' => 'User',

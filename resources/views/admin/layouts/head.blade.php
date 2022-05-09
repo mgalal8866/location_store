@@ -22,6 +22,15 @@
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/summernote/summernote-bs4.min.css') }}">
+  {{-- <link href="https://fonts.googleapis.com/css?family=Arvo:400,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+@inject('fonts', 'App\Models\fonts')
+{{ $fonts->font_url}}
+{{ fonts::find(0)->font_url }}
+{{-- {{$fonts->font_url}} --}}
+{{-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">  --}}
+{{-- <style>body { {{$fonts->font_family}} }</style> --}}
   @livewireStyles
   @stack('csslive')
   @yield('css')

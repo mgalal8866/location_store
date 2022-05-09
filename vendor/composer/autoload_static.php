@@ -552,6 +552,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\notification' => __DIR__ . '/../..' . '/app/Console/Commands/notification.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
@@ -602,8 +603,10 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'App\\Http\\Middleware\\jwtmiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/jwtmiddleware.php',
         'App\\Http\\Resources\\User' => __DIR__ . '/../..' . '/app/Http/Resources/User.php',
         'App\\Http\\Resources\\branch' => __DIR__ . '/../..' . '/app/Http/Resources/branch.php',
+        'App\\Http\\Resources\\branchesCollection' => __DIR__ . '/../..' . '/app/Http/Resources/branchesCollection.php',
         'App\\Http\\Resources\\category' => __DIR__ . '/../..' . '/app/Http/Resources/category.php',
         'App\\Http\\Resources\\city' => __DIR__ . '/../..' . '/app/Http/Resources/city.php',
+        'App\\Http\\Resources\\citywithregion' => __DIR__ . '/../..' . '/app/Http/Resources/citywithregion.php',
         'App\\Http\\Resources\\comment' => __DIR__ . '/../..' . '/app/Http/Resources/comment.php',
         'App\\Http\\Resources\\onebraches' => __DIR__ . '/../..' . '/app/Http/Resources/onebraches.php',
         'App\\Http\\Resources\\product' => __DIR__ . '/../..' . '/app/Http/Resources/product.php',
@@ -617,6 +620,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'App\\Models\\categories' => __DIR__ . '/../..' . '/app/Models/categories.php',
         'App\\Models\\cities' => __DIR__ . '/../..' . '/app/Models/cities.php',
         'App\\Models\\comments' => __DIR__ . '/../..' . '/app/Models/comments.php',
+        'App\\Models\\fonts' => __DIR__ . '/../..' . '/app/Models/fonts.php',
         'App\\Models\\messageerr' => __DIR__ . '/../..' . '/app/Models/messageerr.php',
         'App\\Models\\product_images' => __DIR__ . '/../..' . '/app/Models/product_images.php',
         'App\\Models\\products' => __DIR__ . '/../..' . '/app/Models/products.php',
@@ -741,7 +745,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'Database\\Seeders\\Createtestdata' => __DIR__ . '/../..' . '/database/seeders/Createtestdata.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\create_city_regions' => __DIR__ . '/../..' . '/database/seeders/create_city_regions.php',
-        'Database\\Seeders\\fakeer' => __DIR__ . '/../..' . '/database/seeders/fakeer.php',
+        'Database\\Seeders\\fakeedr' => __DIR__ . '/../..' . '/database/seeders/fakeedr.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\notification' => $baseDir . '/app/Console/Commands/notification.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
@@ -56,8 +57,10 @@ return array(
     'App\\Http\\Middleware\\jwtmiddleware' => $baseDir . '/app/Http/Middleware/jwtmiddleware.php',
     'App\\Http\\Resources\\User' => $baseDir . '/app/Http/Resources/User.php',
     'App\\Http\\Resources\\branch' => $baseDir . '/app/Http/Resources/branch.php',
+    'App\\Http\\Resources\\branchesCollection' => $baseDir . '/app/Http/Resources/branchesCollection.php',
     'App\\Http\\Resources\\category' => $baseDir . '/app/Http/Resources/category.php',
     'App\\Http\\Resources\\city' => $baseDir . '/app/Http/Resources/city.php',
+    'App\\Http\\Resources\\citywithregion' => $baseDir . '/app/Http/Resources/citywithregion.php',
     'App\\Http\\Resources\\comment' => $baseDir . '/app/Http/Resources/comment.php',
     'App\\Http\\Resources\\onebraches' => $baseDir . '/app/Http/Resources/onebraches.php',
     'App\\Http\\Resources\\product' => $baseDir . '/app/Http/Resources/product.php',
@@ -71,6 +74,7 @@ return array(
     'App\\Models\\categories' => $baseDir . '/app/Models/categories.php',
     'App\\Models\\cities' => $baseDir . '/app/Models/cities.php',
     'App\\Models\\comments' => $baseDir . '/app/Models/comments.php',
+    'App\\Models\\fonts' => $baseDir . '/app/Models/fonts.php',
     'App\\Models\\messageerr' => $baseDir . '/app/Models/messageerr.php',
     'App\\Models\\product_images' => $baseDir . '/app/Models/product_images.php',
     'App\\Models\\products' => $baseDir . '/app/Models/products.php',
@@ -195,7 +199,7 @@ return array(
     'Database\\Seeders\\Createtestdata' => $baseDir . '/database/seeders/Createtestdata.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\create_city_regions' => $baseDir . '/database/seeders/create_city_regions.php',
-    'Database\\Seeders\\fakeer' => $baseDir . '/database/seeders/fakeer.php',
+    'Database\\Seeders\\fakeedr' => $baseDir . '/database/seeders/fakeedr.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
     'DeepCopy\\Exception\\PropertyException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
