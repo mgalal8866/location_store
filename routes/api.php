@@ -46,6 +46,7 @@ Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function (
 /**************************  CitiesController ********************************** */
     Route::get('/getcity', [CitiesController::class,'getcity']);
     Route::post('/getregionsbycity', [CitiesController::class,'getregions']);
+    Route::get('/getcitywithregions', [CitiesController::class,'getcitywithregions']);
 /**************************  CitiesController ********************************** */
 
 
