@@ -22,12 +22,6 @@ use App\Models\comments;
         return  config('err_message.config')['lang_for_felid'];
     });
 
-    Route::get('/comment', function () {
-        $count = comments::getrating(1)->count();
-        $sum = comments::getrating(1)->sum('rating');
-        return  $sum/$count;
-    });
-
     Route::get('/not', [CitiesController::class,'notifi']);
 /**************************  Settings ********************************** */
     Route::get('/slider', [Setting::class, 'slider']);

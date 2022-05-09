@@ -22,5 +22,8 @@
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/summernote/summernote-bs4.min.css') }}">
-@yield('css')
+  @livewireStyles
+  @stack('csslive')
+  @yield('css')
+
 {{-- <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/rtl.css') }}"> --}}

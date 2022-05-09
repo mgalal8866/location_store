@@ -25,9 +25,9 @@ class CitiesController extends Controller
     public function notifi(){
        return $this->returnData('',$this->notificationFCM('test','Note'),'') ;
     }
+
     public function getcitywithregions()
     {
         return$this->returnData('city',citywithregion::collection(regions::all()),'');
-
     }
 }
