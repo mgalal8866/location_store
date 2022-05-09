@@ -15,7 +15,7 @@ class comment extends JsonResource
     public function toArray($request)
     {
         return [
-            'comment' => $this->comment,
+            'comment' => $this->comment??'',
             'user_id' => $this->user_id,
             'user_name' => $this->user->name,
             'rating' => $this->rating

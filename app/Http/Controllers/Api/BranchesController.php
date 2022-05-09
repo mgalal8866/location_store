@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Api\Traits\GeneralTrait;
-use App\Http\Resources\branch;
-use App\Http\Resources\branchesCollection;
-use App\Http\Resources\onebraches;
-use App\Models\branchs;
 use App\Models\User;
+use App\Models\branchs;
+use Illuminate\Http\Request;
+use App\Http\Resources\branch;
+use App\Http\Resources\onebraches;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\branchesCollection;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class BranchesController extends Controller
 {
     use GeneralTrait;
     public function getbranches()
     {
-        
+
         return $this->returnData('branches',branch::collection(
         branchs::whereActive(0)->
-        whereCityId(auth('api')->user()->city_id)->
-        whereRegionId(auth('api')->user()->region_id)
-        ->latest()->paginate(10))->response()->getData(true),'Done');
+            whereCityId(auth('api')->user()->city_id)->
+            whereRegionId(auth('api')->user()->region_id)->
+            latest()->
+            orderBy('top', 'DESC')->
+            paginate(10))->response()->getData(true),'Done');
     }
 
     public function getbranchesbyid(Request $request)
@@ -29,25 +32,28 @@ class BranchesController extends Controller
 
         $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request){
             $q->whereCategoryId($request->category_id);
-        })->whereCityId(auth('api')->user()->city_id)->
-        whereRegionId(auth('api')->user()->region_id)
-        ->latest()->paginate(10);
-        //
-        // return $this->returnData('branches',branch::collection($branches)->response()->getData(true)   ,'Done');
-        return $this->returnData('branches',new branchesCollection($branches) ,'Done');
+            })->whereCityId(auth('api')->user()->city_id)->
+            whereRegionId(auth('api')->user()->region_id)->
+            latest()->
+            orderBy('top', 'DESC')->
+            paginate(10);
+
+            return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 
     public function  getbranchbyid(Request $request)
     {
+        DB::table('branchs')->whereId($request->id)->increment('view');
         return $this->returnData('branches',onebraches::collection(
             branchs::whereActive(0)->
-            whereId($request->id)
-            ->get()),'Done');
+            whereId($request->id)->
+            orderBy('top', 'DESC')->
+            get()),'Done');
     }
 
     public function  search($query)
     {
-         $ss = branchs::whereActive(0)->
+         $ss = branchs::whereActive(0)->orderBy('top', 'DESC')->
          WhereHas('stores', function($q) use ($query){
             $q->Where('name','like', '%'.  $query  . '%');
         })->

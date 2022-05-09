@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('branch_id');
             $table->text('comment')->nullable();
-            $table->integer('rating')->nullable();
+            $table->decimal('rating',2,1)->nullable();
             $table->timestamps();
         });
     }

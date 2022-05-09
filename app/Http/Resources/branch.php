@@ -15,6 +15,7 @@ class branch extends JsonResource
         $sum = comments::getrating($this->id)->sum('rating');
         return [
             'id' => $this->id,
+            'star' => $this->top,
             'name' => $this->stores->name,
             'image' => $this->image,
             'rating' => ($count != 0)?$sum/$count:0,

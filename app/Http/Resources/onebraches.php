@@ -16,13 +16,13 @@ class onebraches extends JsonResource
     {
         return [
             // 'name' => $this->stores->name,
-            'address' => $this->address,
+            'address' => $this->address??'',
             'image' => $this->image,
-            'description' => $this->description,
+            'description' => $this->description??'',
             'city' => $this->city->name,
             'region' => $this->region->name,
-            'opentime' => $this->opentime,
-            'closetime' => $this->closetime,
+            'opentime' => $this->opentime??'',
+            'closetime' => $this->closetime??'',
             'lat' => $this->lat,
             'lng' => $this->lng,
             'phone' => $this->phone,
