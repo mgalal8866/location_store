@@ -32,6 +32,7 @@
 <script src="{{ URL::asset('assets/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ URL::asset('assets/dist/js/pages/dashboard.js') }}"></script>
+<script > document.body.classList.add('dark-mode');</script>
 @yield('js')
 @livewireScripts
 @stack('jslive')
