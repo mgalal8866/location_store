@@ -42,7 +42,7 @@ class notification extends Command
      */
     public function handle()
     {
-        $firebaseToken =   User::find(3)->pluck('device_token');
+        $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
         // return $firebaseToken;
         $SERVER_API_KEY = env('FCM_SERVER_KEY');
         $data = [
