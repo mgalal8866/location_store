@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class notification extends Command
@@ -42,16 +43,17 @@ class notification extends Command
      */
     public function handle()
     {
-        $firebaseToken =   User::find(3)->pluck('device_token');
+        $firebaseToken =   User::whereNotNull('device_token')->get();
+      Log::info($firebaseToken);
         // return $firebaseToken;
         $SERVER_API_KEY = env('FCM_SERVER_KEY');
         $data = [
-            "registration_ids" => $firebaseToken,
+            "registration_ids" => $firebaseToken->pluck('device_token'),
             "notification" => [
                 "title" => 'رسالة تلقائية',
-                "body" => Carbon::now(). ' تم ارسال  -  ',
-                "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
-                "image" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
+                "body" => Carbon::now(). ' تم ارسال  -  ' .$firebaseToken->pluck('name')[0],
+                "icon" => 'https://flyclipart.com/thumb2/location-map-navigation-icon-with-png-and-vector-format-for-free-934759.png',
+                "image" => 'https://toppng.com/uploads/preview/earth-11530975669ah9u5ydofg.png',
                 "fcm_options.link" => '$link',
                 "click_action" => '',
 
