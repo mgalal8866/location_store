@@ -54,8 +54,8 @@ class notification extends Command
             "notification" => [
                 "title" => 'رسالة تلقائية',
                 "body" => Carbon::now(). ' تم ارسال  -  ' .$firebaseToken->pluck('name')[0],
-                "icon" => 'https://flyclipart.com/thumb2/location-map-navigation-icon-with-png-and-vector-format-for-free-934759.png',
-                "image" => 'https://toppng.com/uploads/preview/earth-11530975669ah9u5ydofg.png',
+                "icon" => 'https://www.holidayhometimes.com/wp-content/uploads/2013/03/HHT-location.jpg',
+                "image" => 'https://www.holidayhometimes.com/wp-content/uploads/2013/03/HHT-location.jpg',
                 "fcm_options.link" => '$link',
                 "click_action" => '',
 
