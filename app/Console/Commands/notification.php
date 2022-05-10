@@ -48,8 +48,8 @@ class notification extends Command
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
-                "title" => 'Automaticsend',
-                "body" => Carbon::now(),
+                "title" => 'رسالة تلقائية',
+                "body" => Carbon::now(). ' تم ارسال  -  ',
                 "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
                 "image" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
                 "fcm_options.link" => '$link',

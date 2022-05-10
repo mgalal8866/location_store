@@ -1,4 +1,13 @@
 <div>
+@section('title')
+CITY
+@stop
+@section('page')
+CITY
+@endsection
+@section('page2')
+CITY
+@endsection
     {{-- @include('livewire.admin.category.createcategory')
     @include('livewire.admin.category.deletecategory')
     @include('livewire.admin.category.editcategory') --}}
