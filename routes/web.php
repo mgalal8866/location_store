@@ -36,7 +36,7 @@ Route::get('/firebase', function () {
 });
 Route::post('save-token', function(Request $request)
 {
-    $user = User::find(8);
+    $user = User::find(2);
     $user->update(['device_token'=> $request->token]);
     return response()->json(['token saved successfully.']);
 }
