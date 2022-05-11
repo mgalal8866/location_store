@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\branchs;
+use App\Models\categories;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class stores extends Model
 {
@@ -17,7 +20,7 @@ class stores extends Model
 
     public function user()
     {
-        return $this->belongsto(user::class);
+        return $this->belongsto(User::class);
     }
     public function category()
     {
