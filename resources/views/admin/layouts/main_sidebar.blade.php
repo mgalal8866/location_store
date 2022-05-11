@@ -43,7 +43,7 @@
 
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    @can('menu product')
+                    @can('menu category')
                     <li class="nav-header">{{ __('tran.products') }}</li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -70,18 +70,24 @@
                     </li>
                     @endcan
 
-                    @can('menu category')
+                    {{-- @can('menu category') --}}
+                    <li class="nav-header">{{ __('tran.stores') }}</li>
                     <li class="nav-item">
-                        <a href="{{route('city') }}" class="nav-link">
-                            <i class="nav-icon fas  fa-city"></i>
-                            <p>
-                                {{ __('tran.categories') }}
-                                {{-- <span class="right badge badge-danger"> {{\App\models\category::count()}} </span> --}}
-                            </p>
+                        <a href="{{route('stores') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p> {{ __('tran.store') }} </p>
                         </a>
                     </li>
-                    @endcan
-                    @can('menu unit')
+
+                    <li class="nav-item">
+                        <a href="{{route('branch') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>{{ __('tran.branches')}} </p>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                    {{-- @can('menu unit') --}}
+                    <li class="nav-header">{{ __('tran.location') }}</li>
                     <li class="nav-item">
                         <a href="{{route('city') }}" class="nav-link">
                             <i class="nav-icon fas fa-city"></i>
@@ -91,7 +97,7 @@
                             </p>
                         </a>
                     </li>
-                    @endcan
+                    {{-- @endcan --}}
 
                     @can('menu order')
                     <li class="nav-item">

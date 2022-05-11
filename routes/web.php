@@ -1,15 +1,18 @@
 <?php
 
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use League\Flysystem\Config;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashborad\Citits;
-use Illuminate\Http\Request;
 use App\Http\Controllers\DashbordController;
-use App\Models\User;
+use App\Http\Livewire\Dashborad\Store\Store;
+use App\Http\Livewire\Dashborad\Branch\Branch;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -39,15 +42,16 @@ Route::post('save-token', function(Request $request)
     $user = User::find(2);
     $user->update(['device_token'=> $request->token]);
     return response()->json(['token saved successfully.']);
-}
-)->name('save-token');
+})->name('save-token');
 // route::get('/gen',[DashbordController::class,'gennoti']);
 
 Route::get('mm',function(){
     config()->set('err_message.keys.secret', "value");
     return config('err_message.keys.secret');
 });
+
 Auth::routes();
+// Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -60,10 +64,11 @@ Route::group(
         Route::get('/city',Citits::class)->name('city');
         Route::get('/users',Citits::class)->name('users');
         Route::get('/city/regions',Citits::class)->name('regions');
-        Route::get('/stores',Citits::class)->name('stores');
-        Route::get('/store/branchse',Citits::class)->name('branches');
+        Route::get('/stores',Store::class)->name('stores');
+        Route::get('/store/branchse',Branch::class)->name('branch');
         Route::get('/user/comments',Citits::class)->name('comments');
 
+        Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
         Route::get('home', function () {
             return view('admin.layouts.pagenew');
         })->name('home');

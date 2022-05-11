@@ -11,7 +11,7 @@
 <!-- ChartJS -->
 <script src="{{ URL::asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{ URL::asset('assets/plugins/sparklines/sparkline.js') }}"></script>
+{{-- <script src="{{ URL::asset('assets/plugins/sparklines/sparkline.js') }}"></script> --}}
 <!-- JQVMap -->
 <script src="{{ URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -31,8 +31,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ URL::asset('assets/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ URL::asset('assets/dist/js/pages/dashboard.js') }}"></script>
-<script > document.body.classList.add('dark-mode');</script>
+{{-- <script src="{{ URL::asset('assets/dist/js/pages/dashboard.js') }}"></script> --}}
+{{-- <script > document.body.classList.add('dark-mode');</script> --}}
 @yield('js')
 @livewireScripts
 @stack('jslive')

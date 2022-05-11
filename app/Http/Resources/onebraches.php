@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\comments;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class onebraches extends JsonResource
@@ -14,20 +15,27 @@ class onebraches extends JsonResource
      */
     public function toArray($request)
     {
+        $count = comments::getrating($this->id)->count();
+        $sum = comments::getrating($this->id)->sum('rating');
+
+
         return [
-            // 'name' => $this->stores->name,
+
+            'id' => $this->id,
+            'name' => $this->stores->name,
             'address' => $this->address??'',
             'image' => $this->image,
             'description' => $this->description??'',
+            'phone' => $this->phone,
             'city' => $this->city->name,
             'region' => $this->region->name,
             'opentime' => $this->opentime??'',
             'closetime' => $this->closetime??'',
             'lat' => $this->lat,
             'lng' => $this->lng,
-            'phone' => $this->phone,
             'visetor' => $this->view,
-            'id' => $this->id,
+            'rating' => ($count != 0)?$sum/$count:0,
+
             'comments' =>  comment::collection($this->comments),
             'product' =>  product::collection($this->product)
         ];

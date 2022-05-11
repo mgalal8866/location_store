@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\stores;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class categories extends Model
 {
@@ -18,10 +19,10 @@ class categories extends Model
     {
             return $this->hasMany(self::class,'parent_id');
     }
-    // public function warehouse_product()
-    // {
-    //     return $this->hasOne(Warehouse_product::class);
-    // }
+    public function store()
+    {
+        return $this->hasMany(stores::class);
+    }
     Public function _parent()
     {
         return $this->belongsTo(self::class,'parent_id');
