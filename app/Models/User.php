@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\cities;
+use App\Models\regions;
+use App\Models\comments;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifymobile;

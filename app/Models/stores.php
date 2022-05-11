@@ -28,12 +28,12 @@ class stores extends Model
     }
 
     public function getActiveAttribute($val){
-            if($val == 0){
+            if($val == 1){
                 return '<span class="badge badge-pill badge-danger">Deactivate</span> ';
             }
             else
             {
-                return  '<span class="badge badge-pill badge-success">Active</span>';
+                return '<span class="badge badge-pill badge-success">Active</span>';
             }
    }
 
