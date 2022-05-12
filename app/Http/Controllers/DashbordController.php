@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\branchs;
 use App\Models\User;
 use App\Models\fonts;
 use App\Models\cities;
@@ -23,9 +24,11 @@ class DashbordController extends Controller
             $countcomments = comments::count();
             $countcategory = categories::count();
             $fonts = fonts::whereIsDefault(1)->get();
+            $branchnNotAccept = branchs::whereAccept(1)->get();
         return view('admin.livewire.dashborad',compact(
             'countcities','countregions','countstores','countproduct'
             ,'countcomments','countusers' ,'countcategory','fonts'
+            ,'branchnNotAccept'
         ));
     }
 

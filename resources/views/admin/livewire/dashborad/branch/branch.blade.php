@@ -120,6 +120,47 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="inputName">{{ __('tran.numproduct')  }}*</label>
+                                    <input type="text" id="inputName" wire:model='name' class="form-control @error('name') is-invalid @enderror" >
+                                    @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="inputName">{{ __('tran.city')  }}*</label>
+                                    <input type="text" id="inputName" wire:model='name' class="form-control @error('name') is-invalid @enderror" >
+                                    @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="inputName">{{ __('tran.region')  }}*</label>
+                                    <input type="text" id="inputName" wire:model='name' class="form-control @error('name') is-invalid @enderror" >
+                                    @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="inputName">{{ __('tran.address')  }}*</label>
+                                    <input type="text" id="inputName" wire:model='name' class="form-control @error('name') is-invalid @enderror" >
+                                    @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label for="inputName">{{ __('tran.phone')  }}*</label>
+                                    <input type="text" id="inputName" wire:model='name' class="form-control @error('name') is-invalid @enderror" >
+                                    @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

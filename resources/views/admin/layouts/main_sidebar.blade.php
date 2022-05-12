@@ -82,7 +82,7 @@
                     <li class="nav-item">
                         <a href="{{route('branch') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>{{ __('tran.branches')}} </p>
+                            <p>Create {{ __('tran.branches')}} </p>
                         </a>
                     </li>
                     {{-- @endcan --}}
@@ -98,7 +98,22 @@
                         </a>
                     </li>
                     {{-- @endcan --}}
+                    {{-- @can('menu category') --}}
+                    <li class="nav-header">{{ __('tran.setting') }}</li>
+                    <li class="nav-item">
+                        <a href="{{route('settingapp') }}" class="nav-link">
+                            <i class="fas fa-cog"></i>
+                            <p> {{ __('tran.settingapp') }} </p>
+                        </a>
+                    </li>
 
+                    {{-- <li class="nav-item">
+                        <a href="{{route('branch') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Create {{ __('tran.branches')}} </p>
+                        </a>
+                    </li> --}}
+                    {{-- @endcan --}}
                     @can('menu order')
                     <li class="nav-item">
                         <a href="{{route('city') }}" class="nav-link">
