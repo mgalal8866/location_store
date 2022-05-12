@@ -14,6 +14,7 @@ use App\Http\Controllers\DashbordController;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
+use App\Http\Livewire\Dashborad\category\Category;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -64,6 +65,7 @@ Route::group(
         Route::get('/',[DashbordController::class,'index'])->name('dashborad');
         Route::get('/city',Citits::class)->name('city');
         Route::get('/setting/app',Setting::class)->name('settingapp');
+        Route::get('/category',Category::class)->name('category');
         Route::get('/users',Citits::class)->name('users');
         Route::get('/city/regions',Citits::class)->name('regions');
         Route::get('/stores',Store::class)->name('stores');

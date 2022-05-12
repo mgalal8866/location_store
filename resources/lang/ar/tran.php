@@ -5,7 +5,7 @@ return [
     'action' => 'عمليات',
     'status' => 'حالة',
     'name' => 'الاسم',
-    'catrgory' => 'القسم',
+    'category' => 'القسم',
     'stores' => 'المتاجر',
     'store' => 'المتجر',
     'delete' => 'حذف',
@@ -23,6 +23,7 @@ return [
     'location' => 'الموقع',
     'setting' => 'الاعدادات',
     'settingapp'=> 'اعدادات التطبيق',
+    'notification' => 'الاشعارات'
     // 'cities' => 'منطقه',
     // 'cities' => 'مدن',
     // 'cities' => 'مدن',

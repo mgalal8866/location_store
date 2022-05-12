@@ -6,7 +6,7 @@ return [
     'action' => 'Action',
     'status' => 'Status',
     'name' => 'Name',
-    'catrgory' => 'Catrgory',
+    'category' => 'Catrgory',
     'store' => 'Store',
     'stores' => 'Stores',
     'delete' => 'Delete',
@@ -28,6 +28,8 @@ return [
     'location' => 'Location',
     'setting' => 'Setting',
     'settingapp'=> 'Setting APP',
+    'notification' => 'Notification'
+
     // 'cities' => 'منطقه',
     // 'cities' => 'مدن',
     // 'cities' => 'مدن',
