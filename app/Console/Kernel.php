@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\DBbackup;
+use App\Console\Commands\DBrestore;
 use Illuminate\Support\Facades\Log;
 use App\Console\Commands\notification;
 use Illuminate\Console\Scheduling\Schedule;
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         notification::class
-        ,DBbackup::class
+        ,DBbackup::class,
+        DBrestore::class
     ];
 
     /**
@@ -28,7 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('db:backup')->everyMinute();
+        $schedule->command('DB:Restore')->everyMinute();
+        // $schedule->command('db:backup')->everyMinute();
         $schedule->command('notifi:send')->everyMinute();
         Log::info("working");
     }

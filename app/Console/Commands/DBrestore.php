@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
-class DBbackup extends Command
+class DBrestore extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'DB:BACKUP';
+    protected $signature = 'DB:Restore';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'BACKUP DATABACE';
+    protected $description = 'Restore';
 
     /**
      * Create a new command instance.
@@ -32,15 +31,17 @@ class DBbackup extends Command
         parent::__construct();
     }
 
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
     public function handle()
     {
-
         $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
-        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . '/app/backup/' . $filename ;
+        $command = "restore --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . '/app/backup/backup-2022-05-13.gz';
         $returnVar = NULL;
         $output  = NULL;
         exec($command, $output, $returnVar);
-        // return 0;
- 
     }
 }
