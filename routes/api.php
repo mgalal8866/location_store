@@ -21,7 +21,7 @@ use App\Http\Controllers\Api\CategoriesController;
 
     Route::get('/ms', function () {
         config(['err_message.alert.limit_product' => 'تم الوصول للحد الاقصى ...']);
-        Artisan::call('config:cache');
+        Artisan::call('config:clear');
         return config('err_message.alert.limit_product');
     });
     Route::get('/mss', function () {
