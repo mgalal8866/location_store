@@ -84,5 +84,6 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'jwt.verify' => \App\Http\Middleware\jwtmiddleware::class,
         'only.api' => \App\Http\Middleware\Checkaccessfromapi::class,
+        'CheckForMaintenanceMode' =>  \App\Http\Middleware\CheckForMaintenanceMode::class,
     ];
 }

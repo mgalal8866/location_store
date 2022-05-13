@@ -15,6 +15,7 @@ use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
 use App\Http\Livewire\Dashborad\category\Category;
+use Illuminate\Support\Facades\Artisan;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -29,7 +30,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 
-// route::get('/gen',[DashbordController::class,'gennoti']);
+route::get('/down',function () {
+   Artisan::call('down --render="maintenance"');
+   return  redirect('/');
+});
+
+route::get('/up',function () {
+    Artisan::call('up');
+    return  redirect('/');
+ })->middleware('CheckForMaintenanceMode');
+
+
 Route::get('/gen', function () {
 
     return view('gen');
