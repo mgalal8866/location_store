@@ -1,18 +1,19 @@
 <?php
 
+use App\Models\comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Api\Setting;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CitiesController;
 use App\Http\Controllers\Api\StoresController;
-use App\Http\Controllers\Api\BranchesController;
-use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\Setting;
+use App\Http\Controllers\Api\BranchesController;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-use App\Models\comments;
+use App\Http\Controllers\Api\CategoriesController;
 
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
@@ -20,7 +21,7 @@ use App\Models\comments;
 
     Route::get('/ms', function () {
         config(['err_message.alert.limit_product' => 'تم الوصول للحد الاقصى ...']);
-        Artisan::call('config:clear');
+        Artisan::call('config:cache');
         return config('err_message.alert.limit_product');
     });
     Route::get('/mss', function () {
