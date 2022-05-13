@@ -39,7 +39,9 @@ class DBrestore extends Command
     public function handle()
     {
         $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
-        $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . " > " . storage_path() . '/app/backup/backup-2022-05-13.sql';
+        // $command = "mysqldump --user=" . env('DB_USERNAME') ." --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . " > " . storage_path() . '/app/backup/backup-2022-05-13.sql';
+        $command = "gunzip < ". storage_path() . '/app/backup/backup-2022-05-13.gz' . " | mysql -u [". env('DB_USERNAME') ." ] -p[".env('DB_PASSWORD')."] [" . env('DB_DATABASE') . "]";
+
         $returnVar = NULL;
         $output  = NULL;
         exec($command, $output, $returnVar);
