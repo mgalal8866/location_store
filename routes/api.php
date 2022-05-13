@@ -19,9 +19,14 @@ use App\Models\comments;
     });
 
     Route::get('/ms', function () {
-        return  config('err_message.config')['lang_for_felid'];
+        config(['err_message.alert.limit_product' => 'تم الوصول للحد الاقصى ...']);
+        Artisan::call('config:clear');
+        return config('err_message.alert.limit_product');
     });
+    Route::get('/mss', function () {
 
+        return config('err_message.alert.limit_product');
+    });
     Route::get('/not', [CitiesController::class,'notifi']);
 /**************************  Settings ********************************** */
     Route::get('/slider', [Setting::class, 'slider']);
