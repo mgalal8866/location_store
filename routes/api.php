@@ -58,6 +58,7 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::Post('/get/branches/by/category', [BranchesController::class,'getbranchesbyid']);
     Route::post('/branch/byid', [BranchesController::class,'getbranchbyid']);
     Route::get('/search/{query}', [BranchesController::class,'search']);
+    Route::get('/get/branches/by/user', [BranchesController::class,'getbranchesbyuser']);
 /**************************  BranchesController ********************************** */
 
 /**************************  CategoriesController ********************************** */

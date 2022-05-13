@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\Traits\GeneralTrait;
 class BranchesController extends Controller
 {
     use GeneralTrait;
+// احضار جميع المتاجر (غير مستخدمه )
     public function getbranches()
     {
 
@@ -27,6 +28,7 @@ class BranchesController extends Controller
             paginate(10))->response()->getData(true),'Done');
     }
 
+// احضار المخازن حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
 
@@ -41,6 +43,23 @@ class BranchesController extends Controller
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 
+// احضار المخازن الخاصه بالمستخدم
+public function getbranchesbyuser(Request $request)
+{
+
+    $branches = branchs::whereActive(0)->
+    WhereHas('stores', function($q)  use ($request){
+        $q->whereUserId(auth('api')->user()->id);
+    })->
+        latest()->
+        orderBy('top', 'DESC')->
+        paginate(10);
+
+        return $this->returnData('branches',new branchesCollection($branches) ,'Done');
+}
+
+
+// احضار المخزن واحد حسب الاى دى
     public function  getbranchbyid(Request $request)
     {
         DB::table('branchs')->whereId($request->id)->increment('view');
@@ -51,6 +70,7 @@ class BranchesController extends Controller
             get()),'Done');
     }
 
+    // بحث عن طريق المدينه المحافظه المنتج المتجر
     public function  search($query)
     {
          $ss = branchs::whereActive(0)->orderBy('top', 'DESC')->
