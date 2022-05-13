@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/summernote/summernote-bs4.min.css') }}">
-  <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/favicon.ico') }}">
+  <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets') .'/'. config('setting_var.images.favicon')}}">
 
     @inject('fonts', 'App\Models\fonts')
     <?= !empty($fonts->whereIsDefault(1)->first()->font_url) ? $fonts->whereIsDefault(1)->first()->font_url : ''; ?>

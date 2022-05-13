@@ -23,7 +23,10 @@ return [
     'location' => 'الموقع',
     'setting' => 'الاعدادات',
     'settingapp'=> 'اعدادات التطبيق',
-    'notification' => 'الاشعارات'
+    'notification' => 'الاشعارات',
+    'images' => 'صور',
+    'selectfevicon' => 'اختار ايقونة مصغره',
+    'selectlogo' => 'اختيار شعار',
     // 'cities' => 'منطقه',
     // 'cities' => 'مدن',
     // 'cities' => 'مدن',

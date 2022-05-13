@@ -28,7 +28,10 @@ return [
     'location' => 'Location',
     'setting' => 'Setting',
     'settingapp'=> 'Setting APP',
-    'notification' => 'Notification'
+    'notification' => 'Notification',
+    'images' =>'images',
+    'selectfevicon' => 'Select fevicon',
+    'selectlogo' => 'Select Logo',
 
     // 'cities' => 'منطقه',
     // 'cities' => 'مدن',
