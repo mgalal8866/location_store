@@ -40,6 +40,11 @@ route::get('/up',function () {
     return  redirect('/');
  })->middleware('CheckForMaintenanceMode');
 
+ route::get('/run',function () {
+    Artisan::call('schedule:run');
+
+ });
+
 
 Route::get('/gen', function () {
 
