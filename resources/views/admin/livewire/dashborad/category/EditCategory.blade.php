@@ -27,7 +27,7 @@
                              <option value="">{{__('tran.parentselect')}}</option>
                             @foreach($category as $itemm)
                                 @if (!$itemm->parent_id)
-                                    <option value="{{$itemm->id}}">{{$itemm->name}}</option>
+                                    <option value="{{$itemm->slug}}">{{$itemm->name}}</option>
                                 @endif
                             @endforeach
                             </select>

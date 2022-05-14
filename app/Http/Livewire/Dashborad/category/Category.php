@@ -49,7 +49,31 @@ class Category extends Component
         // $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
         $this->reset();
     }
-
+    public function edit($slug,$parent)
+    {
+        $this->slug = $slug;
+        $category = categories::whereSlug($slug )->first();
+        if($parent){
+             $parent = categories::whereSlug($parent)->first();
+              $this->parent = $parent->slug;
+        }else{
+            $this->parent='';
+        }
+        $this->slug = $slug;
+        $this->name = $category->name;
+    }
+    public function update()
+    {
+        $category = categories::whereSlug($this->slug)->first();
+        $parent = categories::wherelug($this->parent)->first();
+        $category->update([
+            'name' => $this->name,
+            'parent_id' =>   ($parent->id)??null
+        ]);
+        $this->reset();
+        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
+    }
     public function render()
     {
         $category = categories::latest()->paginate(10);
