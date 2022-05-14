@@ -8,8 +8,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-        <form wire:submit="update()" enctype="multipart/form-data">
-            
+        <form wire:submit.prevent="update()" enctype="multipart/form-data">
+
             <div class="modal-body">
                         <div class="form-group">
                          <label>{{ __('tran.namecategory')}}</label>
