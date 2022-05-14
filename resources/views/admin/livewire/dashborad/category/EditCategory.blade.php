@@ -9,7 +9,7 @@
               </button>
             </div>
         <form wire:submit.prevent="update()" enctype="multipart/form-data">
-            @csrf
+           
             <div class="modal-body">
                         <div class="form-group">
                          <label>{{ __('tran.namecategory')}}</label>
