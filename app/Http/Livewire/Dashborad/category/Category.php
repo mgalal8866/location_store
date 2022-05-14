@@ -12,12 +12,12 @@ use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Category extends Component
 {
-    public $name,$parent,$slug,$image;
+
     use WithPagination;
     use WithFileUploads;
     use GeneralTrait;
     protected $paginationTheme = 'bootstrap';
-
+    public $name,$parent,$slug,$image;
 
     public function view($slug,$name1)
     {
