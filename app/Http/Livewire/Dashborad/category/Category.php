@@ -52,7 +52,7 @@ class Category extends Component
     public function edit($slug,$parent)
     {
         $this->slug = $slug;
-        $category = categories::whereSlug($slug )->first();
+        $category = categories::whereSlug($slug)->first();
         if($parent){
              $parent = categories::whereSlug($parent)->first();
               $this->parent = $parent->slug;

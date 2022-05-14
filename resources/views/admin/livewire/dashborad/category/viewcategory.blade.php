@@ -55,7 +55,7 @@
                                         </td>
                                         <td >
                                             <div>
-                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$item->parent_id)->first()->slug)??null }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click="view('{{ $item->slug }}','{{$item->name}}')"><i class="fas fa-trash"></i> {{ __('tran.delete') }} </button>
                                             </div>
                                         </td>
@@ -84,7 +84,7 @@
 
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit" wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$child->parent_id)->first()->slug)??null }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
                                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click.prevent="view('{{ $child->slug }}','{{$child->name}}')"><i class="fas fa-trash"></i>{{ __('tran.delete') }} </button>
                                                             </td>
                                                         </tr>
