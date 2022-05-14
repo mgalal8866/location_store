@@ -78,12 +78,12 @@ class Category extends Component
         $category->update([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
-            'parent_id' =>   ($parent->id)??null,
+            'parent_id' => ($parent->id)??null,
             'image' => $this->image??$category->getAttributes()['image']
         ]);
-        $this->reset();
-        $this->dispatchBrowserEvent('closeModal');
-        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
+        // $this->reset();
+        // $this->dispatchBrowserEvent('closeModal');
+        // $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
     }
 
     public function active($slug)
