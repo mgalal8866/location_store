@@ -52,7 +52,7 @@
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('tran.close') }}</button>
            <span  x-on:click="on = false">
-              <button type="submit" class="btn btn-primary"  >{{ __('tran.save') }}</button>
+              <button type="submit"  class="btn btn-primary"  >{{ __('tran.save') }}</button>
             </span>
             </div>
         </form>
