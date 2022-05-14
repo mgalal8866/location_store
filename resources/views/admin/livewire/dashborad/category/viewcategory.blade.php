@@ -55,8 +55,8 @@
                                         </td>
                                         <td >
                                             <div>
-                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$item->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click="view('{{ $item->slug }}','{{$item->name}}')"><i class="fas fa-trash"></i> {{ __('tran.delete') }} </button>
+                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click.prevent="edit('{{ $item->slug }}','{{ ($category->where('id',$item->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click.prevent="view('{{ $item->slug }}','{{$item->name}}')"><i class="fas fa-trash"></i> {{ __('tran.delete') }} </button>
                                                 <div class="btn-group">
                                                      {!!$item->active!!}
                                                        <div class="dropdown-menu">
