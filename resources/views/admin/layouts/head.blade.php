@@ -28,6 +28,9 @@
     <?= !empty($fonts->whereIsDefault(1)->first()->font_url) ? $fonts->whereIsDefault(1)->first()->font_url : ''; ?>
     <style>body { <?php echo $fonts->whereIsDefault(1)->first()->font_family; ;
         ?> }</style>
+
+
+
   @livewireStyles
   @stack('csslive')
   @yield('css')

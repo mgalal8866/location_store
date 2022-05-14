@@ -23,14 +23,16 @@ class StoresController extends Controller
 
     public function newstore(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+
+
+       $validator = Validator::make($request->all(), [
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|unique:stores',
 
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return $this->returnError('400',$validator->errors());
         }
 
         // return $validator->validated();
@@ -50,11 +52,16 @@ class StoresController extends Controller
                     'closetime' => 'string',
                     'description' => 'string',
                     'phone' => 'string',
-                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
                 ]);
+                if( $request->image != null){
+                    $image = $this->uploadimages('product', $request->image);
+                }else{
+                    $image = null;
+                }
                 $store->branch()->create(array_merge(
-                    $validatorvbranch->validated()
+                    $validatorvbranch->validated(),
+                    ['image' => $image]
                 ));
 
         return $this->returnSuccessMessage(config('err_message.success.newstore'),'0');
