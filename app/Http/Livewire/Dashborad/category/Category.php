@@ -4,7 +4,6 @@
 namespace App\Http\Livewire\Dashborad\category;
 
 use Livewire\Component;
-
 use App\Models\categories;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -28,14 +27,17 @@ class Category extends Component
 
     public function delete()
     {
-        $category = categories::whereSlug($this->slug)->first();
+        $category = categories::where('slug',$this->slug)->first();
         $category->delete();
         $this->dispatchBrowserEvent('closeModal');
-        // $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
+        // Toster::error('An error has occurred please try again later.');
+
+        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
     }
 
     public function create()
     {
+
         if ($this->image != null){
            $this->image = $this->uploadimages('category',$this->image);
         }
@@ -46,33 +48,57 @@ class Category extends Component
                 'image' => $this->image??null
             ]);
         $this->dispatchBrowserEvent('closeModal');
-        // $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
+        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
         $this->reset();
     }
-    public function edit($slug,$parent)
+    public function edit($slug,$parent='')
     {
+
         $this->slug = $slug;
-        $category = categories::whereSlug($slug)->first();
+        $category = categories::where('slug',$slug)->first();
         if($parent){
-             $parent = categories::whereSlug($parent)->first();
+             $parent = categories::where('slug',$parent)->first();
               $this->parent = $parent->slug;
         }else{
             $this->parent='';
         }
+        // dd($slug . $this->parent);
         $this->slug = $slug;
         $this->name = $category->name;
     }
     public function update()
     {
-        $category = categories::whereSlug($this->slug)->first();
-        $parent = categories::wherelug($this->parent)->first();
+        if ($this->image != null){
+           $this->image = $this->uploadimages('category',$this->image);
+        }
+        $category = categories::where('slug',$this->slug)->first();
+        $parent = categories::where('slug',$this->parent)->first();
+
         $category->update([
             'name' => $this->name,
-            'parent_id' =>   ($parent->id)??null
+            'slug' => Str::slug($this->name),
+            'parent_id' =>   ($parent->id)??null,
+            'image' => $this->image??$category->getAttributes()['image']
         ]);
         $this->reset();
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
+    }
+
+    public function active($slug)
+    {
+
+            $category = categories::where('slug',$slug)->first();
+
+            if( $category->getAttributes()['active'] == 1) {
+                $category->update(['active' => 0,]);
+                $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Category is avtive now']);
+            }else {
+                $category->update(['active' => 1,]);
+                $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Category is Desavtive now']);
+            }
+
+            // return back();
     }
     public function render()
     {

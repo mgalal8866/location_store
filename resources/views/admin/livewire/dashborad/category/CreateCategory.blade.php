@@ -8,7 +8,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-        <form wire:submit.prevent="create">
+        <form wire:submit.prevent="create" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
                         <div class="form-group">
@@ -20,6 +20,22 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Select Image : </label>
+                            {{-- <div style="margin-bottom: 10px;">
+                                <img src="{{ URL::asset('assets') .'/'. config('setting_var.images.favicon')}}" alt="favicon" style="max-width: 100px; max-height: 100px;">
+
+                            </div> --}}
+                            <div class="display-block">
+                                <a class='btn btn-success btn-sm btn-file-upload'>
+                                    {{ __('tran.selectimage') }}
+                                    <input type="file" id="exampleInputName1" wire:model="image" accept=".png" onchange="$('#upload-file-info2').html($(this).val());">
+                                 </a>
+                                (.png)
+                            </div>
+                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+                            <span wire:ignore class='badge badge-info' id="upload-file-info2"></span>
                         </div>
                         <div class="form-group">
                             <label>{{__('tran.parentselect')}}</label>

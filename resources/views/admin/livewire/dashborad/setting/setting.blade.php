@@ -67,7 +67,7 @@
         <div class="col-md-6">
             <div class="card card-info">
                 <div class="card-header">
-                
+
                 <h3 class="card-title">{{ __('tran.images') }}</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -86,9 +86,9 @@
                                     </div>
                                 @endif
                             </div>
-    
+
                             <div class="form-group">
-    
+
                                 <label class="control-label">Logo (180x50px)</label>
                                 <div style="margin-bottom: 10px;">
                                     <img src="{{ URL::asset('assets') .'/'. config('setting_var.images.logo')}}" alt="logo" style="max-width: 160px; max-height: 160px;">
@@ -103,7 +103,7 @@
                                 @error('logo') <span class="text-danger">{{ $message }}</span> @enderror
                                 <span wire:ignore  class='badge badge-info' id="upload-file-info1"></span>
                             </div>
-    
+
                             <div class="form-group">
                                 <label class="control-label">favicon (16x16px)</label>
                                 <div style="margin-bottom: 10px;">
@@ -129,7 +129,7 @@
                 <!-- /.card-body -->
             </div>
         </div>
-    
+
 
     </div>
 </div>

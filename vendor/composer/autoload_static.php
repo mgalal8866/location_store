@@ -39,6 +39,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        '101b35f72e0ccb1b5ef72aa86bba3ef9' => __DIR__ . '/..' . '/yoeunes/toastr/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -49,6 +50,10 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'Y' => 
+        array (
+            'Yoeunes\\Toastr\\' => 15,
         ),
         'W' => 
         array (
@@ -200,6 +205,10 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'Yoeunes\\Toastr\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yoeunes/toastr/src',
         ),
         'Whoops\\' => 
         array (
@@ -569,6 +578,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
 
     public static $classMap = array (
         'App\\Console\\Commands\\DBbackup' => __DIR__ . '/../..' . '/app/Console/Commands/DBbackup.php',
+        'App\\Console\\Commands\\DBrestore' => __DIR__ . '/../..' . '/app/Console/Commands/DBrestore.php',
         'App\\Console\\Commands\\notification' => __DIR__ . '/../..' . '/app/Console/Commands/notification.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -5888,6 +5898,9 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+        'Yoeunes\\Toastr\\Facades\\Toastr' => __DIR__ . '/..' . '/yoeunes/toastr/src/Facades/Toastr.php',
+        'Yoeunes\\Toastr\\Toastr' => __DIR__ . '/..' . '/yoeunes/toastr/src/Toastr.php',
+        'Yoeunes\\Toastr\\ToastrServiceProvider' => __DIR__ . '/..' . '/yoeunes/toastr/src/ToastrServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

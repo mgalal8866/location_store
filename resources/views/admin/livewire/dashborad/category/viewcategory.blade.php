@@ -55,8 +55,15 @@
                                         </td>
                                         <td >
                                             <div>
-                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$item->parent_id)->first()->slug)??null }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$item->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click="view('{{ $item->slug }}','{{$item->name}}')"><i class="fas fa-trash"></i> {{ __('tran.delete') }} </button>
+                                                <div class="btn-group">
+                                                     {!!$item->active!!}
+                                                       <div class="dropdown-menu">
+                                                           <button class="dropdown-item"  wire:click="active('{{ $item->slug }}')"  href="">Active</button>
+                                                           <button class="dropdown-item"   wire:click="active('{{ $item->slug }}')" href="">Deactivate</button>
+                                                       </div>
+                                                </div>
                                             </div>
                                         </td>
                             </tr>
@@ -84,8 +91,15 @@
 
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit" wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$child->parent_id)->first()->slug)??null }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit" wire:click="edit('{{ $child->slug }}','{{ ($category->where('id',$child->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
                                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click.prevent="view('{{ $child->slug }}','{{$child->name}}')"><i class="fas fa-trash"></i>{{ __('tran.delete') }} </button>
+                                                                <div class="btn-group">
+                                                                    {!!$child->active!!}
+                                                                      <div class="dropdown-menu">
+                                                                          <button class="dropdown-item"  wire:click="active('{{ $child->slug }}')"  href="">Active</button>
+                                                                          <button class="dropdown-item"   wire:click="active('{{ $child->slug }}')" href="">Deactivate</button>
+                                                                      </div>
+                                                               </div>
                                                             </td>
                                                         </tr>
                                                     @endforeach

@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Commands\\DBbackup' => $baseDir . '/app/Console/Commands/DBbackup.php',
+    'App\\Console\\Commands\\DBrestore' => $baseDir . '/app/Console/Commands/DBrestore.php',
     'App\\Console\\Commands\\notification' => $baseDir . '/app/Console/Commands/notification.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -5326,6 +5327,9 @@ return array(
     'Whoops\\Util\\Misc' => $vendorDir . '/filp/whoops/src/Whoops/Util/Misc.php',
     'Whoops\\Util\\SystemFacade' => $vendorDir . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
     'Whoops\\Util\\TemplateHelper' => $vendorDir . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+    'Yoeunes\\Toastr\\Facades\\Toastr' => $vendorDir . '/yoeunes/toastr/src/Facades/Toastr.php',
+    'Yoeunes\\Toastr\\Toastr' => $vendorDir . '/yoeunes/toastr/src/Toastr.php',
+    'Yoeunes\\Toastr\\ToastrServiceProvider' => $vendorDir . '/yoeunes/toastr/src/ToastrServiceProvider.php',
     'phpDocumentor\\Reflection\\DocBlock' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
     'phpDocumentor\\Reflection\\DocBlockFactory' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
     'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

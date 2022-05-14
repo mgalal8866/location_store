@@ -23,7 +23,9 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets') .'/'. config('setting_var.images.favicon')}}">
-
+  <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+  
+  <link rel="stylesheet" href="{{ URL::asset('assets/plugins/toastr/toastr.min.css') }}">
     @inject('fonts', 'App\Models\fonts')
     <?= !empty($fonts->whereIsDefault(1)->first()->font_url) ? $fonts->whereIsDefault(1)->first()->font_url : ''; ?>
     <style>body { <?php echo $fonts->whereIsDefault(1)->first()->font_family; ;

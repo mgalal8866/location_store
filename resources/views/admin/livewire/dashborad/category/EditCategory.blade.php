@@ -8,7 +8,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-        <form wire:submit.prevent="edit">
+        <form wire:submit.prevent="update()" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
                         <div class="form-group">
@@ -22,11 +22,27 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Select Image : </label>
+                            <div style="margin-bottom: 10px;">
+                                <img src="{{$slug?$category->where('slug',$slug)->first()->image:'' }}" alt="favicon" style="max-width: 100px; max-height: 100px;">
+
+                            </div>
+                            <div class="display-block">
+                                <a class='btn btn-success btn-sm btn-file-upload'>
+                                    {{ __('tran.selectimage') }}
+                                    <input type="file" id="exampleInputName1" wire:model="image" accept=".png" onchange="$('#upload-file-info2').html($(this).val());">
+                                 </a>
+                                (.png)
+                            </div>
+                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+                            <span wire:ignore class='badge badge-info' id="upload-file-info2"></span>
+                        </div>
+                        <div class="form-group">
                             <label>{{__('tran.parentselect')}}</label>
                             <select   wire:model="parent" class="form-control">
                              <option value="">{{__('tran.parentselect')}}</option>
                             @foreach($category as $itemm)
-                                @if (!$itemm->parent_id)
+                                @if (!$itemm->parent_id && $slug != $itemm->slug )
                                     <option value="{{$itemm->slug}}">{{$itemm->name}}</option>
                                 @endif
                             @endforeach

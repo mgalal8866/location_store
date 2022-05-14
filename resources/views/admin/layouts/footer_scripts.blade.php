@@ -33,18 +33,19 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <script src="{{ URL::asset('assets/dist/js/pages/dashboard.js') }}"></script> --}}
 {{-- <script > document.body.classList.add('dark-mode');</script> --}}
-
+<script src="{{ URL::asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 
 @yield('js')
 @livewireScripts
 @stack('jslive')
 <script>
-    // var Toast = Swal.mixin({
-    //    toast: true,
-    //    position: 'top-end',
-    //    showConfirmButton: false,
-    //    timer: 3000
-    //  });
+    var Toast = Swal.mixin({
+       toast: true,
+       position: 'top-end',
+       showConfirmButton: false,
+       timer: 3000
+     });
         window.addEventListener('closeModal', event=> {
         $('#modal-create').modal('hide');
         $('#modal-delete').modal('hide');
@@ -55,6 +56,6 @@
             Toast.fire({icon: (e.detail.ev),
                 title: (e.detail.msg)
        });
-     //   toastr.success( (e.detail.msg))
+    //    toastr.success( (e.detail.msg))
      })
  </script>

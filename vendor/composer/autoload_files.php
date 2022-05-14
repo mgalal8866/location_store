@@ -38,4 +38,5 @@ return array(
     'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     '0c3c22e27afa83be19b4c938f4c6e9ea' => $vendorDir . '/spatie/laravel-backup/src/Helpers/functions.php',
     '377b22b161c09ed6e5152de788ca020a' => $vendorDir . '/spatie/laravel-permission/src/helpers.php',
+    '101b35f72e0ccb1b5ef72aa86bba3ef9' => $vendorDir . '/yoeunes/toastr/src/helpers.php',
 );

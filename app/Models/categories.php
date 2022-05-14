@@ -28,6 +28,14 @@ class categories extends Model
         return $this->belongsTo(self::class,'parent_id');
     }
     public function getImageAttribute($val){
-        return ($val !== null ) ? asset('assets/images/' . $val) : asset('assets/images/noimage.jpg');
+        return ($val !== null ) ? asset('assets/images/category/' . $val) : asset('assets/images/noimage.jpg');
     }
+    public function getActiveAttribute($val){
+        if($val == 1){
+            return '<button type="button" class="btn btn-danger dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deactivate</button>';
+        } else
+        {
+            return '<button type="button" class="btn btn-success dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Active</button>';
+        }
+}
 }
