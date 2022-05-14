@@ -88,7 +88,7 @@ Route::group(
         Route::get('/store/branchse',Branch::class)->name('branch');
         Route::get('/user/comments',Citits::class)->name('comments');
 
-        Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
+        // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
         Route::get('home', function () {
             return view('admin.layouts.pagenew');
         })->name('home');

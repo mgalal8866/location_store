@@ -45,7 +45,8 @@ class Category extends Component
                 'name' => $this->name,
                 'slug' => Str::slug($this->name),
                 'parent_id'=>  ($this->parent)??null,
-                'image' => $this->image??null
+                'image' => $this->image??null,
+                'active' => 0
             ]);
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
@@ -97,8 +98,6 @@ class Category extends Component
                 $category->update(['active' => 1,]);
                 $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Category is Desavtive now']);
             }
-
-            // return back();
     }
     public function render()
     {
