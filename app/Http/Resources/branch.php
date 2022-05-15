@@ -18,7 +18,7 @@ class branch extends JsonResource
             'star' => $this->top,
             'name' => $this->stores->name,
             'image' => $this->image,
-            'rating' => ($count != 0)?$sum/$count:0,
+            'rating' => number_format(($count != 0)?$sum/$count:0,2),
         ];
     }
 }
