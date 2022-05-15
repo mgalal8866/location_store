@@ -46,6 +46,10 @@ route::get('/up',function () {
 
  });
 
+ Route::get('/artisan/{ar}', function (Request $request) {
+
+    return view('gen');
+});
 
 Route::get('/gen', function () {
 
@@ -62,7 +66,7 @@ Route::post('save-token', function(Request $request)
     $user->update(['device_token'=> $request->token]);
     return response()->json(['token saved successfully.']);
 })->name('save-token');
-// route::get('/gen',[DashbordController::class,'gennoti']);
+ 
 
 Route::get('mm',function(){
     config()->set('err_message.keys.secret', "value");
