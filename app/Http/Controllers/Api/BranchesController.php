@@ -28,6 +28,12 @@ class BranchesController extends Controller
             paginate(10))->response()->getData(true),'Done');
     }
 
+    // اخر 10 متاجر تم اضافتهم
+    public function lastbranch()
+    {
+        return  $this->returnData('branches',branch::collection(
+            branchs::whereActive(0)->latest()->take(10)->get()));
+    }
 // احضار المخازن حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {

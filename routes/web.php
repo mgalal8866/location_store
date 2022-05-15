@@ -46,10 +46,16 @@ route::get('/up',function () {
 
  });
 
- Route::get('/artisan/{ar}', function (Request $request) {
-
-    return view('gen');
-});
+ Route::get('/artisan', function (Request $request) {
+     
+                $hm ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
+            //?cat[]=view:clear&cat[]=config:clear
+                foreach( $request->get('cat') as $art){
+                    Artisan::call( $art);
+                    $hm = $hm .  '<h4>'. Artisan::output().'</h4>';
+                }
+                     return $hm;
+            });
 
 Route::get('/gen', function () {
 
@@ -66,7 +72,7 @@ Route::post('save-token', function(Request $request)
     $user->update(['device_token'=> $request->token]);
     return response()->json(['token saved successfully.']);
 })->name('save-token');
- 
+
 
 Route::get('mm',function(){
     config()->set('err_message.keys.secret', "value");
