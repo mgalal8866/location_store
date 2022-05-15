@@ -13,7 +13,7 @@ class Store extends Component
 
     public function render()
     {
-        $stores = stores::with('branch')->latest()->paginate(15);
+        $stores = stores::with('branch')->latest()->paginate(5);
         return view('admin.livewire.dashborad.store.store',['stores'=> $stores])->layout('admin.layouts.masterdash');
     }
 }
