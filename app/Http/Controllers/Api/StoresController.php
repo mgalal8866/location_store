@@ -55,7 +55,7 @@ class StoresController extends Controller
                     'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
                 ]);
                 if( $request->image != null){
-                    $image = $this->uploadimages('product', $request->image);
+                    $image = $this->uploadimages('branch', $request->image);
                 }else{
                     $image = null;
                 }

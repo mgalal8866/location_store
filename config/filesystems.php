@@ -69,6 +69,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'branch' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/branch'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'category' => [
             'driver' => 'local',
             'root' => public_path('assets/images/category'),
