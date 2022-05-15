@@ -100,6 +100,6 @@ class viewcategory extends Component
     public function render()
     {
         $category = categories::latest()->paginate(10);
-        return view('admin.livewire.dashborad.category.viewcategory',['category' =>$category])->layout('admin.layouts.masterdash');
+        return view('livewire.category.viewcategory',['category' =>$category])->layout('admin.layouts.masterdash');
     }
 }
