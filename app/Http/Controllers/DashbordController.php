@@ -24,11 +24,9 @@ class DashbordController extends Controller
             $countcomments = comments::count();
             $countcategory = categories::count();
             $fonts = fonts::whereIsDefault(1)->get();
-            $branchnNotAccept = branchs::whereAccept(1)->get();
         return view('admin.livewire.dashborad',compact(
             'countcities','countregions','countstores','countproduct'
             ,'countcomments','countusers' ,'countcategory','fonts'
-            ,'branchnNotAccept'
         ));
     }
 

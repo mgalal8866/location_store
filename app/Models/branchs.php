@@ -49,4 +49,24 @@ class branchs extends Model
     {
         return $this->hasMany(comments::class,'branch_id');
     }
+
+    public function getActivebtnAttribute(){
+        if($this->active == 1){
+            return '<button type="button" class="btn btn-danger dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deactivate</button>';
+        } else
+        {
+            return '<button type="button" class="btn btn-success dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Active</button>';
+        }
+    }
+    public function getAcceptbtnAttribute(){
+        if($this->accept == 1){
+            return '<button type="button" class="btn btn-warning dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Waiting</button>';
+        }elseif($this->accept == 2){
+
+            return '<button type="button" class="btn btn-danger dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unacceptable</button>';
+        }else{
+            return '<button type="button" class="btn btn-success dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accept</button>';
+        }
+    }
+
 }

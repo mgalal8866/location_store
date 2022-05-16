@@ -97,6 +97,7 @@ class viewcategory extends Component
                 $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Category is Desavtive now']);
             }
     }
+    
     public function render()
     {
         $category = categories::latest()->paginate(10);
