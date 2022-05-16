@@ -28,7 +28,6 @@ class viewcategory extends Component
         $category = categories::where('slug',$this->slug)->first();
         $category->delete();
         $this->dispatchBrowserEvent('closeModal');
-        // Toster::error('An error has occurred please try again later.');
 
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
     }
