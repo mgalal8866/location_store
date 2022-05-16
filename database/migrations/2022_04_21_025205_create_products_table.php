@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->date('start_date')->nullable()->comment('تاريخ بدايه التفعيل');
             $table->date('expiry_date')->nullable()->comment('تاريخ انتهاءالتفعيل');
             $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
+            $table->tinyInteger('is_default')->default('1')->comment('[0 = افتراضى] [1 = غير افتراضى]');
             $table->softDeletes();
             $table->timestamps();
         });

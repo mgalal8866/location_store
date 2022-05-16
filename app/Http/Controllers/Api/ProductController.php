@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
+use App\Models\branchs;
 use App\Models\products;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\product;
-use App\Models\branchs;
+use App\Http\Controllers\Controller;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class ProductController extends Controller
 {
@@ -27,14 +28,24 @@ class ProductController extends Controller
                     'slug' => Str::slug($request->name),
                     'price' => $request->price,
                 ]);
-                if($request->has('image')) {
-                    foreach ($request->image as $image)
-                    {
-                        $filepath = $this->uploadimages('product', $image);
+                if(!empty($request->image1)) {
+                        $filepath = $this->uploadimages('product', $request->image1);
+                        $product->product_images()->create([
+                            'img' => $filepath,
+                            'is_default' => 0
+                        ]);
+                }
+                if(!empty($request->image2)){
+                        $filepath = $this->uploadimages('product', $request->image2);
                         $product->product_images()->create([
                             'img' => $filepath
                         ]);
-                    }
+                }
+                if(!empty($request->image3)) {
+                        $filepath = $this->uploadimages('product', $request->image3);
+                        $product->product_images()->create([
+                            'img' => $filepath
+                        ]);
                 }
             return $this->returnData('product', new product($product),'تم اضافة المنتج بنجاح ');
         }else{
