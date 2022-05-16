@@ -13,9 +13,9 @@
             <div class="modal-body">
                         <div class="form-group">
                          <label>{{ __('tran.namecategory')}}</label>
-                            <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
-                            @error('name')
-                            {{-- @if($errors->has('name')) --}}
+                            <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="namecategory" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
+                            @error('namecategory')
+                            {{-- @if($errors->has('namecategory')) --}}
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -41,7 +41,7 @@
                             <label>{{__('tran.parentselect')}}</label>
                             <select   wire:model="parent" class="form-control">
                              <option value="">{{__('tran.parentselect')}}</option>
-                            @foreach($category as $itemm)
+                            @foreach($categorys as $itemm)
                                 @if (!$itemm->parent_id)
                                     <option value="{{$itemm->id}}">{{$itemm->name}}</option>
                                 @endif

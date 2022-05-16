@@ -27,6 +27,7 @@ return [
     'images' => 'صور',
     'selectfevicon' => 'اختار ايقونة مصغره',
     'selectlogo' => 'اختيار شعار',
+    'selectimage'=>'اختار صورة'
     // 'cities' => 'منطقه',
     // 'cities' => 'مدن',
     // 'cities' => 'مدن',

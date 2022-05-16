@@ -40,6 +40,7 @@ return [
     'image' => 'Image',
     'close' => 'Close',
     'save' => 'Save',
+    'selectimage'=>'Select Image'
 
     // 'cities' => 'منطقه',
     // 'cities' => 'مدن',

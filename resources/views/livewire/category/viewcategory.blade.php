@@ -36,39 +36,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                  @foreach( $category  as $item )
-                        @if(!$item->parent_id)
-                            <tr  @if($item->childrens->count() > 0) data-widget="expandable-table" aria-expanded="false" @endif>
+                  @foreach( $categorys  as $category )
+                        @if(!$category->parent_id)
+                            <tr  @if($category->childrens->count() > 0) data-widget="expandable-table" aria-expanded="false" @endif>
                                         <td>
-                                            @if($item->childrens->count() > 0)
+                                            @if($category->childrens->count() > 0)
                                                 <span class="badge badge-info">
                                                     <i class="expandable-table-caret  fas fa-caret-right fa-fw"></i>
-                                                    {{$item->childrens->count()}}
+                                                    {{$category->childrens->count()}}
                                                 </span>
                                             @endif
-
-                                            {{$item->name}}
-
+                                            {{$category->name}}
                                         </td>
                                         <td>
-                                            <img alt="Avatar" class="table-avatar" src="{{$item->image}}">
+                                            <img alt="Avatar" class="table-avatar" src="{{$category->image}}">
                                         </td>
                                         <td >
                                             <div>
-                                                <button data-backdrop="static" class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click="edit('{{ $item->slug }}','{{ ($category->where('id',$item->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click="view('{{ $item->slug }}','{{$item->name}}')"><i class="fas fa-trash"></i> {{ __('tran.delete') }} </button>
+                                                {{-- data-backdrop="static"  --}}
+                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"  wire:click="edit('{{ $category->slug }}','{{ ($categorys->where('id',$category->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click="view('{{ $category->slug }}','{{$category->name}}')"><i class="fas fa-trash"></i> {{ __('tran.delete') }} </button>
                                                 <div class="btn-group">
-                                                     {!!$item->active!!}
+                                                     {!!$category->active!!}
                                                        <div class="dropdown-menu">
-                                                           <button class="dropdown-item"  wire:click="active('{{ $item->slug }}')"  href="">Active</button>
-                                                           <button class="dropdown-item"   wire:click="active('{{ $item->slug }}')" href="">Deactivate</button>
+                                                           <button class="dropdown-item"  wire:click="active('{{ $category->slug }}')"  href="">Active</button>
+                                                           <button class="dropdown-item"   wire:click="active('{{ $category->slug }}')" href="">Deactivate</button>
                                                        </div>
                                                 </div>
                                             </div>
                                         </td>
                             </tr>
                         @endif
-                        @if($item->childrens->count() > 0)
+                        @if($category->childrens->count() > 0)
                              <tr  class="expandable-body">
                                     <td colspan="3">
                                         <div class="p-0">
@@ -81,7 +80,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($item->childrens as $child)
+                                                    @foreach($category->childrens as $child)
                                                         <tr>
                                                             <td>
                                                                 {{$child->name}}
@@ -91,7 +90,7 @@
 
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit" wire:click="edit('{{ $child->slug }}','{{ ($category->where('id',$child->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
+                                                                <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit" wire:click="edit('{{ $child->slug }}','{{ ($categorys->where('id',$child->parent_id)->first()->slug)??'' }}')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
                                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click.prevent="view('{{ $child->slug }}','{{$child->name}}')"><i class="fas fa-trash"></i>{{ __('tran.delete') }} </button>
                                                                 <div class="btn-group">
                                                                     {!!$child->active!!}
@@ -115,7 +114,7 @@
         </div>
         <div class="card-footer" >
             <div class="d-flex justify-content-center">
-                {!! $category->links() !!}
+                {!! $categorys->links() !!}
             </div>
         </div>
     </div>

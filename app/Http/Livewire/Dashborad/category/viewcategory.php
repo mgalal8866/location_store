@@ -79,9 +79,10 @@ class viewcategory extends Component
             'parent_id' => ($parent->id)??null,
             'image' => $this->image??$category->getAttributes()['image']
         ]);
-        // $this->reset();
-        // $this->dispatchBrowserEvent('closeModal');
-        // $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
+        $this->reset();
+        $this->image = null;
+        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
     }
 
     public function active($slug)
@@ -97,10 +98,10 @@ class viewcategory extends Component
                 $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Category is Desavtive now']);
             }
     }
-    
+
     public function render()
     {
-        $category = categories::latest()->paginate(10);
-        return view('livewire.category.viewcategory',['category' =>$category])->layout('admin.layouts.masterdash');
+        $categorys = categories::latest()->paginate(10);
+        return view('livewire.category.viewcategory',['categorys' =>$categorys])->layout('admin.layouts.masterdash');
     }
 }
