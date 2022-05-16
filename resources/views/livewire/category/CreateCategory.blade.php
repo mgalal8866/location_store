@@ -13,9 +13,9 @@
             <div class="modal-body">
                         <div class="form-group">
                          <label>{{ __('tran.namecategory')}}</label>
-                            <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="namecategory" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
-                            @error('namecategory')
-                            {{-- @if($errors->has('namecategory')) --}}
+                            <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
+                            @error('namec')
+                            {{-- @if($errors->has('namec')) --}}
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
