@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\branchesCollection;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
+use App\Http\Resources\branchesCollectionbyuser;
 
 class BranchesController extends Controller
 {
@@ -58,7 +59,7 @@ class BranchesController extends Controller
             latest()->
             orderBy('top', 'DESC')->
             paginate(10);
-            return $this->returnData('branches',new branchesCollection($branches) ,'Done');
+            return $this->returnData('branches',new branchesCollectionbyuser($branches) ,'Done');
     }
 
 

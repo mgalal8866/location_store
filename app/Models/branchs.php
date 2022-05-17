@@ -13,7 +13,7 @@ class branchs extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
     // protected $casts = [
     //     'rating' => 'decimal:2',
     // ];
