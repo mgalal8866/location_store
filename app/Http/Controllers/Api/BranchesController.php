@@ -125,7 +125,7 @@ class BranchesController extends Controller
         }else{
             $image = null;
         }
-        $store = $branch->uodate(array_merge(
+        $store = $branch->update(array_merge(
                     $validatorvbranch->validated(),
                     ['slug' => Str::slug($request->name),
                     'user_id' =>  auth('api')->user()->id,

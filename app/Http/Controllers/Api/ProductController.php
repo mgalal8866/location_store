@@ -59,4 +59,39 @@ class ProductController extends Controller
         $product = products::whereBranchId($request->branch_id)->get();
         return $this->returnData('product',  product::collection($product),'');
     }
+
+    public function productedit(Request $request){
+        $product = products::findorfill($request->product_id);
+         $product->update([
+            'branch_id' => $request->branch_id,
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'price' => $request->price,
+        ]);
+        if(!empty($request->image1)) {
+                $filepath = $this->uploadimages('product', $request->image1);
+                $product->product_images()->create([
+                    'img' => $filepath,
+                    'is_default' => 0
+                ]);
+        }
+        if(!empty($request->image2)){
+                $filepath = $this->uploadimages('product', $request->image2);
+                $product->product_images()->create([
+                    'img' => $filepath
+                ]);
+        }
+        if(!empty($request->image3)) {
+                $filepath = $this->uploadimages('product', $request->image3);
+                $product->product_images()->create([
+                    'img' => $filepath
+                ]);
+        }
+
+     return $this->returnData('product', new product($product),'تم اضافة المنتج بنجاح ');
+
+    }
+    public function  productdelete(Request $request){
+
+    }
 }
