@@ -20,7 +20,6 @@ class onebraches extends JsonResource
 
 
         return [
-
             'id' => $this->id,
             'name' => $this->stores->name,
             'address' => $this->address??'',
@@ -36,6 +35,12 @@ class onebraches extends JsonResource
             'lng' => $this->lng,
             'visetor' => $this->view,
             'rating' => ($count != 0)?$sum/$count:0,
+            'start_date' =>$this->start_date??'',
+            'expiry_date' =>$this->expiry_date??'',
+            'branch_num'=>$this->stores->branch_num . ' / '  . $this->count(),
+            'product_num'=> $this->product_num . ' / ' . $this->product->count(),
+            'accept'=>$this->acceptapi,
+            'active'=>$this->activeapi,
 
             'comments' =>  comment::collection($this->comments),
             'product' =>  product::collection($this->product)

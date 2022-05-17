@@ -9,7 +9,7 @@
               </button>
             </div>
                 <form wire:submit.prevent="update()" enctype="multipart/form-data">
-
+                        @csrf
                     <div  class="modal-body">
                                 <div class="form-group">
                                     <label>{{ __('tran.namecategory')}}</label>
@@ -29,12 +29,12 @@
                                         <div class="display-block">
                                             <a class='btn btn-success btn-sm btn-file-upload'>
                                                 {{ __('tran.selectimage') }}
-                                                <input type="file" id="exampleInputName1" wire:model="image" accept=".png" onchange="$('#upload-file-info2').html($(this).val());">
+                                                <input type="file" id="upload{{ $iteration }}" wire:model="image" accept=".png" onchange="$('#upload-file-edit1').html($(this).val());">
                                             </a>
                                             (.png)
                                         </div>
                                         @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-                                        <span wire:ignore class='badge badge-info' id="upload-file-info2"></span>
+                                        {{-- <span wire:ignore class='badge badge-info' id="upload-file-edit1">{{ $img }}</span> --}}
                                 </div>
                                 <div class="form-group">
                                     <label>{{__('tran.parentselect')}}</label>

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-
+use App\Models\branchs;
 
 class StoresController extends Controller
 {
@@ -23,6 +23,12 @@ class StoresController extends Controller
 
     public function newstore(Request $request)
     {
+
+        $limit_branch =  stores::whereUserId(auth('api')->user()->id)->branch_num;
+        $num_branch =  branchs::WhereHas('stores', function($q)  use ($request){
+            $q->whereUserId(auth('api')->user()->id);
+            })->count();
+
 
 
        $validator = Validator::make($request->all(), [

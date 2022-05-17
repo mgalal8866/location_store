@@ -22,6 +22,7 @@ class CreateStoresTable extends Migration
             $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->date('start_date')->comment('تاريخ بدايه التفعيل')->nullable();
             $table->date('expiry_date')->comment('تاريخ انتهاءالتفعيل')->nullable();
+            $table->integer('branch_num')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

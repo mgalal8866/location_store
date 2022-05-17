@@ -66,6 +66,8 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::get('/search/{query}', [BranchesController::class,'search']);
     Route::get('/get/branches/by/user', [BranchesController::class,'getbranchesbyuser']);
     Route::get('/get/lastbranch', [BranchesController::class,'lastbranch']);
+    Route::Post('/branch/edit', [BranchesController::class,'branchedit']);
+    Route::Post('/branch/delete', [BranchesController::class,'branchdelete']);
 
 /**************************  BranchesController ********************************** */
 
@@ -76,39 +78,11 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
 
 /**************************  ProductController ********************************** */
 
-// Route::post('/insert/product',  function(Request $request){
-
-//      $files= $request->file('image');
-
-    // foreach ($files as $file) {
-
-        // $extension = $file->getClientOriginalExtension();
-
-        // $check = in_array($extension,$allowedfileExtension);
-
-        // if($check) {
-            // foreach($request->image as $mediaFiles) {
-
-            //     $path = $mediaFiles->store('public/images');
-            //     $name = $mediaFiles->getClientOriginalName();
-            //     return $path;
-                //store image file into directory and db
-                // $save = new Image();
-                // $save->title = $name;
-                // $save->path = $path;
-                // $save->save();
-            // }
-        // } else {
-        //     return response()->json(['invalid_file_format'], 422);
-        // }
-
-        // return response()->json(['file_uploaded'], 200);
-
-    // }
-// });
-
     Route::post('/insert/product', [ProductController::class,'insert_product']);
     Route::post('/get/product/by/branch', [ProductController::class,'get_product']);
+    Route::Post('/product/edit', [ProductController::class,'productedit']);
+    Route::Post('/product/delete', [ProductController::class,'productdelete']);
+
 /**************************  ProductController ********************************** */
 
 });

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
+use App\Models\stores;
 use App\Models\branchs;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\branch;
 use App\Http\Resources\onebraches;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\branchesCollection;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 
@@ -18,7 +20,6 @@ class BranchesController extends Controller
 // احضار جميع المتاجر (غير مستخدمه )
     public function getbranches()
     {
-
         return $this->returnData('branches',branch::collection(
         branchs::whereActive(0)->
             whereCityId(auth('api')->user()->city_id)->
@@ -28,7 +29,7 @@ class BranchesController extends Controller
             paginate(10))->response()->getData(true),'Done');
     }
 
-    // اخر 10 متاجر تم اضافتهم
+// اخر 10 متاجر تم اضافتهم
     public function lastbranch()
     {
         return  $this->returnData('branches',branch::collection(
@@ -37,7 +38,6 @@ class BranchesController extends Controller
 // احضار المخازن حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
-
         $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request){
             $q->whereCategoryId($request->category_id);
             })->whereCityId(auth('api')->user()->city_id)->
@@ -45,24 +45,21 @@ class BranchesController extends Controller
             latest()->
             orderBy('top', 'DESC')->
             paginate(10);
-
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 
 // احضار المخازن الخاصه بالمستخدم
-public function getbranchesbyuser(Request $request)
-{
-
-    $branches = branchs::whereActive(0)->
-    WhereHas('stores', function($q)  use ($request){
-        $q->whereUserId(auth('api')->user()->id);
-    })->
-        latest()->
-        orderBy('top', 'DESC')->
-        paginate(10);
-
-        return $this->returnData('branches',new branchesCollection($branches) ,'Done');
-}
+    public function getbranchesbyuser(Request $request)
+    {
+        $branches = branchs::whereActive(0)->
+        WhereHas('stores', function($q)  use ($request){
+            $q->whereUserId(auth('api')->user()->id);
+        })->
+            latest()->
+            orderBy('top', 'DESC')->
+            paginate(10);
+            return $this->returnData('branches',new branchesCollection($branches) ,'Done');
+    }
 
 
 // احضار المخزن واحد حسب الاى دى
@@ -76,7 +73,7 @@ public function getbranchesbyuser(Request $request)
             get()),'Done');
     }
 
-    // بحث عن طريق المدينه المحافظه المنتج المتجر
+// بحث عن طريق المدينه المحافظه المنتج المتجر
     public function  search($query)
     {
          $ss = branchs::whereActive(0)->orderBy('top', 'DESC')->
@@ -99,5 +96,59 @@ public function getbranchesbyuser(Request $request)
 
         return $this->returnData('branches',onebraches::collection($ss));
     }
+
+//تعديل متجر
+    public function branchedit(Request $request)
+    {
+    try {
+
+        $branch = branchs::findorfill($request->branch_id);
+
+            $validatorvbranch = Validator::make($request->all(), [
+                'region_id'=>'required|string|exists:regions,id',
+                'city_id'=>'required|string|exists:cities,id',
+                'address' =>'string',
+                'lat' => 'string',
+                'lng' => 'string',
+                'opentime' => 'string',
+                'closetime' => 'string',
+                'description' => 'string',
+                'phone' => 'string',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            ]);
+
+        if($validatorvbranch->fails()){
+            return $this->returnError('400',$validatorvbranch->errors());
+        }
+        if( $request->image != null){
+            $image = $this->uploadimages('branch', $request->image);
+        }else{
+            $image = null;
+        }
+        $store = $branch->uodate(array_merge(
+                    $validatorvbranch->validated(),
+                    ['slug' => Str::slug($request->name),
+                    'user_id' =>  auth('api')->user()->id,
+                    'image' => $image]
+                ));
+                return $this->returnSuccessMessage('تم تعديل المتجر بنجاح ');
+
+    } catch (\Exception $e) {
+        return  $this->returnError('E002','المتجر غير موجود');
+    }
+    }
+
+//حذف متجر
+    public function branchdelete(Request $request)
+    {
+        try {
+            $branch = branchs::findOrFail($request->branch_id);
+            $branch->delete();
+            return $this->returnSuccessMessage('تم حذف المتجر بنجاح ');
+        } catch (\Exception $e) {
+            return  $this->returnError('E002','المتجر غير موجود');
+        }
+    }
+
 
 }

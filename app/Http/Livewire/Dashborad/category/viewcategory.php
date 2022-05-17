@@ -15,7 +15,15 @@ class viewcategory extends Component
     use WithFileUploads;
     use GeneralTrait;
     protected $paginationTheme = 'bootstrap';
-    public $name,$parent,$slug,$image;
+    public $name,$parent,$slug,$image,$iteration,$img;
+    public function updated($propertyImage,$propertyIteration)
+    {
+        // if($this->image != null){
+        //     $this->img = $this->image;
+        // }else{
+        //     $this->img = "";
+        // }
+    }
 
     public function view($slug,$name1)
     {
@@ -27,8 +35,8 @@ class viewcategory extends Component
     {
         $category = categories::where('slug',$this->slug)->first();
         $category->delete();
+        $this->reset();
         $this->dispatchBrowserEvent('closeModal');
-
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
     }
 
@@ -45,13 +53,16 @@ class viewcategory extends Component
                 'image' => $this->image??null,
                 'active' => 0
             ]);
+        $this->reset();
+        $this->iteration++;
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
-        $this->reset();
+
     }
+
     public function edit($slug,$parent='')
     {
-
+        $this->iteration++;
         $this->slug = $slug;
         $category = categories::where('slug',$slug)->first();
         if($parent){
@@ -60,10 +71,10 @@ class viewcategory extends Component
         }else{
             $this->parent='';
         }
-        // dd($slug . $this->parent);
         $this->slug = $slug;
         $this->name = $category->name;
     }
+
     public function update()
     {
         if ($this->image != null){
@@ -82,7 +93,8 @@ class viewcategory extends Component
         $this->image = null;
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
-    }
+
+   }
 
     public function active($slug)
     {

@@ -9,13 +9,12 @@
               </button>
             </div>
         <form wire:submit.prevent="create" enctype="multipart/form-data">
-
+            @csrf
             <div class="modal-body">
                         <div class="form-group">
                          <label>{{ __('tran.namecategory')}}</label>
                             <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
                             @error('namec')
-                            {{-- @if($errors->has('namec')) --}}
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -30,12 +29,12 @@
                             <div class="display-block">
                                 <a class='btn btn-success btn-sm btn-file-upload'>
                                     {{ __('tran.selectimage') }}
-                                    <input type="file" id="exampleInputName1" wire:model="image" accept=".png" onchange="$('#upload-file-info2').html($(this).val());">
+                                    <input type="file" wire:model="image" accept=".png" onchange="$('#upload-file-info2').html($(this).val());">
                                  </a>
                                 (.png)
                             </div>
                             @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-                            <span wire:ignore class='badge badge-info' id="upload-file-info2"></span>
+                            {{-- <span wire:ignore class='badge badge-info' id="upload-file-info2"></span> --}}
                         </div>
                         <div class="form-group">
                             <label>{{__('tran.parentselect')}}</label>

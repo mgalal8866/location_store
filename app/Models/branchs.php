@@ -5,12 +5,15 @@ namespace App\Models;
 use App\Models\comments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use PhpParser\Node\Expr\Cast\Double;
 
 class branchs extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $guarded = [];
+    protected $dates = ['deleted_at'];
     // protected $casts = [
     //     'rating' => 'decimal:2',
     // ];
@@ -66,6 +69,25 @@ class branchs extends Model
             return '<button type="button" class="btn btn-danger dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unacceptable</button>';
         }else{
             return '<button type="button" class="btn btn-success dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accept</button>';
+        }
+    }
+
+    public function getActiveapiAttribute(){
+        if($this->active == 1){
+            return 'غير مفعل';
+        } else
+        {
+            return 'مفعل';
+        }
+    }
+    public function getAcceptapiAttribute(){
+        if($this->accept == 1){
+            return 'فى انتظار الموافقه';
+        }elseif($this->accept == 2){
+
+            return 'مرفوض';
+        }else{
+            return 'مقبول';
         }
     }
 
