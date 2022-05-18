@@ -10,6 +10,6 @@ class Citits extends Component
     public function render()
     {
         $cities = cities::all();
-        return view('admin.livewire.dashborad.city.citits',['cities'=> $cities])->layout('admin.layouts.masterdash');
+        return view('livewire.dashborad.city.citits',['cities'=> $cities])->layout('admin.layouts.masterdash');
     }
 }

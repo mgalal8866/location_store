@@ -1,7 +1,7 @@
 <div>
-    @include('livewire.category.CreateCategory')
-    @include('livewire.category.EditCategory')
-    @include('livewire.category.DeleteCategory')
+    @include('livewire.dashborad.category.CreateCategory')
+    @include('livewire.dashborad.category.EditCategory')
+    @include('livewire.dashborad.category.DeleteCategory')
     @section('title')
     Category
     @stop

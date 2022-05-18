@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e52551d8f1842809326c054c05382a4e4fba9101',
+        'reference' => '296cbbf0822c4af445ee8d7ff083f8dcd42f89a3',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -397,6 +397,15 @@
                 0 => 'v8.83.9',
             ),
         ),
+        'joedixon/laravel-translation' => array(
+            'pretty_version' => 'v1.1.2',
+            'version' => '1.1.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../joedixon/laravel-translation',
+            'aliases' => array(),
+            'reference' => '4a467398bae73cd16522d523b557e96f3455b9d2',
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -418,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e52551d8f1842809326c054c05382a4e4fba9101',
+            'reference' => '296cbbf0822c4af445ee8d7ff083f8dcd42f89a3',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(

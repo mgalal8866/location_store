@@ -39,17 +39,16 @@ class BranchesController extends Controller
 // احضار المخازن حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
-        $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request){
-            $q->whereCategoryId($request->category_id);
-            })->whereCityId(auth('api')->user()->city_id)->
-            whereRegionId(auth('api')->user()->region_id)->
+        $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request)
+        {$q->whereCategoryId($request->category_id);})->
+            whereRegionId( $request->region_id)->
             latest()->
             orderBy('top', 'DESC')->
             paginate(10);
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 
-// احضار المخازن الخاصه بالمستخدم
+// احضار الفروع الخاصه بالمستخدم
     public function getbranchesbyuser(Request $request)
     {
         $branches = branchs::whereActive(0)->

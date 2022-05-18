@@ -14,7 +14,14 @@
         @include('livewire.admin.category.editcategory') --}}
         <div class="card">
             <div class="card-header" >
-
+                <label  for="pages">{{__('show')}}</label>
+                    <select class="form-select" wire:model="pages" name="pages" id="pages">
+                        <option value="10" > 10 </option>
+                        <option value="25" > 25 </option>
+                        <option value="50" > 50 </option>
+                        <option value="100" > 100 </option>
+                        <option value="200" > 200 </option>
+                    </select>
 
             </div>
             <div class="card-body p-0 table-responsive">

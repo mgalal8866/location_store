@@ -21,7 +21,7 @@ class categories extends Model
     }
     public function store()
     {
-        return $this->hasMany(stores::class);
+        return $this->hasMany(stores::class,'category_id');
     }
     Public function _parent()
     {

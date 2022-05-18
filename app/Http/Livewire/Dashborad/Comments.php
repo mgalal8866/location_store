@@ -8,6 +8,6 @@ class Comments extends Component
 {
     public function render()
     {
-        return view('livewire.dashborad.comments');
+        return view();
     }
 }

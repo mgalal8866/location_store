@@ -10,10 +10,11 @@ class Store extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+        public $pages=10;
 
     public function render()
     {
-        $stores = stores::with('branch')->latest()->paginate(5);
-        return view('admin.livewire.dashborad.store.store',['stores'=> $stores])->layout('admin.layouts.masterdash');
+        $stores = stores::with('branch')->latest()->paginate($this->pages);
+        return view('livewire.dashborad.store.viewstore',['stores'=> $stores])->layout('admin.layouts.masterdash');
     }
 }

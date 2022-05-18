@@ -8,6 +8,6 @@ class Branches extends Component
 {
     public function render()
     {
-        return view('livewire.dashborad.branches');
+        return view('livewire.dashborad.branch.branch');
     }
 }
