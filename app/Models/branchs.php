@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\comments;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\File;
 use PhpParser\Node\Expr\Cast\Double;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class branchs extends Model
 {
@@ -29,7 +30,12 @@ class branchs extends Model
     }
 
     public function getImageAttribute($val){
-        return ($val !== null ) ? asset('assets/images/branch/' . $val) : asset('assets/images/noimage.jpg');
+        $path = public_path('assets/images/branch/'. $val);
+        if(File::exists($path)) {
+            return ($val !== null ) ? asset('assets/images/branch/' . $val) : asset('assets/images/noimage.jpg');
+        }else{
+            return asset('assets/images/noimage.jpg');
+        }
     }
     public function stores()
     {

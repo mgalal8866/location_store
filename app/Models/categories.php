@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Facades\File;
 use App\Models\stores;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,8 +28,14 @@ class categories extends Model
         return $this->belongsTo(self::class,'parent_id');
     }
     public function getImageAttribute($val){
-        return ($val !== null ) ? asset('assets/images/category/' . $val) : asset('assets/images/noimage.jpg');
-    }
+        $path = public_path('assets/images/product/'. $val);
+        if(File::exists($path)) {
+            return ($val !== null ) ? asset('assets/images/category/' . $val) : asset('assets/images/noimage.jpg');
+ 
+        }else{
+            return asset('assets/images/noimage.jpg');
+        }
+          }
     public function getActiveAttribute($val){
         if($val == 1){
             return '<button type="button" class="btn btn-danger dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deactivate</button>';
