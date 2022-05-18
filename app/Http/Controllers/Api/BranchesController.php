@@ -66,6 +66,7 @@ class BranchesController extends Controller
     public function  getbranchbyid(Request $request)
     {
         DB::table('branchs')->whereId($request->id)->increment('view');
+
         return $this->returnData('branches',onebraches::collection(
             branchs::whereActive(0)->
             whereId($request->id)->

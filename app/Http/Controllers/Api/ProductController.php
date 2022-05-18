@@ -61,9 +61,8 @@ class ProductController extends Controller
     }
 
     public function productedit(Request $request){
-        $product = products::findorfill($request->product_id);
+        $product = products::findOrFail($request->product_id);
          $product->update([
-            'branch_id' => $request->branch_id,
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'price' => $request->price,
@@ -88,10 +87,16 @@ class ProductController extends Controller
                 ]);
         }
 
-     return $this->returnData('product', new product($product),'تم اضافة المنتج بنجاح ');
+     return $this->returnData('product', new product($product),'تم تعديل المنتج بنجاح ');
 
     }
     public function  productdelete(Request $request){
-
+        try {
+            $branch = products::findOrFail($request->product_id);
+            $branch->delete();
+            return $this->returnSuccessMessage('تم حذف المنتج بنجاح ');
+        } catch (\Exception $e) {
+            return  $this->returnError('E002','المنتج غير موجود');
+        }
     }
 }
