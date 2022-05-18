@@ -72,7 +72,7 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
 /**************************  BranchesController ********************************** */
 
 /**************************  CategoriesController ********************************** */
-    Route::POST('/getcategories', [CategoriesController::class,'getcategories']);
+    Route::get('/getcategories', [CategoriesController::class,'getcategories']);
     Route::post('/getsubcategories', [CategoriesController::class,'getsubcategories']);
 /**************************  CategoriesController ********************************** */
 

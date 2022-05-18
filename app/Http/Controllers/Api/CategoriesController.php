@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class CategoriesController extends Controller
 {
     use GeneralTrait;
-    public function getcategories(Request $request )
+    public function getcategories()
     {
       $category =  categories::parent()->select('id','parent_id','name','slug','active','image')->whereActive(0)
         ->with(['childrens' => function($q){
