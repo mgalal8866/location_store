@@ -24,7 +24,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Select Image : </label>
                                         <div style="margin-bottom: 10px;">
-                                            {{-- {{$categorys->where('slug',$slug)->first()->image}} --}}
+                                            {{$slug??'nnnnnnnnnnnn'}}
                                             <img src="{{$slug != null?$categorys->where('slug',$slug)->first()->image??'' :'' }}" alt="favicon" style="max-width: 100px; max-height: 100px;">
                                         </div>
                                         <div class="display-block">

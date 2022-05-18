@@ -74,6 +74,7 @@ class viewcategory extends Component
 
         $this->slug = $slug;
         $this->name = $category->name;
+        
         return;
     }
 
