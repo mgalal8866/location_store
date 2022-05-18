@@ -25,9 +25,9 @@ class cities extends Model
 
     public function region()
     {
-        return $this->hasMany(regions::class);
+        return $this->hasMany(regions::class,'city_id');
     }
-    
+
     public function user()
     {
         return $this->hasMany(User::class);

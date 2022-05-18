@@ -18,7 +18,8 @@ CITY
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>{{ __('name') }}</th>
+                        <th>{{ __('region') }}</th>
                         <th width="240">Action</th>
                         {{-- <th style="width: 40px">Label</th> --}}
                     </tr>
@@ -28,6 +29,7 @@ CITY
                         <tr>
                             <td>{{$loop->index +1}}</td>
                             <td>{{$city->name}}</td>
+                            <td><i class="fa-solid fa-house-building"></i>{{$city->region->count()}}</td>
                             <td>
                                 <button class="btn btn-info  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="far fa-eye"></i>{{ __('tran.show') }}</button>
                                 <button class="btn btn-warning  btn-sm"  data-toggle="modal" data-target="#modal-edit"><i class="fas fa-pencil-alt"></i>{{ __('tran.edit') }}</button>
@@ -37,7 +39,7 @@ CITY
                         @empty
                             <tr>
                             <td colspen="2"> No Data</td>
-                            
+
                         </tr>
                         @endforelse
 
