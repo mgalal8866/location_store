@@ -15,7 +15,7 @@ class viewcategory extends Component
     use WithFileUploads;
     use GeneralTrait;
     protected $paginationTheme = 'bootstrap';
-    public $name,$parent,$slug,$image,$iteration,$img;
+    public $name,$parent,$slug,$image,$iteration,$img,$photo;
     public function updated($propertyImage,$propertyIteration)
     {
         // if($this->image != null){
@@ -72,9 +72,10 @@ class viewcategory extends Component
             $this->parent='';
         }
 
+        $this->photo = $category->image;
         $this->slug = $slug;
         $this->name = $category->name;
-        
+
         return;
     }
 
