@@ -28,10 +28,10 @@ class categories extends Model
         return $this->belongsTo(self::class,'parent_id');
     }
     public function getImageAttribute($val){
-        $path = public_path('assets/images/product/'. $val);
+        $path = public_path('assets/images/category/'. $val);
         if(File::exists($path)) {
             return ($val !== null ) ? asset('assets/images/category/' . $val) : asset('assets/images/noimage.jpg');
- 
+
         }else{
             return asset('assets/images/noimage.jpg');
         }
