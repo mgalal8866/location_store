@@ -32,6 +32,7 @@
                             <th>{{ (__('tran.name')) }}</th>
                             <th>{{ (__('tran.user')) }}</th>
                             <th>{{ (__('tran.catrgory')) }}</th>
+                            <th>{{ (__('info')) }}</th>
                             <th>Num branch</th>
                             <th>{{ (__('tran.status')) }}</th>
                             <th width="240">{{ (__('tran.action')) }}</th>
@@ -44,6 +45,18 @@
                                 <td>{{$store->name}}</td>
                                 <td>{{$store->user->name}}</td>
                                 <td>{{$store->category->name}}</td>
+                                <td>
+
+                                        @for ($i = 0; $i < 5; $i++)
+                                            @if (floor($store->rating) - $i >= 1)
+                                                <i class="fas fa-star text-warning fa-1x">{{--Full Start--}} </i>
+                                            @elseif ($store->rating - $i > 0)
+                                                <i class="fas fa-star-half-alt text-warning fa-1x"> {{--Half Start--}} </i>
+                                            @else
+                                                <i class="far fa-star text-warning fa-1x"> {{--Empty Start--}} </i>
+                                            @endif
+                                        @endfor
+                                </td>
                                 <td>{{$store->branch->count()}}</td>
                                 <td>{!!$store->active!!}</td>
                                 <td>

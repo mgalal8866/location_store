@@ -1,0 +1,45 @@
+
+.table-hover tbody tr.expandable-body:hover {
+    background-color: inherit !important;
+  }
+
+  [data-widget="expandable-table"] {
+    /* cursor: pointer; */
+
+  }
+
+  [data-widget="expandable-table"] i.expandable-table-caret {
+    transition: -webkit-transform 0.3s linear;
+    transition: transform 0.3s linear;
+    transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+  }
+
+  [data-widget="expandable-table"][aria-expanded="true"] td i.expandable-table-caret[class*="right"] {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+
+  [data-widget="expandable-table"][aria-expanded="true"] td i.expandable-table-caret[class*="left"] {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+
+  .expandable-body > td {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .expandable-body > td > div,
+  .expandable-body > td > p {
+    padding: 0.75rem;
+  }
+
+  .expandable-body .table {
+    width: calc(100% - 0.75rem);
+    margin: 0 0 0 0.75rem;
+  }
+
+  .expandable-body .table tr:first-child td,
+  .expandable-body .table tr:first-child th {
+    border-top: none;
+  }
