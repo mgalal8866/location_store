@@ -71,8 +71,10 @@ class viewcategory extends Component
         }else{
             $this->parent='';
         }
+
         $this->slug = $slug;
         $this->name = $category->name;
+        return;
     }
 
     public function update()
