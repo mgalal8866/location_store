@@ -56,6 +56,9 @@
             Toast.fire({icon: (e.detail.ev),
                 title: (e.detail.msg)
        });
+       window.addEventListener('openModal', event => {
+        $("#modalForm").modal('show');
+    })
     //    toastr.success( (e.detail.msg))
      })
  </script>

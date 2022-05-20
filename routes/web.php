@@ -16,6 +16,7 @@ use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\category\Category;
+use App\Http\Livewire\Dashborad\Category\Category2;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -47,15 +48,15 @@ route::get('/up',function () {
  });
 
  Route::get('/artisan', function (Request $request) {
+  $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
 
-                $hm ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
-            //?cat[]=view:clear&cat[]=config:clear
-                foreach( $request->get('cat') as $art){
-                    Artisan::call( $art);
-                    $hm = $hm .  '<h4>'. Artisan::output().'</h4>';
-                }
-                     return $hm;
-            });
+    foreach( $request->get('command') as $command){
+        Artisan::call($command);
+        $output = $output .  '<h4>'. Artisan::output().'</h4>';
+    }
+    return $output;
+});
+ //artisan?commend[]=view:clear&commend[]=config:clear
 
 Route::get('/gen', function () {
 
@@ -93,6 +94,7 @@ Route::group(
         Route::get('/city',Citits::class)->name('city');
         Route::get('/setting/app',Setting::class)->name('settingapp');
         Route::get('/category',viewcategory::class)->name('category');
+        Route::get('/category2',Category2::class)->name('category2');
         Route::get('/users',Citits::class)->name('users');
         Route::get('/city/regions',Citits::class)->name('regions');
         Route::get('/stores',Store::class)->name('stores');

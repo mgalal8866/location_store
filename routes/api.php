@@ -24,8 +24,8 @@ use App\Http\Controllers\Api\CategoriesController;
         Artisan::call('config:clear');
         return config('err_message.alert.limit_product');
     });
-    Route::get('/mss', function () {
 
+    Route::get('/mss', function () {
         return config('err_message.alert.limit_product');
     });
     Route::get('/not', [CitiesController::class,'notifi']);
@@ -48,16 +48,17 @@ Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function (
     Route::get('/getcitywithregions', [CitiesController::class,'getcitywithregions']);
 /**************************  CitiesController ********************************** */
 
-
 Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
-    Route::post('/editprofile', [AuthController::class, 'editprofile']);
 
+    Route::post('/editprofile', [AuthController::class, 'editprofile']);
 /**************************  StoresController ********************************** */
     Route::get('/getstores', [StoresController::class,'getstores']);
     Route::post('/newstore', [StoresController::class,'newstore']);
     Route::get('/storevistor/{store_id}', [StoresController::class,'storevistor']);
+
 /**************************  BRANCHES ********************************** */
     Route::get('/ff', function(){return auth('api')->user()->id;});
+
 
 /**************************  BranchesController ********************************** */
     Route::get('/getbranches', [BranchesController::class,'getbranches']);
@@ -68,21 +69,20 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::get('/get/lastbranch', [BranchesController::class,'lastbranch']);
     Route::Post('/branch/edit', [BranchesController::class,'branchedit']);
     Route::Post('/branch/delete', [BranchesController::class,'branchdelete']);
-
 /**************************  BranchesController ********************************** */
+
 
 /**************************  CategoriesController ********************************** */
     Route::post('/getcategories', [CategoriesController::class,'getcategories']);
     Route::post('/getsubcategories', [CategoriesController::class,'getsubcategories']);
 /**************************  CategoriesController ********************************** */
 
-/**************************  ProductController ********************************** */
 
+/**************************  ProductController ********************************** */
     Route::post('/insert/product', [ProductController::class,'insert_product']);
     Route::post('/get/product/by/branch', [ProductController::class,'get_product']);
     Route::Post('/product/edit', [ProductController::class,'productedit']);
     Route::Post('/product/delete', [ProductController::class,'productdelete']);
-
 /**************************  ProductController ********************************** */
 
 });
