@@ -27,9 +27,13 @@ class Category2 extends Component
             {
                 // This will show the modal on the frontend
                 $this->dispatchBrowserEvent('openDeleteModal');
+
+
             } elseif ($actionmodel == 'showPhotos') {
+
                 // Pass the currently selected item
                 $this->emit('getPostId', $this->itemid);
+
                 // Show the modal that shows the additional photos
                 $this->dispatchBrowserEvent('openModalShowPhotos');
             }

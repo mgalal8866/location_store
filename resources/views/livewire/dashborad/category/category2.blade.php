@@ -142,7 +142,7 @@
                                                             <td>
 
                                                                 <button class="btn btn-warning  btn-sm"   wire:click="selectmodel('{{ $child->slug }}','updata')"><i class="far fa-eye"></i>  {{ __('tran.edit') }}  </button>
-
+                                                                {{-- <input type="checkbox" class="xs" checked data-toggle="toggle" data-on="Active" data-off="Not Active" data-onstyle="success" data-offstyle="danger"> --}}
                                                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete"  wire:click.prevent="view('{{ $child->slug }}','{{$child->name}}')"><i class="fas fa-trash"></i>{{ __('tran.delete') }} </button>
                                                                 <div class="btn-group">
                                                                     {!!$child->active!!}
