@@ -42,6 +42,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(regions::class);
     }
+    public function about()
+    {
+        return $this->belongsTo(about::class);
+    }
     public function getImageAttribute($val){
         return ($val !== null ) ? asset('assets/images/user/' . $val) : asset('assets/images/noimage.jpg');
     }

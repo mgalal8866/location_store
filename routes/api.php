@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AboutController;
 use App\Models\comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,6 +84,11 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::post('/get/product/by/branch', [ProductController::class,'get_product']);
     Route::Post('/product/edit', [ProductController::class,'productedit']);
     Route::Post('/product/delete', [ProductController::class,'productdelete']);
+/**************************  ProductController ********************************** */
+
+
+/**************************  ProductController ********************************** */
+Route::post('/about/message', [AboutController::class,'sendmessage']);
 /**************************  ProductController ********************************** */
 
 });

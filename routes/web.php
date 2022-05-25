@@ -31,7 +31,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+route::get('/pull',function () {
+    $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
+    Artisan::call('git pull');
+        $output = $output .  '<h4>'. Artisan::output().'</h4>';
+    return $output;
 
+   
+ });
 route::get('/down',function () {
    Artisan::call('down --render="maintenance"');
    return  redirect('/');

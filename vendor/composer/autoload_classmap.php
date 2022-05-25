@@ -82,6 +82,7 @@ return array(
     'App\\Http\\Resources\\slider' => $baseDir . '/app/Http/Resources/slider.php',
     'App\\Http\\Resources\\store' => $baseDir . '/app/Http/Resources/store.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\about' => $baseDir . '/app/Models/about.php',
     'App\\Models\\admin' => $baseDir . '/app/Models/admin.php',
     'App\\Models\\branchs' => $baseDir . '/app/Models/branchs.php',
     'App\\Models\\categories' => $baseDir . '/app/Models/categories.php',
