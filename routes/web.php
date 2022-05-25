@@ -16,7 +16,7 @@ use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\category\Category;
-use App\Http\Livewire\Dashborad\Category\Category2;
+use App\Http\Livewire\Dashborad\category\Category2;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -37,7 +37,7 @@ route::get('/pull',function () {
         $output = $output .  '<h4>'. Artisan::output().'</h4>';
     return $output;
 
-   
+
  });
 route::get('/down',function () {
    Artisan::call('down --render="maintenance"');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Dashborad\Category;
+namespace App\Http\Livewire\Dashborad\category;
 
 use Livewire\Component;
 use App\Models\categories;
