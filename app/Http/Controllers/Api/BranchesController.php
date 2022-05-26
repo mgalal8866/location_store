@@ -34,13 +34,14 @@ class BranchesController extends Controller
     public function lastbranch()
     {
         return  $this->returnData('branches',branch::collection(
-            branchs::whereActive(0)->latest()->take(10)->get()));
+            branchs::whereActive(0)->WhereHas('stores', function($q)
+            {$q->whereActive(0);})->latest()->take(10)->get()));
     }
 // احضار المخازن حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
         $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request)
-        {$q->whereCategoryId($request->category_id);})->
+        {$q->whereCategoryId($request->category_id)->whereActive(0);})->
             whereRegionId( $request->region_id)->
             orderBy('top', 'DESC')->
             paginate(10);
@@ -52,7 +53,7 @@ class BranchesController extends Controller
     {
         $branches = branchs::whereActive(0)->
         WhereHas('stores', function($q)  use ($request){
-            $q->whereUserId(auth('api')->user()->id);
+            $q->whereUserId(auth('api')->user()->id)->whereActive(0);
         })->
             latest()->
             orderBy('top', 'DESC')->
@@ -78,18 +79,18 @@ class BranchesController extends Controller
     {
          $ss = branchs::whereActive(0)->orderBy('top', 'DESC')->
          WhereHas('stores', function($q) use ($query){
-            $q->Where('name','like', '%'.  $query  . '%');
+            $q->Where('name','like', '%'.  $query  . '%')->whereActive(0);
         })->
         orWhereHas('city', function($q1) use ($query){
             $q1->Where('city_name_ar','like', '%'.  $query  . '%')
-            ->orWhere('city_name_en','like', '%'.  $query  . '%');
+            ->orWhere('city_name_en','like', '%'.  $query  . '%')->whereActive(0);
         })->
         orWhereHas('region', function($q3) use ($query){
             $q3->Where('region_name_ar','like', '%'.  $query  . '%')
-            ->orWhere('region_name_en','like', '%'.  $query  . '%');
+            ->orWhere('region_name_en','like', '%'.  $query  . '%')->whereActive(0);
         })->
         orWhereHas('product', function($q4) use ($query){
-            $q4->Where('name','like', '%'.  $query  . '%');
+            $q4->Where('name','like', '%'.  $query  . '%')->whereActive(0);
         })->
         get();
 

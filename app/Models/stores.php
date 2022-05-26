@@ -22,7 +22,7 @@ class stores extends Model
     {
         return $this->belongsto(User::class);
     }
-    
+
     public function category()
     {
         return $this->belongsto(categories::class);
