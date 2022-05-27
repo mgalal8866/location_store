@@ -31,6 +31,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+route::get('/set',function () {
+
+    return setting('site_title');
+ });
+
 route::get('/pull',function () {
     $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
     Artisan::call('git pull');

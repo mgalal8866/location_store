@@ -3,7 +3,7 @@
         <!-- Brand Logo -->
         <a href="{{ route('dashborad') }}" class="brand-link">
             <img src="{{ URL::asset('assets') .'/'. config('setting_var.images.logo')}}" alt=" Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
+            <span class="brand-text font-weight-light">{{  setting('site_name')}}</span>
         </a>
 
         <!-- Sidebar -->

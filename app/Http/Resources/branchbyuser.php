@@ -39,11 +39,6 @@ class branchbyuser extends JsonResource
             'product_num'=> $this->product_num . ' / ' . $this->product->count(),
             'accept'=>$this->acceptapi,
             'active'=>$this->activeapi,
-
-
-
-
-
             // 'rating' => ($count != 0)?$sum/$count:0,
         ];
     }

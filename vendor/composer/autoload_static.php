@@ -41,6 +41,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
         '101b35f72e0ccb1b5ef72aa86bba3ef9' => __DIR__ . '/..' . '/yoeunes/toastr/src/helpers.php',
+        'be2dabd89e6571c763d3c521b1c3701e' => __DIR__ . '/../..' . '/app/Helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -607,6 +608,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
+        'App\\Http\\Controllers\\Api\\AboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AboutController.php',
         'App\\Http\\Controllers\\Api\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AuthController.php',
         'App\\Http\\Controllers\\Api\\BranchesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BranchesController.php',
         'App\\Http\\Controllers\\Api\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CategoriesController.php',
@@ -645,6 +647,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'App\\Http\\Livewire\\Dashborad\\Store\\Store' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashborad/Store/Store.php',
         'App\\Http\\Livewire\\Dashborad\\Stores' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashborad/Stores.php',
         'App\\Http\\Livewire\\Dashborad\\Users' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashborad/Users.php',
+        'App\\Http\\Livewire\\Dashborad\\category\\Category2' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashborad/category/Category2.php',
         'App\\Http\\Livewire\\Dashborad\\category\\viewcategory' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashborad/category/viewcategory.php',
         'App\\Http\\Livewire\\Dashborad\\setting\\Setting' => __DIR__ . '/../..' . '/app/Http/Livewire/Dashborad/setting/Setting.php',
         'App\\Http\\Livewire\\Editcategory' => __DIR__ . '/../..' . '/app/Http/Livewire/Editcategory.php',
@@ -691,6 +694,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'App\\Models\\setting' => __DIR__ . '/../..' . '/app/Models/setting.php',
         'App\\Models\\slider' => __DIR__ . '/../..' . '/app/Models/slider.php',
         'App\\Models\\stores' => __DIR__ . '/../..' . '/app/Models/stores.php',
+        'App\\NullSetting' => __DIR__ . '/../..' . '/app/NullSetting.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

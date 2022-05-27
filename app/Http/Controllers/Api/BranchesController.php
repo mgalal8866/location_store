@@ -10,10 +10,11 @@ use App\Http\Resources\branch;
 use App\Http\Resources\onebraches;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\branchesCollection;
-use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Http\Resources\branchesCollectionbyuser;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class BranchesController extends Controller
 {
@@ -35,16 +36,17 @@ class BranchesController extends Controller
     {
         return  $this->returnData('branches',branch::collection(
             branchs::whereActive(0)->WhereHas('stores', function($q)
-            {$q->whereActive(0);})->latest()->take(10)->get()));
+            {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
     }
-// احضار المخازن حسب الاى دى القسم والمنطقه
+// احضار الفروع  حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
+        // Cache::forget('setting');
         $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
             whereRegionId( $request->region_id)->
             orderBy('top', 'DESC')->
-            paginate(10);
+            paginate(setting('app_page_branch'));
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 

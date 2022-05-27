@@ -1,6 +1,6 @@
 @extends('admin.layouts.masterdash')
 @section('title')
-Dashborad
+{{ setting('site_title') }}
 @stop
 
 @section('css')
