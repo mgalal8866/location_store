@@ -106,7 +106,7 @@ class BranchesController extends Controller
         info($request->all());
     try {
 
-        $branch = branchs::findorfill($request->branch_id);
+        $branch = branchs::findOrFail($request->branch_id);
 
             $validatorvbranch = Validator::make($request->all(), [
                 'region_id'=>'required|string|exists:regions,id',
