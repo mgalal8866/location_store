@@ -38,9 +38,17 @@
 <script src="{{ URL::asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 
 @yield('js')
+@stack('before-livewire-scripts')
 @livewireScripts
+@stack('after-livewire-scripts')
+
+@stack('alpine-plugins')
+<!-- Alpine Core -->
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 @stack('jslive')
 <script>
+
     var Toast = Swal.mixin({
        toast: true,
        position: 'top-end',
@@ -63,3 +71,5 @@
     //    toastr.success( (e.detail.msg))
      })
  </script>
+
+

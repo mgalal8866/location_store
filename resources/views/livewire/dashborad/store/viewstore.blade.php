@@ -8,7 +8,40 @@
     @section('page2')
     Stores
     @endsection
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex justify-content-between mb-2">
 
+                    <div class="btn-group">
+                        <button wire:click="filterStoreByStatus" type="button" class="btn btn-secondary">
+                            <span class="mr-1">{{__('all')}}</span>
+                            <span class="badge badge-pill badge-info">{{$storeall}}</span>
+                        </button>
+
+                        <button wire:click="filterStoreByStatus('0')" type="button" class="btn btn-secondary ">
+                            <span class="mr-1">{{__('active')}}</span>
+                            <span class="badge badge-pill badge-success">{{$storeactive}}</span>
+                        </button>
+
+                        <button wire:click="filterStoreByStatus('1')" type="button" class="btn  btn-secondary ">
+                            <span class="mr-1">{{__('desactive')}}</span>
+                            <span class="badge badge-pill badge-danger">{{$storedisactive}}</span>
+                        </button>
+                        {{-- <button wire:click="filterAppointmentsByStatus('closed')" type="button" class="btn  btn-secondary ">
+                            <span class="mr-1">weting</span>
+                            <span class="badge badge-pill badge-success">0</span>
+                        </button>
+                        <button wire:click="filterAppointmentsByStatus('closed')" type="button" class="btn  btn-secondary ">
+                            <span class="mr-1">Desactive</span>
+                            <span class="badge badge-pill badge-success">0</span>
+                        </button> --}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
         {{-- @include('livewire.admin.category.createcategory')
         @include('livewire.admin.category.deletecategory')
         @include('livewire.admin.category.editcategory') --}}
@@ -45,6 +78,7 @@
                                 <td>{{$store->name}}</td>
                                 <td>{{$store->user->name}}</td>
                                 <td>{{$store->category->name}}</td>
+
                                 <td>
 
                                         @for ($i = 0; $i < 5; $i++)
@@ -58,16 +92,18 @@
                                         @endfor
                                 </td>
                                 <td>{{$store->branch->count()}}</td>
-                                <td>{!!$store->active!!}</td>
+                                {{-- <td>{!!$store->active!!}</td> --}}
+                                <td><span class="badge badge-pill badge-{{ $store->active_badge }} ">{{ $store->active }}</span></td>
+
                                 <td>
                                     <button class="btn btn-info  btn-sm"  data-toggle="modal" data-target="#modal-edit"  ><i class="far fa-eye"></i>{{ __('tran.show') }}</button>
                                     <button class="btn btn-danger  btn-sm"  data-toggle="modal" data-target="#modal-edit"><i class="fas fa-trash-alt"></i>{{ __('tran.delete') }}</button>
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspen="6"> No Data</td>
-                            </tr>
+                            {{-- <tr> --}}
+                                <td colspan="8" class="text-center text-danger"> No Data</td>
+                            {{-- </tr> --}}
                         @endforelse
                     </tbody>
                 </table>

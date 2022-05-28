@@ -11,7 +11,7 @@ return array (
   'close' => 'Close',
   'delcategory' => 'Delete Category',
   'delete' => 'Delete',
-  'description' => 'Description',
+  'description' => 'Descriptio',
   'edit' => 'Edit',
   'image' => 'Image',
   'images' => 'images',

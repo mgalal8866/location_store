@@ -35,7 +35,7 @@
                          <td  class="text-success" >{{ $branch->stores->name }}</td>
                          <td>{{ $branch->stores->user->name }}</td>
                          <td>{{ $branch->city->name }}</td>
-                        <td>
+                         <td>
                              <div class="btn-group">
                                      {!! $branch->Acceptbtn !!}
                                  <div class="dropdown-menu">

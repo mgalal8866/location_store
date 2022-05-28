@@ -30,13 +30,26 @@ class stores extends Model
 
     public function getActiveAttribute($val){
             if($val == 1){
-                return '<span class="badge badge-pill badge-danger">Deactivate</span> ';
+                // return '<span class="badge badge-pill badge-danger">Deactivate</span> ';
+                return 'Deactivate';
             }
             else
             {
-                return '<span class="badge badge-pill badge-success">Active</span>';
+                // return '<span class="badge badge-pill badge-success">Active</span>';
+                return 'Active';
             }
    }
+
+
+   public function getActiveBadgeAttribute()
+   {
+       $badge=[
+           '0' => 'success',
+           '1' => 'danger'
+       ];
+       return $badge[$this->getAttributes()['active']];
+
+    }
 
 
 }
