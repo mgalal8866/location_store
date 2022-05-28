@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Setting;
+use App\Models\setting;
 use App\NullSetting;
 use Illuminate\Support\Facades\Cache;
 
