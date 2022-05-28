@@ -103,6 +103,7 @@ class BranchesController extends Controller
 //تعديل متجر
     public function branchedit(Request $request)
     {
+        info($request->all());
     try {
 
         $branch = branchs::findorfill($request->branch_id);
