@@ -33,6 +33,6 @@ class Setting extends Component
 
     public function render()
     {
-        return view('admin.livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
+        return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
     }
 }
