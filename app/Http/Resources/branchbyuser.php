@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\comments;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use App\Models\categories;
 class branchbyuser extends JsonResource
 {
     protected $casts = [
@@ -13,12 +14,20 @@ class branchbyuser extends JsonResource
     public function toArray($request)
     {
 
+         $parenthas = $this->stores->category->parent_id??'';
+        if($parenthas != null)
+        {
+            $PP = categories::whereId($parenthas)->first()->name;
+        }
+
 
         return [
             'id' => $this->id,
             'star' => $this->top,
             'name' => $this->stores->name,
-            'category_id' => $this->stores->category_id,
+            'category_main_id' =>   $this->stores->category->parent_id??'',
+            'category_main_name' =>   $PP??'' ,
+            'category_id' =>    $this->stores->category_id,
             'category_name' => $this->stores->category->name,
             'image' => $this->image,
             'address' => $this->address??'',
@@ -41,6 +50,11 @@ class branchbyuser extends JsonResource
             'product_num'=> $this->product_num . ' / ' . $this->product->count(),
             'accept'=>$this->acceptapi,
             'active'=>$this->activeapi,
+
+
+
+
+
             // 'rating' => ($count != 0)?$sum/$count:0,
         ];
     }
