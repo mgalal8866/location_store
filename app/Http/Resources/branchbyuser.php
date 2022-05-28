@@ -18,6 +18,8 @@ class branchbyuser extends JsonResource
             'id' => $this->id,
             'star' => $this->top,
             'name' => $this->stores->name,
+            'category_id' => $this->stores->category_id,
+            'category_name' => $this->stores->category->name,
             'image' => $this->image,
             'address' => $this->address??'',
             'phone' => $this->phone,
