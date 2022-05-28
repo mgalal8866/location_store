@@ -103,12 +103,13 @@ class BranchesController extends Controller
 //تعديل متجر
     public function branchedit(Request $request)
     {
-        info($request->all());
+
     try {
 
         $branch = branchs::findOrFail($request->branch_id);
 
             $validatorvbranch = Validator::make($request->all(), [
+                'name' =>'string',
                 'region_id'=>'required|string|exists:regions,id',
                 'city_id'=>'required|string|exists:cities,id',
                 'address' =>'string',
@@ -118,24 +119,26 @@ class BranchesController extends Controller
                 'closetime' => 'string',
                 'description' => 'string',
                 'phone' => 'string',
-                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+                // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             ]);
 
         if($validatorvbranch->fails()){
             return $this->returnError('400',$validatorvbranch->errors());
         }
+
         if( $request->image != null){
             $image = $this->uploadimages('branch', $request->image);
         }else{
             $image = null;
         }
-        $store = $branch->update(array_merge(
+             $branch->update(array_merge(
                     $validatorvbranch->validated(),
                     ['slug' => Str::slug($request->name),
-                    'user_id' =>  auth('api')->user()->id,
-                    'image' => $image]
-                ));
-                return $this->returnSuccessMessage('تم تعديل المتجر بنجاح ');
+                    // 'user_id' =>  auth('api')->user()->id,
+                    ]));
+                    $branch->stores->update(['name' => $request->name,'category_id' => $request->category_id]);
+
+                    return $this->returnSuccessMessage('تم تعديل المتجر بنجاح ','E000');
 
     } catch (\Exception $e) {
         return  $this->returnError('E002','المتجر غير موجود');
