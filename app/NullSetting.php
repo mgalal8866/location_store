@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Setting;
+use App\Models\setting;
 
 class NullSetting extends Setting
 {
