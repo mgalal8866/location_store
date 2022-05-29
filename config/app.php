@@ -180,6 +180,7 @@ return [
         Spatie\Backup\BackupServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
 
 
     ],

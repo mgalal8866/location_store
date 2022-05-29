@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashborad\Citits;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\DashbordController;
 use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
@@ -32,8 +33,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 route::get('/set',function () {
-
-    return setting('site_title');
+Storage::disk('google')->put('hello.text' ,'welcome');
+    // return setting('site_title');
  });
 
 route::get('/pull',function () {
