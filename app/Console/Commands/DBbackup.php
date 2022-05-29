@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
 class DBbackup extends Command
@@ -40,7 +41,10 @@ class DBbackup extends Command
         $returnVar = NULL;
         $output  = NULL;
         exec($command, $output, $returnVar);
+
+
+        Artisan::call('backup:run');
         // return 0;
- 
+
     }
 }

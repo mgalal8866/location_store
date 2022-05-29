@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('db:backup')->everyMinute();
-        $schedule->command('backup:run')->everyFiveMinutes();
+        // $schedule->command('backup:run')->everyFiveMinutes();
         $schedule->command('notifi:send')->daily();
         // $schedule->command('DB:Restore')->everyMinute();
         // Log::info("working");
