@@ -19,17 +19,17 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a class="h1">    <b>{{ env('app_name') }}</b>APP</a>
+                <a class="h1">    <b>{{setting('site_name')}}</b></a>
             </div>
             <div class="card-body">
-                                <p class="login-box-msg">{{ __('tran.msglogin') }}</p>
+                                <p class="login-box-msg">{{ __('msglogin') }}</p>
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="input-group mb-3">
                                                 <input type="mobile"  id="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile"  placeholder="{{ __('mobile') }}" autofocus>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
-                                                        <span class="fas fa-envelope"></span>
+                                                        <span class="fas fa-phone"></span>
                                                     </div>
                                                 </div>
                                                 @error('mobile')
@@ -72,18 +72,18 @@
 
 
                                         </form>
-                                        <p class="mb-1">
+                                        {{-- <p class="mb-1">
                                             @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                                             </a>
                                         @endif
-                                        </p>
-                                        <p class="mb-0">
+                                        </p> --}}
+                                        {{-- <p class="mb-0">
                                             @if (Route::has('register'))
                                             <a   class="btn btn-link" href="{{ route('register') }}" class="text-center">{{ __('Register') }}</a>
                                             @endif
-                                        </p>
+                                        </p> --}}
 
                     </div>
 
