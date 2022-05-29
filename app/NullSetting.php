@@ -4,7 +4,7 @@ namespace App;
 
 use App\Models\setting;
 
-class NullSetting extends Setting
+class NullSetting extends setting
 {
     protected $attributes = [
         'site_title' => 'Default site Title',
