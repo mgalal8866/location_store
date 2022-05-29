@@ -73,8 +73,8 @@
                     <li class="nav-header">{{ __('tran.stores') }}</li>
                     <li class="nav-item">
                         <a href="{{route('stores') }}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p> {{ __('tran.store') }} </p>
+                            <i class="nav-icon fas fa-store"></i>
+                           <p> {{ __('tran.store') }} </p>
                         </a>
                     </li>
                     <li class="nav-item">

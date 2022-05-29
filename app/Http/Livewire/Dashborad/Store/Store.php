@@ -10,9 +10,7 @@ class Store extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $pages;
-
-        public $status;
+    public $pages, $status;
 
 
 
@@ -33,7 +31,7 @@ class Store extends Component
             return $query->where('active', $status);
         })->latest()->paginate($this->pages);
 
-        
+
         return view('livewire.dashborad.store.viewstore',
         ['stores'=> $stores,'storeactive'=> $storeactive,'storedisactive'=> $storedisactive,'storeall'=>$storeall])
         ->layout('admin.layouts.masterdash');

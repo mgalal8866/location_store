@@ -59,7 +59,7 @@ class BranchesController extends Controller
         })->
             latest()->
             orderBy('top', 'DESC')->
-            paginate(10);
+            paginate(setting('app_page_branch'));
             return $this->returnData('branches',new branchesCollectionbyuser($branches) ,'Done');
     }
 
