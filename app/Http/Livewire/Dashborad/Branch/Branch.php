@@ -21,42 +21,54 @@ class Branch extends Component
             $opentime,$closetime,
             $city,$active,$accept,
             $region,$city_id,$region_id,
-            $numproduct;
-
+            $numproduct,$slug;
             public $i =0;
-
     public $branchlist = [];
+
+    public function mount($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function save($slug , $index)
+    {
+            dd($slug , $index);
+
+    }
+
     public function render()
     {
         $citys = cities::all();
+        $regions = regions::whereCityId($this->city_id)->get();
+        $stores  = stores::whereSlug($this->slug)->first();
 
-        $stores  = stores::first();
             $this->name= $stores->name;
             $this->description= $stores->description;
+
              foreach($stores->branch as $branch)
                 {
-                    $this->branchlist[ $this->i]['numproduct'] = $branch->product_num;
+                    $this->branchlist[ $this->i]['category_id']= $stores->category_id;
+                    $this->branchlist[ $this->i]['image']= $stores->image;
+
+                    $this->branchlist[ $this->i]['address']= $branch->address;
+                    $this->branchlist[ $this->i]['start_date']= $branch->start_date;
+                    $this->branchlist[ $this->i]['expiry_date']= $branch->expiry_date;
+                    $this->branchlist[ $this->i]['phone'] = $branch->phone;
+                    $this->branchlist[ $this->i]['city_id']= $branch->city_id;
+                    $this->branchlist[ $this->i]['region_id']= $branch->region_id;
+                    $this->branchlist[ $this->i]['opentime']= $branch->opentime;
+                    $this->branchlist[ $this->i]['closetime']= $branch->closetime;
+                    $this->branchlist[ $this->i]['numproduct']= $branch->product_num;
                     $this->i +=  1;
                 }
 
 
-        //     $this->address= $branch->address;
-        //     $this->start_date= $branch->start_date;
-        //     $this->expiry_date= $branch->expiry_date;
-
-        //     $this->phone = $branch->phone;
-        //     $this->city_id= $branch->city_id;
-        //     $this->region_id= $branch->region_id;
-        //     $this->opentime= $branch->opentime;
-        //     $this->closetime= $branch->closetime;
-        //     $this->numproduct= $branch->product_num;
-        $regions = regions::whereCityId($this->city_id)->get();
 
         return view('livewire.dashborad.branch.branch',
-        ['citys'=>$citys
-        ,'regions'=>$regions
-       ,'stores'=> $stores
-        ]
+                    ['citys'=>$citys
+                        ,'regions'=>$regions
+                        ,'stores'=> $stores
+                    ]
         )->layout('admin.layouts.masterdash');
 
     }

@@ -5,7 +5,7 @@
     "address": "Address",
     "branches": "Branches",
     "categories": "Categories",
-    "category": "Catrgory",
+    "category": "Category",
     "cities": "City",
     "city": "City",
     "close": "Close",
@@ -42,5 +42,10 @@
     "closetime": "Close Time",
     "expiry_date": "Expiry Date",
     "start_date": "Start Date",
-    "maindetails": "Main Details"
+    "maindetails": "Main Details",
+    "all": "All",
+    "active": "Active",
+    "desactive": "Desactive",
+    "created": "Created",
+    "info": "Info"
 }

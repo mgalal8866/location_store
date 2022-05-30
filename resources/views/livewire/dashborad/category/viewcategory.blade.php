@@ -49,10 +49,11 @@
                                                 </span>
                                             @endif
                                             {{$category->name}}
+                                     
                                         </td>
                                         <td>
                                             <i class="fa fa-university" aria-hidden="true">{{$category->store->count()}}</i>
-                                       
+
                                         </td>
                                         <td>
                                             <img alt="{{$category->name}}" class="table-avatar" src="{{$category->image}}">

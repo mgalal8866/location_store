@@ -77,12 +77,12 @@
                            <p> {{ __('tran.store') }} </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{route('branch') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>Create {{ __('tran.branches')}} </p>
                         </a>
-                    </li>
+                    </li> --}}
                     {{-- @endcan --}}
                     {{-- @can('menu location') --}}
                     <li class="nav-header">{{ __('tran.location') }}</li>

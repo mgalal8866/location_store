@@ -13,6 +13,17 @@ class Store extends Component
     public $pages, $status;
 
 
+//  public $postId;
+
+//     public function getPostProperty()
+//     {
+//         return Post::find($this->postId);
+//     }
+
+//     public function deletePost()
+//     {
+//         $this->post->delete();
+//     }
 
         public function filterStoreByStatus($status = null)
         {
@@ -24,6 +35,8 @@ class Store extends Component
 
     public function render()
     {
+
+
         $storeall =  stores::count();
         $storeactive =  stores::whereActive(0)->count();
         $storedisactive =  stores::whereActive(1)->count();

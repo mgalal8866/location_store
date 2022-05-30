@@ -111,7 +111,7 @@ Route::group(
         Route::get('/users',Citits::class)->name('users');
         Route::get('/city/regions',Citits::class)->name('regions');
         Route::get('/stores',Store::class)->name('stores');
-        Route::get('/store/branchse',Branch::class)->name('branch');
+        Route::get('/store/branchse/{slug}',Branch::class)->name('branch');
         Route::get('/user/comments',Citits::class)->name('comments');
 
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
