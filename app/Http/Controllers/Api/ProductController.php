@@ -27,6 +27,8 @@ class ProductController extends Controller
                     'name' => $request->name,
                     'slug' => Str::slug($request->name),
                     'price' => $request->price,
+                    'description' => $request->description,
+
                 ]);
                 if(!empty($request->image1)) {
                         $filepath = $this->uploadimages('product', $request->image1);
@@ -66,6 +68,8 @@ class ProductController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'price' => $request->price,
+            'description' => $request->description,
+
         ]);
         if(!empty($request->image1)) {
                 $filepath = $this->uploadimages('product', $request->image1);
