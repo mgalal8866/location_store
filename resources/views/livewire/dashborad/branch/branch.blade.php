@@ -31,14 +31,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDescription">{{ __('tran.description')}}</label>
-                                    <textarea id="inputDescription" class="form-control @error('description') is-invalid @enderror"  wire:model.defer='description'  rows="4"></textarea>
+                                    <textarea id="inputDescription" rows="1" class="form-control @error('description') is-invalid @enderror"  wire:model.defer='description'  ></textarea>
                                     @error('description')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                 </div>
                             </div>
                             <div class="col-md-4" >
                                 <!-- Profile Image -->
+                                <label for="inputName">{{ __('image')}}</label>
                                 <div class="card card-secondary card-outline">
                                     <div class="card-body box-profile">
+
                                         <div class="text-center" x-data="{ imagePreview: '{{ URL::asset('assets') .'/'. config('sedtting_var.images.logo')}}' }">
                                             <input wire:model.defer="image" type="file" class="d-none" x-ref="image" x-on:change="
                                                     reader = new FileReader();
@@ -71,6 +73,7 @@
 
         <div class="card card-danger card-outline card-tabs">
             <div class="card-header p-0 pt-1 border-bottom-0">
+                @if ($stores->branch->count() != 0)
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                     @foreach($stores->branch as $branch)
                         <li class="nav-item">
@@ -78,15 +81,70 @@
                         </li>
                     @endforeach
                 </ul>
+                @endif
             </div>
 
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-three-tabContent">
-                    @foreach($stores->branch as $branch)
+                    @forelse($stores->branch as $branch)
                         <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6" >
+                                                <div  wire:ignore class="form-group">
+                                                    <label for="selectstatus">{{ __('status') }}*</label>
+                                                    <select id="selectstatus"  wire:model.defer='branchlist.{{$loop->index}}.status' class="form-control pt-1   @error('branchlist.{{$loop->index}}.status') is-invalid @enderror" >
+                                                        <option value="">Select status</option>
+                                                        <option value="0">{{ __('active') }}</option>
+                                                        <option value="1">{{ __('unactive') }}</option>
+                                                    </select>
+                                                @error('status')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" >
+                                                <div  wire:ignore class="form-group">
+                                                    <label for="selectapproval">{{ __('approval') }}*</label>
+                                                    <select id="selectapproval"  wire:model.defer='branchlist.{{$loop->index}}.approval' class="form-control pt-1   @error('branchlist.{{$loop->index}}.approval') is-invalid @enderror" >
+                                                        <option value="">Select approval</option>
+                                                        <option value="0" >accept</option>
+                                                        <option value="1" >waiting</option>
+                                                        <option value="2" >unacceptable</option>
+
+                                                    </select>
+                                                @error('category_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" >
+                                                <div  wire:ignore class="form-group">
+                                                    <label for="selectcategory">{{ __('category') }}*</label>
+                                                    <select id="selectcategory"  wire:model.defer='branchlist.{{$loop->index}}.category' class="form-control pt-1   @error('branchlist.{{$loop->index}}.category') is-invalid @enderror" >
+                                                        <option value="">Select category</option>
+                                                        @foreach ( $categorys as $category ) --}}
+                                                            @if(!$category->parent_id)
+                                                              <option value="{{$category->id}}" >{{$category->name}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                @error('category_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" >
+                                                <div  wire:ignore class="form-group">
+                                                    <label for="selectsubcategory">{{ __('subcategory') }}*</label>
+                                                    <select id="selectsubcategory"  wire:model.defer='branchlist.{{$loop->index}}.subcategory' class="form-control pt-1   @error('branchlist.{{$loop->index}}.subcategory') is-invalid @enderror" >
+                                                        <option value="">Select Sub category</option>
+                                                        @foreach ( $categorys as $subcategory ) --}}
+                                                            <option value="{{$subcategory->id}}" >{{$subcategory->name}}</option>
+                                                       @endforeach
+                                                    </select>
+                                                @error('category_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row" >
                                             <div class="col-md-6" >
                                                 <div class="form-group">
@@ -95,8 +153,8 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                         </div>
-                                                        <x-timepicker wire:model.defer="branchlist.{{$loop->index}}.opentime" id="opentime" :error="'opentime'" />
-                                                        @error('opentime')
+                                                        <x-timepicker wire:model.defer="branchlist.{{$loop->index}}.opentime" id="opentime" :error="'branchlist.{{$loop->index}}.opentime'" />
+                                                        @error('branchlist.{{$loop->index}}.opentime')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
@@ -111,11 +169,11 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                         </div>
-                                                        <x-timepicker wire:model.defer="branchlist.{{$loop->index}}.closetime" id="closetime" :error="'closetime'" />
-                                                        @error('closetime')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
+                                                        <x-timepicker wire:model.defer="branchlist.{{$loop->index}}.closetime" id="closetime" error="branchlist.{{$loop->index}}.closetime" />
+                                                        @error('branchlist.{{$loop->index}}.closetime')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -171,7 +229,8 @@
                                                     <select id="selectcity"  wire:model.defer='branchlist.{{$loop->index}}.city_id' class="form-control pt-1   @error('city_id') is-invalid @enderror" >
                                                         <option value="">Select City</option>
                                                         @foreach ( $citys as $city )
-                                                            <option value="{{$city->id}}" >{{$city->name}}</option>
+                                                        {{-- wire:click="showregions({{$city->id}},{{$loop->index}})" --}}
+                                                            <option value="{{$city->id}}"  wire:model="index"> {{$city->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 @error('city_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
@@ -233,7 +292,12 @@
                                 </div>
                             </form>
                         </div>
-                    @endforeach
+                    @empty
+                    <div class="alert alert-warning">
+                         <strong> No Branch!</strong>
+                        </div>
+
+                    @endforelse
                 </div>
             </div>
 
