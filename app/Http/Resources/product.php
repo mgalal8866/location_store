@@ -24,7 +24,8 @@ class product extends JsonResource
             'branch_id' => $this->branch_id,
             'name' => $this->name,
             'price' => $this->price,
-            'create' => $this->created_at->diffForHumans(),
+            // 'create' => $this->created_at->diffForHumans(),
+            'create' => $this->description,
             'images' => $product_image
 
         ];

@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('branch_id');
 			$table->string('name', 250);
             $table->string('slug')->nullable();
+            $table->text('description')->nullable();
             $table->string('price')->nullable();
             $table->date('start_date')->nullable()->comment('تاريخ بدايه التفعيل');
             $table->date('expiry_date')->nullable()->comment('تاريخ انتهاءالتفعيل');
