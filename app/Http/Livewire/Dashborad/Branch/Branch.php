@@ -23,7 +23,7 @@ class Branch extends Component
 
     protected $rules = [
         // 'description' => 'string|required|min:6',
-        'branchlist.0.address' => 'string|required|min:6',
+        // 'branchlist.0.address' => 'string|required|min:6',
 
     ];
 
@@ -34,7 +34,7 @@ class Branch extends Component
     }
     public function savestore()
     {
-        $store = stores::whereSlug( $this->slug)->first();
+        $store = stores::whereSlug($this->slug)->first();
         $store->update(['name'=>$this->name,'active'=>$this->active]);
     }
 
@@ -75,7 +75,7 @@ class Branch extends Component
 
     public function render()
     {
-        $this->dispatchBrowserEvent('successmsg',['message' =>'ddddd']);
+        // $this->dispatchBrowserEvent('successmsg',['message' =>'ddddd']);
 
         $citys = cities::all();
         $categorys = categories::all();
@@ -85,6 +85,7 @@ class Branch extends Component
             $this->name= $stores->name;
             $this->active = $stores->getAttributes()['active'];
             $this->numberbranch = $stores->branch_num;
+
         $parent = categories::whereId($stores->category_id)->first();
             if( $parent->parent_id != null){
              $this->category = $parent->parent_id;
