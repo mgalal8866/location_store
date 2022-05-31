@@ -41,6 +41,8 @@ class Branch extends Component
                 'name'=>$this->name,
                 'active'=>$this->active,
                 'category_id' => ($this->subcategory != null)? $this->subcategory : $this->category ,
+                'branch_num'=>$this->numberbranch,
+                
             ]);
     }
 
