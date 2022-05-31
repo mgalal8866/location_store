@@ -49,27 +49,58 @@
 @stack('jslive')
 <script>
 
+  $(document).ready(function() {
+        toastr.options = {
+                        "closeButton": true,
+                        "debug": true,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+
+            window.addEventListener('successmsg', e => {
+                toastr.success(e.detail.message, 'Success!');
+           });
+           window.addEventListener('successmsg', e => {
+                toastr.success(e.detail.message, 'Success!');
+           });
+
+        });
+
+
     var Toast = Swal.mixin({
        toast: true,
        position: 'top-end',
        showConfirmButton: false,
-       timer: 3000
-     });
+       timer: 3000});
+
+
         window.addEventListener('closeModal', event=> {
-        $('#modal-create').modal('hide');
-        $('#modal-delete').modal('hide');
-        $('#modal-edit').modal('hide');
-        })
+            $('#modal-create').modal('hide');
+            $('#modal-delete').modal('hide');
+            $('#modal-edit').modal('hide');
+        });
 
         window.addEventListener('Toast' , (e)=> {
             Toast.fire({icon: (e.detail.ev),
-                title: (e.detail.msg)
-       });
+                title: (e.detail.msg)});
+            });
        window.addEventListener('openModal', event => {
-        $("#modalForm").modal('show');
-    })
+            $("#modalForm").modal('show');
+        });
     //    toastr.success( (e.detail.msg))
-     })
+
  </script>
 
 

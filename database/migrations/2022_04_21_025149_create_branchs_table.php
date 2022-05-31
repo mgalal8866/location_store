@@ -22,6 +22,7 @@ class CreateBranchsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('phone')->nullable();
+            $table->string('phone2')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
             $table->string('lat', 250)->nullable();
