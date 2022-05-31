@@ -294,10 +294,10 @@
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
-                                                    {{$branchlist[$loop->index]['phone2']}}
-                                                    <label for="phone2{{$loop->index}}">{{ __('phone2')  }}</label>
-                                                    <input type="text" id="phone2{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phone2' class="form-control @error('branchlist.{{$loop->index}}.phone2') is-invalid @enderror" >
-                                                    @error('branchlist.{{$loop->index}}.phone2')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    {{$branchlist[$loop->index]['phonetwo']}}
+                                                    <label for="phonetwo{{$loop->index}}">{{ __('phone2')  }}</label>
+                                                    <input type="text" id="phonetwo{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phonetwo' class="form-control @error('branchlist.{{$loop->index}}.phonetwo') is-invalid @enderror" >
+                                                    @error('branchlist.{{$loop->index}}.phonetwo')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
 
                                             </div>

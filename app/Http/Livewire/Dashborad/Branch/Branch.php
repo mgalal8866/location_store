@@ -108,7 +108,7 @@ class Branch extends Component
                     $this->branchlist[ $this->i]['start_date']= $branch->start_date;
                     $this->branchlist[ $this->i]['expiry_date']= $branch->expiry_date;
                     $this->branchlist[ $this->i]['phone'] = $branch->phone;
-                    $this->branchlist[ $this->i]['phone2'] = $branch->phone2;
+                    $this->branchlist[ $this->i]['phonetwo'] = $branch->phone2;
                     $this->branchlist[ $this->i]['city_id']= $branch->city_id;
                     $this->branchlist[ $this->i]['region_id']= $branch->region_id;
                     $this->branchlist[ $this->i]['opentime']= $branch->opentime;
