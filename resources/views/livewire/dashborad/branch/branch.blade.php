@@ -294,7 +294,8 @@
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
-                                                    <label for="lng{{$loop->index}}">{{ __('phone2')  }}</label>
+                                                    {{$branchlist[$loop->index]['phone2']}}
+                                                    <label for="phone2{{$loop->index}}">{{ __('phone2')  }}</label>
                                                     <input type="text" id="phone2{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phone2' class="form-control @error('branchlist.{{$loop->index}}.phone2') is-invalid @enderror" >
                                                     @error('branchlist.{{$loop->index}}.phone2')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
@@ -311,7 +312,7 @@
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
-                                                    <label for="phone2{{$loop->index}}">{{ __('lng')  }}</label>
+                                                    <label for="lng{{$loop->index}}">{{ __('lng')  }}</label>
                                                     <input type="text" id="lng{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.lng' class="form-control @error('branchlist.{{$loop->index}}.lng') is-invalid @enderror" >
                                                     @error('branchlist.{{$loop->index}}.lng')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
