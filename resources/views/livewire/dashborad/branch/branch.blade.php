@@ -107,9 +107,10 @@
             </div>
 
             <div class="card-body">
-                {{$branchlist[$loop->index]['branch_id']}}
+
                 <div class="tab-content" id="custom-tabs-three-tabContent">
                     @forelse($stores->branch as $branch)
+                    {{$branchlist[$loop->index]['branch_id']}}
                         <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
