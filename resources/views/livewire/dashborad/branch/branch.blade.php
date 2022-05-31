@@ -26,6 +26,7 @@
                                 <div class="row" >
                                     <div class="col-md-6" >
                                         <div class="form-group">
+
                                             <label for="inputName">{{ __('minestore')}}</label>
                                             <input type="text" id="inputName" wire:model.defer='name' class="form-control @error('name') is-invalid @enderror" >
                                         </div>
@@ -106,6 +107,7 @@
             </div>
 
             <div class="card-body">
+                {{$branchlist[$loop->index]['branch_id']}}
                 <div class="tab-content" id="custom-tabs-three-tabContent">
                     @forelse($stores->branch as $branch)
                         <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">

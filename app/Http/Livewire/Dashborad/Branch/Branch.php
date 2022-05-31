@@ -16,7 +16,7 @@ class Branch extends Component
     use WithFileUploads;
 
     public $image;
-    public $name,$slug,$index,$subcategory,$category,$active,$numberbranch,$description;
+    public $name,$slug,$index,$subcategory,$category,$active,$numberbranch,$description,$branch_id;
     public $i =0;
     public $branchlist = [];
 
@@ -44,7 +44,7 @@ class Branch extends Component
         // 'branchlist.*.address' =>'string|required|min:6',]);
         $this->validate();
 
-        $branch = branchs::find ($this->branchlist[$index]['branch_id'])->first();
+        $branch = branchs::find($this->branchlist[$index]['branch_id']);
         $branch->update(
             ['active'=>$this->branchlist[$index]['active'],
             'description'=>$this->branchlist[$index]['description'],
