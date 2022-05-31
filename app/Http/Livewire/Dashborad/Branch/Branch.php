@@ -34,8 +34,14 @@ class Branch extends Component
     }
     public function savestore()
     {
+
         $store = stores::whereSlug($this->slug)->first();
-        $store->update(['name'=>$this->name,'active'=>$this->active]);
+        $store->update(
+            [
+                'name'=>$this->name,
+                'active'=>$this->active,
+                'category_id' => ($this->subcategory != null)? $this->subcategory : $this->category ,
+            ]);
     }
 
     public function save($slug , $index)
