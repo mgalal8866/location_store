@@ -53,7 +53,7 @@ class Branch extends Component
             'address'=>$this->branchlist[$index]['address'],
             'accept'=>$this->branchlist[$index]['approval'],
             'phone'=>$this->branchlist[$index]['phone'],
-            'phone2'=>$this->branchlist[$index]['phone2'],
+            'phone2'=>$this->branchlist[$index]['phonetwo'],
             'city_id'=>$this->branchlist[$index]['city_id'],
             'region_id'=>$this->branchlist[$index]['region_id'],
             'opentime'=>$this->branchlist[$index]['opentime'],
