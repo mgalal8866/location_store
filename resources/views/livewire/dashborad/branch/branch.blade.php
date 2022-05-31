@@ -110,7 +110,7 @@
 
                 <div class="tab-content" id="custom-tabs-three-tabContent">
                     @forelse($stores->branch as $branch)
-                    {{$branchlist[$loop->index]['branch_id']}}
+
                         <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
@@ -297,7 +297,7 @@
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
-                                                    {{$branchlist[$loop->index]['phonetwo']}}
+                                                  
                                                     <label for="phonetwo{{$loop->index}}">{{ __('phone2')  }}</label>
                                                     <input type="text" id="phonetwo{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phonetwo' class="form-control @error('branchlist.{{$loop->index}}.phonetwo') is-invalid @enderror" >
                                                     @error('branchlist.{{$loop->index}}.phonetwo')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
