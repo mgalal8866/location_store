@@ -42,7 +42,7 @@ class Branch extends Component
     {
         // $validator = Validator::make($this->branchlist, [
         // 'branchlist.*.address' =>'string|required|min:6',]);
-        $this->validate();
+        // $this->validate();
 
         $branch = branchs::find($this->branchlist[$index]['branch_id']);
         $branch->update(
