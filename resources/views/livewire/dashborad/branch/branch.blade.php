@@ -285,16 +285,21 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2" >
-                                                {{$branchlist[$loop->index]['region_id']}}
+                                                {{$branchlist[$loop->index]['region']}}
+                                               {{-- {{  dd($regions[$loop->index])}} --}}
                                                 <div wire:ignore  class="form-group">
+                                                    <a href="#" wire:click.prevent="tt" >sss</a>
                                                     <label for="selectregion{{$loop->index}}">{{ __('region') }}</label>
-                                                    <select  id="selectregion{{$loop->index}}" class="form-control pt-1 @error('branchlist.{{$loop->index}}.region_id') is-invalid @enderror" wire:model='branchlist.{{$loop->index}}.region_id'>
+                                                    {{-- <input type="text" id="region{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.region' class="form-control @error('branchlist.{{$loop->index}}.region') is-invalid @enderror" > --}}
+                                                    <select  id="selectregion{{$loop->index}}" class="form-control pt-1 @error('branchlist.{{$loop->index}}.region') is-invalid @enderror" wire:model='branchlist.{{$loop->index}}.region'>
                                                         <option value="">Select Region</option>
-                                                        @foreach ( $regions[$loop->index] as $region )
-                                                            <option value="{{$region->id}}" >{{$region->name}}</option>
-                                                        @endforeach
+                                                        {{-- @if (!empty($regions)) --}}
+                                                            @foreach ( $regions[$loop->index] as  $key => $region )
+                                                                <option value="{{$region['id']}}" >{{$region['region_name_ar']}}</option>
+                                                            @endforeach
+                                                        {{-- @endif --}}
                                                     </select>
-                                                @error('branchlist.{{$loop->index}}.region_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                @error('branchlist.{{$loop->index}}.region')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
                                         </div>
