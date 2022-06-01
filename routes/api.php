@@ -70,6 +70,9 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::get('/get/lastbranch', [BranchesController::class,'lastbranch']);
     Route::Post('/branch/edit', [BranchesController::class,'branchedit']);
     Route::Post('/branch/delete', [BranchesController::class,'branchdelete']);
+    Route::get('/branch/check', [BranchesController::class,'branchcheck']);
+    Route::Post('/add/comment', [BranchesController::class,'addcomment']);
+ 
 /**************************  BranchesController ********************************** */
 
 
@@ -84,6 +87,7 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
     Route::post('/get/product/by/branch', [ProductController::class,'get_product']);
     Route::Post('/product/edit', [ProductController::class,'productedit']);
     Route::Post('/product/delete', [ProductController::class,'productdelete']);
+    Route::get('/product/check/{branch_id}', [ProductController::class,'productcheck']);
 /**************************  ProductController ********************************** */
 
 

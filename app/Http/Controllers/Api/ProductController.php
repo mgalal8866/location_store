@@ -55,13 +55,11 @@ class ProductController extends Controller
             return $this->returnError('E0001',config('err_message.alert.limit_product'));
         }
     }
-
     public function get_product(Request $request)
     {
         $product = products::whereBranchId($request->branch_id)->get();
         return $this->returnData('product',  product::collection($product),'');
     }
-
     public function productedit(Request $request){
         $product = products::findOrFail($request->product_id);
          $product->update([
@@ -103,4 +101,24 @@ class ProductController extends Controller
             return  $this->returnError('E002','المنتج غير موجود');
         }
     }
+
+    public function productcheck($branch_id){
+        $limit_peoduct =  branchs::find($branch_id)->product_num;
+        $num_product =  products::whereBranchId($branch_id)->count();
+        if($limit_peoduct != $num_product)
+        {
+            return response()->json([
+                'status' => true,
+                'number' => $limit_peoduct  . ' / ' . $num_product
+            ]);
+        }
+        else
+        {
+            return response()->json(['status' => false,
+                'number' =>  $limit_peoduct  . ' / ' . $num_product ,
+                'msg' => config('err_message.alert.limit_product')
+            ]);
+        }
+    }
+
 }

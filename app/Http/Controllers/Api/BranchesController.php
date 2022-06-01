@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\stores;
 use App\Models\branchs;
+use App\Models\comments;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\branch;
@@ -103,46 +104,45 @@ class BranchesController extends Controller
 //تعديل متجر
     public function branchedit(Request $request)
     {
+        try {
 
-    try {
+            $branch = branchs::findOrFail($request->branch_id);
 
-        $branch = branchs::findOrFail($request->branch_id);
+                $validatorvbranch = Validator::make($request->all(), [
+                    'name' =>'string',
+                    'region_id'=>'required|string|exists:regions,id',
+                    'city_id'=>'required|string|exists:cities,id',
+                    'address' =>'string',
+                    'lat' => 'string',
+                    'lng' => 'string',
+                    'opentime' => 'string',
+                    'closetime' => 'string',
+                    'description' => 'string',
+                    'phone' => 'string',
+                    // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+                ]);
 
-            $validatorvbranch = Validator::make($request->all(), [
-                'name' =>'string',
-                'region_id'=>'required|string|exists:regions,id',
-                'city_id'=>'required|string|exists:cities,id',
-                'address' =>'string',
-                'lat' => 'string',
-                'lng' => 'string',
-                'opentime' => 'string',
-                'closetime' => 'string',
-                'description' => 'string',
-                'phone' => 'string',
-                // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-            ]);
+            if($validatorvbranch->fails()){
+                return $this->returnError('400',$validatorvbranch->errors());
+            }
 
-        if($validatorvbranch->fails()){
-            return $this->returnError('400',$validatorvbranch->errors());
+            if( $request->image != null){
+                $image = $this->uploadimages('branch', $request->image);
+            }else{
+                $image = null;
+            }
+                $branch->update(array_merge(
+                        $validatorvbranch->validated(),
+                        ['slug' => Str::slug($request->name),
+                        // 'user_id' =>  auth('api')->user()->id,
+                        ]));
+                        $branch->stores->update(['name' => $request->name,'category_id' => $request->category_id]);
+
+                        return $this->returnSuccessMessage('تم تعديل المتجر بنجاح ','E000');
+
+        } catch (\Exception $e) {
+            return  $this->returnError('E002','المتجر غير موجود');
         }
-
-        if( $request->image != null){
-            $image = $this->uploadimages('branch', $request->image);
-        }else{
-            $image = null;
-        }
-             $branch->update(array_merge(
-                    $validatorvbranch->validated(),
-                    ['slug' => Str::slug($request->name),
-                    // 'user_id' =>  auth('api')->user()->id,
-                    ]));
-                    $branch->stores->update(['name' => $request->name,'category_id' => $request->category_id]);
-
-                    return $this->returnSuccessMessage('تم تعديل المتجر بنجاح ','E000');
-
-    } catch (\Exception $e) {
-        return  $this->returnError('E002','المتجر غير موجود');
-    }
     }
 
 //حذف متجر
@@ -157,5 +157,36 @@ class BranchesController extends Controller
         }
     }
 
+    public function branchcheck(){
+        $store =  stores::whereUserId(auth('api')->user()->id)->first();
+        $num_product =  $store->branch->count();
+
+        if($store->branch_num != $num_product)
+        {
+            return response()->json([
+                'status' => true,
+                'number' => $store->branch_num  . ' / ' . $num_product
+            ]);
+        }
+        else
+        {
+            return response()->json(['status' => false,
+                'number' =>  $store->branch_num  . ' / ' . $num_product ,
+                'msg' => config('err_message.alert.limit_product')
+            ]);
+        }
+    }
+
+    public function addcomment(Request $request)
+    {
+
+       comments::create([
+           'user_id' => auth('api')->user()->id,
+           'branch_id'=>  $request->branch_id,
+           'comment'=>  $request->comment,
+           'rating'=> $request->rating ,
+       ]);
+       return $this->returnSuccessMessage('تم اضافه التقيم ');
+    }
 
 }
