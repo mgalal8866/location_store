@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\comments;
 use Illuminate\Support\Facades\File;
 use PhpParser\Node\Expr\Cast\Double;
@@ -96,5 +97,15 @@ class branchs extends Model
             return 'مقبول';
         }
     }
+    // public function getStartDateAttribute($value){
+    //         return Carbon::parse($value)->toFormattedDate();
+    // }
+    public function setStartDateAttribute($value){
+        return   $this->attributes['start_date'] =  Carbon::parse($value)->toFormattedDate();
+    }
+    public function setExpiryDateAttribute($value){
+        return   $this->attributes['expiry_date'] =  Carbon::parse($value)->toFormattedDate();
+    }
+
 
 }
