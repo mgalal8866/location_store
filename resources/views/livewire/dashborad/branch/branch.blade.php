@@ -285,7 +285,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2" >
-                                                {{$branchlist[$loop->index]['region_id']}}
+                                                {{-- {{$branchlist[$loop->index]['region_id']}} --}}
                                                 <div wire:ignore  class="form-group">
                                                     <label for="selectregion{{$loop->index}}">{{ __('region') }}</label>
                                                     <select  id="selectregion{{$loop->index}}" class="form-control pt-1 @error('branchlist.{{$loop->index}}.region_id') is-invalid @enderror" wire:model='branchlist.{{$loop->index}}.region_id'>
