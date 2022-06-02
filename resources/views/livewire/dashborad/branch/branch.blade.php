@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                   
+
                                     <div class="col-md-6" >
                                         <div   class="form-group">
                                             <label for="selectcategory">{{ __('category') }}</label>
@@ -133,7 +133,7 @@
                                                 <div class="card card-secondary card-outline" >
                                                     <div class="card-body box-profile">
                                                         <div class="text-center" x-data="{ imagePreview: '{{$branchlist[$loop->index]['image']}}' }">
-                                                            <input wire:model.defer="branchlist.{{$loop->index}}.image" type="file" class="d-none" x-ref="image" x-on:change="
+                                                            <input wire:model="branchlist.{{$loop->index}}.image" type="file" class="d-none" x-ref="image" x-on:change="
                                                                     reader = new FileReader();
                                                                     reader.onload = (event) => {
                                                                         imagePreview = event.target.result;
