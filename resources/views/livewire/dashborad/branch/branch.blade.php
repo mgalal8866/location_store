@@ -128,7 +128,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4" >
-                                                {{$branchlist[$loop->index]['image']}}
+                                                
                                                 <label for="inputName">{{ __('image')}}</label>
                                                 <div class="card card-secondary card-outline" >
                                                     <div class="card-body box-profile">
