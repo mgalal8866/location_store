@@ -32,6 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3" >
+
                                         <div  wire:ignore class="form-group">
                                             <label for="selectactive1">{{ __('active') }}</label>
                                             <select id="selectactive1"  wire:model.defer='active' class="form-control pt-1   @error('active') is-invalid @enderror" >
@@ -54,10 +55,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                   
                                     <div class="col-md-6" >
-                                        <div  wire:ignore class="form-group">
+                                        <div   class="form-group">
                                             <label for="selectcategory">{{ __('category') }}</label>
-                                            <select id="selectcategory"  wire:model.defer='category' class="form-control pt-1   @error('category') is-invalid @enderror" >
+                                            <select id="selectcategory"  wire:model='selectcategory' class="form-control pt-1   @error('selectcategory') is-invalid @enderror" >
                                                 <option value="">Select category</option>
                                                 @foreach ( $categorys as $category )
                                                     @if(!$category->parent_id)
@@ -65,20 +67,22 @@
                                                     @endif
                                                 @endforeach
                                             </select>
-                                        @error('category')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        @error('selectcategory')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6" >
-                                        <div  wire:ignore class="form-group">
-                                            <label for="selectsubcategory">{{ __('subcategory') }}</label>
-                                            <select id="selectsubcategory"  wire:model.defer='subcategory' class="form-control pt-1   @error('subcategory') is-invalid @enderror" >
-                                                <option value="">Select Sub category</option>
-                                                @foreach ( $categorys as $subcategory )
-                                                    <option value="{{$subcategory->id}}" >{{$subcategory->name}}</option>
-                                               @endforeach
-                                            </select>
-                                        @error('category')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
-                                        </div>
+                                        @empty(!$subcategorys)
+                                            <div   class="form-group">
+                                                <label for="selectsubcategory">{{ __('subcategory') }}</label>
+                                                <select id="selectsubcategory"  wire:model='selectsubcategory' class="form-control pt-1   @error('selectsubcategory') is-invalid @enderror" >
+                                                    <option value="">Select Sub category</option>
+                                                        @foreach ( $subcategorys as $subcategory )
+                                                            <option value="{{$subcategory->id}}" >{{$subcategory->name}}</option>
+                                                        @endforeach
+                                                </select>
+                                            @error('selectsubcategory')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+                                        @endempty
                                     </div>
                                 </div>
                             </div>
@@ -272,30 +276,35 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2" >
-                                                <div  wire:ignore class="form-group">
+                                                <div  class="form-group">
                                                     <label for="selectcity{{$loop->index}}">{{ __('city') }}</label>
                                                     <select id="selectcity{{$loop->index}}"  wire:model='branchlist.{{$loop->index}}.city_id' class="form-control pt-1   @error('branchlist.{{$loop->index}}.city_id') is-invalid @enderror" >
-                                                        <option value="">Select City</option>
+                                                        <option value="" disabled>Select City</option>
                                                         @foreach ( $citys as $city )
-                                                        {{-- wire:click="showregions({{$city->id}},{{$loop->index}})" --}}
-                                                            <option value="{{$city->id}}"> {{$city->name}}</option>
+                                                           <option value="{{$city->id}}"> {{$city->name}}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('branchlist.{{$loop->index}}.city_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
+
                                             <div class="col-md-2" >
-                                                {{-- {{$branchlist[$loop->index]['region_id']}} --}}
-                                                <div wire:ignore  class="form-group">
-                                                    <label for="selectregion{{$loop->index}}">{{ __('region') }}</label>
-                                                    <select  id="selectregion{{$loop->index}}" class="form-control pt-1 @error('branchlist.{{$loop->index}}.region_id') is-invalid @enderror" wire:model='branchlist.{{$loop->index}}.region_id'>
+
+
+
+                                                <div  class="form-group">
+                                                    <label for="selectregion1{{$loop->index}}">{{ __('region') }}</label>
+                                                    <select  id="selectregion1{{$loop->index}}" wire:model='branchlist.{{$loop->index}}.region_id' class="form-control pt-1 @error('region_id') is-invalid @enderror" required >
                                                         <option value="">Select Region</option>
-                                                        @foreach ( $regions[$loop->index] as $region )
-                                                            <option value="{{$region->id}}" >{{$region->name}}</option>
-                                                        @endforeach
+                                                        {{-- @empty(!$regions) --}}
+                                                            @foreach ( $regions[$loop->index] as $reg )
+                                                                <option value="{{$reg['id']}}" >{{$reg['region_name_ar']}}</option>
+                                                            @endforeach
+                                                        {{-- @endempty --}}
                                                     </select>
-                                                @error('branchlist.{{$loop->index}}.region_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                @error('region_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="row">

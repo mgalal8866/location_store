@@ -16,41 +16,45 @@ class Branch extends Component
     use WithFileUploads;
 
     public $image;
-    public $name,$slug,$index,$stores,$categorys,$subcategorys,$subcategory,$category,$active,$numberbranch,$description,$branch_id;
+    public
+    $name,
+    $slug,
+    $stores,
+    $active,
+    $numberbranch,
+
+    $subcategorys=null,
+    $selectsubcategory=null,
+    $selectcategory=null,
+
+    $description,
+    $branch_id;
     public $i =0;
-    public $branchlist = [] , $regions= [],$citys,$ed =false,$value;
-    protected $listeners = ['some-event' => '$refresh'];
-
+    public $branchlist =[],$regions =[],$citys=[];
     protected $rules = [
-        'branchlist.*.address' => 'string|required|min:6',
-        // 'branchlist.0.address' => 'string|required|min:6',
-
+        // 'branchlist.*.address' => 'string|required|min:6',
+        'branchlist.*.region_id' => 'string|required|min:6',
     ];
 
 
     public function mount($slug)
     {
         $this->slug = $slug;
-
-        $this->citys = cities::all();
         $this->categorys = categories::all();
-        $this->subcategorys = categories::all();
-
+        $this->citys = cities::all();
         $this->stores  = stores::whereSlug($this->slug)->first();
             $this->name=$this->stores->name;
             $this->active =$this->stores->getAttributes()['active'];
             $this->numberbranch =$this->stores->branch_num;
-
         $parent = categories::whereId($this->stores->category_id)->first();
             if( $parent->parent_id != null){
-             $this->category = $parent->parent_id;
-             $this->subcategory =$this->stores->category_id;
-
+             $this->selectsubcategory =$this->stores->category_id;
+             $this->selectcategory = $parent->parent_id;
+             $this->subcategorys = categories::whereParentId($this->selectcategory)->get();
             }else
             {
-             $this->category =$this->stores->category_id;
+             $this->selectcategory =$this->stores->category_id;
             }
-
              foreach($this->stores->branch as $branch)
                 {
                     // $this->branchlist[ $this->i]['image']=$this->stores->image;
@@ -66,14 +70,14 @@ class Branch extends Component
                     $this->branchlist[ $this->i]['phone'] = $branch->phone;
                     $this->branchlist[ $this->i]['phonetwo'] = $branch->phone2;
                     $this->branchlist[ $this->i]['city_id']= $branch->city_id;
-                    $this->branchlist[ $this->i]['region']= $branch->region_id;
+                    $this->branchlist[ $this->i]['region_id']= $branch->region_id;
                     $this->branchlist[ $this->i]['opentime']= $branch->opentime;
                     $this->branchlist[ $this->i]['closetime']= $branch->closetime;
                     $this->branchlist[ $this->i]['numproduct']= $branch->product_num;
                     $this->branchlist[ $this->i]['lat']= $branch->lat;
                     $this->branchlist[ $this->i]['lng']= $branch->lng;
                     $this->branchlist[ $this->i]['top']= $branch->top;
-                    $this->regions[$this->i] =   regions::where('city_id', $branch->city_id)->get();
+                    $this->regions[ $this->i]  =   regions::where('city_id', $branch->city_id)->get()->toarray();
                     $this->i +=  1;
                 }
 
@@ -82,26 +86,21 @@ class Branch extends Component
     }
     public function savestore()
     {
-
         $store = stores::whereSlug($this->slug)->first();
         $store->update(
             [
                 'name'=>$this->name,
                 'active'=>$this->active,
-                'category_id' => ($this->subcategory != null)? $this->subcategory : $this->category ,
+                'category_id' => ($this->selectsubcategory != null)? $this->selectsubcategory : $this->selectcategory ,
                 'branch_num'=>$this->numberbranch,
-
             ]);
     }
-
     public function save($slug , $index)
     {
-        // $validator = Validator::make($this->branchlist, [
-        // 'branchlist.*.address' =>'string|required|min:6',]);
-        // $this->validate();
-
-        // dd( $this->branchlist[$index]['expiry_date']);
-
+         Validator::make($this->branchlist, [
+        'branchlist.*.address' =>'string|required|min:6',
+        'branchlist.*.region_id' => 'string|required|min:6',
+        ])->validate();
         $branch = branchs::find($this->branchlist[$index]['branch_id']);
         $branch->update(
             [
@@ -117,7 +116,7 @@ class Branch extends Component
             'city_id'    => $this->branchlist[$index]['city_id'],
             'lat'        => $this->branchlist[$index]['lat'],
             'lng'        => $this->branchlist[$index]['lng'],
-            'region_id'  => $this->branchlist[$index]['region'],
+            'region_id'  => $this->branchlist[$index]['region_id'],
             'opentime'   => $this->branchlist[$index]['opentime'],
             'closetime'  => $this->branchlist[$index]['closetime'],
             'product_num'=> $this->branchlist[$index]['numproduct'],
@@ -125,47 +124,45 @@ class Branch extends Component
         );
     }
 
-    public function showregions($id, $index)
+    public function updatedSelectcategory($id)
     {
-        // $this->regions= regions::where('city_id', $id)->get();
+        $data = categories::whereParentId($id)->get();
+        if( $data->count() == 0)
+        {
+            $this->subcategorys = null;
+            $this->selectsubcategory = null;
+        }else
+        {
+            $this->selectsubcategory = null;
+            $this->subcategorys =  $data;
+        }
     }
-    public function updatedRegions($value, $nested)
-    {
-    dd( $this->regions);
-    }
+
     public function updatedBranchlist($value, $nested)
     {
         $nestedData = explode(".", $nested);
         if($nestedData[1] == 'city_id' )
         {
-            $this->index = $nestedData[0];
-            // $this->regions[$nestedData[0]]['region'] = $value;
-            $this->branchlist[$nestedData[0]]['region'] ='';
             $this->value =$value;
-            // $this->regions[$nestedData[0]] = regions::where('city_id', $value)->get();
-            // regions::where('city_id', $value)->get()->toarray()
-            $this->ed=true;
+            $this->branchlist[$nestedData[0]]['region_id'] =null;
+            $this->regions[$nestedData[0]] = regions::where('city_id', $value)->get()->toarray();
         }
+
+
     }
-    public function tt()
+
+
+    public function updatedRegion($value, $nested)
     {
-        dd( $this->regions,$this->branchlist);
+        $nestedData = explode(".", $nested);
+
+        if($nestedData[1] == 'region_id' )
+        {
+            dd($this->regions);
+        }
     }
     public function render()
     {
-        // $this->dispatchBrowserEvent('successmsg',['message' =>'ddddd']);
-        if($this->ed){
-         $this->regions[$this->index] = regions::where('city_id', $this->value)->get();
-           }
-        return view('livewire.dashborad.branch.branch',
-                    [
-                        // 'citys'=>$this->citys
-                        'regions'=>$this->regions
-                        // ,'stores'=>$this->stores
-                        // ,'categorys'=>$categorys
-                        // ,'subcategorys' =>$subcategorys
-                    ]
-        )->layout('admin.layouts.masterdash');
-
+        return view('livewire.dashborad.branch.branch')->layout('admin.layouts.masterdash');
     }
 }
