@@ -103,19 +103,23 @@ class ProductController extends Controller
     }
 
     public function productcheck($branch_id){
+
         $limit_peoduct =  branchs::find($branch_id)->first()->product_num;
         $num_product =  products::whereBranchId($branch_id)->count();
         if($limit_peoduct != $num_product)
         {
+            $product = products::whereBranchId($branch_id)->get();
             return response()->json([
+                'data' =>  product::collection($product),
                 'status' => true,
                 'number' => $limit_peoduct  . ' / ' . $num_product
             ]);
-            // return $this->returnData('product', new product($limit_peoduct));
+
         }
         else
         {
-            return response()->json(['status' => false,
+            return response()->json([
+                'status' => false,
                 'number' =>  $limit_peoduct  . ' / ' . $num_product ,
                 'msg' => config('err_message.alert.limit_product')
             ]);
