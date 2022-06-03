@@ -55,7 +55,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-
                                     <div class="col-md-6" >
                                         <div   class="form-group">
                                             <label for="selectcategory">{{ __('category') }}</label>
@@ -119,6 +118,14 @@
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="row bg-gradient-gray mb-3 d-flex align-items-center">
+                                            <div class="m-2" >
+                                                    <a class="btn btn-app bg-danger m-1 ">
+                                                        <span class="badge bg-teal"> {{$branch->product->count()}}</span>
+                                                        <i class="fas fa-inbox"></i> {{__('product')}}
+                                                    </a>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-8" >
                                                 <div class="form-group">
@@ -128,23 +135,48 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4" >
-                                                
+
                                                 <label for="inputName">{{ __('image')}}</label>
                                                 <div class="card card-secondary card-outline" >
                                                     <div class="card-body box-profile">
-                                                        <div class="text-center" x-data="{ imagePreview: '{{$branchlist[$loop->index]['image']}}' }">
-                                                            <input wire:model="branchlist.{{$loop->index}}.image" type="file" class="d-none" x-ref="image" x-on:change="
-                                                                    reader = new FileReader();
-                                                                    reader.onload = (event) => {
-                                                                        imagePreview = event.target.result;
-                                                                        document.getElementById('profileImage{{$loop->index}}').src = `${imagePreview}`;
-                                                                    };
-                                                                    reader.readAsDataURL($refs.image.files[0]);
-                                                                " />
-                                                            <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview ? imagePreview : '{{$branchlist[$loop->index]['image']}}'" alt="Branch picture">
+                                                        <div class="row">
+                                                            <div class="col-md-12 text-center">
+                                                                <div class="text-center" x-data="{ imagePreview: '{{$branchlist[$loop->index]['image']}}' }">
+                                                                    <input wire:model="branchlist.{{$loop->index}}.image" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
+                                                                        x-on:change="
+                                                                                    reader = new FileReader();
+                                                                                    reader.onload = (event) => {
+                                                                                        imagePreview = event.target.result;
+                                                                                        document.getElementById('profileImage{{$loop->index}}').src = `${imagePreview}`;
+                                                                                    };
+                                                                                    reader.readAsDataURL($refs.image.files[0]);;;
+
+                                                                                "/>
+                                                                    <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview ? imagePreview : '{{$branchlist[$loop->index]['image']}}'" alt="Branch picture">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 text-center">
+                                                                 <p class="text-center text-danger"><small> * بعد اختيار الصورة يتم حفظها</small></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12 text-center">
+                                                                @for ($i = 0; $i < 5; $i++)
+                                                                    @if (floor($branch->rating) - $i >= 1)
+                                                                        <i class="fas fa-star text-warning fa-1x">{{--Full Start--}} </i>
+                                                                    @elseif ($branch->rating - $i > 0)
+                                                                        <i class="fas fa-star-half-alt text-warning fa-1x"> {{--Half Start--}} </i>
+                                                                    @else
+                                                                        <i class="far fa-star text-warning fa-1x"> {{--Empty Start--}} </i>
+                                                                    @endif
+                                                                @endfor
+                                                                 {{ number_format($branch->rating,1)}}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
                                         </div>
                                         <div class="row">

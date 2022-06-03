@@ -159,19 +159,19 @@ class BranchesController extends Controller
 
     public function branchcheck(){
         $store =  stores::whereUserId(auth('api')->user()->id)->first();
-        $num_product =  $store->branch->count();
+        $num_branch =  $store->branch->count();
 
-        if($store->branch_num != $num_product)
+        if($store->branch_num != $num_branch)
         {
             return response()->json([
                 'status' => true,
-                'number' => $store->branch_num  . ' / ' . $num_product
+                'number' => $store->branch_num  . ' / ' . $num_branch
             ]);
         }
         else
         {
             return response()->json(['status' => false,
-                'number' =>  $store->branch_num  . ' / ' . $num_product ,
+                'number' =>  $store->branch_num  . ' / ' . $num_branch ,
                 'msg' => config('err_message.alert.limit_product')
             ]);
         }

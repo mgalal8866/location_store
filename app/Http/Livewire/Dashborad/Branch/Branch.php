@@ -9,6 +9,7 @@ use App\Models\regions;
 use Livewire\Component;
 use App\Models\categories;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class Branch extends Component
@@ -29,13 +30,15 @@ class Branch extends Component
 
     $description,
     $branch_id;
+
     public $i =0;
-    public $branchlist =[],$regions =[],$citys=[];
+
+    public $branchlist=[] , $regions=[] , $citys=[];
+
     protected $rules = [
         // 'branchlist.*.address' => 'string|required|min:6',
         'branchlist.*.region_id' => 'string|required|min:6',
     ];
-
 
     public function mount($slug)
     {
@@ -43,19 +46,21 @@ class Branch extends Component
         $this->categorys = categories::all();
         $this->citys = cities::all();
         $this->stores  = stores::whereSlug($this->slug)->first();
+
             $this->name=$this->stores->name;
             $this->active =$this->stores->getAttributes()['active'];
             $this->numberbranch =$this->stores->branch_num;
         $parent = categories::whereId($this->stores->category_id)->first();
             if( $parent->parent_id != null){
-             $this->selectsubcategory =$this->stores->category_id;
-             $this->selectcategory = $parent->parent_id;
-             $this->subcategorys = categories::whereParentId($this->selectcategory)->get();
+                $this->selectsubcategory =$this->stores->category_id;
+                $this->selectcategory = $parent->parent_id;
+                $this->subcategorys = categories::whereParentId($this->selectcategory)->get();
             }else
             {
              $this->selectcategory =$this->stores->category_id;
             }
-             foreach($this->stores->branch as $branch)
+
+            foreach($this->stores->branch as $branch)
                 {
                     // $this->branchlist[ $this->i]['image']=$this->stores->image;
                     // dd($branch->image);
@@ -79,11 +84,9 @@ class Branch extends Component
                     $this->branchlist[ $this->i]['top']= $branch->top;
                     $this->regions[ $this->i]  =   regions::where('city_id', $branch->city_id)->get()->toarray();
                     $this->i +=  1;
-                }
-
-
-
+               }
     }
+
     public function savestore()
     {
         $store = stores::whereSlug($this->slug)->first();
@@ -94,34 +97,40 @@ class Branch extends Component
                 'category_id' => ($this->selectsubcategory != null)? $this->selectsubcategory : $this->selectcategory ,
                 'branch_num'=>$this->numberbranch,
             ]);
+
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ❤ ']);
     }
+
     public function save($slug , $index)
     {
          Validator::make($this->branchlist, [
-        'branchlist.*.address' =>'string|required|min:6',
-        'branchlist.*.region_id' => 'string|required|min:6',
-        ])->validate();
-        $branch = branchs::find($this->branchlist[$index]['branch_id']);
-        $branch->update(
-            [
-            'active'     => $this->branchlist[$index]['active'],
-            'top'        => $this->branchlist[$index]['top'],
-            'description'=> $this->branchlist[$index]['description'],
-            'start_date' => $this->branchlist[$index]['start_date'],
-            'expiry_date'=> $this->branchlist[$index]['expiry_date'],
-            'address'    => $this->branchlist[$index]['address'],
-            'accept'     => $this->branchlist[$index]['approval'],
-            'phone'      => $this->branchlist[$index]['phone'],
-            'phone2'     => $this->branchlist[$index]['phonetwo'],
-            'city_id'    => $this->branchlist[$index]['city_id'],
-            'lat'        => $this->branchlist[$index]['lat'],
-            'lng'        => $this->branchlist[$index]['lng'],
-            'region_id'  => $this->branchlist[$index]['region_id'],
-            'opentime'   => $this->branchlist[$index]['opentime'],
-            'closetime'  => $this->branchlist[$index]['closetime'],
-            'product_num'=> $this->branchlist[$index]['numproduct'],
-            ]
-        );
+                'branchlist.*.address' =>'string|required|min:6',
+                'branchlist.*.region_id' => 'string|required|min:6',
+            ])->validate();
+
+            $branch = branchs::find($this->branchlist[$index]['branch_id']);
+            $branch->update(
+                [
+                    'active'     => $this->branchlist[$index]['active'],
+                    'top'        => $this->branchlist[$index]['top'],
+                    'description'=> $this->branchlist[$index]['description'],
+                    'start_date' => $this->branchlist[$index]['start_date'],
+                    'expiry_date'=> $this->branchlist[$index]['expiry_date'],
+                    'address'    => $this->branchlist[$index]['address'],
+                    'accept'     => $this->branchlist[$index]['approval'],
+                    'phone'      => $this->branchlist[$index]['phone'],
+                    'phone2'     => $this->branchlist[$index]['phonetwo'],
+                    'city_id'    => $this->branchlist[$index]['city_id'],
+                    'lat'        => $this->branchlist[$index]['lat'],
+                    'lng'        => $this->branchlist[$index]['lng'],
+                    'region_id'  => $this->branchlist[$index]['region_id'],
+                    'opentime'   => $this->branchlist[$index]['opentime'],
+                    'closetime'  => $this->branchlist[$index]['closetime'],
+                    'product_num'=> $this->branchlist[$index]['numproduct'],
+                ]
+            );
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ✔']);
+
     }
 
     public function updatedSelectcategory($id)
@@ -141,6 +150,7 @@ class Branch extends Component
     public function updatedBranchlist($value, $nested)
     {
         $nestedData = explode(".", $nested);
+
         if($nestedData[1] == 'city_id' )
         {
             $this->value =$value;
@@ -148,14 +158,23 @@ class Branch extends Component
             $this->regions[$nestedData[0]] = regions::where('city_id', $value)->get()->toarray();
         }
 
+        if($nestedData[1] == 'image' )
+        {
+            $branch = branchs::find($this->branchlist[$nestedData[0]]['branch_id']);
+            $previousPath = $branch->getAttributes()['image'];
 
+            $mmm =  $this->branchlist[$nestedData[0]]['image']->store('/', 'branch');
+            $branch->update(['image' =>  $mmm  ]);
+            $this->branchlist[$nestedData[0]]['image'] = $branch->image;
+            Storage::disk('branch')->delete($previousPath);
+            $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Image ✔']);
+        }
     }
 
 
     public function updatedRegion($value, $nested)
     {
         $nestedData = explode(".", $nested);
-
         if($nestedData[1] == 'region_id' )
         {
             dd($this->regions);

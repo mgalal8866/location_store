@@ -60,7 +60,7 @@
                         "onclick": null,
                         "showDuration": "300",
                         "hideDuration": "1000",
-                        "timeOut": "5000",
+                        "timeOut": "15000",
                         "extendedTimeOut": "1000",
                         "showEasing": "swing",
                         "hideEasing": "linear",
@@ -70,11 +70,9 @@
 
 
             window.addEventListener('successmsg', e => {
-                toastr.success(e.detail.message, 'Success!');
+                toastr.success(e.detail.msg, 'Success!');
            });
-           window.addEventListener('successmsg', e => {
-                toastr.success(e.detail.message, 'Success!');
-           });
+
 
         });
 
