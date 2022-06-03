@@ -1,3 +1,5 @@
+
+
 <div>
     @section('title')
     Branch
@@ -8,6 +10,8 @@
     @section('page2')
     Branch
     @endsection
+
+
     <form enctype="multipart/form-data">
         <div class="row" >
             <div class="col-md-12">
@@ -96,7 +100,7 @@
         </div>
     </form>
 
-        <div class="card card-danger card-outline card-tabs">
+        <div  wire:ignore class="card card-danger card-outline card-tabs">
             <div class="card-header p-0 pt-1 border-bottom-0">
                 @if ($stores->branch->count() != 0)
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
@@ -111,13 +115,15 @@
 
             <div class="card-body">
 
-                <div class="tab-content" id="custom-tabs-three-tabContent">
+                <div wire:ignore class="tab-content" id="custom-tabs-three-tabContent">
                     @forelse($stores->branch as $branch)
 
                         <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-body">
+                                        @livewire('dashborad.branch.products', ['branch' => $branch])
+
                                         <div class="row bg-gradient-gray mb-3 d-flex align-items-center">
                                             <div class="m-2" >
                                                     <a class="btn btn-app bg-danger m-1 ">
@@ -220,7 +226,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="row" >
                                             <div class="col-md-6" >
                                                 <div class="form-group">

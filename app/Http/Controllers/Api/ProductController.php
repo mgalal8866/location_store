@@ -102,9 +102,9 @@ class ProductController extends Controller
         }
     }
 
-    public function productcheck($branch_id){
-
-        $limit_peoduct =  branchs::find($branch_id)->first()->product_num;
+    public function productcheck($branch_id)
+    {
+        $limit_peoduct =  branchs::find($branch_id)->first()->product_num ;
         $num_product =  products::whereBranchId($branch_id)->count();
         if($limit_peoduct != $num_product)
         {
@@ -112,15 +112,14 @@ class ProductController extends Controller
             return response()->json([
                 'data' =>  product::collection($product),
                 'status' => true,
-                'number' => $limit_peoduct  . ' / ' . $num_product
+                'number' =>  $num_product . ' / ' .$limit_peoduct
             ]);
-
         }
         else
         {
             return response()->json([
                 'status' => false,
-                'number' =>  $limit_peoduct  . ' / ' . $num_product ,
+                'number' =>  $num_product . ' / ' .$limit_peoduct  ,
                 'msg' => config('err_message.alert.limit_product')
             ]);
         }

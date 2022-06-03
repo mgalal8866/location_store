@@ -19,6 +19,7 @@ class product_images extends Model
         }
     }
 
+
     public function product()
     {
         return $this->belongsTo(products::class);
