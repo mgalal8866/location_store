@@ -23,7 +23,7 @@
                                         <br>
                                             <label class="text-bold ">{{ __('active')}} : </label>
                                             <span class="badge badge-{{ $products[$key]['activebadge'] }}" > {{ ($products[$key]['active']) == 0 ?  __('active')  : __('inactive') }}</span>
-                                            
+                                            {{-- <x-switch  wire:model="pp" id="A{{$key}}" :active=" $products[$key]['active']"/> --}}
                                         <br>
                                             <label class="text-bold ">{{ __('create')}} : </label>
                                             <span > {{ $products[$key]['create'] }}</span>

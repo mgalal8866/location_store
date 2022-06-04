@@ -28,6 +28,20 @@ public $products = [];
         }
         //    dd($this->products[0]['start_date']);
     }
+    public function updatedProducts($value, $nested)
+    {
+        $nestedData = explode(".", $nested);
+        dd($this->branchlist[$nestedData[0]]['active']);
+        if($nestedData[1] == 'active' )
+        {
+
+        }
+    }
+    public function updatedPp()
+    {
+      dd('');
+    }
+
     public function render()
     {
         return view('livewire.dashborad.branch.products');
