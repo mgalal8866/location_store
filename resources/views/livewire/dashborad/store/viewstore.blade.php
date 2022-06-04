@@ -59,7 +59,7 @@
                             <th>{{ (__('name')) }}</th>
                             <th>{{ (__('user')) }}</th>
                             <th>{{ (__('category')) }}</th>
-                            <th>{{ (__('info')) }}</th>
+                            {{-- <th>{{ (__('info')) }}</th> --}}
                             <th>Num branch</th>
                             <th>{{ (__('status')) }}</th>
                             <th width="240">{{ (__('action')) }}</th>
@@ -79,7 +79,7 @@
                                 <td>{{$store->user->name}}</td>
                                 <td>{{$store->category->name}}</td>
 
-                                <td>
+                                {{-- <td>
 
                                         @for ($i = 0; $i < 5; $i++)
                                             @if (floor($store->rating) - $i >= 1)
@@ -90,7 +90,7 @@
                                                 <i class="far fa-star text-warning fa-1x"> {{--Empty Start--}} </i>
                                             @endif
                                         @endfor
-                                </td>
+                                </td> --}}
                                 <td>{{$store->branch->count()}}</td>
                                 {{-- <td>{!!$store->active!!}</td> --}}
                                 <td><span class="badge badge-pill badge-{{ $store->active_badge }} ">{{ $store->active }}</span></td>
