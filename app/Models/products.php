@@ -18,4 +18,13 @@ class products extends Model
     {
         return $this->hasMany(product_images::class);
     }
+
+    public function getActiveBadgeAttribute()
+    {
+        $badge=[
+            '0' => 'success',
+            '1' => 'danger'
+        ];
+        return $badge[$this->active];
+     }
 }

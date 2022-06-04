@@ -121,15 +121,17 @@
                         <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
-                                    <div class="card-body">
-                                        @livewire('dashborad.branch.products', ['branch' => $branch])
 
-                                        <div class="row bg-gradient-gray mb-3 d-flex align-items-center">
-                                            <div class="m-2" >
-                                                    <a class="btn btn-app bg-danger m-1 ">
+                                    <div class="card-body">
+                                        <div class="row  shadow p-3 mb-5   rounded text-dark d-flex align-items-center" x-data="{ show: false }">
+                                            <div >
+                                                    <a class="btn btn-app bg-danger m-1 " @click="show = !show" :aria-expanded="show ? 'true' : 'false'" :class="text-dark" >
                                                         <span class="badge bg-teal"> {{$branch->product->count()}}</span>
                                                         <i class="fas fa-inbox"></i> {{__('product')}}
                                                     </a>
+                                                @if($branch->product->count() != 0)
+                                                    @livewire('dashborad.branch.products', ['branch' => $branch])
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row">

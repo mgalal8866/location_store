@@ -10,7 +10,6 @@ public $products = [];
     public function mount($branch)
 
     {
-
         foreach($branch->product as $product )
         {
             $this->products [] =
@@ -20,13 +19,14 @@ public $products = [];
                  'price' =>$product->price  ,
                  'description' => $product->description,
                  'active' => $product->active,
+                 'activebadge' => $product->activebadge,
                  'start_date'=> $product->start_date,
                  'expiry_date'=> $product->expiry_date,
                  'create'=> $product->created_at->diffForHumans(),
                  'image'=> ['img' => $product->product_images->first()->img ?? asset('assets/images/noimage.jpg')],
                  ] ;
         }
-           dd($this->products);
+        //    dd($this->products[0]['start_date']);
     }
     public function render()
     {
