@@ -79,16 +79,16 @@
                                 <td>{{$store->user->name}}</td>
                                 <td>{{$store->category->name}}</td>
 
-                                {{-- <td>
+                                 {{-- <td>
 
                                         @for ($i = 0; $i < 5; $i++)
                                             @if (floor($store->rating) - $i >= 1)
-                                                <i class="fas fa-star text-warning fa-1x">{{--Full Start--}} </i>
+                                                <i class="fas fa-star text-warning fa-1x"> </i>
                                             @elseif ($store->rating - $i > 0)
-                                                <i class="fas fa-star-half-alt text-warning fa-1x"> {{--Half Start--}} </i>
+                                                <i class="fas fa-star-half-alt text-warning fa-1x"> /i>
                                             @else
-                                                <i class="far fa-star text-warning fa-1x"> {{--Empty Start--}} </i>
-                                            @endif
+                                                <i class="far fa-star text-warning fa-1x">  </i>
+                                         @endif
                                         @endfor
                                 </td> --}}
                                 <td>{{$store->branch->count()}}</td>
