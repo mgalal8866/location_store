@@ -8,12 +8,15 @@ class Products extends Component
 {
 public $products = [];
     public function mount($branch)
-
     {
+
+        // unset($this->products[0]);
+
         foreach($branch->product as $product )
         {
             $this->products [] =
-                ['product_id' => $product->id,
+                ['product' => $product,
+                'id' => $product->id,
                  'branch_id' => $product->branch_id,
                  'name' =>$product->name,
                  'price' =>$product->price  ,
@@ -26,7 +29,7 @@ public $products = [];
                  'image'=> ['img' => $product->product_images->first()->img ?? asset('assets/images/noimage.jpg')],
                  ] ;
         }
-        //    dd($this->products[0]['start_date']);
+        //  dd($this->products);
     }
     public function updatedProducts($value, $nested)
     {

@@ -27,4 +27,10 @@ class products extends Model
         ];
         return $badge[$this->active];
      }
+
+     public function getStartDateAttribute($value)
+     {
+         if($value==null) {return 'note set' ;}else{return $value;}
+
+    }
 }

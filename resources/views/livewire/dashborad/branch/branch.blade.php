@@ -125,7 +125,7 @@
                                     <div class="card-body">
                                         <div class="row  shadow p-3 mb-5   rounded text-dark d-flex align-items-center" x-data="{ show: false }">
                                             <div >
-                                                    <a class="btn btn-app bg-danger m-1 " @click="show = !show" :aria-expanded="show ? 'true' : 'false'" :class="text-dark" >
+                                                    <a class="btn btn-app bg-danger m-1" @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
                                                         <span class="badge bg-teal"> {{$branch->product->count()}}</span>
                                                         <i class="fas fa-inbox"></i> {{__('product')}}
                                                     </a>
