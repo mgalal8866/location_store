@@ -29,6 +29,8 @@ class EditField extends Component
     public function save()
     {
 
+        $this->validate(["'$this->field'" => 'required'] );
+
         $entity = $this->model::findOrFail($this->entityId);
 
         $newName = (string)Str::of($this->newName)->trim()->substr(0, 100); // trim whitespace & more than 100 characters

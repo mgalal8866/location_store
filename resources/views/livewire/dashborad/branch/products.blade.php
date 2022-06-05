@@ -6,10 +6,7 @@
                 <div class="col-sm-6">
                     <div class="card card-success card-outline ">
                         <div class="card-header text-center text-lg text-danger text-bold">
-                            {{-- <span > {{ $products[$key]['name'] }}</span>
-                            {{ $products[$key]['id']}} --}}
-
-                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'name'" :key="'products.{{$key}}.name'"/>
+                             <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'name'" :key="'products.'.$key.'.name'"/>
                         </div>
                         <div class="card-body  ">
                             <div class="row">
@@ -19,30 +16,31 @@
                                       </div>
                                 </div>
                                 <div class="col-md-8 text-dark  " >
+                                        <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('description')}} : </label>
-                                            {{-- <span > {{ $products[$key]['description'] }}</span> --}}
-                                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'description'" :key="'products.{{$key}}.description'"/>
-
-                                        <br>
+                                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'description'" :key="'products.'.$key.'.description'"/>
+                                        </div>
+                                        <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('price')}} : </label>
-                                            {{-- <span > {{ $products[$key]['price'] }}</span> --}}
-                                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'price'" :key="'products.{{$key}}.price'"/>
-
-                                        <br>
+                                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'price'" :key="'products.'.$key.'.price'"/>
+                                        </div>
+                                        <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('active')}} : </label>
-                                            <span class="badge badge-{{ $products[$key]['activebadge'] }}" > {{ ($products[$key]['active']) == 0 ?  __('active')  : __('inactive') }}</span>
-                                            {{-- <x-switch  wire:model="pp" id="A{{$key}}" :active=" $products[$key]['active']"/> --}}
-                                        <br>
+                                            <span class="badge badge-{{ $products[$key]['activebadge'] }} " > {{ ($products[$key]['active']) == 0 ?  __('active')  : __('inactive') }}</span>
+                                        </div>
+                                        <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('create')}} : </label>
                                             <span > {{ $products[$key]['create'] }}</span>
-                                        <br>
+                                        </div>
+                                        <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('start_date')}} : </label>
-                                            {{-- <span>{{ $products[$key]['start_date'] }}</span> --}}
-                                            <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.{{$key}}.start_date'" :id="'products.{{$key}}.start_date'"/>
-
-                                            <br>
+                                            <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.'.$key.'.start_date'" :id="'products.{{$key}}.start_date'"/>
+                                        </div>
+                                        <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('expiry')}} : </label>
-                                            <span > {{ $products[$key]['expiry_date'] }}  </span>
+                                            <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'expiry_date'" :key="'products.'.$key.'.expiry_date'" :id="'products.{{$key}}.expiry_date'"/>
+                                        </div>
+
                                 </div>
                             </div>
                         </div>

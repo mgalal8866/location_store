@@ -22,14 +22,14 @@
         <form class="flex" wire:submit.prevent="save">
             <input shadowless
                           type="text"
-                          class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm"
+                          class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm @error($origName) is-invalid @enderror"
                           placeholder="100 characters max."
                           x-ref="textInput"
                           wire:model.lazy="newName"
                           x-on:keydown.enter="isEditing = false"
                           x-on:keydown.escape="isEditing = false"
             />
-
+            @error($origName)<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
             <button type="button" class="btn pl-2 focus:outline-none text-danger" title="{{__('cancel')}}" x-on:click="isEditing = false"><i class="fas fa-undo-alt"></i></button>
             <button
                 type="submit"
