@@ -9,7 +9,7 @@
                             {{-- <span > {{ $products[$key]['name'] }}</span>
                             {{ $products[$key]['id']}} --}}
 
-                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'name'" :key="'products.55.name'"/>
+                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'name'" :key="'products.{{$key}}.name'"/>
                         </div>
                         <div class="card-body  ">
                             <div class="row">

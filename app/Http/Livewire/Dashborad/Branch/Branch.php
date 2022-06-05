@@ -21,7 +21,7 @@ class Branch extends Component
     $name,
     $slug,
     $stores,
-    $active,
+    $activestore,
     $numberbranch,
 
     $subcategorys=null,
@@ -48,7 +48,7 @@ class Branch extends Component
         $this->stores  = stores::whereSlug($this->slug)->first();
 
             $this->name=$this->stores->name;
-            $this->active =$this->stores->getAttributes()['active'];
+            $this->activestore =$this->stores->getAttributes()['active'];
             $this->numberbranch =$this->stores->branch_num;
         $parent = categories::whereId($this->stores->category_id)->first();
             if( $parent->parent_id != null){
@@ -89,11 +89,31 @@ class Branch extends Component
 
     public function savestore()
     {
+        $rulesList=["name"=>"required",
+        "numberbranch"=>"required|min:1|gt:0",
+         "activestore" => "required"
+          ];
+
+        if(!empty($this->subcategorys)){
+            $rulesList["selectsubcategory"] = 'required';
+        }
+
+
+        // dd( $rulesList);
+        $this->validate( $rulesList ,[
+            'selectsubcategory.required' => 'برجاء اختيار القسم الفرعى',
+            'name.required' => 'الاسم مطلوب',
+            'activestore.required' => 'الحاله مطلوب',
+            'numberbranch.required' =>'عدد الفروع مطلوب',
+            'numberbranch.gt' =>'عدد الفروع مطلوب',
+        ]);
+
+
         $store = stores::whereSlug($this->slug)->first();
         $store->update(
             [
                 'name'=>$this->name,
-                'active'=>$this->active,
+                'active'=>$this->activestore,
                 'category_id' => ($this->selectsubcategory != null)? $this->selectsubcategory : $this->selectcategory ,
                 'branch_num'=>$this->numberbranch,
             ]);
@@ -103,10 +123,42 @@ class Branch extends Component
 
     public function save($slug , $index)
     {
-         Validator::make($this->branchlist, [
-                'branchlist.*.address' =>'string|required|min:6',
-                'branchlist.*.region_id' => 'string|required|min:6',
-            ])->validate();
+
+
+
+        $rulesList=[
+        "branchlist.*.description"=>"required",
+         "branchlist.*.address"=>"required",
+         "branchlist.*.start_date"=>"required",
+         "branchlist.*.expiry_date"=>"required",
+         "branchlist.*.phone" => "required",
+        //  "branchlist.*.phonetwo" => "required",
+         "branchlist.*.region_id" => "required",
+         "branchlist.*.city_id" => "required",
+         "branchlist.*.opentime" => "required",
+         "branchlist.*.closetime" => "required",
+         "branchlist.*.numproduct" => "required|min:1|gt:0",
+         "branchlist.*.lat" => "required",
+         "branchlist.*.lng" => "required",
+          ];
+
+        // if(!empty($this->subcategorys)){
+        //     $rulesList["selectsubcategory"] = 'required';
+        // }
+
+
+        // dd( $rulesList);
+
+        $this->validate( $rulesList ,[
+            'branchlist.*.region_id.required' => 'المنطقة مطلوب',
+            'branchlist.*.description.required' => 'الوصف مطلوب',
+            'branchlist.*.address.required' => 'العنوان مطلوب',
+            'branchlist.*.numproduct.required'  => 'عدد المنتجات مطلوب',
+            'branchlist.*.numproduct.gt' => 'عدد المنتجات يجب ان يكون لايساوى0'
+        ]);
+
+
+
 
             $branch = branchs::find($this->branchlist[$index]['branch_id']);
             $branch->update(

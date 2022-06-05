@@ -30,21 +30,21 @@
                                 <div class="row" >
                                     <div class="col-md-6" >
                                         <div class="form-group">
-
                                             <label for="inputName">{{ __('minestore')}}</label>
-                                            <input type="text" id="inputName" wire:model.defer='name' class="form-control @error('name') is-invalid @enderror" >
+                                            <input type="text" id="inputName" wire:model.lazy='name' class="form-control @error('name') is-invalid @enderror" >
+                                            @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-3" >
 
-                                        <div  wire:ignore class="form-group">
+                                        <div    class="form-group">
                                             <label for="selectactive1">{{ __('active') }}</label>
-                                            <select id="selectactive1"  wire:model.defer='active' class="form-control pt-1   @error('active') is-invalid @enderror" >
+                                            <select id="selectactive1"  wire:model.lazy='activestore' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
                                                 <option value="">Select active</option>
                                                 <option value="0">{{ __('active') }}</option>
                                                 <option value="1">{{ __('unactive') }}</option>
                                             </select>
-                                            @error('active')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                            @error('activestore')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 
                                         </div>
 
@@ -52,7 +52,7 @@
                                     <div class="col-md-3" >
                                         <div class="form-group">
                                             <label for="inputnumberbranch">{{ __('numberbranch')}}</label>
-                                            <input type="text" id="inputnumberbranch" wire:model.defer='numberbranch' class="form-control @error('numberbranch') is-invalid @enderror" >
+                                            <input type="text" id="inputnumberbranch" wire:model.lazy='numberbranch' class="form-control @error('numberbranch') is-invalid @enderror" >
                                             @error('numberbranch')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 
                                         </div>
@@ -77,7 +77,7 @@
                                         @empty(!$subcategorys)
                                             <div   class="form-group">
                                                 <label for="selectsubcategory">{{ __('subcategory') }}</label>
-                                                <select id="selectsubcategory"  wire:model='selectsubcategory' class="form-control pt-1   @error('selectsubcategory') is-invalid @enderror" >
+                                                <select id="selectsubcategory"  wire:model='selectsubcategory' class="form-control pt-1   @error('selectsubcategory') is-invalid @enderror"  required>
                                                     <option value="">Select Sub category</option>
                                                         @foreach ( $subcategorys as $subcategory )
                                                             <option value="{{$subcategory->id}}" >{{$subcategory->name}}</option>
@@ -100,8 +100,8 @@
         </div>
     </form>
 
-        <div  wire:ignore class="card card-danger card-outline card-tabs">
-            <div class="card-header p-0 pt-1 border-bottom-0">
+        <div  class="card card-danger card-outline card-tabs">
+            <div wire:ignore class="card-header p-0 pt-1 border-bottom-0">
                 @if ($stores->branch->count() != 0)
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                     @foreach($stores->branch as $branch)
@@ -115,10 +115,10 @@
 
             <div class="card-body">
 
-                <div wire:ignore class="tab-content" id="custom-tabs-three-tabContent">
+                <div   class="tab-content" id="custom-tabs-three-tabContent">
                     @forelse($stores->branch as $branch)
 
-                        <div  class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
+                        <div   wire:ignore.self class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
 
@@ -138,8 +138,8 @@
                                             <div class="col-md-8" >
                                                 <div class="form-group">
                                                     <label for="inputDescription">{{ __('description')}}</label>
-                                                    <textarea id="inputDescription" wire:model.defer='branchlist.{{$loop->index}}.description'    rows="5" class="form-control @error('branchlist.{{$loop->index}}.description') is-invalid @enderror" ></textarea>
-                                                    @error('branchlist.{{$loop->index}}.description')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    <textarea id="inputDescription" wire:model.defer='branchlist.{{$loop->index}}.description'    rows="5" class="form-control @error('branchlist.'.$loop->index.'.description') is-invalid @enderror" ></textarea>
+                                                    @error('branchlist.'.$loop->index.'.description')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-4" >
@@ -189,32 +189,29 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4" >
-                                                <div  wire:ignore class="form-group">
+                                                <div    class="form-group">
                                                     <label for="selectactive{{$loop->index}}">{{ __('active') }}</label>
-                                                    <select id="selectactive{{$loop->index}}"  wire:model.defer='branchlist.{{$loop->index}}.active' class="form-control pt-1   @error('branchlist.{{$loop->index}}.active') is-invalid @enderror" >
-                                                        <option value="">Select active</option>
+                                                    <select id="selectactive{{$loop->index}}"  wire:model.defer='branchlist.{{$loop->index}}.active' class="form-control pt-1   @error('branchlist.'.$loop->index.'.active') is-invalid @enderror" >
                                                         <option value="0">{{ __('active') }}</option>
                                                         <option value="1">{{ __('unactive') }}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4" >
-                                                <div  wire:ignore class="form-group">
+                                                <div  class="form-group">
                                                     <label for="selectapproval{{$loop->index}}">{{ __('approval') }}</label>
-                                                    <select id="selectapproval{{$loop->index}}"  wire:model.defer='branchlist.{{$loop->index}}.approval' class="form-control pt-1   @error('branchlist.{{$loop->index}}.approval') is-invalid @enderror" >
-                                                        <option value="">Select approval</option>
+                                                    <select id="selectapproval{{$loop->index}}"  wire:model.defer='branchlist.{{$loop->index}}.approval' class="form-control pt-1   @error('branchlist.'.$loop->index.'.approval') is-invalid @enderror" >
                                                         <option value="0">accept</option>
                                                         <option value="1">waiting</option>
                                                         <option value="2">unacceptable</option>
                                                     </select>
-                                                    @error('branchlist.{{$loop->index}}.approval')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
-                                                </div>
+                                                 </div>
                                             </div>
                                             <div class="col-md-2" >
 
-                                                <div  wire:ignore class="form-group">
+                                                <div class="form-group">
                                                     <label for="selectactive{{$loop->index}}">{{ __('show_top') }}</label>
-                                                    <select id="selecttop{{$loop->index}}"  wire:model.defer='branchlist.{{$loop->index}}.top' class="form-control pt-1   @error('branchlist.{{$loop->index}}.top') is-invalid @enderror" >
+                                                    <select id="selecttop{{$loop->index}}"  wire:model.defer='branchlist.{{$loop->index}}.top' class="form-control pt-1   @error('branchlist.'.$loop->index.'.top') is-invalid @enderror" >
                                                         <option value="1">{{ __('Star') }}</option>
                                                         <option value="0">{{ __('Normal') }}</option>
                                                     </select>
@@ -223,8 +220,8 @@
                                             <div class="col-md-2" >
                                                 <div class="form-group">
                                                     <label for="numproduct{{$loop->index}}">{{ __('numproduct')  }}</label>
-                                                    <input type="text" id="numproduct{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.numproduct' class="form-control @error('branchlist.{{$loop->index}}.numproduct') is-invalid @enderror" >
-                                                    @error('branchlist.{{$loop->index}}.numproduct')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    <input type="text" id="numproduct{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.numproduct' class="form-control @error('branchlist.'.$loop->index.'.numproduct') is-invalid @enderror" >
+                                                    @error('branchlist.'.$loop->index.'.numproduct')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -237,7 +234,7 @@
                                                             <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                         </div>
                                                         <x-timepicker wire:model.defer="branchlist.{{$loop->index}}.opentime" id="opentime{{$loop->index}}" :error="'branchlist.{{$loop->index}}.opentime'" />
-                                                        @error('branchlist.{{$loop->index}}.opentime')
+                                                        @error('branchlist.'.$loop->index.'.opentime')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
@@ -253,7 +250,7 @@
                                                             <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                         </div>
                                                         <x-timepicker wire:model.defer="branchlist.{{$loop->index}}.closetime" id="closetime{{$loop->index}}" error="branchlist.{{$loop->index}}.closetime" />
-                                                        @error('branchlist.{{$loop->index}}.closetime')
+                                                        @error('branchlist.'.$loop->index.'.closetime')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -271,7 +268,7 @@
                                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                         </div>
                                                         <x-datepicker wire:model.defer="branchlist.{{$loop->index}}.start_date" id="start_date{{$loop->index}}" :error="'branchlist.{{$loop->index}}.start_date'" />
-                                                        @error('branchlist.{{$loop->index}}.start_date')
+                                                        @error('branchlist.'.$loop->index.'.start_date')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
@@ -287,7 +284,7 @@
                                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                         </div>
                                                         <x-datepicker wire:model.defer="branchlist.{{$loop->index}}.expiry_date" id="expiry_date{{$loop->index}}" :error="'branchlist.{{$loop->index}}.expiry_date'" />
-                                                        @error('branchlist.{{$loop->index}}.expiry_date')
+                                                        @error('branchlist.'.$loop->index.'.expiry_date')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
@@ -298,50 +295,37 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8" >
-                                                @if ($errors->any())
-                                                    <div class="alert alert-danger">
-                                                        <ul>
-                                                            @foreach ($errors->all() as $error )
-                                                                <li>{{$error}}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                @endif
+
                                                 <div class="form-group">
-                                                    {{-- <h3>branchlist.{{$loop->index}}.address</h3> --}}
                                                     <label for="address{{$loop->index}}">{{ __('address')  }}</label>
-                                                    <input type="text" id="address{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.address' class="form-control @error('branchlist.{{$loop->index}}.address') is-invalid @enderror" >
-                                                    {{-- @error('branchlist.'. $loop->index . '.address')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror --}}
+                                                    <input type="text" id="address{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.address' class="form-control @error('branchlist.'.$loop->index.'.address') is-invalid @enderror" >
+                                                    @error('branchlist.'.$loop->index.'.address')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-2" >
                                                 <div  class="form-group">
                                                     <label for="selectcity{{$loop->index}}">{{ __('city') }}</label>
-                                                    <select id="selectcity{{$loop->index}}"  wire:model='branchlist.{{$loop->index}}.city_id' class="form-control pt-1   @error('branchlist.{{$loop->index}}.city_id') is-invalid @enderror" >
+                                                    <select id="selectcity{{$loop->index}}"  wire:model='branchlist.{{$loop->index}}.city_id' class="form-control pt-1   @error('branchlist.'.$loop->index.'.city_id') is-invalid @enderror" >
                                                         <option value="" disabled>Select City</option>
                                                         @foreach ( $citys as $city )
                                                            <option value="{{$city->id}}"> {{$city->name}}</option>
                                                         @endforeach
                                                     </select>
-                                                    @error('branchlist.{{$loop->index}}.city_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    @error('branchlist.'.$loop->index.'.city_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2" >
-
-
-
                                                 <div  class="form-group">
                                                     <label for="selectregion1{{$loop->index}}">{{ __('region') }}</label>
-                                                    <select  id="selectregion1{{$loop->index}}" wire:model='branchlist.{{$loop->index}}.region_id' class="form-control pt-1 @error('region_id') is-invalid @enderror" required >
+                                                    <select  id="selectregion1{{$loop->index}}" wire:model='branchlist.{{$loop->index}}.region_id' class="form-control pt-1 @error('branchlist.'.$loop->index.'region_id') is-invalid @enderror" >
                                                         <option value="">Select Region</option>
-                                                        {{-- @empty(!$regions) --}}
                                                             @foreach ( $regions[$loop->index] as $reg )
                                                                 <option value="{{$reg['id']}}" >{{$reg['region_name_ar']}}</option>
                                                             @endforeach
-                                                        {{-- @endempty --}}
                                                     </select>
-                                                @error('region_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    @error('branchlist.'.$loop->index.'.region_id')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+
                                                 </div>
 
                                             </div>
@@ -350,16 +334,16 @@
                                             <div class="col-md-6" >
                                                 <div class="form-group">
                                                     <label for="phone{{$loop->index}}">{{ __('phone')  }}</label>
-                                                    <input type="text" id="phone{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phone' class="form-control @error('branchlist.{{$loop->index}}.phone') is-invalid @enderror" >
-                                                    @error('branchlist.{{$loop->index}}.phone')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    <input type="text" id="phone{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phone' class="form-control @error('branchlist.'.$loop->index.'.phone') is-invalid @enderror" >
+                                                    @error('branchlist.'.$loop->index.'.phone')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
 
                                                     <label for="phonetwo{{$loop->index}}">{{ __('phone2')  }}</label>
-                                                    <input type="text" id="phonetwo{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phonetwo' class="form-control @error('branchlist.{{$loop->index}}.phonetwo') is-invalid @enderror" >
-                                                    @error('branchlist.{{$loop->index}}.phonetwo')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    <input type="text" id="phonetwo{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.phonetwo' class="form-control @error('branchlist.'.$loop->index.'.phonetwo') is-invalid @enderror" >
+                                                    @error('branchlist.'.$loop->index.'.phonetwo')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
 
                                             </div>
@@ -368,15 +352,15 @@
                                             <div class="col-md-6" >
                                                 <div class="form-group">
                                                     <label for="lat{{$loop->index}}">{{ __('lat')  }}</label>
-                                                    <input type="text" id="lat{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.lat' class="form-control @error('branchlist.{{$loop->index}}.lat') is-invalid @enderror" >
-                                                    @error('branchlist.{{$loop->index}}.lat')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    <input type="text" id="lat{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.lat' class="form-control @error('branchlist.'.$loop->index.'.lat') is-invalid @enderror" >
+                                                    @error('branchlist.'.$loop->index.'.lat')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-6" >
                                                 <div class="form-group">
                                                     <label for="lng{{$loop->index}}">{{ __('lng')  }}</label>
-                                                    <input type="text" id="lng{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.lng' class="form-control @error('branchlist.{{$loop->index}}.lng') is-invalid @enderror" >
-                                                    @error('branchlist.{{$loop->index}}.lng')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                                    <input type="text" id="lng{{$loop->index}}" wire:model.defer='branchlist.{{$loop->index}}.lng' class="form-control @error('branchlist.'.$loop->index.'.lng') is-invalid @enderror" >
+                                                    @error('branchlist.'.$loop->index.'.lng')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
 
                                             </div>
