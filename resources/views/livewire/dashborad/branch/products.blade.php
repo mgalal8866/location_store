@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('start_date')}} : </label>
-                                            <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.'.$key.'.start_date'" :inid="'products.'.$key.'.start_date'"/>
+                                            <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.'.$key.'.start_date'"  :inid="'products.'.$key.'.start_date'"/>
                                         </div>
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('expiry')}} : </label>

@@ -33,7 +33,6 @@ class DateField extends Component
 
         $entity = $this->model::findOrFail($this->entityId);
         $date = $this->date === $this->shortId ? null : $this->date; // don't save it as operation name it if it's identical to the short_id
-
         $entity->{$this->field} = Carbon::parse($date)->toFormattedDate() ?? null;
         $entity->save();
         $this->init($this->model, $entity); // re-initialize the component state with fresh data after saving
