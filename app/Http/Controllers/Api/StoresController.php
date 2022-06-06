@@ -19,6 +19,7 @@ class StoresController extends Controller
     {
         return $this->returnData('stores',store::collection(stores::whereActive(0)->get()));
     }
+    
 
     public function newstore(Request $request)
     {
