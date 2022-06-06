@@ -46,7 +46,7 @@ class branchbyuser extends JsonResource
             'lat' => $this->lat??'',
             'lng' => $this->lng??'',
             'visetor' => $this->view,
-            'branch_num'=>$this->stores->branch_num . ' / '  . $this->count(),
+            'branch_num'=>$this->stores->branch_num . ' / '  . $this->stores->count(),
             'product_num'=> $this->product_num . ' / ' . $this->product->count(),
             'accept'=>$this->acceptapi,
             'active'=>$this->activeapi,
