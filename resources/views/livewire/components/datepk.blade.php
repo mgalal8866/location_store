@@ -19,18 +19,23 @@
     </div>
     <div x-show=isEditing class="flex flex-col">
         <form class="flex" wire:submit.prevent="save">
-            <x-datepicker
-                          shadowless
-                          class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm"
-                          placeholder="0000-00-00"
-                          x-ref="dateInput"
-                          wire:model.lazy="date"
-                          x-on:keydown.enter="isEditing = false"
-                          x-on:keydown.escape="isEditing = false"
-                          {{-- id="{{$inid}}" --}}
-                          :error="'{{$inid}}'"
 
-                        />
+                        <input
+
+                        shadowless
+                        class="datetimepicker-input border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm"
+                        placeholder="0000-00-00"
+                        x-ref="dateInput"
+                        wire:model.lazy="date"
+                        x-on:keydown.enter="isEditing = false"
+                        x-on:keydown.escape="isEditing = false"
+                        id="{{$inid}}"
+                        type="text"
+                        onchange="this.dispatchEvent(new InputEvent('input'))"
+                        data-date-format="yyyy/mm/"
+                        data-toggle="datetimepicker"
+                        data-target="#{{ $inid }}"
+                    />
 
             <button type="button" class="btn pl-2 focus:outline-none text-danger" title="{{__('cancel')}}" x-on:click="isEditing = false"><i class="fas fa-undo-alt"></i></button>
             <button
@@ -43,3 +48,12 @@
         <small class="text-xs text-danger">Enter to save, Esc to cancel</small>
     </div>
 </div>
+
+
+{{-- @push('before-livewire-scripts')
+    <script type="text/javascript">
+        $('#{{$inid}}').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+    </script>
+@endpush --}}

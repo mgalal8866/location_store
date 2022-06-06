@@ -161,7 +161,7 @@ class BranchesController extends Controller
         $store =  stores::whereUserId(auth('api')->user()->id)->first();
         $num_branch =  $store->branch->count();
 
-        if($store->branch_num != $num_branch)
+        if($store->branch_num >= $num_branch)
         {
             return response()->json([
                 'status' => true,

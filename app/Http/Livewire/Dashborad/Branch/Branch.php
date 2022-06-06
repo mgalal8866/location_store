@@ -35,10 +35,10 @@ class Branch extends Component
 
     public $branchlist=[] , $regions=[] , $citys=[];
 
-    protected $rules = [
+    // protected $rules = [
         // 'branchlist.*.address' => 'string|required|min:6',
-        'branchlist.*.region_id' => 'string|required|min:6',
-    ];
+        // 'branchlist.*.region_id' => 'string|required|min:6',
+    // ];
 
     public function mount($slug)
     {
@@ -66,7 +66,7 @@ class Branch extends Component
                     // dd($branch->image);
                     $this->branchlist[ $this->i]['branch_id']= $branch->id;
                     $this->branchlist[ $this->i]['image']= $branch->image;
-                    $this->branchlist[ $this->i]['description']= $branch->description;
+                    $this->branchlist[ $this->i]['descriptionbranch']= $branch->description;
                     $this->branchlist[ $this->i]['approval']= $branch->accept;
                     $this->branchlist[ $this->i]['active']= $branch->getAttributes()['active'];
                     $this->branchlist[ $this->i]['address']= $branch->address;
@@ -125,47 +125,39 @@ class Branch extends Component
     {
 
 
-
         $rulesList=[
-        "branchlist.*.description"=>"required",
-         "branchlist.*.address"=>"required",
-         "branchlist.*.start_date"=>"required",
-         "branchlist.*.expiry_date"=>"required",
-         "branchlist.*.phone" => "required",
+        "branchlist.*.descriptionbranch"=>"required",
+        "branchlist.*.address"=>"required",
+        //  "branchlist.*.start_date"=>"required",
+        //  "branchlist.*.expiry_date"=>"required",
+        "branchlist.*.phone" => "required",
         //  "branchlist.*.phonetwo" => "required",
         //  "branchlist.*.region_id" => "required",
         //  "branchlist.*.city_id" => "required",
-         "branchlist.*.opentime" => "required",
-         "branchlist.*.closetime" => "required",
-         "branchlist.*.numproduct" => "required|min:1|gt:0",
-         "branchlist.*.lat" => "required",
-         "branchlist.*.lng" => "required",
+        //  "branchlist.*.opentime" => "required",
+        //  "branchlist.*.closetime" => "required",
+        // "branchlist.*.numproduct" => "required|min:1|gt:0",
+        //  "branchlist.*.lat" => "required",
+        //  "branchlist.*.lng" => "required",
           ];
 
-        // if(!empty($this->subcategorys)){
-        //     $rulesList["selectsubcategory"] = 'required';
-        // }
 
 
-        // dd( $rulesList);
+    $this->validate( $rulesList ,[
+        'branchlist.*.descriptionbranch.required' => 'الوصف مطلوب',
+        'branchlist.*.address.required' => 'العنوان مطلوب',
+        'branchlist.*.numproduct.required'  => 'عدد المنتجات مطلوب',
+        'branchlist.*.numproduct.gt' => 'عدد المنتجات يجب ان يكون لايساوى0'
+    ]);
 
-        $this->validate( $rulesList ,[
-            'branchlist.*.region_id.required' => 'المنطقة مطلوب',
-            'branchlist.*.description.required' => 'الوصف مطلوب',
-            'branchlist.*.address.required' => 'العنوان مطلوب',
-            'branchlist.*.numproduct.required'  => 'عدد المنتجات مطلوب',
-            'branchlist.*.numproduct.gt' => 'عدد المنتجات يجب ان يكون لايساوى0'
-        ]);
-
-
-
+dd('');
 
             $branch = branchs::find($this->branchlist[$index]['branch_id']);
             $branch->update(
                 [
                     'active'     => $this->branchlist[$index]['active'],
                     'top'        => $this->branchlist[$index]['top'],
-                    'description'=> $this->branchlist[$index]['description'],
+                    'description'=> $this->branchlist[$index]['descriptionbranch'],
                     'start_date' => $this->branchlist[$index]['start_date'],
                     'expiry_date'=> $this->branchlist[$index]['expiry_date'],
                     'address'    => $this->branchlist[$index]['address'],
