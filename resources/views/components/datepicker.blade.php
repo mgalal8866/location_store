@@ -7,10 +7,9 @@ onchange="this.dispatchEvent(new InputEvent('input'))"
 
 @push('before-livewire-scripts')
 <script type="text/javascript">
-// console.log({{ $id }});
     $('#{{ $id }}').datetimepicker({
-    	// format: 'L'
-        format: 'YYYY-MM-DD'
+    	 format: 'L'
+       // format: 'YYYY-MM-DD'
         // format: 'yyyy-m-d'
     });
 </script>
