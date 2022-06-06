@@ -29,7 +29,7 @@ class EditField extends Component
     public function save()
     {
 
-        $this->validate(["'$this->field'" => 'required'] );
+        // $this->validate(["'$this->field'" => 'required'] );
 
         $entity = $this->model::findOrFail($this->entityId);
 

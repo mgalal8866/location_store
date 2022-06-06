@@ -20,35 +20,27 @@ class StoresController extends Controller
         return $this->returnData('stores',store::collection(stores::whereActive(0)->get()));
     }
 
-
     public function newstore(Request $request)
     {
-
         $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first()->branch_num;
         $num_branch =  branchs::WhereHas('stores', function($q){
             $q->whereUserId(auth('api')->user()->id);
             })->count();
 
         if($limit_branch != $num_branch){
-
-
             $validator = Validator::make($request->all(), [
                     'category_id' => 'required|exists:categories,id',
                     'name' => 'required|string|unique:stores',
-
             ]);
-
                 if($validator->fails()){
                     return $this->returnError('400',$validator->errors());
                 }
-
                 // return $validator->validated();
                 $store = stores::create(array_merge(
                             $validator->validated(),
                             ['slug' => Str::slug($request->name),
                             'user_id' =>  auth('api')->user()->id]
                 ));
-
                 $validatorvbranch = Validator::make($request->all(), [
                             'region_id'=>'required|string|exists:regions,id',
                             'city_id'=>'required|string|exists:cities,id',

@@ -9,8 +9,8 @@ onchange="this.dispatchEvent(new InputEvent('input'))"
 <script type="text/javascript">
 // console.log({{ $id }});
     $('#{{ $id }}').datetimepicker({
-    	format: 'L'
-
+    	// format: 'L'
+        format: 'YYYY-MM-DD'
         // format: 'yyyy-m-d'
     });
 </script>
