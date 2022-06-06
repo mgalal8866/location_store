@@ -12,7 +12,7 @@ class DateField extends Component
 
     public $origDate;
     public $entityId;
-    public $index;
+    public $inid;
     public $shortId;
     public $date; // dirty operation name state
     public $isName; // determines whether to display it in bold text

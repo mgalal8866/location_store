@@ -25,7 +25,7 @@
             <x-datepicker
 
                           shadowless
-                         id='date{{$entityId}}'
+                         id='{{$inid}}'
                          :error="'branchlist.1.start_date'"
                           {{-- class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm" --}}
                           placeholder="0000-00-00"
