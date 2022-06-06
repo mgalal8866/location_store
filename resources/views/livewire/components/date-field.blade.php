@@ -25,16 +25,16 @@
             <x-datepicker
 
                           shadowless
-                         id='{{$inid}}'
-                         :error="'branchlist.1.start_date'"
-                          {{-- class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm" --}}
+                          id='{{$inid}}'
+                          :error="'{{$inid}}'"
+                          class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm"
                           placeholder="0000-00-00"
                           x-ref="dateInput"
                           wire:model.lazy="date"
                           x-on:keydown.enter="isEditing = false"
                           x-on:keydown.escape="isEditing = false"
 
-                          />
+                        />
 
             <button type="button" class="btn pl-2 focus:outline-none text-danger" title="{{__('cancel')}}" x-on:click="isEditing = false"><i class="fas fa-undo-alt"></i></button>
             <button

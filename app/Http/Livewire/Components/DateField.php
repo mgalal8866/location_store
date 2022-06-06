@@ -31,10 +31,7 @@ class DateField extends Component
     public function save()
     {
 
-// dd( $this->shortId);
         $entity = $this->model::findOrFail($this->entityId);
-        // $this->date =   Carbon::createFromFormat('m/d/Ythis->date)->format('Y-d-m');
-        // $date = (string)Str::of($this->date)->trim()->substr(0, 100); // trim whitespace & more than 100 characters
         $date = $this->date === $this->shortId ? null : $this->date; // don't save it as operation name it if it's identical to the short_id
 
         $entity->{$this->field} = Carbon::parse($date)->toFormattedDate() ?? null;
