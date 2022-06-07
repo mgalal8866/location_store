@@ -2,11 +2,12 @@
 
 
 use App\Models\User;
+use App\Models\comments;
 use Illuminate\Http\Request;
 use League\Flysystem\Config;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashborad\Citits;
@@ -45,10 +46,14 @@ route::get('/pull',function () {
 
 
  });
+
 route::get('/down',function () {
    Artisan::call('down --render="maintenance"');
    return  redirect('/');
 });
+
+
+
 
 route::get('/up',function () {
     Artisan::call('up');
@@ -57,9 +62,9 @@ route::get('/up',function () {
 
  route::get('/run',function () {
     Artisan::call('schedule:run');
-
  });
 
+ 
  Route::get('/artisan', function (Request $request) {
   $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
 

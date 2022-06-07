@@ -9,14 +9,15 @@ class comment extends JsonResource
 
     public function toArray($request)
     {
-        ini_set('precision', 17);
+        // ini_set('precision', 16);
+        // ini_set('serialize_precision', 16);
 
         return [
             'comment' => $this->comment??'',
             'user_id' => $this->user_id,
             'user_name' => $this->user->name,
-            'rating' =>  number_format((float)$this->rating, 2), //round($this->rating, 2) //
-            'precision' => ini_get('precision')
+            'rating' =>  $this->rating //
+            // 'precision' => ini_get('serialize_precision')
         ];
     }
 }

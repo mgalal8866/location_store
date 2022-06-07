@@ -36,7 +36,7 @@ class onebraches extends JsonResource
             'lat' => $this->lat,
             'lng' => $this->lng,
             'visetor' => $this->view,
-            'rating' => ($count != 0)?$sum/$count:0,
+            'rating' => number_format(($count != 0)?$sum/$count:0 , 2),
             'comments' =>  comment::collection($this->comments),
             'product' =>  product::collection($this->product)
         ];

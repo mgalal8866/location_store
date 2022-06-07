@@ -10,6 +10,7 @@ use App\Http\Resources\product;
 use App\Http\Controllers\Controller;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
+use App\Http\Resources\productbyid;
 
 class ProductController extends Controller
 {
@@ -123,6 +124,12 @@ class ProductController extends Controller
                 'msg' => config('err_message.alert.limit_product')
             ]);
         }
+    }
+
+    public function getbyid($product_id)
+    {
+      $product =   products::find($product_id);
+      return  $this->returnData('data',new productbyid($product));
     }
 
 }

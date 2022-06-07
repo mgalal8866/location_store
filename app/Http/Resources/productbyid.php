@@ -2,16 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\products;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class product extends JsonResource
+class productbyid extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
+
     public function toArray($request)
     {
         $img =   $this->product_images()->get();
@@ -19,6 +15,7 @@ class product extends JsonResource
         if(empty($img->toArray())){
             $product_image = [json_decode(json_encode(['image' => asset('assets/images/noimage.jpg')]), true)] ;
         }
+        $product_other =  product::collection(products::whereBranchId($this->branch_id)->get());
         return [
             'product_id' => $this->id,
             'branch_id' => $this->branch_id,
@@ -26,7 +23,8 @@ class product extends JsonResource
             'price' => $this->price,
             'description' => $this->description,
             'create' => $this->created_at->diffForHumans(),
-            'images' => $product_image
+            'images' => $product_image,
+            'other_product' => $product_other
 
         ];
     }
