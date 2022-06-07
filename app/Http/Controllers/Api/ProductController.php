@@ -106,7 +106,7 @@ class ProductController extends Controller
     {
         $limit_peoduct =  branchs::find($branch_id)->first()->product_num ;
         $num_product =  products::whereBranchId($branch_id)->count();
-        if($limit_peoduct != $num_product)
+        if($limit_peoduct >= $num_product)
         {
             $product = products::whereBranchId($branch_id)->get();
             return response()->json([
