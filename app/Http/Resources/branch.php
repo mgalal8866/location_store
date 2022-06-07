@@ -7,9 +7,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class branch extends JsonResource
 {
-    protected $casts = [
-        'rating' => 'decimal:2'
-    ];
+    // protected $casts = [
+    //     'rating' => 'decimal:2'
+    // ];
     public function toArray($request)
     {
 

@@ -9,11 +9,12 @@ class comments extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = ['rating' => 'decimal:2'];
+
 
     public function getrating($branch_id)
     {
         $Branch =  comments::whereBranchId($branch_id)->get();
-
         return $Branch;
     }
 

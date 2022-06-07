@@ -16,7 +16,7 @@ class onebraches extends JsonResource
     public function toArray($request)
     {
         $count = comments::getrating($this->id)->count();
-        $sum = comments::getrating($this->id)->sum('rating');
+         $sum = comments::getrating($this->id)->sum('rating');
 
 
         return [
@@ -35,7 +35,7 @@ class onebraches extends JsonResource
             'lng' => $this->lng,
             'visetor' => $this->view,
             'rating' => ($count != 0)?$sum/$count:0,
-            
+
 
             'comments' =>  comment::collection($this->comments),
             'product' =>  product::collection($this->product)
