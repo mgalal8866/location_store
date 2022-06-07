@@ -15,6 +15,7 @@ class onebraches extends JsonResource
      */
     public function toArray($request)
     {
+
         $count = comments::getrating($this->id)->count();
          $sum = comments::getrating($this->id)->sum('rating');
 
