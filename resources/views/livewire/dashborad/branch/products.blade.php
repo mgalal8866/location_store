@@ -1,4 +1,5 @@
 <div>
+    @include('livewire.dashborad.branch.product-details')
         <div class="row shadow p-3  rounded "   x-show="show" style=" width: 100%;
         height: 20rem; overflow: auto;">
 
@@ -47,8 +48,9 @@
                             </div>
                         </div>
                         <div class="card-footer card-gray-dark card-outline">
-                             {{-- <a type="button" class="btn  btn-sm btn-outline-warning"><i class="fas fa-edit    "></i></i></a>
-                             {{-- <a type="button" class="btn  btn-sm btn-outline-success">Active</a> --}} --}}
+                             {{-- <a type="button" class="btn  btn-sm btn-outline-warning"><i class="fas fa-edit    "></i></i></a>--}}
+
+                             <button data-toggle="modal" data-target="#updateModal" wire:click="" class="btn btn-primary btn-sm">Edit</button>
 
                         </div>
                     </div>
