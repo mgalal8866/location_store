@@ -9,8 +9,11 @@
               </button>
             </div>
             <div class="modal-body">
+<div wire:loading >
+    <div>ddddd</div>
+
            <form>
-            <div class="file-manager">
+            {{-- <div class="file-manager">
                 <div class="file-manager-left">
                     <div class="dm-uploader-container">
                         <div id="drag-and-drop-zone-file-manager" class="dm-uploader text-center">
@@ -41,6 +44,31 @@
                 </div>
                 <input type="hidden" id="selected_ckimg_file_id" value="1">
                 <input type="hidden" id="selected_ckimg_file_path" value="http://almakhzakhana.com/uploads/images-file-manager/202206/img_629fd8e7d15aa4-91030855-74051904.jpg">
+            </div> --}}
+
+            <div class="dropdown open">
+                <button class="btn bg-purple dropdown-toggle btn-select-option" type="button" data-toggle="dropdown" aria-expanded="true">حدد اختيارا                                                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu options-dropdown">
+                    <li>
+                        <a href="http://almakhzakhana.com/admin/product-details/6335"><i class="fa fa-info option-icon"></i>عرض التفاصيل</a>
+                    </li>
+                                                                        <li>
+                            <a href="javascript:void(0)" onclick="$('#day_count_product_id').val('6335');" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus option-icon"></i>أضف إلى المميز</a>
+                        </li>
+                                                                                                                        <li>
+                            <a href="javascript:void(0)" onclick="add_remove_special_offers('6335');"><i class="fa fa-plus option-icon"></i>أضف إلى العروض الخاصة</a>
+                        </li>
+                                                                    <li>
+                        <a href="http://almakhzakhana.com/dashboard/edit-product/6335" target="_blank"><i class="fa fa-edit option-icon"></i>تعديل</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="delete_item('product_controller/delete_product','6335','هل أنت متأكد أنك تريد حذف هذا المنتج؟');"><i class="fa fa-times option-icon"></i>حذف</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="delete_item('product_controller/delete_product_permanently','6335','هل أنت متأكد أنك تريد حذف هذا المنتج نهائيًا؟');"><i class="fa fa-trash option-icon"></i>الحذف بشكل نهائي</a>
+                    </li>
+                </ul>
             </div>
                 <div class="form-group">
                     <label for="name">{{__('name')}}</label>
@@ -93,6 +121,7 @@
 
 
            </form>
+        </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
