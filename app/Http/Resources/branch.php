@@ -19,7 +19,7 @@ class branch extends JsonResource
             'star' => $this->top,
             'name' => $this->stores->name,
             'image' => $this->image,
-            'rating' =>$this->rating
+            'rating' => number_format($this->rating,2)
         ];
     }
 }
