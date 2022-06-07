@@ -40,7 +40,7 @@ class branchbyuser extends JsonResource
             'region_id' => $this->region_id,
             'opentime' => $this->opentime??'',
             'closetime' => $this->closetime??'',
-            'rating' => round($this->rating, 2),
+            'rating' => number_format($this->rating,2),
             'start_date' =>$this->start_date??'',
             'expiry_date' =>$this->expiry_date??'',
             'lat' => $this->lat??'',
