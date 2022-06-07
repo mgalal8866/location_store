@@ -9,7 +9,7 @@ class comment extends JsonResource
 
     public function toArray($request)
     {
-        // ini_set('precision', 17);
+        ini_set('precision', 17);
 
         return [
             'comment' => $this->comment??'',
