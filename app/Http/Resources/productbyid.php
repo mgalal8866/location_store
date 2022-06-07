@@ -15,7 +15,7 @@ class productbyid extends JsonResource
         if(empty($img->toArray())){
             $product_image = [json_decode(json_encode(['image' => asset('assets/images/noimage.jpg')]), true)] ;
         }
-        $product_other =  product::collection(products::whereBranchId($this->branch_id)->get());
+        $product_other =  product::collection(products::whereBranchId($this->branch_id)->where('id','!=',$this->id)->get());
         return [
             'product_id' => $this->id,
             'branch_id' => $this->branch_id,
