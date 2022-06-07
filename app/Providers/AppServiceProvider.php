@@ -26,11 +26,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Carbon::macro('toFormattedDate', function () {
-            return $this->format('Y-m-d');
-        });
 
         Paginator::useBootstrap();
         JsonResource::withoutWrapping();
+        
+        Carbon::macro('toFormattedDate', function () {
+            return $this->format('Y-m-d');
+        });
+        Carbon::macro('toFormattedTime', function () {
+            return $this->format('h:i A');
+        });
+
     }
 }

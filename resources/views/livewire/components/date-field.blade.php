@@ -21,13 +21,14 @@
         <form class="flex" wire:submit.prevent="save">
             <x-datepicker
                           shadowless
+                          id="{{$inid}}"
                           class="border-0 truncate focus:border-lh-yellow focus:ring focus:ring-lh-yellow focus:ring-opacity-50 h-7 rounded text-sm"
                           placeholder="0000-00-00"
                           x-ref="dateInput"
                           wire:model.lazy="date"
                           x-on:keydown.enter="isEditing = false"
                           x-on:keydown.escape="isEditing = false"
-                          {{-- id="{{$inid}}" --}}
+
                           :error="'{{$inid}}'"
 
                         />

@@ -15,13 +15,13 @@ class branch extends JsonResource
 
 
         return [
-            'id' => $this->id,
-            'star' => $this->top,
-            'name' => $this->stores->name,
-            'image' => $this->image,
+            'id'     => $this->id,
+            'star'   => $this->top,
+            'name'   => $this->stores->name,
+            'image'  => $this->image,
             'rating' => number_format($this->rating,2),
-            'lat' =>    $this->lat,
-            'lng' => $this->lng
+            'lat'    => $this->lat,
+            'lng'    => $this->lng
         ];
     }
 }

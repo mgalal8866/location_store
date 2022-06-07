@@ -16,9 +16,10 @@ class branchs extends Model
     use SoftDeletes;
     protected $guarded = [];
     // protected $dates = ['deleted_at'];
-    // protected $casts = [
-    //     'rating' => 'decimal:2',
-    // ];
+    protected $casts = [
+        'start_date' => 'datetime',
+        'expiry_date'=> 'datetime'
+    ];
 
 
 
@@ -97,15 +98,21 @@ class branchs extends Model
             return 'مقبول';
         }
     }
-    // public function getStartDateAttribute($value){
-    //         return Carbon::parse($value)->toFormattedDate();
-    // }
-    public function setStartDateAttribute($value){
-        return   $this->attributes['start_date'] =  Carbon::parse($value)->toFormattedDate();
-    }
-    public function setExpiryDateAttribute($value){
-        return   $this->attributes['expiry_date'] =  Carbon::parse($value)->toFormattedDate();
+
+    public function getStartDateAttribute($value){
+        return   $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }
 
+
+
+    public function getExpiryDateAttribute($value){
+        return  $value ?  Carbon::parse($value)->toFormattedDate() : '';
+    }
+    // public function getOpentimeAttribute($value){
+    //     return    Carbon::parse($value)->toFormattedTime();
+    // }
+    // public function getClosetimeAttribute($value){
+    //     return   Carbon::parse($value)->toFormattedTime();
+    // }
 
 }

@@ -42,80 +42,77 @@ class Branch extends Component
 
     public function mount($slug)
     {
-        $this->slug = $slug;
-        $this->categorys = categories::all();
-        $this->citys = cities::all();
-        $this->stores  = stores::whereSlug($this->slug)->first();
+        $this->slug         = $slug;
+        $this->categorys    = categories::all();
+        $this->citys        = cities::all();
+        $this->stores       = stores::whereSlug($this->slug)->first();
+        $this->name         = $this->stores->name;
+        $this->activestore  = $this->stores->getAttributes()['active'];
+        $this->numberbranch = $this->stores->branch_num;
+        $parent             = categories::whereId($this->stores->category_id)->first();
 
-            $this->name=$this->stores->name;
-            $this->activestore =$this->stores->getAttributes()['active'];
-            $this->numberbranch =$this->stores->branch_num;
-        $parent = categories::whereId($this->stores->category_id)->first();
             if( $parent->parent_id != null){
-                $this->selectsubcategory =$this->stores->category_id;
-                $this->selectcategory = $parent->parent_id;
-                $this->subcategorys = categories::whereParentId($this->selectcategory)->get();
+                $this->selectsubcategory = $this->stores->category_id;
+                $this->selectcategory    = $parent->parent_id;
+                $this->subcategorys      = categories::whereParentId($this->selectcategory)->get();
             }else
             {
-             $this->selectcategory =$this->stores->category_id;
+                $this->selectcategory    = $this->stores->category_id;
             }
 
             foreach($this->stores->branch as $branch)
                 {
-                    // $this->branchlist[ $this->i]['image']=$this->stores->image;
-                    // dd($branch->image);
-                    $this->branchlist[ $this->i]['branch_id']= $branch->id;
-                    $this->branchlist[ $this->i]['image']= $branch->image;
+                    $this->branchlist[ $this->i]['branch_id']        = $branch->id;
+                    $this->branchlist[ $this->i]['image']            = $branch->image;
                     $this->branchlist[ $this->i]['descriptionbranch']= $branch->description;
-                    $this->branchlist[ $this->i]['approval']= $branch->accept;
-                    $this->branchlist[ $this->i]['active']= $branch->getAttributes()['active'];
-                    $this->branchlist[ $this->i]['address']= $branch->address;
-                    $this->branchlist[ $this->i]['start_date']= $branch->start_date;
-                    $this->branchlist[ $this->i]['expiry_date']= $branch->expiry_date;
-                    $this->branchlist[ $this->i]['phone'] = $branch->phone;
-                    $this->branchlist[ $this->i]['phonetwo'] = $branch->phone2;
-                    $this->branchlist[ $this->i]['city_id']= $branch->city_id;
-                    $this->branchlist[ $this->i]['region_id']= $branch->region_id;
-                    $this->branchlist[ $this->i]['opentime']= $branch->opentime;
-                    $this->branchlist[ $this->i]['closetime']= $branch->closetime;
-                    $this->branchlist[ $this->i]['numproduct']= $branch->product_num;
-                    $this->branchlist[ $this->i]['lat']= $branch->lat;
-                    $this->branchlist[ $this->i]['lng']= $branch->lng;
-                    $this->branchlist[ $this->i]['top']= $branch->top;
-                    $this->regions[ $this->i]  =   regions::where('city_id', $branch->city_id)->get()->toarray();
+                    $this->branchlist[ $this->i]['approval']         = $branch->accept;
+                    $this->branchlist[ $this->i]['active']           = $branch->getAttributes()['active'];
+                    $this->branchlist[ $this->i]['address']          = $branch->address;
+                    $this->branchlist[ $this->i]['start_date']       = $branch->start_date;
+                    $this->branchlist[ $this->i]['expiry_date']      = $branch->expiry_date;
+                    $this->branchlist[ $this->i]['phone']            = $branch->phone;
+                    $this->branchlist[ $this->i]['phonetwo']         = $branch->phone2;
+                    $this->branchlist[ $this->i]['city_id']          = $branch->city_id;
+                    $this->branchlist[ $this->i]['region_id']        = $branch->region_id;
+                    $this->branchlist[ $this->i]['opentime']         = $branch->opentime;
+                    $this->branchlist[ $this->i]['closetime']        = $branch->closetime;
+                    $this->branchlist[ $this->i]['numproduct']       = $branch->product_num;
+                    $this->branchlist[ $this->i]['lat']              = $branch->lat;
+                    $this->branchlist[ $this->i]['lng']              = $branch->lng;
+                    $this->branchlist[ $this->i]['top']              = $branch->top;
+                    $this->regions[ $this->i]                        = regions::where('city_id', $branch->city_id)->get()->toarray();
                     $this->i +=  1;
                }
     }
 
     public function savestore()
     {
-        $rulesList=["name"=>"required",
-        "numberbranch"=>"required|min:1|gt:0",
-         "activestore" => "required"
+        $rulesList=[
+            "name"         => "required",
+            "numberbranch" => "required|min:1|gt:0",
+            "activestore"  => "required"
           ];
 
         if(!empty($this->subcategorys)){
             $rulesList["selectsubcategory"] = 'required';
         }
 
-
-        // dd( $rulesList);
         $this->validate( $rulesList ,[
             'selectsubcategory.required' => 'برجاء اختيار القسم الفرعى',
-            'name.required' => 'الاسم مطلوب',
-            'activestore.required' => 'الحاله مطلوب',
-            'numberbranch.required' =>'عدد الفروع مطلوب',
-            'numberbranch.gt' =>'عدد الفروع مطلوب',
+            'name.required'              => 'الاسم مطلوب',
+            'activestore.required'       => 'الحاله مطلوب',
+            'numberbranch.required'      => 'عدد الفروع مطلوب',
+            'numberbranch.gt'            => 'عدد الفروع مطلوب',
         ]);
 
 
         $store = stores::whereSlug($this->slug)->first();
         $store->update(
             [
-                'name'=>$this->name,
-                'active'=>$this->activestore,
+                'name'        =>  $this->name,
+                'active'      =>  $this->activestore,
                 'category_id' => ($this->selectsubcategory != null)? $this->selectsubcategory : $this->selectcategory ,
-                'branch_num'=>$this->numberbranch,
+                'branch_num'  =>  $this->numberbranch,
             ]);
 
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ❤ ']);
@@ -123,35 +120,29 @@ class Branch extends Component
 
     public function save($slug , $index)
     {
-
-
         $rulesList=[
-        "branchlist.*.descriptionbranch"=>"required",
-        "branchlist.*.address"=>"required",
-        //  "branchlist.*.start_date"=>"required",
-        //  "branchlist.*.expiry_date"=>"required",
-        "branchlist.*.phone" => "required",
-        //  "branchlist.*.phonetwo" => "required",
-        //  "branchlist.*.region_id" => "required",
-        //  "branchlist.*.city_id" => "required",
-        //  "branchlist.*.opentime" => "required",
-        //  "branchlist.*.closetime" => "required",
-        // "branchlist.*.numproduct" => "required|min:1|gt:0",
-        //  "branchlist.*.lat" => "required",
-        //  "branchlist.*.lng" => "required",
-          ];
+            "branchlist.*.descriptionbranch"=>"required",
+            "branchlist.*.address"          =>"required",
+            "branchlist.*.phone"            => "required",
+            //  "branchlist.*.start_date"=>"required",
+            //  "branchlist.*.expiry_date"=>"required",
+            //  "branchlist.*.phonetwo" => "required",
+            //  "branchlist.*.region_id" => "required",
+            //  "branchlist.*.city_id" => "required",
+            //  "branchlist.*.opentime" => "required",
+            //  "branchlist.*.closetime" => "required",
+            // "branchlist.*.numproduct" => "required|min:1|gt:0",
+            //  "branchlist.*.lat" => "required",
+            //  "branchlist.*.lng" => "required",
+        ];
+        $this->validate( $rulesList ,[
+            'branchlist.*.descriptionbranch.required' => 'الوصف مطلوب',
+            'branchlist.*.address.required'           => 'العنوان مطلوب',
+            'branchlist.*.numproduct.required'        => 'عدد المنتجات مطلوب',
+            'branchlist.*.numproduct.gt'              => 'عدد المنتجات يجب ان يكون لايساوى0'
+        ]);
 
-
-
-    $this->validate( $rulesList ,[
-        'branchlist.*.descriptionbranch.required' => 'الوصف مطلوب',
-        'branchlist.*.address.required' => 'العنوان مطلوب',
-        'branchlist.*.numproduct.required'  => 'عدد المنتجات مطلوب',
-        'branchlist.*.numproduct.gt' => 'عدد المنتجات يجب ان يكون لايساوى0'
-    ]);
-
-dd('');
-
+// dd($this->branchlist[$index]['start_date']);
             $branch = branchs::find($this->branchlist[$index]['branch_id']);
             $branch->update(
                 [
@@ -177,9 +168,12 @@ dd('');
 
     }
 
+
+
     public function updatedSelectcategory($id)
     {
         $data = categories::whereParentId($id)->get();
+
         if( $data->count() == 0)
         {
             $this->subcategorys = null;
@@ -197,22 +191,28 @@ dd('');
 
         if($nestedData[1] == 'city_id' )
         {
-            $this->value =$value;
-            $this->branchlist[$nestedData[0]]['region_id'] =null;
-            $this->regions[$nestedData[0]] = regions::where('city_id', $value)->get()->toarray();
+            $this->value                                   = $value;
+            $this->branchlist[$nestedData[0]]['region_id'] = null;
+            $this->regions[$nestedData[0]]                 = regions::where('city_id', $value)->get()->toarray();
         }
 
         if($nestedData[1] == 'image' )
         {
             $branch = branchs::find($this->branchlist[$nestedData[0]]['branch_id']);
-            $previousPath = $branch->getAttributes()['image'];
-
-            $mmm =  $this->branchlist[$nestedData[0]]['image']->store('/', 'branch');
+            $previousPath   = $branch->getAttributes()['image'];
+            $mmm            = $this->branchlist[$nestedData[0]]['image']->store('/', 'branch');
             $branch->update(['image' =>  $mmm  ]);
+
             $this->branchlist[$nestedData[0]]['image'] = $branch->image;
             Storage::disk('branch')->delete($previousPath);
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Image ✔']);
         }
+
+        if($nestedData[1] == 'start_date' )
+        {
+            // dd($this->branchlist[$nestedData[0]]['start_date']);
+        }
+
     }
 
 

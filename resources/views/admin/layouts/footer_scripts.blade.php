@@ -38,6 +38,7 @@
 <script src="{{ URL::asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 
 @yield('js')
+@stack('jslive')
 @stack('before-livewire-scripts')
 @livewireScripts
 @stack('after-livewire-scripts')
@@ -46,7 +47,7 @@
 <!-- Alpine Core -->
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-@stack('jslive')
+
 <script>
 
   $(document).ready(function() {

@@ -21,7 +21,7 @@ class DateField extends Component
 
     public function mount($model, $entity)
     {
-      dd($entity);
+ 
         $this->entityId = $entity->id;
         $this->shortId =  $entity->shortId;
         $this->origDate = $entity->{$this->field};

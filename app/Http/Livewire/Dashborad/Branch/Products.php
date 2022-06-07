@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class Products extends Component
 {
+    public $index;
 public $products = [];
     public function mount($branch)
     {
@@ -31,19 +32,20 @@ public $products = [];
         }
         //  dd($this->products);
     }
+    public function edit($index){
+            $this->index = $index;
+    }
+
+
     public function updatedProducts($value, $nested)
     {
         $nestedData = explode(".", $nested);
-        dd($this->branchlist[$nestedData[0]]['active']);
         if($nestedData[1] == 'active' )
         {
 
         }
     }
-    public function updatedPp()
-    {
-      dd('');
-    }
+
 
     public function render()
     {

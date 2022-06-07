@@ -117,23 +117,25 @@
 
                 <div   class="tab-content" id="custom-tabs-three-tabContent">
                     @forelse($stores->branch as $branch)
-                        
+
                         <div   wire:ignore.self class="tab-pane fade  {{$loop->index == 0 ? 'active show  ' : ''}} " id="branch{{$loop->index}}" role="tabpanel" aria-labelledby="branch-tab-{{$loop->index}}">
+
+                            <div class="row  shadow p-3 mb-5   rounded text-dark d-flex align-items-center" x-data="{ show: false }">
+                                <div >
+                                        <a class="btn btn-app bg-danger m-1" @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
+                                            <span class="badge bg-teal"> {{$branch->product->count()}}</span>
+                                            <i class="fas fa-inbox"></i> {{__('product')}}
+                                        </a>
+                                    @if($branch->product->count() != 0)
+                                        @livewire('dashborad.branch.products', ['branch' => $branch])
+                                    @endif
+                                </div>
+                            </div>
                             <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                                 <div class="card">
 
                                     <div class="card-body">
-                                        <div class="row  shadow p-3 mb-5   rounded text-dark d-flex align-items-center" x-data="{ show: false }">
-                                            <div >
-                                                    <a class="btn btn-app bg-danger m-1" @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
-                                                        <span class="badge bg-teal"> {{$branch->product->count()}}</span>
-                                                        <i class="fas fa-inbox"></i> {{__('product')}}
-                                                    </a>
-                                                @if($branch->product->count() != 0)
-                                                    @livewire('dashborad.branch.products', ['branch' => $branch])
-                                                @endif
-                                            </div>
-                                        </div>
+
                                         <div class="row">
                                             <div class="col-md-8" >
                                                 <div class="form-group">
@@ -267,7 +269,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                         </div>
-                                                        <x-datepicker wire:model.defer="branchlist.{{$loop->index}}.start_date" id="start_date{{$loop->index}}" :error="'branchlist.{{$loop->index}}.start_date'" />
+                                                        <x-datepicker wire:model.dafer="branchlist.{{$loop->index}}.start_date" id="start_date{{$loop->index}}" :error="'branchlist.{{$loop->index}}.start_date'" />
                                                         @error('branchlist.'.$loop->index.'.start_date')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -283,7 +285,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                         </div>
-                                                        <x-datepicker wire:model.defer="branchlist.{{$loop->index}}.expiry_date" id="expiry_date{{$loop->index}}" :error="'branchlist.{{$loop->index}}.expiry_date'" />
+                                                        <x-datepicker wire:model.dafer="branchlist.{{$loop->index}}.expiry_date" id="expiry_date{{$loop->index}}" :error="'branchlist.{{$loop->index}}.expiry_date'" />
                                                         @error('branchlist.'.$loop->index.'.expiry_date')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
