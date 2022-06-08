@@ -10,6 +10,11 @@ class products extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        'start_date' => 'datetime',
+        'expiry_date'=> 'datetime'
+    ];
+
 
     public function branch()
     {
@@ -46,10 +51,11 @@ class products extends Model
     // public function setExpiryDateAttribute($value){
     //     return  Carbon::parse($value)->toFormattedDate();
     // }
+
     public function getStartDateAttribute($value){
-        return  Carbon::parse($value)->toFormattedDate();
+        return   $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }
     public function getExpiryDateAttribute($value){
-        return  Carbon::parse($value)->toFormattedDate();
+        return  $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }
 }

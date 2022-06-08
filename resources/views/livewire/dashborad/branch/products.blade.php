@@ -12,20 +12,23 @@
                             <div class="row">
                                 <div class="col-md-4  " >
                                     <div class="mt-5">
-                                        <img src="{{ $products[$key]['image']['img'] }}" class="w-100 rounded float-left "  >
+                                        <img src="{{ $products[$key]['image']['img1'] }}" class="w-100 rounded float-left "  >
                                       </div>
                                 </div>
                                 <div class="col-md-8 text-dark  " >
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('description')}} : </label>
-                                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'description'" :key="'products.'.$key.'.description'"/>
+                                            <span > {{ $products[$key]['description'] }}</span>
+                                            {{-- <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'description'" :key="'products.'.$key.'.description'"/> --}}
                                         </div>
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('price')}} : </label>
-                                            <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'price'" :key="'products.'.$key.'.price'"/>
+                                            <span > {{ $products[$key]['price'] }}</span>
+                                            {{-- <livewire:components.edit-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'price'" :key="'products.'.$key.'.price'"/> --}}
                                         </div>
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('active')}} : </label>
+
                                             <span class="badge badge-{{ $products[$key]['activebadge'] }} " > {{ ($products[$key]['active']) == 0 ?  __('active')  : __('inactive') }}</span>
                                         </div>
                                         <div class="form-group mb-0 ">
@@ -35,8 +38,8 @@
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('start_date')}} : </label>
                                              {{-- <livewire:components.datepk :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.'.$key.'.start_date'"  :inid="'products.'.$key.'.start_date'"/> --}}
-
-                                            <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.'.$key.'.start_date'"  :inid="'products.'.$key.'.start_date'"/>
+                                             <span > {{ $products[$key]['start_date'] }}</span>
+                                            {{-- <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'start_date'" :key="'products.'.$key.'.start_date'"  :inid="'products.'.$key.'.start_date'"/> --}}
                                         </div>
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('expiry')}} : </label>
