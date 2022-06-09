@@ -49,34 +49,60 @@ class Products extends Component
             {
                 $previousPath   = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img']??null;
                 $mmm          = $this->products[$nestedData[0]]['image']['img1']->store('/', 'product');
-                $product->product_images()->where('position','1')->where('is_default',1)->first()->update([
-                    'img'        =>  $mmm ,
-                    'is_default' => 1,
-                    'position'   => 1,
-                ]);
+                if($previousPath == null){
+                    $product->product_images()->create([
+                        'img'        =>  $mmm ,
+                        'is_default' => 1,
+                        'position'   => 1,
+                    ]);
+
+                }else{
+                    $product->product_images()->where('position','1')->where('is_default',1)->first()->update([
+                        'img'        =>  $mmm ,
+                        'is_default' => 1,
+                        'position'   => 1,
+                    ]);
+                 }
 
                 // $this->products[$nestedData[0]]['image']['img1'] = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];;
             }
             if($nestedData[2] == 'img2')
             {
-                $previousPath   = $product->product_images()->where('position','2')->where('is_default','!=',1)->first()->getAttributes()['img']??null;
+                $previousPath   = $product->product_images()->where('position','2')->where('is_default','!=',1)->first()->getAttributes()['img'] ?? null;
                 $mmm          = $this->products[$nestedData[0]]['image']['img2']->store('/', 'product');
-                $product->product_images()->where('position','2')->where('is_default','!=',1)->first()->update([
-                    'img'        =>  $mmm ,
-                    'is_default' => 0,
-                    'position'   => 2,
-                ]);
+                if($previousPath == null){
+                    $product->product_images()->create([
+                        'img'        =>  $mmm ,
+                        'is_default' => 0,
+                        'position'   => 2,
+                    ]);
+
+                }else{
+                    $product->product_images()->where('position','2')->where('is_default','!=',1)->first()->update([
+                        'img'        =>  $mmm ,
+                        'is_default' => 0,
+                        'position'   => 2,
+                    ]);
+                }
                 // $this->products[$nestedData[0]]['image']['img1'] = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];;
             }
             if($nestedData[2] == 'img3')
             {
                 $previousPath   = $product->product_images()->where('position','3')->where('is_default','!=',1)->first()->getAttributes()['img']??null;
                  $mmm          = $this->products[$nestedData[0]]['image']['img3']->store('/', 'product');
-                $product->product_images()->where('position','3')->where('is_default','!=',1)->first()->update([
-                    'img'        =>  $mmm ,
-                    'is_default' => 0,
-                    'position'   => 3,
-                ]);
+                 if($previousPath == null){
+                    $product->product_images()->create([
+                        'img'        =>  $mmm ,
+                        'is_default' => 0,
+                        'position'   => 3,
+                    ]);
+                }else{
+                    $product->product_images()->where('position','3')->where('is_default','!=',1)->first()->update([
+                        'img'        =>  $mmm ,
+                        'is_default' => 0,
+                        'position'   => 3,
+                    ]);
+                }
                 // $this->products[$nestedData[0]]['image']['img1'] = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];;
             }
             if($previousPath != null)Storage::disk('branch')->delete($previousPath);
