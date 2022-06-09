@@ -1,5 +1,47 @@
 @push('csslive')
 <style>
+     /* Container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  color: rgb(252, 1, 1);
+}
+
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .btclose{
   position: absolute;
   z-index: 1;
@@ -37,6 +79,7 @@
                             <button  class="close btclose">
                               <span>&times;</span>
                             </button>
+                            <div class="container">
                             <div class="text-center" x-data="{ imagePreview: '{{ $products[$index??0]['image']['img1'] }}' }">
                                 <input wire:model="products.{{$index??0}}.image.img1" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
                                     x-on:change="
@@ -48,7 +91,9 @@
                                                 reader.readAsDataURL($refs.image.files[0]);;;
                                             "/>
                                 <img x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img1'] }}'" alt="Branch picture">
+                                <div class="centered">Main</div>
                             </div>
+                        </div>
                             {{-- <img src="{{ $products[$in dex??0]['image']['img'] }}" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  > --}}
                         </div>
                     </div>

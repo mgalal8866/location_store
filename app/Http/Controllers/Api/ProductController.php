@@ -69,47 +69,64 @@ class ProductController extends Controller
     public function productedit(Request $request){
         $product = products::findOrFail($request->product_id);
         // DotenvEditor::setKey('APP_KEY', 'new_value')->save();
-
-
-
-         $product->update([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'price' => $request->price,
-            'description' => $request->description,
-
-        ]);
+          $product->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'price' => $request->price,
+                'description' => $request->description,
+             ]);
         if(!empty($request->image1)) {
-                $previousPath =   $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];
-                Storage::disk('product')->delete($previousPath);
-
+                $previousPath =   $product->product_images()->where('position','1')->where('is_default',1)->first()??null;
                 $filepath = $this->uploadimages('product', $request->image1);
-                $product->product_images()->where('position','1')->where('is_default',1)->first()->update([
-                    'img'        => $filepath,
-                    'is_default' => 1,
-                    'position'   => 1,
-                ]);
+                if($previousPath == null){
+                    $product->product_images()->create([
+                        'img'        =>  $filepath ,
+                        'is_default' => 1,
+                        'position'   => 1,
+                    ]);
+
+                }else{
+                    $product->product_images()->where('position','1')->where('is_default',1)->first()->update([
+                        'img'        => $filepath,
+                        // 'is_default' => 1,
+                        // 'position'   => 1,
+                    ]);
+                }
         }
         if(!empty($request->image2)){
-                $previousPath =   $product->product_images()->where('position','2')->first()->getAttributes()['img'];
-                Storage::disk('product')->delete($previousPath);
-                $filepath = $this->uploadimages('product', $request->image2);
+                $previousPath =   $product->product_images()->where('position','2')->first()??null;
+                     $filepath = $this->uploadimages('product', $request->image2);
+                     if($previousPath == null){
+                        $product->product_images()->create([
+                            'img'        =>  $filepath ,
+                            'is_default' => 0,
+                            'position'   => 2,
+                        ]);
 
-                $product->product_images()->where('position','2')->first()->update([
-                    'img'      => $filepath,
-                    'position' => 2,
-                ]);
+                    }else{
+                        $product->product_images()->where('position','2')->first()->update([
+                            'img'      => $filepath,
+                            // 'position' => 2,
+                        ]);
+                    }
         }
         if(!empty($request->image3)) {
-                $previousPath =   $product->product_images()->where('position','3')->getAttributes()['img'];
-                Storage::disk('product')->delete($previousPath);
-
+                $previousPath =   $product->product_images()->where('position','3')->first()??null;
                 $filepath = $this->uploadimages('product', $request->image3);
-                $product->product_images()->where('position','3')->first()->update([
-                    'img'      => $filepath,
-                    'position' => 3,
-                ]);
+                if($previousPath == null){
+                    $product->product_images()->create([
+                        'img'        =>  $filepath ,
+                        'is_default' => 0,
+                        'position'   => 3,
+                    ]);
+                }else{
+                    $product->product_images()->where('position','3')->first()->update([
+                        'img'      => $filepath,
+                        // 'position' => 3,
+                    ]);
+                }
         }
+        if($previousPath != null)Storage::disk('branch')->delete($previousPath->getAttributes()['img']);
 
      return $this->returnData('product', new product($product),'تم تعديل المنتج بنجاح ');
 

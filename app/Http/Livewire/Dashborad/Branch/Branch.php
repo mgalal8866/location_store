@@ -11,6 +11,7 @@ use App\Models\categories;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Livewire\FileUploadConfiguration;
 
 class Branch extends Component
 {
@@ -205,6 +206,8 @@ class Branch extends Component
 
             $this->branchlist[$nestedData[0]]['image'] = $branch->image;
             Storage::disk('branch')->delete($previousPath);
+
+
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Image ✔']);
         }
 
@@ -224,6 +227,19 @@ class Branch extends Component
             dd($this->regions);
         }
     }
+
+    protected function cleanupOldUploads()
+    {
+            $storage = Storage::disk('local');
+            foreach(  $storage->allFiles('livewire-tmp') as $filepathname)
+            {
+                $yesterdaysStemp = now()->subHours(1)->timestamp ;
+                if($yesterdaysStemp > $storage->lastModified($filepathname) ){
+                    $storage->delete($filepathname);
+                }
+            }
+    }
+
     public function render()
     {
         return view('livewire.dashborad.branch.branch')->layout('admin.layouts.masterdash');

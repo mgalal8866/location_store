@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col-md-4  " >
                                     <div class="mt-5">
-                                        <img src="{{ $products[$key]['image']['img1'] }}" class="w-100 rounded float-left "  >
+                                        <img wire:model=""src="{{ $products[$key]['image']['img1'] }}" class="w-100 rounded float-left "  >
                                       </div>
                                 </div>
                                 <div class="col-md-8 text-dark  " >

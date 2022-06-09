@@ -8,6 +8,9 @@
     @section('page2')
     {{__('store')}}
     @endsection
+    <div  wire:loading >
+        <x-load></x-load>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
