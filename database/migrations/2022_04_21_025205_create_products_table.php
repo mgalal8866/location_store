@@ -20,10 +20,10 @@ class CreateProductsTable extends Migration
             $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->string('price')->nullable();
-            $table->date('start_date')->nullable()->comment('تاريخ بدايه التفعيل');
-            $table->date('expiry_date')->nullable()->comment('تاريخ انتهاءالتفعيل');
+            $table->dateTime('start_date')->nullable()->comment('تاريخ بدايه التفعيل');
+            $table->dateTime('expiry_date')->nullable()->comment('تاريخ انتهاءالتفعيل');
             $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
-            $table->tinyInteger('is_default')->default('1')->comment('[0 = افتراضى] [1 = غير افتراضى]');
+            $table->integer('view')->default(0)->comment('المشاهدات');
             $table->softDeletes();
             $table->timestamps();
         });

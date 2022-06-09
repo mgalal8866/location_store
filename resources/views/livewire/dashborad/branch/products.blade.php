@@ -43,6 +43,7 @@
                                         </div>
                                         <div class="form-group mb-0 ">
                                             <label class="text-bold ">{{ __('expiry')}} : </label>
+                                            <span > {{ $products[$key]['expiry_date'] }}</span>
                                             {{-- <livewire:components.date-field :model="'\App\Models\products'" :entity="$products[$key]['product']" :field="'expiry_date'" :key="'products.'.$key.'.expiry_date'" :inid="'products.'.$key.'.expiry_date'"/> --}}
                                         </div>
 

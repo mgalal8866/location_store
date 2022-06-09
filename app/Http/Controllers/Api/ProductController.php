@@ -7,10 +7,12 @@ use App\Models\products;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\product;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\productbyid;
 use App\Http\Controllers\Controller;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-use App\Http\Resources\productbyid;
 
 class ProductController extends Controller
 {
@@ -35,19 +37,22 @@ class ProductController extends Controller
                         $filepath = $this->uploadimages('product', $request->image1);
                         $product->product_images()->create([
                             'img' => $filepath,
-                            'is_default' => 0
+                            'is_default' => 1,
+                            'position' => 1,
                         ]);
                 }
                 if(!empty($request->image2)){
                         $filepath = $this->uploadimages('product', $request->image2);
                         $product->product_images()->create([
-                            'img' => $filepath
+                            'img' => $filepath,
+                            'position' => 2,
                         ]);
                 }
                 if(!empty($request->image3)) {
                         $filepath = $this->uploadimages('product', $request->image3);
                         $product->product_images()->create([
-                            'img' => $filepath
+                            'img' => $filepath,
+                            'position' => 3,
                         ]);
                 }
             return $this->returnData('product', new product($product),'تم اضافة المنتج بنجاح ');
@@ -63,6 +68,10 @@ class ProductController extends Controller
     }
     public function productedit(Request $request){
         $product = products::findOrFail($request->product_id);
+        // DotenvEditor::setKey('APP_KEY', 'new_value')->save();
+
+
+
          $product->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
@@ -71,22 +80,34 @@ class ProductController extends Controller
 
         ]);
         if(!empty($request->image1)) {
+                $previousPath =   $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];
+                Storage::disk('product')->delete($previousPath);
+
                 $filepath = $this->uploadimages('product', $request->image1);
-                $product->product_images()->create([
-                    'img' => $filepath,
-                    'is_default' => 0
+                $product->product_images()->where('position','1')->where('is_default',1)->first()->update([
+                    'img'        => $filepath,
+                    'is_default' => 1,
+                    'position'   => 1,
                 ]);
         }
         if(!empty($request->image2)){
+                $previousPath =   $product->product_images()->where('position','2')->first()->getAttributes()['img'];
+                Storage::disk('product')->delete($previousPath);
                 $filepath = $this->uploadimages('product', $request->image2);
-                $product->product_images()->create([
-                    'img' => $filepath
+
+                $product->product_images()->where('position','2')->first()->update([
+                    'img'      => $filepath,
+                    'position' => 2,
                 ]);
         }
         if(!empty($request->image3)) {
+                $previousPath =   $product->product_images()->where('position','3')->getAttributes()['img'];
+                Storage::disk('product')->delete($previousPath);
+
                 $filepath = $this->uploadimages('product', $request->image3);
-                $product->product_images()->create([
-                    'img' => $filepath
+                $product->product_images()->where('position','3')->first()->update([
+                    'img'      => $filepath,
+                    'position' => 3,
                 ]);
         }
 
@@ -111,8 +132,8 @@ class ProductController extends Controller
         {
             $product = products::whereBranchId($branch_id)->get();
             return response()->json([
-                'data' =>  product::collection($product),
-                'status' => true,
+                'data'   =>  product::collection($product),
+                'status' =>  true,
                 'number' =>  $num_product . ' / ' .$limit_peoduct
             ]);
         }
@@ -120,14 +141,15 @@ class ProductController extends Controller
         {
             return response()->json([
                 'status' => false,
-                'number' =>  $num_product . ' / ' .$limit_peoduct  ,
-                'msg' => config('err_message.alert.limit_product')
+                'number' => $num_product . ' / ' .$limit_peoduct  ,
+                'msg'    => config('err_message.alert.limit_product')
             ]);
         }
     }
 
     public function getbyid($product_id)
     {
+      DB::table('products')->whereId($product_id)->increment('view');
       $product =   products::find($product_id);
       return  $this->returnData('data',new productbyid($product));
     }

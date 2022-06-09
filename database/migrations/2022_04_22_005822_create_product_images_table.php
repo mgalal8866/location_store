@@ -17,6 +17,8 @@ class CreateProductImagesTable extends Migration
             $table->increments('id');
             $table->bigInteger('products_id');
 			$table->string('img');
+            $table->tinyInteger('position')->default('0');
+            $table->tinyInteger('is_default')->default('0')->comment('[1 = افتراضى] [0 = غير افتراضى]');
             $table->softDeletes();
             $table->timestamps();
         });

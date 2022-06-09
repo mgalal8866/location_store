@@ -33,24 +33,7 @@ class products extends Model
         ];
         return $badge[$this->active];
      }
-    //  public function setStartDateAttribute($value)
-    //  {
-    //      if($value=='note set') {return null ;}else{return $value;}
-    // }
-    //  public function getStartDateAttribute($value)
-    //  {
-    //      if($value==null) {return 'note set' ;}else{return $value;}
-    //     }
-    // public function getExpiryDateAttribute($value)
-    //  {
-    //      if($value==null) {return 'note set' ;}else{return $value;}
-    // }
-    // public function setStartDateAttribute($value){
-    //     return  Carbon::parse($value)->toFormattedDate();
-    // }
-    // public function setExpiryDateAttribute($value){
-    //     return  Carbon::parse($value)->toFormattedDate();
-    // }
+   
 
     public function getStartDateAttribute($value){
         return   $value ?  Carbon::parse($value)->toFormattedDate() : '';

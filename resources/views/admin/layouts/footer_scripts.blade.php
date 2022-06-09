@@ -99,7 +99,10 @@
             $("#modalForm").modal('show');
         });
     //    toastr.success( (e.detail.msg))
+    window.addEventListener('closeModal', event=> {
+            $('#updateModal').modal('hide');
 
+        });
  </script>
 
 
