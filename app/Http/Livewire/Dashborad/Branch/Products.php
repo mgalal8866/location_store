@@ -44,12 +44,10 @@ class Products extends Component
 
         if($nestedData[1] == 'image' )
         {
+            $product = ModelsProducts::find($this->products[$nestedData[0]]['id']);
             if($nestedData[2] == 'img1')
             {
-                $product = ModelsProducts::find($this->products[$nestedData[0]]['id']);
                 $previousPath   = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img']??null;
-                Storage::disk('branch')->delete($previousPath);
-
                 $mmm          = $this->products[$nestedData[0]]['image']['img1']->store('/', 'product');
                 $product->product_images()->where('position','1')->where('is_default',1)->first()->update([
                     'img'        =>  $mmm ,
@@ -58,10 +56,32 @@ class Products extends Component
                 ]);
 
                 // $this->products[$nestedData[0]]['image']['img1'] = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];;
-
-                $this->dispatchBrowserEvent('closeModal');
-                $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Image ✔']);
             }
+            if($nestedData[2] == 'img2')
+            {
+                $previousPath   = $product->product_images()->where('position','2')->where('is_default','!=',1)->first()->getAttributes()['img']??null;
+                $mmm          = $this->products[$nestedData[0]]['image']['img2']->store('/', 'product');
+                $product->product_images()->where('position','2')->where('is_default','!=',1)->first()->update([
+                    'img'        =>  $mmm ,
+                    'is_default' => 0,
+                    'position'   => 2,
+                ]);
+                // $this->products[$nestedData[0]]['image']['img1'] = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];;
+            }
+            if($nestedData[2] == 'img3')
+            {
+                $previousPath   = $product->product_images()->where('position','3')->where('is_default','!=',1)->first()->getAttributes()['img']??null;
+                 $mmm          = $this->products[$nestedData[0]]['image']['img3']->store('/', 'product');
+                $product->product_images()->where('position','3')->where('is_default','!=',1)->first()->update([
+                    'img'        =>  $mmm ,
+                    'is_default' => 0,
+                    'position'   => 3,
+                ]);
+                // $this->products[$nestedData[0]]['image']['img1'] = $product->product_images()->where('position','1')->where('is_default',1)->first()->getAttributes()['img'];;
+            }
+            if($previousPath != null)Storage::disk('branch')->delete($previousPath);
+            $this->dispatchBrowserEvent('closeModal');
+            $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Image ✔']);
         }
 
     }
