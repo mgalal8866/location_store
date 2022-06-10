@@ -8,9 +8,7 @@
     @section('page2')
     {{__('store')}}
     @endsection
-    <div  wire:loading >
-        <x-load></x-load>
-    </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -33,6 +31,7 @@
                         </button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -42,24 +41,39 @@
         <div class="card">
             <div class="card-header" >
 
-                {{-- <div  class="d-flex justify-content-end mb-2"> --}}
-                    <label  for="pages">{{__('show')}}</label>
-                    <select class="form-select" wire:model="pages" name="pages" id="pages">
-                        <option value="10" > 10 </option>
-                        <option value="25" > 25 </option>
-                        <option value="50" > 50 </option>
-                        <option value="100" > 100 </option>
-                        <option value="200" > 200 </option>
-                    </select>
-                {{-- </div> --}}
+                <div  class="d-flex justify-content-between  mb-2">
+                    <div>
+                        <label  for="pages">{{__('show')}}</label>
+                        <select class="form-select" wire:model="pages" name="pages" id="pages">
+                            <option value="10" > 10 </option>
+                            <option value="25" > 25 </option>
+                            <option value="50" > 50 </option>
+                            <option value="100" > 100 </option>
+                            <option value="200" > 200 </option>
+                        </select>
+                    </div>
+                    <div>
+                        <x-search-input wire:model="searchTerm" />
+                    </div>
+                </div>
+
             </div>
 
             <div class="card-body p-0 table-responsive">
+                <div  wire:loading  wire:target='filterStoreByStatus'>
+                    <x-load></x-load>
+                </div>
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>{{ (__('name')) }}</th>
+                            <th>
+                                {{ (__('name')) }}
+                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer;">
+                                    <i class="fa fa-arrow-up {{ $sortColumnName === 'name' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                    <i class="fa fa-arrow-down {{ $sortColumnName === 'name' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                </span>
+                            </th>
                             <th>{{ (__('user')) }}</th>
                             <th>{{ (__('category')) }}</th>
                             {{-- <th>{{ (__('info')) }}</th> --}}
@@ -68,7 +82,7 @@
                             <th width="240">{{ (__('action')) }}</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody wire:loading.class="text-muted">
                         @forelse ( $stores  as $store )
                             <tr>
                                 <td>{{$loop->index +1}}</td>
@@ -102,7 +116,9 @@
 
                                       {{-- @livewire('active', ['model' => $store, 'field' => 'active'], key($store->id)) --}}
                                         {{-- <input wire:model='pages' data-id="{{$store->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="ON" data-off="OFF" {{ $store->active ? 'checked' : '' }}> --}}
-
+                                        {{-- <a href="" wire:click="$refresh">
+                                            <i class="fa fa-edit mr-2"></i>
+                                        </a> --}}
                                     <a class="btn btn-info  btn-sm"  href="{{route('branch',['slug' => $store->slug]) }}"><i class="far fa-eye"></i>{{ __('show') }}</a>
                                     <button class="btn btn-danger  btn-sm"  data-toggle="modal" data-target="#modal-edit"><i class="fas fa-trash-alt"></i>{{ __('tran.delete') }}</button>
                                 </td>

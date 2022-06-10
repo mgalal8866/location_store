@@ -1,7 +1,12 @@
 <div>
     @include('livewire.dashborad.branch.product-details')
         <div class="row shadow p-3 rounded"  x-show="show" style=" width: 100%; height: 20rem; overflow: auto;">
+          {{-- <div wire:click="$refresh" >
+            <i class="fa fa-edit mr-2"></i>
+            {{-- <a href="">
 
+            </a>
+          </div> --}}
             @foreach ( $products as $key => $item )
                 <div class="col-sm-6">
                     <div class="card card-success card-outline ">

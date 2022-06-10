@@ -10,8 +10,11 @@ class Store extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $pages, $status;
+    public    $pages, $status;
+	public $searchTerm = null;
+    public $sortColumnName = 'created_at';
 
+    public $sortDirection = 'desc';
 
 //  public $postId;
 
@@ -24,29 +27,57 @@ class Store extends Component
 //     {
 //         $this->post->delete();
 //     }
+        public function sortBy($columnName)
+        {
+            if ($this->sortColumnName === $columnName) {
+                $this->sortDirection = $this->swapSortDirection();
+            } else {
+                $this->sortDirection = 'asc';
+            }
 
+            $this->sortColumnName = $columnName;
+        }
+
+        public function swapSortDirection()
+        {
+            return $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        }
         public function filterStoreByStatus($status = null)
         {
             $this->resetPage();
-
             $this->status = $status;
-
         }
 
+       
     public function render()
     {
 
 
-        $storeall =  stores::count();
-        $storeactive =  stores::whereActive(0)->count();
+        $storeall       =  stores::count();
+        $storeactive    =  stores::whereActive(0)->count();
         $storedisactive =  stores::whereActive(1)->count();
-        $stores = stores::with('branch')->when($this->status, function ($query, $status) {
-            return $query->where('active', $status);
-        })->latest()->paginate($this->pages);
 
+        // $users = User::query()
+        // ->where('name', 'like', '%'.$this->searchTerm.'%')
+        // ->orWhere('email', 'like', '%'.$this->searchTerm.'%')
+        // ->orderBy($this->sortColumnName, $this->sortDirection)
+        // ->paginate(5);
+
+        $stores = stores::with('branch')->
+            when($this->status, function ($query, $status) {
+                return $query->where('active', $status);})->
+
+            whereHas('user' , function ($query) {
+                return $query->where('mobile', 'like', '%'.$this->searchTerm.'%');})->
+            orderBy($this->sortColumnName, $this->sortDirection)->
+            latest()->paginate($this->pages);
 
         return view('livewire.dashborad.store.viewstore',
-        ['stores'=> $stores,'storeactive'=> $storeactive,'storedisactive'=> $storedisactive,'storeall'=>$storeall])
-        ->layout('admin.layouts.masterdash');
+            [
+                'stores'        => $stores,
+                'storeactive'   => $storeactive,
+                'storedisactive'=> $storedisactive,
+                'storeall'      => $storeall
+            ])->layout('admin.layouts.masterdash');
     }
 }

@@ -11,31 +11,13 @@ class Products extends Component
 {
     public $index;
     public $products = [];
+    public $branch;
+    
     use WithFileUploads;
     public function mount($branch)
     {
-        foreach($branch->product as $product )
-        {
-            $this->products [] =
-                ['product'     => $product,
-                 'id'          => $product->id,
-                 'branch_id'   => $product->branch_id,
-                 'name'        => $product->name,
-                 'price'       => $product->price  ,
-                 'description' => $product->description,
-                 'active'      => $product->active,
-                 'activebadge' => $product->activebadge,
-                 'start_date'  => $product->start_date,
-                 'expiry_date' => $product->expiry_date,
-                 'create'      => $product->created_at->diffForHumans(),
-                 'update'      => $product->updated_at->diffForHumans(),
-                 'image'       => [
-                                    'img1' => $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg'),
-                                    'img2' => $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg'),
-                                    'img3' => $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg')
-                                  ],
-                 ] ;
-        }
+        $this->branch = $branch;
+
         // dd(  $th'is->products);
     }
     public function updatedProducts($value, $nested)
@@ -137,6 +119,29 @@ class Products extends Component
 
     public function render()
     {
+        $this->products = null;
+        foreach($this->branch->product as $product )
+        {
+            $this->products [] =
+                ['product'     => $product,
+                 'id'          => $product->id,
+                 'branch_id'   => $product->branch_id,
+                 'name'        => $product->name,
+                 'price'       => $product->price  ,
+                 'description' => $product->description,
+                 'active'      => $product->active,
+                 'activebadge' => $product->activebadge,
+                 'start_date'  => $product->start_date,
+                 'expiry_date' => $product->expiry_date,
+                 'create'      => $product->created_at->diffForHumans(),
+                 'update'      => $product->updated_at->diffForHumans(),
+                 'image'       => [
+                                    'img1' => $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg'),
+                                    'img2' => $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg'),
+                                    'img3' => $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg')
+                                  ],
+                 ] ;
+        }
         return view('livewire.dashborad.branch.products');
     }
 }
