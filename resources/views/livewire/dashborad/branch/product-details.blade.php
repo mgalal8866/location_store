@@ -112,7 +112,7 @@
                                                 };
                                                 reader.readAsDataURL($refs.image.files[0]);;;
                                             "/>
-                                <img x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img2'] }}'" alt="Branch picture">
+                                <img  x-on:click="$refs.image.click()" class="border-dark border border-2 w-25 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img2'] }}'" alt="Branch picture">
                             </div>
                          </div>
                     </div>
