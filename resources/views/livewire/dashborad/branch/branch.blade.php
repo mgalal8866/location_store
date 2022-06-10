@@ -11,7 +11,7 @@
     Branch
     @endsection
 
- 
+
     <form enctype="multipart/form-data">
         <div class="row" >
             <div class="col-md-12">
