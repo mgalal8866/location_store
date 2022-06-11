@@ -23,7 +23,7 @@ class slider extends JsonResource
                 'branchstate'  =>  boolval($this->branchstate),
                 'branch_id'   => $this->branch_id??'',
                 'productstate'=>  boolval($this->productstate),
-                'branch_id'     => $this->branch_id??'',
+                'product_id'     => $this->product_id??'',
             ];
     }
 }
