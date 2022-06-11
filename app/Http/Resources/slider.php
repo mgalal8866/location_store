@@ -20,10 +20,10 @@ class slider extends JsonResource
                 'image'       => $this->image,
                 'urlstate'    => boolval($this->urlstate),
                 'url'         => $this->url??'',
-                'storestate'  =>  boolval($this->branchstate),
+                'branchstate'  =>  boolval($this->branchstate),
                 'branch_id'   => $this->branch_id??'',
                 'productstate'=>  boolval($this->productstate),
-                'product'     => $this->product??'',
+                'branch_id'     => $this->branch_id??'',
             ];
     }
 }
