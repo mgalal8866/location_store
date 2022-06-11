@@ -93,7 +93,14 @@ class Products extends Component
         }
 
     }
-
+    public function deleteId($index)
+    {
+        $this->index = $index;
+    }
+    public function delete()
+    {
+        ModelsProducts::find( $this->products[$this->index]['id'],)->delete();
+    }
     public function edit($index)
     {
         $this->index = $index;

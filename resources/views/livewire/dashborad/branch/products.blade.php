@@ -7,6 +7,25 @@
 
             </a>
           </div> --}}
+          <div wire:ignore.self class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true close-btn">×</span>
+                        </button>
+                    </div>
+                   <div class="modal-body">
+                        <p>Are you sure want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                       <button type="button" wire:click.prevent="delete()" class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete</button>
+                    </div>
+                </div>
+            </div>
+           </div>
             @foreach ( $products as $key => $item )
                 <div class="col-md-6 col-xl-6">
                     <div class="card card-success card-outline ">
@@ -57,7 +76,8 @@
                         </div>
                         <div class="card-footer card-gray-dark card-outline">
                              {{-- <a type="button" class="btn  btn-sm btn-outline-warning"><i class="fas fa-edit    "></i></i></a>--}}
-                             <button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$key}})" class="btn btn-primary btn-sm">Edit</button>
+                             <button type="button" wire:click="deleteId({{$key}})" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">Delete</button>
+
                              <button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$key}})" class="btn btn-primary btn-sm">Edit</button>
 
                         </div>
