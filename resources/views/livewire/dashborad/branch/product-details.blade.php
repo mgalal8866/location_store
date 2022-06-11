@@ -76,7 +76,7 @@
                 <div class="row mb-2">
                     <div class="col-md-4">
                         <div class="1st img-head">
-                            <button  class="close btclose">
+                            <button  wire:click='imagedelete({{$index??0}},1)'  class="close btclose">
                               <span>&times;</span>
                             </button>
                             <div class="container">
@@ -99,8 +99,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="2st img-head">
-                            <button   class="close btclose">
-                              <span>&times;</span>
+                            <button  wire:click='imagedelete({{$index??0}},2)' class="close btclose">
+                              <span >&times;</span>
                             </button>
                             <div class="text-center" x-data="{ imagePreview: '{{ $products[$index??0]['image']['img2'] }}' }">
                                 <input wire:model="products.{{$index??0}}.image.img2" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
@@ -112,13 +112,13 @@
                                                 };
                                                 reader.readAsDataURL($refs.image.files[0]);;;
                                             "/>
-                                <img  x-on:click="$refs.image.click()" class="border-dark border border-2 w-25 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img2'] }}'" alt="Branch picture">
+                                <img  x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img2'] }}'" alt="Branch picture">
                             </div>
                          </div>
                     </div>
                     <div class="col-md-4">
                         <div class="3st img-head">
-                            <button   class="close btclose">
+                            <button   wire:click='imagedelete({{$index??0}},3)'   class="close btclose">
                               <span>&times;</span>
                             </button>
                             <div class="text-center" x-data="{ imagePreview: '{{ $products[$index??0]['image']['img3'] }}' }">

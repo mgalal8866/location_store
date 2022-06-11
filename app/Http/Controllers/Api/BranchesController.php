@@ -78,7 +78,7 @@ class BranchesController extends Controller
     }
 
 // بحث عن طريق المدينه المحافظه المنتج المتجر
-    public function  search($query)
+    public function  search($query='')
     {
          $ss = branchs::whereActive(0)->orderBy('top', 'DESC')->
          WhereHas('stores', function($q) use ($query){
@@ -94,11 +94,10 @@ class BranchesController extends Controller
         })->
         orWhereHas('product', function($q4) use ($query){
             $q4->Where('name','like', '%'.  $query  . '%')->whereActive(0);
-        })->
-        get();
+        })->paginate(10);
 
 
-        return $this->returnData('branches',onebraches::collection($ss));
+        return $this->returnData('branches', new branchesCollection($ss),'Done');
     }
 
 //تعديل متجر

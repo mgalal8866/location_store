@@ -3,14 +3,21 @@
 namespace App\Http\Livewire\Dashborad\setting;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use JoeDixon\Translation\Drivers\Translation;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-
+use JoeDixon\Translation\Http\Requests\LanguageRequest;
 class Setting extends Component
 {
     use WithFileUploads;
     public $logo,$favicon;
     use GeneralTrait;
 
+    private $translation;
+
+    public function mount(Translation $translation)
+    {
+        $this->translation = $translation;
+    }
 
         public function submit(){
             if ($this->logo != null){
@@ -33,6 +40,9 @@ class Setting extends Component
 
     public function render()
     {
-        return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
+
+        $languages =  $this->translation->allLanguages();
+
+        return view('livewire.dashborad.setting.setting',['languages' =>   $languages ])->layout('admin.layouts.masterdash');
     }
 }

@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class products extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
     protected $guarded = [];
     protected $casts = [
         'start_date' => 'datetime',
@@ -33,7 +34,7 @@ class products extends Model
         ];
         return $badge[$this->active];
      }
-   
+
 
     public function getStartDateAttribute($value){
         return   $value ?  Carbon::parse($value)->toFormattedDate() : '';

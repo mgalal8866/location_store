@@ -16,9 +16,14 @@ class slider extends JsonResource
     {
         return
             [
-                'id' => $this->id,
-                'image' => $this->image
-
+                'id'          => $this->id,
+                'image'       => $this->image,
+                'urlstate'    => boolval($this->urlstate),
+                'url'         => $this->url??'',
+                'storestate'  =>  boolval($this->branchstate),
+                'branch_id'   => $this->branch_id??'',
+                'productstate'=>  boolval($this->productstate),
+                'product'     => $this->product??'',
             ];
     }
 }

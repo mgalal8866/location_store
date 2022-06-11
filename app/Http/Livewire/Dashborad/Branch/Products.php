@@ -12,7 +12,7 @@ class Products extends Component
     public $index;
     public $products = [];
     public $branch;
-    
+
     use WithFileUploads;
     public function mount($branch)
     {
@@ -99,10 +99,17 @@ class Products extends Component
         $this->index = $index;
     }
 
+    public function imagedelete($index,$imagenumber)
+    {
+        $productupdate = ModelsProducts::find($this->products[$index]['id']);
+        $productupdate->product_images()->where('position',$imagenumber)->delete();
+
+        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Image Delete 🔴 ']);
+    }
+
     public function update($index)
     {
-        // dd($this->products[$index]['expiry_date']);
-        //"06/08/2022"
         $productupdate =  ModelsProducts::find($this->products[$index]['id']);
         $productupdate->update ([
             'name'        => $this->products[$index]['name'],

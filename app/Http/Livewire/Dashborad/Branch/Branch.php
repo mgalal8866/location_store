@@ -106,7 +106,6 @@ class Branch extends Component
             'numberbranch.gt'            => 'عدد الفروع مطلوب',
         ]);
 
-
         $store = stores::whereSlug($this->slug)->first();
         $store->update(
             [
@@ -143,15 +142,15 @@ class Branch extends Component
             'branchlist.*.numproduct.gt'              => 'عدد المنتجات يجب ان يكون لايساوى0'
         ]);
 
-// dd($this->branchlist[$index]['start_date']);
+            // dd($this->branchlist[$index]['start_date']);
             $branch = branchs::find($this->branchlist[$index]['branch_id']);
             $branch->update(
                 [
                     'active'     => $this->branchlist[$index]['active'],
                     'top'        => $this->branchlist[$index]['top'],
                     'description'=> $this->branchlist[$index]['descriptionbranch'],
-                    'start_date' => $this->branchlist[$index]['start_date'],
-                    'expiry_date'=> $this->branchlist[$index]['expiry_date'],
+                    'start_date' => ($this->branchlist[$index]['start_date'] == '')? null : $this->branchlist[$index]['start_date'],
+                    'expiry_date'=> ($this->branchlist[$index]['expiry_date'] == '')? null :$this->branchlist[$index]['expiry_date'],
                     'address'    => $this->branchlist[$index]['address'],
                     'accept'     => $this->branchlist[$index]['approval'],
                     'phone'      => $this->branchlist[$index]['phone'],

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class product_images extends Model
 {
-    use HasFactory;
+  
+    use HasFactory , SoftDeletes;
     protected $guarded = [];
     public function getImgAttribute($val){
         $path = public_path('assets/images/product/'. $val);
