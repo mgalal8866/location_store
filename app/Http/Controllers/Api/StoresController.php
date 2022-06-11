@@ -41,6 +41,7 @@ class StoresController extends Controller
                 'closetime'     => 'string',
                 'description'   => 'string',
                 'phone'         => 'string',
+                'phone2'         => 'string',
                 'image'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             ]);
 
