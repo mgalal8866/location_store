@@ -108,19 +108,18 @@ class BranchesController extends Controller
             $branch = branchs::findOrFail($request->branch_id);
 
                 $validatorvbranch = Validator::make($request->all(), [
-                    'name' =>'string',
-                    'region_id'=>'required|string|exists:regions,id',
-                    'city_id'=>'required|string|exists:cities,id',
-                    'address' =>'string',
-                    'lat' => 'string',
-                    'lng' => 'string',
-                    'opentime' => 'string',
-                    'closetime' => 'string',
+                    'name'        =>'string',
+                    'region_id'   =>'required|string|exists:regions,id',
+                    'city_id'     =>'required|string|exists:cities,id',
+                    'address'     =>'string',
+                    'lat'         => 'string',
+                    'lng'         => 'string',
+                    'opentime'    => 'string',
+                    'closetime'   => 'string',
                     'description' => 'string',
-                    'phone' => 'string',
-                    'phone2' => 'string',
-                    // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-                ]);
+                    'phone'       => 'string',
+                    'phone2'      => 'string',
+               ]);
 
             if($validatorvbranch->fails()){
                 return $this->returnError('400',$validatorvbranch->errors());

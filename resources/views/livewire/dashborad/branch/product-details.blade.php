@@ -68,11 +68,11 @@
               </button>
             </div>
             <div class="modal-body">
-                <div wire:loading >
+                {{-- <div wire:loading >
                     <div class="overlay">
                         <i class="fas fa-2x fa-sync fa-spin"></i>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row mb-2">
                     <div class="col-md-4">
                         <div class="1st img-head">
@@ -197,24 +197,24 @@
 
                             <div class="form-group">
                                 <label for="name">{{__('name')}}</label>
-                                <input type="text" wire:model.lazy='products.{{$index}}.name' class="form-control" id="name" placeholder="Enter name">
+                                <input type="text" wire:model.dafer='products.{{$index}}.name' class="form-control" id="name" placeholder="Enter name">
                             </div>
                             <div class="form-group">
                                 <label for="description">{{__('description')}}</label>
-                                <input type="text" wire:model.lazy='products.{{$index}}.description'  class="form-control" id="description" placeholder="description">
+                                <input type="text" wire:model.defer='products.{{$index}}.description'  class="form-control" id="description" placeholder="description">
                             </div>
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">{{__('price')}}</label>
-                                        <input type="number"  min="1" step="any"  wire:model.lazy='products.{{$index}}.price'  class="form-control" id="price" placeholder="price">
+                                        <input type="number"  min="1" step="any"  wire:model.dafer='products.{{$index}}.price'  class="form-control" id="price" placeholder="price">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">{{__('active')}}</label>
-                                        <select id="selectactive1"  wire:model.lazy='products.{{$index}}.active' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
+                                        <select id="selectactive1"  wire:model.dafer='products.{{$index}}.active' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
                                             <option value="">Select active</option>
                                             <option value="0">{{ __('active') }}</option>
                                             <option value="1">{{ __('unactive') }}</option>

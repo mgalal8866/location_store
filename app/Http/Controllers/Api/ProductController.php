@@ -91,6 +91,8 @@ class ProductController extends Controller
                         // 'is_default' => 1,
                         // 'position'   => 1,
                     ]);
+                    if($previousPath != null)Storage::disk('branch')->delete($previousPath->getAttributes()['img']);
+
                 }
         }
         if(!empty($request->image2)){
@@ -108,6 +110,8 @@ class ProductController extends Controller
                             'img'      => $filepath,
                             // 'position' => 2,
                         ]);
+                        if($previousPath != null)Storage::disk('branch')->delete($previousPath->getAttributes()['img']);
+
                     }
         }
         if(!empty($request->image3)) {
@@ -124,9 +128,10 @@ class ProductController extends Controller
                         'img'      => $filepath,
                         // 'position' => 3,
                     ]);
+                    if($previousPath != null)Storage::disk('branch')->delete($previousPath->getAttributes()['img']);
+
                 }
         }
-        if($previousPath != null)Storage::disk('branch')->delete($previousPath->getAttributes()['img']);
 
      return $this->returnData('product', new product($product),'تم تعديل المنتج بنجاح ');
 
