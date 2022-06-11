@@ -14,7 +14,8 @@ class slider extends JsonResource
           $branch =  boolval($this->branchstate) ? branchs::find($this->branch_id) :'';
           $product =  boolval($this->productstate) ? products::find($this->product_id):'';
 
-          $branch_num =  boolval($this->branchstate) ? ($branch->stores->branch_num  . ' / '  . $branch->stores->branch->count()) ?? '' : '';
+        //   $branch_num =  boolval($this->branchstate) ? ($branch->stores->branch_num  . ' / '  . $branch->stores->branch->count()) ?? '' : '';
+        //   $product_num =  boolval($this->productstate) ? ($product->branch->product_num  . ' / '  . $product->branch->product->count()) ?? '' : '';
         //
         return
             [
@@ -30,8 +31,8 @@ class slider extends JsonResource
                 'lat'         => $branch->lat ?? $product->branch->lat ?? '' ,
                 'lng'         => $branch->lng?? $product->branch->lng ?? '' ,
                 'phone'       => $branch->phone?? $product->branch->phone ?? '' ,
-                'branch_num'  => $branch_num
-
+                // 'branch_num'  => $branch_num,
+                // 'product_num'  => $product_num
             ];
     }
 }
