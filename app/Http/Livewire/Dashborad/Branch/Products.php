@@ -12,38 +12,16 @@ class Products extends Component
     public $index;
     public $products = [];
     public $branch;
-    protected $listeners = ['someevent' => 'lod'];
+
     use WithFileUploads;
     public function mount($branch)
     {
         $this->branch = $branch;
-        foreach($this->branch->product as $product )
-        {
-            $this->products [] =
-                ['product'     => $product,
-                'id'          => $product->id,
-                'branch_id'   => $product->branch_id,
-                'name'        => $product->name,
-                'price'       => $product->price  ,
-                'description' => $product->description,
-                'active'      => $product->active,
-                'activebadge' => $product->activebadge,
-                'start_date'  => $product->start_date,
-                'expiry_date' => $product->expiry_date,
-                'create'      => $product->created_at->diffForHumans(),
-                'update'      => $product->updated_at->diffForHumans(),
-                'image'       => [
-                                    'img1' => $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg'),
-                                    'img2' => $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg'),
-                                    'img3' => $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg')
-                                ],
-                ] ;
-        }
-
     }
-   
+
     public function updatedProducts($value, $nested)
     {
+        $this->skipRender();
         $nestedData = explode(".", $nested);
 
         if($nestedData[1] == 'image' )
@@ -132,6 +110,7 @@ class Products extends Component
 
     public function update($index)
     {
+
         $productupdate =  ModelsProducts::find($this->products[$index]['id']);
         $productupdate->update ([
             'name'        => $this->products[$index]['name'],
@@ -141,7 +120,7 @@ class Products extends Component
             'start_date'  => ($this->products[$index]['start_date'] == '')? null : $this->products[$index]['start_date'],
             'expiry_date' => ($this->products[$index]['expiry_date'] == '') ? null :$this->products[$index]['expiry_date'],
             ]);
-            $this->lod();
+
             $this->dispatchBrowserEvent('closeModal');
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Update ✔']);
 
@@ -149,7 +128,29 @@ class Products extends Component
 
     public function render()
     {
-
+         $this->products  = null;
+        foreach($this->branch->product as $product )
+        {
+            $this->products [] =
+                ['product'     => $product,
+                'id'          => $product->id,
+                'branch_id'   => $product->branch_id,
+                'name'        => $product->name,
+                'price'       => $product->price  ,
+                'description' => $product->description,
+                'active'      => $product->active,
+                'activebadge' => $product->activebadge,
+                'start_date'  => $product->start_date,
+                'expiry_date' => $product->expiry_date,
+                'create'      => $product->created_at->diffForHumans(),
+                'update'      => $product->updated_at->diffForHumans(),
+                'image'       => [
+                                    'img1' => $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg'),
+                                    'img2' => $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg'),
+                                    'img3' => $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg')
+                                ],
+                ] ;
+        }
 
         return view('livewire.dashborad.branch.products');
     }
