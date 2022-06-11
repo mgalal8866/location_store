@@ -12,7 +12,7 @@ return array (
   'key_label' => '',
   'key_placeholder' => '',
   'language_name' => '',
-  'languages' => '',
+  'languages' => 'اللغات',
   'locale' => '',
   'namespace_label' => '',
   'namespace_placeholder' => '',

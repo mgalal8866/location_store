@@ -58,6 +58,7 @@
                         <div class="card-footer card-gray-dark card-outline">
                              {{-- <a type="button" class="btn  btn-sm btn-outline-warning"><i class="fas fa-edit    "></i></i></a>--}}
                              <button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$key}})" class="btn btn-primary btn-sm">Edit</button>
+                             <button data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$key}})" class="btn btn-primary btn-sm">Edit</button>
 
                         </div>
                     </div>
