@@ -19,9 +19,8 @@ class Datepk extends Component
 
     public function mount($model, $entity)
     {
-
         $this->entityId = $entity->id;
-        $this->shortId =  $entity->shortId;
+        $this->shortId  =  $entity->shortId;
         $this->origDate = $entity->{$this->field};
         $this->init($this->model, $entity); // initialize the component state
     }
@@ -45,12 +44,9 @@ public function updatedDate(){
     private function init($model, $entity)
     {
         $this->origDate = $entity->{$this->field} ?: $this->shortId;
-        $this->date = $this->origDate;
-        $this->isName = $entity->{$this->field} ?? false;
+        $this->date     = $this->origDate;
+        $this->isName   = $entity->{$this->field} ?? false;
     }
-
-
-
 
     public function render()
     {

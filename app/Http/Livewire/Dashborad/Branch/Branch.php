@@ -24,22 +24,14 @@ class Branch extends Component
     $stores,
     $activestore,
     $numberbranch,
-
     $subcategorys=null,
     $selectsubcategory=null,
     $selectcategory=null,
-
     $description,
     $branch_id;
 
     public $i =0;
-
     public $branchlist=[] , $regions=[] , $citys=[];
-
-    // protected $rules = [
-        // 'branchlist.*.address' => 'string|required|min:6',
-        // 'branchlist.*.region_id' => 'string|required|min:6',
-    // ];
 
     public function mount($slug)
     {
@@ -167,8 +159,6 @@ class Branch extends Component
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ✔']);
 
     }
-
-
 
     public function updatedSelectcategory($id)
     {

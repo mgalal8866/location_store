@@ -22,23 +22,23 @@ class onebraches extends JsonResource
 
 
         return [
-            'id' => $this->id,
-            'name' => $this->stores->name,
-            'address' => $this->address??'',
-            'image' => $this->image,
+            'id'          => $this->id,
+            'name'        => $this->stores->name,
+            'address'     => $this->address??'',
+            'image'       => $this->image,
             'description' => $this->description??'',
-            'phone' => $this->phone,
-            'phone2' => $this->phone,
-            'city' => $this->city->name,
-            'region' => $this->region->name,
-            'opentime' => $this->opentime??'',
-            'closetime' => $this->closetime??'',
-            'lat' => $this->lat,
-            'lng' => $this->lng,
-            'visetor' => $this->view,
-            'rating' => number_format(($count != 0)?$sum/$count:0 , 2),
-            'comments' =>  comment::collection($this->comments),
-            'product' =>  product::collection($this->product)
+            'phone'       => $this->phone,
+            'phone2'      => $this->phone,
+            'city'        => $this->city->name,
+            'region'      => $this->region->name,
+            'opentime'    => $this->opentime??'',
+            'closetime'   => $this->closetime??'',
+            'lat'         => $this->lat,
+            'lng'         => $this->lng,
+            'visetor'     => $this->view,
+            'rating'      => number_format(($count != 0)?$sum/$count:0 , 2),
+            'comments'    => comment::collection($this->comments),
+            'product'     => product::collection($this->product)
         ];
     }
 }

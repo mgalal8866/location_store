@@ -6,12 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class branchesCollection extends ResourceCollection
 {
-    /**
-     * Transform the resource collection into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
+
     public function toArray($request)
     {
         return [
@@ -24,7 +19,6 @@ class branchesCollection extends ResourceCollection
                 'total_pages'  => $this->lastPage(),
                 'path'         => $this->path(),
                 'current_path' => $this->path().'?page='.$this->currentPage(),
-
             ],
         ];
     }
