@@ -51,7 +51,7 @@ class StoresController extends Controller
 
                 if( $num_branch == 0)
                 {
-                 $store = stores::firstOrCreate(array_merge(
+                    $store = stores::firstOrCreate(array_merge(
                                 $validator->validated(),
                                 ['slug'    =>  Str::slug($request->name),
                                 'user_id' =>  auth('api')->user()->id]));
@@ -66,8 +66,8 @@ class StoresController extends Controller
                     {
                         $image = null;
                     }
-                    $store->branch()->create(array_merge($validatorvbranch->validated(),['image' => $image]));
-                    return $this->returnSuccessMessage(config('err_message.success.newstore'),'0');
+                $store->branch()->create(array_merge($validatorvbranch->validated(),['image' => $image]));
+                return $this->returnSuccessMessage(config('err_message.success.newstore'),'0');
             }else
             {
 
