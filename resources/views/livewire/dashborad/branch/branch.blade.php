@@ -128,7 +128,8 @@
                                             <i class="fas fa-inbox"></i> {{__('product')}}
                                         </a>
                                     @if($branch->product->count() != 0)
-                                        @livewire('dashborad.branch.products', ['branch' => $branch])
+                                    <livewire:dashborad.branch.products :branch="$branch" :wire:key="$loop->index">
+                                        {{-- @livewire('dashborad.branch.products', ['branch' => $branch] :wire:key="$loop->index") --}}
                                     @endif
                                 </div>
                             </div>
@@ -379,7 +380,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer bg-secondary">
-                                        <button class="btn btn-success" wire:click.prevent='save({{$branch->id}},{{$loop->index}})'> Save </button>
+                                        <button class="btn btn-success" wire:click.prevent="save({{$loop->index}})"> Save </button>
                                     </div>
                                 </div>
                             </form>

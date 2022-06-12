@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Products extends Component
 {
-    public $index;
+    public $ind;
     public $products = [];
     public $branch;
 
@@ -17,6 +17,7 @@ class Products extends Component
     public function mount($branch)
     {
         $this->branch = $branch;
+
     }
 
     public function updatedProducts($value, $nested)
@@ -95,15 +96,15 @@ class Products extends Component
     }
     public function deleteId($index)
     {
-        $this->index = $index;
+        $this->ind = $index;
     }
     public function delete()
     {
-        ModelsProducts::find( $this->products[$this->index]['id'],)->delete();
+        ModelsProducts::find( $this->products[$this->ind]['id'],)->delete();
     }
     public function edit($index)
     {
-        $this->index = $index;
+        $this->ind = $index;
     }
 
     public function imagedelete($index,$imagenumber)
@@ -135,7 +136,7 @@ class Products extends Component
 
     public function render()
     {
-         $this->products  = null;
+        $this->products =null;
         foreach($this->branch->product as $product )
         {
             $this->products [] =
@@ -158,7 +159,6 @@ class Products extends Component
                                 ],
                 ] ;
         }
-
         return view('livewire.dashborad.branch.products');
     }
 }

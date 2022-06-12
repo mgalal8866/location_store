@@ -110,8 +110,10 @@ class Branch extends Component
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ❤ ']);
     }
 
-    public function save($slug , $index)
+    public function save($index)
     {
+
+
         $rulesList=[
             "branchlist.*.descriptionbranch"=>"required",
             "branchlist.*.address"          =>"required",
@@ -134,8 +136,9 @@ class Branch extends Component
             'branchlist.*.numproduct.gt'              => 'عدد المنتجات يجب ان يكون لايساوى0'
         ]);
 
-            // dd($this->branchlist[$index]['start_date']);
+
             $branch = branchs::find($this->branchlist[$index]['branch_id']);
+
             $branch->update(
                 [
                     'active'     => $this->branchlist[$index]['active'],
@@ -156,6 +159,22 @@ class Branch extends Component
                     'product_num'=> $this->branchlist[$index]['numproduct'],
                 ]
             );
+        //     dd($this->branchlist[$index]['branch_id'],$this->branchlist[$index]['active'],$this->branchlist[$index]['top'],
+        //     $this->branchlist[$index]['descriptionbranch'],
+        //     $this->branchlist[$index]['start_date'],
+        //     $this->branchlist[$index]['expiry_date'],
+        //     $this->branchlist[$index]['address'],
+        //     $this->branchlist[$index]['approval'],
+        //     $this->branchlist[$index]['phone'],
+        //     $this->branchlist[$index]['phonetwo'],
+        //     $this->branchlist[$index]['city_id'],
+        //   $this->branchlist[$index]['lat'],
+        //   $this->branchlist[$index]['lng'],
+        //     $this->branchlist[$index]['region_id'],
+        //    $this->branchlist[$index]['opentime'],
+        //     $this->branchlist[$index]['closetime'],
+        //   $this->branchlist[$index]['numproduct']
+        // );
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ✔']);
 
     }

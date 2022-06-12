@@ -44,7 +44,7 @@
 }
 .btclose{
   position: absolute;
-  z-index: 1;
+  z-ind: 1;
   right: 20px;
 }
 
@@ -58,11 +58,11 @@
 </style>
 @endpush
 <div>
-    <div wire:ignore.self class="modal fade" id="updateModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="updateModal" data-backdrop="static" tabind="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">{{$products[$index??0]['name']}}</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">{{$products[$ind??0]['name']}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -76,21 +76,21 @@
                 <div class="row mb-2">
                     <div class="col-md-4">
                         <div class="1st img-head">
-                            <button  wire:click='imagedelete({{$index??0}},1)'  class="close btclose">
+                            <button  wire:click='imagedelete({{$ind??0}},1)'  class="close btclose">
                               <span>&times;</span>
                             </button>
                             <div class="container">
-                            <div class="text-center" x-data="{ imagePreview: '{{ $products[$index??0]['image']['img1'] }}' }">
-                                <input wire:model="products.{{$index??0}}.image.img1" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
+                            <div class="text-center" x-data="{ imagePreview: '{{ $products[$ind??0]['image']['img1'] }}' }">
+                                <input wire:model="products.{{$ind??0}}.image.img1" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
                                     x-on:change="
                                                 reader = new FileReader();
                                                 reader.onload = (event) => {
                                                     imagePreview = event.target.result;
-                                                    document.getElementById('profileImage{{$index??0}}3').src = `${imagePreview}`;
+                                                    document.getElementById('profileImage{{$ind??0}}3').src = `${imagePreview}`;
                                                 };
                                                 reader.readAsDataURL($refs.image.files[0]);;;
                                             "/>
-                                <img x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img1'] }}'" alt="Branch picture">
+                                <img x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$ind??0]['image']['img1'] }}'" alt="Branch picture">
                                 <div class="centered">Main</div>
                             </div>
                         </div>
@@ -99,39 +99,39 @@
                     </div>
                     <div class="col-md-4">
                         <div class="2st img-head">
-                            <button  wire:click='imagedelete({{$index??0}},2)' class="close btclose">
+                            <button  wire:click='imagedelete({{$ind??0}},2)' class="close btclose">
                               <span >&times;</span>
                             </button>
-                            <div class="text-center" x-data="{ imagePreview: '{{ $products[$index??0]['image']['img2'] }}' }">
-                                <input wire:model="products.{{$index??0}}.image.img2" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
+                            <div class="text-center" x-data="{ imagePreview: '{{ $products[$ind??0]['image']['img2'] }}' }">
+                                <input wire:model="products.{{$ind??0}}.image.img2" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
                                     x-on:change="
                                                 reader = new FileReader();
                                                 reader.onload = (event) => {
                                                     imagePreview = event.target.result;
-                                                    document.getElementById('profileImage{{$index??0}}2').src = `${imagePreview}`;
+                                                    document.getElementById('profileImage{{$ind??0}}2').src = `${imagePreview}`;
                                                 };
                                                 reader.readAsDataURL($refs.image.files[0]);;;
                                             "/>
-                                <img  x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img2'] }}'" alt="Branch picture">
+                                <img  x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$ind??0]['image']['img2'] }}'" alt="Branch picture">
                             </div>
                          </div>
                     </div>
                     <div class="col-md-4">
                         <div class="3st img-head">
-                            <button   wire:click='imagedelete({{$index??0}},3)'   class="close btclose">
+                            <button   wire:click='imagedelete({{$ind??0}},3)'   class="close btclose">
                               <span>&times;</span>
                             </button>
-                            <div class="text-center" x-data="{ imagePreview: '{{ $products[$index??0]['image']['img3'] }}' }">
-                                <input wire:model="products.{{$index??0}}.image.img3" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
+                            <div class="text-center" x-data="{ imagePreview: '{{ $products[$ind??0]['image']['img3'] }}' }">
+                                <input wire:model="products.{{$ind??0}}.image.img3" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
                                     x-on:change="
                                                 reader = new FileReader();
                                                 reader.onload = (event) => {
                                                     imagePreview = event.target.result;
-                                                    document.getElementById('profileImage{{$index??0}}3').src = `${imagePreview}`;
+                                                    document.getElementById('profileImage{{$ind??0}}3').src = `${imagePreview}`;
                                                 };
                                                 reader.readAsDataURL($refs.image.files[0]);;;
                                             "/>
-                                <img x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$index??0]['image']['img3'] }}'" alt="Branch picture">
+                                <img x-on:click="$refs.image.click()" class="border-dark border border-2 w-100 rounded float-left img-thumbnail"  x-bind:src="imagePreview ? imagePreview : '{{$products[$ind??0]['image']['img3'] }}'" alt="Branch picture">
                             </div>
                         </div>
                     </div>
@@ -197,24 +197,24 @@
 
                             <div class="form-group">
                                 <label for="name">{{__('name')}}</label>
-                                <input type="text" wire:model.dafer='products.{{$index}}.name' class="form-control" id="name" placeholder="Enter name">
+                                <input type="text" wire:model.dafer='products.{{$ind}}.name' class="form-control" id="name" placeholder="Enter name">
                             </div>
                             <div class="form-group">
                                 <label for="description">{{__('description')}}</label>
-                                <input type="text" wire:model.defer='products.{{$index}}.description'  class="form-control" id="description" placeholder="description">
+                                <input type="text" wire:model.defer='products.{{$ind}}.description'  class="form-control" id="description" placeholder="description">
                             </div>
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">{{__('price')}}</label>
-                                        <input type="number"  min="1" step="any"  wire:model.dafer='products.{{$index}}.price'  class="form-control" id="price" placeholder="price">
+                                        <input type="number"  min="1" step="any"  wire:model.dafer='products.{{$ind}}.price'  class="form-control" id="price" placeholder="price">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">{{__('active')}}</label>
-                                        <select id="selectactive1"  wire:model.dafer='products.{{$index}}.active' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
+                                        <select id="selectactive1"  wire:model.dafer='products.{{$ind}}.active' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
                                             <option value="">Select active</option>
                                             <option value="0">{{ __('active') }}</option>
                                             <option value="1">{{ __('unactive') }}</option>
@@ -232,9 +232,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <x-datepicker wire:model.dafer="products.{{$index}}.start_date" id="modalstart_date" :error="'branchlist.{{$index}}.start_date'" />
+                                        <x-datepicker wire:model.dafer="products.{{$ind}}.start_date" id="modalstart_date" :error="'branchlist.{{$ind}}.start_date'" />
 
-                                        @error('products'.$index.'.start_date')
+                                        @error('products'.$ind.'.start_date')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -247,8 +247,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <x-datepicker wire:model.dafer="products.{{$index}}.expiry_date" id="modalexpiry_date" :error="'branchlist.{{$index}}.expiry_date'" />
-                                        @error('products'.$index.'.expiry_date')
+                                        <x-datepicker wire:model.dafer="products.{{$ind}}.expiry_date" id="modalexpiry_date" :error="'branchlist.{{$ind}}.expiry_date'" />
+                                        @error('products'.$ind.'.expiry_date')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -260,12 +260,12 @@
                             <div class="form-group">
                                 <small>
                                     <label for="create"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{__('created')}} </label>
-                                    <span class="text-danger"> {{$products[$index??0]['create']}}</span>
+                                    <span class="text-danger"> {{$products[$ind??0]['create']}}</span>
                                 </small>
                                 <br>
                                 <small>
                                     <label for="updated"><i class="fa fa-pencil-square" aria-hidden="true"></i> {{__('updated')}} </label>
-                                    <span class="text-danger"> {{$products[$index??0]['update']}}</span>
+                                    <span class="text-danger"> {{$products[$ind??0]['update']}}</span>
                                 </small>
                             </div>
 
@@ -274,7 +274,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button"  wire:click.prevent='update({{ $index??0 }})' class="btn btn-primary">Save </button>
+              <button type="button"  wire:click.prevent='update({{ $ind??0 }})' class="btn btn-primary">Save </button>
             </div>
           </div>
         </div>
