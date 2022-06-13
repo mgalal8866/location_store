@@ -38,7 +38,7 @@ class onebraches extends JsonResource
             'visetor'     => $this->view,
             'rating'      => number_format(($count != 0)?$sum/$count:0 , 2),
             'comments'    => comment::collection($this->comments),
-            'product'     => product::collection($this->product)
+            'product'     => product::collection($this->product->where('active',0))
         ];
     }
 }

@@ -23,6 +23,7 @@ class productbyid extends JsonResource
             'description'   => $this->description,
             'create'        => $this->created_at->diffForHumans(),
             'view'          => $this->view,
+            'active'        => $this->activeapi,
             'images'        => $product_image,
             'other_product' => $product_other
         ];

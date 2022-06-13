@@ -35,7 +35,14 @@ class products extends Model
         return $badge[$this->active];
      }
 
-
+     public function getActiveapiAttribute(){
+        if($this->active == 1){
+            return 'غير مفعل';
+        } else
+        {
+            return 'مفعل';
+        }
+    }
     public function getStartDateAttribute($value){
         return   $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }

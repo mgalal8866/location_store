@@ -24,7 +24,7 @@ class BranchesController extends Controller
     public function getbranches()
     {
         return $this->returnData('branches',branch::collection(
-        branchs::whereActive(0)->
+        branchs::whereActive(0)->whereAccept(0)->
             whereCityId(auth('api')->user()->city_id)->
             whereRegionId(auth('api')->user()->region_id)->
             latest()->
@@ -36,14 +36,14 @@ class BranchesController extends Controller
     public function lastbranch()
     {
         return  $this->returnData('branches',branch::collection(
-            branchs::whereActive(0)->WhereHas('stores', function($q)
+            branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)
             {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
     }
 // احضار الفروع  حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
         // Cache::forget('setting');
-        $branches = branchs::whereActive(0)->WhereHas('stores', function($q)  use ($request)
+        $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
             whereRegionId( $request->region_id)->
             orderBy('top', 'DESC')->
@@ -54,8 +54,7 @@ class BranchesController extends Controller
 // احضار الفروع الخاصه بالمستخدم
     public function getbranchesbyuser(Request $request)
     {
-        $branches = branchs::whereActive(0)->
-        WhereHas('stores', function($q)  use ($request){
+        $branches = branchs::WhereHas('stores', function($q)  use ($request){
             $q->whereUserId(auth('api')->user()->id)->whereActive(0);
         })->
             latest()->
@@ -69,18 +68,14 @@ class BranchesController extends Controller
     public function  getbranchbyid(Request $request)
     {
         DB::table('branchs')->whereId($request->id)->increment('view');
-
-        return $this->returnData('branches',onebraches::collection(
-            branchs::whereActive(0)->
-            whereId($request->id)->
-            orderBy('top', 'DESC')->
-            get()),'Done');
+        $branch =   branchs::whereId($request->id)->whereActive(0)->orderBy('top', 'DESC')->get();
+        return $this->returnData('branches',onebraches::collection( $branch ),'Done');
     }
 
 // بحث عن طريق المدينه المحافظه المنتج المتجر
     public function  search($query='')
     {
-         $ss = branchs::whereActive(0)->orderBy('top', 'DESC')->
+         $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
          WhereHas('stores', function($q) use ($query){
             $q->Where('name','like', '%'.  $query  . '%')->whereActive(0);
         })->
