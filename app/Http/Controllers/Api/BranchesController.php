@@ -33,10 +33,11 @@ class BranchesController extends Controller
     }
 
 // اخر 10 متاجر تم اضافتهم
-    public function lastbranch()
+    public function lastbranch(Request $request)
     {
+       
         return  $this->returnData('branches',branch::collection(
-            branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)
+            branchs::whereActive(0)->whereAccept(0)->whereRegionId($request->region_id)->WhereHas('stores', function($q)
             {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
     }
 // احضار الفروع  حسب الاى دى القسم والمنطقه
@@ -45,7 +46,7 @@ class BranchesController extends Controller
         // Cache::forget('setting');
         $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
-            whereRegionId( $request->region_id)->
+            whereRegionId($request->region_id)->
             orderBy('top', 'DESC')->
             paginate(setting('app_page_branch'));
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
