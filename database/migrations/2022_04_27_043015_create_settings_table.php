@@ -22,6 +22,7 @@ class CreateSettingsTable extends Migration
             $table->string('footer_text');
             $table->integer('app_new_branch')->default(10);
             $table->integer('app_pag')->default(10);
+            $table->integer('app_pagforsearch_branch')->default(10);
             $table->integer('app_page_branch')->default(10);
             $table->timestamps();
         });

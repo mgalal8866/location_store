@@ -15,6 +15,7 @@ class NullSetting extends setting
         'app_page_branch'=>10,
         'app_pag'=>10,
         'app_new_branch'=>10,
+        'app_pagforsearch_branch'=>10,
         'splash'=>'',
     ];
 }

@@ -5,7 +5,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use JoeDixon\Translation\Drivers\Translation;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-use JoeDixon\Translation\Http\Requests\LanguageRequest;
+use App\Models\setting as ModelsSetting;
+use Illuminate\Support\Facades\Cache;
 class Setting extends Component
 {
     use WithFileUploads;
@@ -13,36 +14,51 @@ class Setting extends Component
     use GeneralTrait;
 
     private $translation;
-
+    public $state = [];
     public function mount(Translation $translation)
     {
-        $this->translation = $translation;
+        $setting = ModelsSetting::first();
+
+        if ($setting) {
+            $this->state = $setting->toArray();
+        }
+        // $this->translation = $translation;
     }
 
-        public function submit(){
-            if ($this->logo != null){
-                $this->logo = $this->uploadimages('assets',$this->logo);
-                // config()->set('setting_var.images.logo', $this->logo);
-                config(['setting_var.images.logo' => $this->logo]);
+        // public function submit(){
+        //     if ($this->logo != null){
+        //         $this->logo = $this->uploadimages('assets',$this->logo);
+        //         // config()->set('setting_var.images.logo', $this->logo);
+        //         config(['setting_var.images.logo' => $this->logo]);
+        //     }
+        //     if ($this->favicon != null){
+        //         $this->favicon = $this->uploadimages('assets',$this->favicon);
+        //         config()->set('setting_var.images.favicon', $this->favicon);
+        //     }
+        //     if ($this->favicon != null || $this->logo != null){
+        //     session()->flash('message', 'Save Changes');
+        //     }
 
-            }
-            if ($this->favicon != null){
-                $this->favicon = $this->uploadimages('assets',$this->favicon);
-                config()->set('setting_var.images.favicon', $this->favicon);
+        // }
+
+        public function updateSetting()
+        {
+            $setting = ModelsSetting::first();
+
+            if ($setting) {
+                $setting->update($this->state);
+            } else {
+                ModelsSetting::create($this->state);
             }
 
-            if ($this->favicon != null || $this->logo != null){
-            session()->flash('message', 'Save Changes');
-            }
-
+            Cache::forget('setting');
+            $this->dispatchBrowserEvent('updated', ['message' => 'Settings updated successfully!']);
         }
-
-
     public function render()
     {
 
-        $languages =  $this->translation->allLanguages();
+        // $languages =  $this->translation->allLanguages();
 
-        return view('livewire.dashborad.setting.setting',['languages' =>   $languages ])->layout('admin.layouts.masterdash');
+        return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
     }
 }

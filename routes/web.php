@@ -43,8 +43,6 @@ route::get('/pull',function () {
     Artisan::call('git pull');
         $output = $output .  '<h4>'. Artisan::output().'</h4>';
     return $output;
-
-
  });
 
 route::get('/down',function () {
@@ -64,7 +62,7 @@ route::get('/up',function () {
     Artisan::call('schedule:run');
  });
 
- 
+
  Route::get('/artisan', function (Request $request) {
   $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
 
