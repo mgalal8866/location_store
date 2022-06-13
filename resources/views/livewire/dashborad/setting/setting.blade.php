@@ -74,7 +74,7 @@
             class="btn btn-primary">{{ __('translation::translation.language') }}</a>
     </div>
 
-    <div class="row">
+    <div class="row "style="background-color: #f3f6f8;">
 
         <div class="col-md-12">
             <div class="card   card-success card-tabs">
@@ -236,13 +236,136 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-five-normal" role="tabpanel"
-                            aria-labelledby="custom-tabs-five-normal-tab">
-                            Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut
-                            ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-                            cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis
-                            posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere
-                            nec nunc. Nunc euismod pellentesque diam.
+                            aria-labelledby="custom-tabs-five-normal-tab" >
+
+                                <div class="form-group">
+                                    <label class="control-label">اسم التطبيق</label>
+                                    <input type="text" class="form-control" name="application_name" placeholder="اسم التطبيق" value="ALMakhzakhana - المخزخانة" dir="rtl">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">عنوان الموقع</label>
+                                    <input type="text" class="form-control" name="site_title" placeholder="عنوان الموقع" value="ALMakhzakhana - المخزخانة" dir="rtl">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">عنوان الصفحة الرئيسية</label>
+                                    <input type="text" class="form-control" name="homepage_title" placeholder="عنوان الصفحة الرئيسية" value="الرئيسية" dir="rtl">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">وصف الموقع</label>
+                                    <input type="text" class="form-control" name="site_description" placeholder="وصف الموقع" value="ALMakhzakhana - المخزخانة" dir="rtl">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">الكلمات الدالة</label>
+                                    <input type="text" class="form-control" name="keywords" placeholder="الكلمات الدالة" value="ALMakhzakhana - المخزخانة" dir="rtl">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">حقوق النشر</label>
+                                    <input type="text" class="form-control" name="copyright" placeholder="حقوق النشر" value=".Copyright 2022 ALMakhzakhana - Powered By: MIsmaiel Group All Rights Reserved" dir="rtl">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">تذييل حول القسم</label>
+                                    <textarea class="form-control tinyMCEsmall" name="about_footer" placeholder="تذييل حول القسم" style="min-height: 140px; display: none;" dir="rtl" id="about_footer" aria-hidden="true">&lt;p&gt;&lt;strong&gt;مع المخزخانة كل طلباتك أواااااامر&lt;/strong&gt;&lt;/p&gt;
+                                     &lt;p&gt;&lt;a href="https://almakhzakhana.com/uploads/apk/ALMakhzakhana-المخزخانة.apk" target="_blank" rel="noopener"&gt;&lt;strong&gt;&lt;img src="https://almakhzakhana.com/uploads/apk/APK.png" alt="" width="172" height="77"&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</textarea><div role="application" dir="rtl" class="tox tox-tinymce" style="visibility: hidden; height: 300px;"><div class="tox-editor-container"><div class="tox-editor-header"><div role="group" class="tox-toolbar-overlord"><div role="group" class="tox-toolbar__primary"><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="ملء الشاشة" title="ملء الشاشة" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M15.3 10l-1.2-1.3 2.9-3h-2.3a.9.9 0 1 1 0-1.7H19c.5 0 .9.4.9.9v4.4a.9.9 0 1 1-1.8 0V7l-2.9 3zm0 4l3 3v-2.3a.9.9 0 1 1 1.7 0V19c0 .5-.4.9-.9.9h-4.4a.9.9 0 1 1 0-1.8H17l-3-2.9 1.3-1.2zM10 15.4l-2.9 3h2.3a.9.9 0 1 1 0 1.7H5a.9.9 0 0 1-.9-.9v-4.4a.9.9 0 1 1 1.8 0V17l2.9-3 1.2 1.3zM8.7 10L5.7 7v2.3a.9.9 0 0 1-1.7 0V5c0-.5.4-.9.9-.9h4.4a.9.9 0 0 1 0 1.8H7l3 2.9-1.3 1.2z" fill-rule="nonzero"></path></svg></span></button><button aria-label="شفرة المصدر" title="شفرة المصدر" type="button" tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><g fill-rule="nonzero"><path d="M9.8 15.7c.3.3.3.8 0 1-.3.4-.9.4-1.2 0l-4.4-4.1a.8.8 0 0 1 0-1.2l4.4-4.2c.3-.3.9-.3 1.2 0 .3.3.3.8 0 1.1L6 12l3.8 3.7zM14.2 15.7c-.3.3-.3.8 0 1 .4.4.9.4 1.2 0l4.4-4.1c.3-.3.3-.9 0-1.2l-4.4-4.2a.8.8 0 0 0-1.2 0c-.3.3-.3.8 0 1.1L18 12l-3.8 3.7z"></path></g></svg></span></button><button aria-label="معاينة" title="معاينة" type="button" tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M3.5 12.5c.5.8 1.1 1.6 1.8 2.3 2 2 4.2 3.2 6.7 3.2s4.7-1.2 6.7-3.2a16.2 16.2 0 0 0 2.1-2.8 15.7 15.7 0 0 0-2.1-2.8c-2-2-4.2-3.2-6.7-3.2a9.3 9.3 0 0 0-6.7 3.2A16.2 16.2 0 0 0 3.2 12c0 .2.2.3.3.5zm-2.4-1l.7-1.2L4 7.8C6.2 5.4 8.9 4 12 4c3 0 5.8 1.4 8.1 3.8a18.2 18.2 0 0 1 2.8 3.7v1l-.7 1.2-2.1 2.5c-2.3 2.4-5 3.8-8.1 3.8-3 0-5.8-1.4-8.1-3.8a18.2 18.2 0 0 1-2.8-3.7 1 1 0 0 1 0-1zm12-3.3a2 2 0 1 0 2.7 2.6 4 4 0 1 1-2.6-2.6z" fill-rule="nonzero"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="غامق" title="غامق" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M7.8 19c-.3 0-.5 0-.6-.2l-.2-.5V5.7c0-.2 0-.4.2-.5l.6-.2h5c1.5 0 2.7.3 3.5 1 .7.6 1.1 1.4 1.1 2.5a3 3 0 0 1-.6 1.9c-.4.6-1 1-1.6 1.2.4.1.9.3 1.3.6s.8.7 1 1.2c.4.4.5 1 .5 1.6 0 1.3-.4 2.3-1.3 3-.8.7-2.1 1-3.8 1H7.8zm5-8.3c.6 0 1.2-.1 1.6-.5.4-.3.6-.7.6-1.3 0-1.1-.8-1.7-2.3-1.7H9.3v3.5h3.4zm.5 6c.7 0 1.3-.1 1.7-.4.4-.4.6-.9.6-1.5s-.2-1-.7-1.4c-.4-.3-1-.4-2-.4H9.4v3.8h4z" fill-rule="evenodd"></path></svg></span></button><button aria-label="مائل" title="مائل" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M16.7 4.7l-.1.9h-.3c-.6 0-1 0-1.4.3-.3.3-.4.6-.5 1.1l-2.1 9.8v.6c0 .5.4.8 1.4.8h.2l-.2.8H8l.2-.8h.2c1.1 0 1.8-.5 2-1.5l2-9.8.1-.5c0-.6-.4-.8-1.4-.8h-.3l.2-.9h5.8z" fill-rule="evenodd"></path></svg></span></button><button aria-label="تسطير" title="تسطير" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M16 5c.6 0 1 .4 1 1v5.5a4 4 0 0 1-.4 1.8l-1 1.4a5.3 5.3 0 0 1-5.5 1 5 5 0 0 1-1.6-1c-.5-.4-.8-.9-1.1-1.4a4 4 0 0 1-.4-1.8V6c0-.6.4-1 1-1s1 .4 1 1v5.5c0 .3 0 .6.2 1l.6.7a3.3 3.3 0 0 0 2.2.8 3.4 3.4 0 0 0 2.2-.8c.3-.2.4-.5.6-.8l.2-.9V6c0-.6.4-1 1-1zM8 17h8c.6 0 1 .4 1 1s-.4 1-1 1H8a1 1 0 0 1 0-2z" fill-rule="evenodd"></path></svg></span></button><button aria-label="يتوسطه خط" title="يتوسطه خط" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><g fill-rule="evenodd"><path d="M15.6 8.5c-.5-.7-1-1.1-1.3-1.3-.6-.4-1.3-.6-2-.6-2.7 0-2.8 1.7-2.8 2.1 0 1.6 1.8 2 3.2 2.3 4.4.9 4.6 2.8 4.6 3.9 0 1.4-.7 4.1-5 4.1A6.2 6.2 0 0 1 7 16.4l1.5-1.1c.4.6 1.6 2 3.7 2 1.6 0 2.5-.4 3-1.2.4-.8.3-2-.8-2.6-.7-.4-1.6-.7-2.9-1-1-.2-3.9-.8-3.9-3.6C7.6 6 10.3 5 12.4 5c2.9 0 4.2 1.6 4.7 2.4l-1.5 1.1z"></path><path d="M5 11h14a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2z" fill-rule="nonzero"></path></g></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button title="أحجام الخطوط" aria-label="أحجام الخطوط" aria-haspopup="true" type="button" unselectable="on" tabindex="-1" class="tox-tbtn tox-tbtn--select tox-tbtn--bespoke" style="user-select: none;" aria-expanded="false"><span class="tox-tbtn__select-label">14px</span><div class="tox-tbtn__select-chevron"><svg width="10" height="10"><path d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z" fill-rule="nonzero"></path></svg></div></button><button title="الكتل" aria-label="الكتل" aria-haspopup="true" type="button" unselectable="on" tabindex="-1" class="tox-tbtn tox-tbtn--select tox-tbtn--bespoke" style="user-select: none;" aria-expanded="false"><span class="tox-tbtn__select-label">الفقرة</span><div class="tox-tbtn__select-chevron"><svg width="10" height="10"><path d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z" fill-rule="nonzero"></path></svg></div></button></div><div role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="More..." title="More..." aria-haspopup="true" type="button" data-alloy-tabstop="true" tabindex="-1" class="tox-tbtn tox-tbtn--enabled" aria-expanded="true" aria-owns="aria-owns_5498602821121655119228608"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M6 10a2 2 0 0 0-2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2 2 2 0 0 0-2-2zm12 0a2 2 0 0 0-2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2 2 2 0 0 0-2-2zm-6 0a2 2 0 0 0-2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2 2 2 0 0 0-2-2z" fill-rule="nonzero"></path></svg></span></button></div></div></div><div class="tox-anchorbar"></div></div><div class="tox-sidebar-wrap"><div class="tox-edit-area"><iframe id="about_footer_ifr" allowtransparency="true" title="منطقة نص منسق. اضغط ALT-0 للحصول على المساعدة." class="tox-edit-area__iframe" frameborder="0"></iframe></div><div role="complementary" class="tox-sidebar"><div data-alloy-tabstop="true" tabindex="-1" class="tox-sidebar__slider tox-sidebar--sliding-closed" style="width: 0px;"><div class="tox-sidebar__pane-container"></div></div></div></div></div><div class="tox-statusbar"><div class="tox-statusbar__text-container"><div role="navigation" data-alloy-tabstop="true" class="tox-statusbar__path"></div><span class="tox-statusbar__branding"><a href="https://www.tiny.cloud/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce&amp;utm_content=v5" rel="noopener" target="_blank" tabindex="-1" aria-label="مدعوم من Tiny">مدعوم من Tiny</a></span></div><div title="تغيير حجم" class="tox-statusbar__resize-handle"><svg width="10" height="10"><g fill-rule="nonzero"><path d="M8.1 1.1A.5.5 0 1 1 9 2l-7 7A.5.5 0 1 1 1 8l7-7zM8.1 5.1A.5.5 0 1 1 9 6l-3 3A.5.5 0 1 1 5 8l3-3z"></path></g></svg></div></div><div aria-hidden="true" class="tox-throbber" style="display: none;"></div></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="box box-primary">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">جوجل reCAPTCHA</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+
+                                            <!-- form start -->
+                                            <form action="https://almakhzakhana.com/admin_controller/recaptcha_settings_post" method="post" accept-charset="utf-8">
+                                <input type="hidden" name="csrf_mds_token" value="095985a620405905c7d81256317c1c7d">
+                                            <div class="box-body">
+                                                <!-- include message block -->
+                                                                <div class="form-group">
+                                                    <label class="control-label">مفتاح الموقع</label>
+                                                    <input type="text" class="form-control" name="recaptcha_site_key" placeholder="مفتاح الموقع" value="" dir="rtl">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label">المفتاح السري</label>
+                                                    <input type="text" class="form-control" name="recaptcha_secret_key" placeholder="المفتاح السري" value="" dir="rtl">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label">اللغة</label>
+                                                    <input type="text" class="form-control" name="recaptcha_lang" placeholder="اللغة" value="en" dir="rtl">
+                                                    <a href="https://developers.google.com/recaptcha/docs/language" target="_blank">https://developers.google.com/recaptcha/docs/language</a>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                            <!-- /.box -->
+                                            </form><!-- form end -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="box box-primary">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">نمط الصيانة</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+
+                                            <!-- form start -->
+                                            <form action="https://almakhzakhana.com/admin_controller/maintenance_mode_post" method="post" accept-charset="utf-8">
+                                <input type="hidden" name="csrf_mds_token" value="095985a620405905c7d81256317c1c7d">
+                                            <div class="box-body">
+                                                <!-- include message block -->
+                                                                <div class="form-group">
+                                                    <label class="control-label">عنوان</label>
+                                                    <input type="text" class="form-control" name="maintenance_mode_title" placeholder="عنوان" value="Coming Soon" dir="rtl">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label">وصف</label>
+                                                    <textarea class="form-control text-area" name="maintenance_mode_description" placeholder="وصف" style="min-height: 100px;" dir="rtl">Our website is under construction. We'll be here soon with our new awesome site.</textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 col-xs-12">
+                                                            <label>حالة المنتج</label>
+                                                        </div>
+                                                        <div class="col-sm-4 col-xs-12 col-option">
+                                                            <div class="iradio_square-purple" style="position: relative;" aria-checked="false" aria-disabled="false"><input type="radio" name="maintenance_mode_status" value="1" id="maintenance_mode_status_1" class="square-purple" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                                                            <label for="maintenance_mode_status_1" class="option-label">تفعيل</label>
+                                                        </div>
+                                                        <div class="col-sm-4 col-xs-12 col-option">
+                                                            <div class="iradio_square-purple checked" style="position: relative;" aria-checked="false" aria-disabled="false"><input type="radio" name="maintenance_mode_status" value="0" id="maintenance_mode_status_2" class="square-purple" checked="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                                                            <label for="maintenance_mode_status_2" class="option-label">إبطال</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>صورة</label>: assets/img/maintenance_bg.jpg
+                                                </div>
+                                            </div>
+
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                            <!-- /.box -->
+                                            </form><!-- form end -->
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

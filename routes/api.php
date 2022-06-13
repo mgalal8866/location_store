@@ -38,6 +38,9 @@ use App\Http\Controllers\Api\CategoriesController;
 /**************************  AUTH ********************************** */
 Route::group(['middleware' => ['only.api','api'],'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/forgotpass', [AuthController::class, 'forgotpass']);
+
+    Route::get('/checkmobile/{mobile}', [AuthController::class, 'checkmobile']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/logout', [AuthController::class, 'logout'])->middleware('jwt.verify');
 });

@@ -12,52 +12,52 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    use GeneralTrait;
     public function __construct() {
         // $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-use GeneralTrait;
-    public function login(Request $request){
-
+    public function login(Request $request)
+    {
     	$validator = Validator::make($request->all(), [
-            'mobile' => 'required',
-            'password' => 'required|string|min:6',
+            'mobile'     => 'required',
+            'password'   => 'required|string|min:6',
             'ip_address' => $request->ip()
         ],
         [
-            'mobile' => config('err_message.alert.mobile'),
+            'mobile'            => config('err_message.alert.mobile'),
             'password.required' => config('err_message.alert.password_required')
         ]);
 
 
-        if ($validator->fails()) {
+        if ($validator->fails()){
             return response()->json($validator->errors(), 422);
         }
 
-        if (!$token = auth('api')->attempt($validator->validated())) {
+        if (!$token = auth('api')->attempt($validator->validated())){
             return response()->json(['status' => 'false','msg' =>  config('err_message.err.login')], 200);
         }
+
         $user = new ResourcesUser(  auth('api')->user());
 
         if(!$request->ip() == null){
             $user->update([
-                'ip_address' => $request->ip(),
+                'ip_address'   => $request->ip(),
                 'device_token' =>$request->device_token
             ]);
          }
 
         return $this->createNewToken($token,$request->device_token);
     }
-
     public function register(Request $request) {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'mobile' => 'required|string|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
+            'name'     =>'required|string|between:2,100',
+            'mobile'   =>'required|string|max:100|unique:users',
+            'password' =>'required|string|confirmed|min:6',
             'region_id'=>'string',
-            'city_id'=>'string',
-            'gender' =>'string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'city_id'  =>'string',
+            'gender'   =>'string',
+            'image'    =>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
         if($request->has('image')) {
@@ -72,9 +72,9 @@ use GeneralTrait;
 
         $user = User::create(array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)
-                    ,'image' => $request->filepath,
-                    'ip_address' => $request->ip(),
+                    ['password'    => bcrypt($request->password)
+                    ,'image'       => $request->filepath,
+                    'ip_address'   => $request->ip(),
                     'device_token' =>$request->device_token]
                 ));
         return response()->json([
@@ -83,8 +83,6 @@ use GeneralTrait;
             'msg' => config('err_message.success.register')
         ], 200);
     }
-
-
     public function editprofile(Request $request) {
 
         $validator = Validator::make($request->all(), [
@@ -121,21 +119,17 @@ use GeneralTrait;
             'msg' => config('err_message.success.editprofile')
         ], 200);
     }
-
     public function logout() {
         auth('api')->logout();
 
         return  $this->returnSuccessMessage(config('err_message.success.logout') );
     }
-
     public function refresh() {
         return $this->createNewToken(auth('api')->refresh());
     }
-
     public function userProfile() {
         return response()->json(auth('api')->user());
     }
-
     protected function createNewToken($token,$device_token){
         $user = new ResourcesUser( auth('api')->user());
         if(!$device_token == null){
@@ -153,70 +147,24 @@ use GeneralTrait;
         'msg' => config('err_message.success.login')
         ]);
     }
+    public function checkmobile($mobile) {
+        if(User::whereMobile($mobile)->count() != 0){
+            return $this->returnError('Er0010', 'المستخدم موجود بافعل  ');
+        }else{
+            return $this->returnSuccessMessage( 'مستخدم غير موجود');
+        };
+    }
+    public function forgotpass(Request $request) {
 
+        $user =   User::whereMobile($request->mobile)->first();
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api', ['except' => ['login']]);
-    // }
-
-
-    // public function login()
-    // {
-    //     $credentials = request(['email', 'password']);
-
-    //     if (! $token = auth()->attempt($credentials)) {
-    //         return response()->json(['error' => 'Unauthorized'], 401);
-    //     }
-
-    //     return $this->respondWithToken($token);
-    // }
-
-    // /**
-    //  * Get the authenticated User.
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function me()
-    // {
-    //     return response()->json(auth()->user());
-    // }
-
-    // /**
-    //  * Log the user out (Invalidate the token).
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function logout()
-    // {
-    //     auth()->logout();
-
-    //     return response()->json(['message' => 'Successfully logged out']);
-    // }
-
-    // /**
-    //  * Refresh a token.
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function refresh()
-    // {
-    //     return $this->respondWithToken(auth()->refresh());
-    // }
-
-    // /**
-    //  * Get the token array structure.
-    //  *
-    //  * @param  string $token
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // protected function respondWithToken($token)
-    // {
-    //     return response()->json([
-    //         'access_token' => $token,
-    //         'token_type' => 'bearer',
-    //         'expires_in' => auth()->factory()->getTTL() * 60
-    //     ]);
-    // }
+        $validator = Validator::make($request->all(),['password' =>'required|string|confirmed|min:6',]);
+        if($validator->fails()){
+          return  $this->returnError('ErrV',$validator->errors());
+        }
+        $user->update(array_merge(
+            $validator->validated(), ['password' => bcrypt($request->password)]));
+            
+        return $this->returnSuccessMessage( 'تم تغير الباسورد بنجاح');
+    }
 }
