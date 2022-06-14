@@ -35,7 +35,7 @@ class BranchesController extends Controller
 // اخر 10 متاجر تم اضافتهم
     public function lastbranch(Request $request)
     {
-       
+
         return  $this->returnData('branches',branch::collection(
             branchs::whereActive(0)->whereAccept(0)->whereRegionId($request->region_id)->WhereHas('stores', function($q)
             {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
@@ -90,7 +90,7 @@ class BranchesController extends Controller
         })->
         orWhereHas('product', function($q4) use ($query){
             $q4->Where('name','like', '%'.  $query  . '%')->whereActive(0);
-        })->paginate(10);
+        })->paginate(setting('app_pagforsearch_branch'));
 
 
         return $this->returnData('branches', new branchesCollection($ss),'Done');
@@ -145,7 +145,12 @@ class BranchesController extends Controller
     {
         try {
             $branch = branchs::findOrFail($request->branch_id);
+            if($branch->stores->branch->count() == 1){
+            $branch->stores->delete();
             $branch->delete();
+            }else{
+            $branch->delete();
+            }
             return $this->returnSuccessMessage('تم حذف المتجر بنجاح ');
         } catch (\Exception $e) {
             return  $this->returnError('E002','المتجر غير موجود');

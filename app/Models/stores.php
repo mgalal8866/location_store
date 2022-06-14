@@ -6,11 +6,13 @@ use App\Models\User;
 use App\Models\branchs;
 use App\Models\categories;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class stores extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $guarded = [];
 
     public function branch()

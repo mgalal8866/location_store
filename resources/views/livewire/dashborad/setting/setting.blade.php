@@ -69,7 +69,7 @@
         </style>
     @endpush
 
-    <div class="row">
+    <div class="row mb-4">
         <a href="{{ route('languages.index') }}"
             class="btn btn-primary">{{ __('translation::translation.language') }}</a>
     </div>
@@ -93,6 +93,11 @@
                             <a class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill"
                                 href="#custom-tabs-five-normal" role="tab" aria-controls="custom-tabs-five-normal"
                                 aria-selected="false">{{ __('settingapp') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-five-backup-tab" data-toggle="pill"
+                                href="#custom-tabs-five-backup" role="tab" aria-controls="custom-tabs-five-backup"
+                                aria-selected="false">{{ __('backup') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -281,7 +286,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">عدد المتاجر فى البحث</label>
                                                         <input type="number" class="form-control" name="recaptcha_lang"
-                                                        min="0"  placeholder="عدد المتاجر فى البحث" value="" dir="rtl">
+                                                        wire:model.defer="state.app_pagforsearch_branch" min="0"  placeholder="عدد المتاجر فى البحث" value="" dir="rtl">
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
@@ -290,6 +295,43 @@
                                             </form>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-five-backup" role="tabpanel"
+                            aria-labelledby="custom-tabs-five-backup-tab">
+                            <div class="p-2" style="background-color: #f3f6f8;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form wire:submit.prevent="updateSetting">
+                                            <div class="form-group">
+                                                <label class="control-label">التوقيت</label>
+                                                <select class="form-control">
+                                                    <option value=''>everyFiveMinutes()</option>
+                                                    <option value=''>everyTenMinutes()</option>
+                                                    <option value=''>everyFifteenMinutes()</option>
+                                                    <option value=''>everyThirtyMinutes()</option>
+                                                    <option value=''>hourly()</option>
+                                                    <option value=''>hourlyAt(17)</option>
+                                                    <option value=''>daily()</option>
+                                                    <option value=''>dailyAt('13:00')</option>
+                                                    <option value=''>twiceDaily(1, 13)</option>
+                                                    <option value=''>weekly()</option>
+                                                    <option value=''>weeklyOn(1, ‘8:00’)</option>
+                                                    <option value=''>monthly()</option>
+                                                    <option value=''>monthlyOn(4, ’15:00′)</option>
+                                                    <option value=''>quarterly()</option>
+                                                    <option value=''>yearly()</option>
+                                                </select>
+                                                {{-- <input type="text"  wire:model.defer="state.site_name" class="form-control" name="application_name" placeholder="اسم التطبيق" dir="rtl"> --}}
+                                            </div>
+
+
+                                        </div>
+                                        <div class="card-footer">
+                                            {{-- <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button> --}}
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
