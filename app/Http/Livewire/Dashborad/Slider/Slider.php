@@ -13,11 +13,11 @@ class Slider extends Component
 
     public function add()
     {
-
         $this->slider = ModelsSlider::create([
-                'type' =>    $this->statetype,
-                'event' =>   $this->event,
+                'type'  => $this->statetype,
+                'event' => $this->event,
                 'image' => $this->image->store('/', 'slider')]);
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
 
     }
     public function updatedStatetype()
@@ -26,9 +26,8 @@ class Slider extends Component
     public function  deleteslider($id)
     {
          $slider = ModelsSlider::find($id);
-         
          $slider->delete();
-        $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
+         $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
     }
     public function render()
     {
