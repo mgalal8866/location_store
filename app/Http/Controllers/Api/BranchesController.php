@@ -160,8 +160,8 @@ class BranchesController extends Controller
     public function branchcheck(){
         $store =  stores::whereUserId(auth('api')->user()->id)->first();
         if( $store ==null){
-        return response()->json(['status' => true,'number' => '0']);
-    }
+          return response()->json(['status' => true,'number' => '0']);
+         }
         $num_branch =  $store->branch->count();
 
         if($store->branch_num >= $num_branch)
