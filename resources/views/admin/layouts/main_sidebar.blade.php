@@ -130,7 +130,15 @@
                         </li>
                     </li>
                     {{-- @endcan --}}
+                    <li class="nav-header">{{ __('tran.slider') }}</li>
+                    <li class="nav-item">
+                        <a href="{{route('slider') }}" class="nav-link">
+                            <i class="nav-icon fas fa-bell"></i>
 
+                            <p> {{ __('tran.slider') }} </p>
+                        </a>
+                    </li>
+                </li>
 
                 </ul>
             </nav>

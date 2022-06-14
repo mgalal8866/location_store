@@ -22,6 +22,8 @@ class CreateSlidersTable extends Migration
             $table->unsignedBigInteger('branch_id')->nullable();
             $table->boolean('productstate')->default(0)->comment('[0 = false] [1 = true ]');
             $table->unsignedBigInteger('product_id')->nullable();
+            $table->enum('type',['image','product','store'])->nullable();
+            $table->string('event')->nullable();
             $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->timestamps();
         });

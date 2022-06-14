@@ -2,11 +2,12 @@
 
 
 use App\Models\User;
+ 
 use App\Models\comments;
 use Illuminate\Http\Request;
 use League\Flysystem\Config;
-use Illuminate\Support\Facades\URL;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -16,11 +17,13 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\DashbordController;
 use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
+use App\Http\Livewire\Dashborad\Slider\Slider;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\category\Category;
 use App\Http\Livewire\Dashborad\category\Category2;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +115,7 @@ Route::group(
         Route::get('/category',viewcategory::class)->name('category');
         Route::get('/category2',Category2::class)->name('category2');
         Route::get('/users',Citits::class)->name('users');
+        Route::get('/slider',Slider::class)->name('slider');
         Route::get('/city/regions',Citits::class)->name('regions');
         Route::get('/stores',Store::class)->name('stores');
         Route::get('/store/branchse/{slug}',Branch::class)->name('branch');

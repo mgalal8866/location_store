@@ -49,4 +49,9 @@ class products extends Model
     public function getExpiryDateAttribute($value){
         return  $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }
+
+    public function slider()
+    {
+        return $this->hasMany(slider::class);
+    }
 }

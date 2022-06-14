@@ -108,6 +108,10 @@ class branchs extends Model
     public function getExpiryDateAttribute($value){
         return  $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }
+    public function slider()
+    {
+        return $this->hasMany(slider::class);
+    }
     // public function getOpentimeAttribute($value){
     //     return    Carbon::parse($value)->toFormattedTime();
     // }
