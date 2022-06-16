@@ -18,4 +18,14 @@ class slider extends Model
              return asset('assets/images/noimage.jpg');
         }
     }
+    public function branch()
+    {
+        return $this->belongsTo(branchs::class,'event','id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(products::class,'event','id');
+    }
+
 }

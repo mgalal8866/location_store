@@ -33,6 +33,9 @@ class slider extends JsonResource
                 'phone'       => $branch->phone?? $product->branch->phone ?? '' ,
                 // 'branch_num'  => $branch_num,
                 // 'product_num'  => $product_num
+
+                'urlstate'    => ($this->type=='url')?true:false,
+                'url'         => ($this->type=='url')?$this->event:'',
             ];
     }
 }
