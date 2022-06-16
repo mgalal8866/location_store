@@ -152,9 +152,9 @@ class ProductController extends Controller
         if( $limit_peoduct ==null){
             return response()->json(['status' => true,'number' => '0']);
         }
-        
+
         $num_product =  products::whereBranchId($branch_id)->count();
-        if($limit_peoduct >= $num_product)
+        if($limit_peoduct > $num_product)
         {
             $product = products::whereBranchId($branch_id)->get();
             return response()->json([
