@@ -148,7 +148,7 @@ class ProductController extends Controller
 
     public function productcheck($branch_id)
     {
-        $limit_peoduct =  branchs::find($branch_id)->first()->product_num ;
+        $limit_peoduct =  branchs::find($branch_id)->product_num ;
         if( $limit_peoduct ==null){
             return response()->json(['status' => true,'number' => '0']);
         }
