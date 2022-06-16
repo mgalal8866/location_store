@@ -19,8 +19,6 @@ class StoresController extends Controller
     {
         return $this->returnData('stores',store::collection(stores::whereActive(0)->get()));
     }
-
-
     public function newstore(Request $request)
     {
         $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first();
@@ -75,8 +73,6 @@ class StoresController extends Controller
                 return $this->returnError('E0001',config('err_message.alert.limit_branch'));
             }
     }
-
-
     public function storevistor($store_id)
     {
         DB::table('branchs')->whereId($store_id)->increment('view');
