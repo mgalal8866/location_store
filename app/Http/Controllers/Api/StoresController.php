@@ -23,7 +23,8 @@ class StoresController extends Controller
 
     public function newstore(Request $request)
     {
-        $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first()->branch_num;
+        $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first();
+            ($limit_branch == null)?$limit_branch==0:$limit_branch->branch_num;
         $num_branch =  branchs::WhereHas('stores', function($q){$q->whereUserId(auth('api')->user()->id); })->count();
 
         if($limit_branch >= $num_branch){
