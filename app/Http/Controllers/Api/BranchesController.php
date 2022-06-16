@@ -58,7 +58,9 @@ class BranchesController extends Controller
         // $branches = branchs::WhereHas('stores', function($q)  use ($request){
         //     $q->whereUserId(auth('api')->user()->id)->whereActive(0);
         // })->
-        $branches = branchs::WhereHas('stores')->
+        $branches = branchs::WhereHas('stores', function($q)  use ($request){
+            $q->whereUserId(auth('api')->user()->id);
+        })->
             latest()->
             orderBy('top', 'DESC')->
             paginate(setting('app_page_branch'));
