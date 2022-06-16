@@ -29,7 +29,6 @@ return array (
         'selectfevicon' => 'اختار ايقونة مصغره',
         'selectlogo' => 'اختيار شعار',
         'selectimage'=>'اختار صورة',
-
         'cities' => 'مدن',
 
 
