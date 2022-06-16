@@ -55,9 +55,10 @@ class BranchesController extends Controller
 // احضار الفروع الخاصه بالمستخدم
     public function getbranchesbyuser(Request $request)
     {
-        $branches = branchs::WhereHas('stores', function($q)  use ($request){
-            $q->whereUserId(auth('api')->user()->id)->whereActive(0);
-        })->
+        // $branches = branchs::WhereHas('stores', function($q)  use ($request){
+        //     $q->whereUserId(auth('api')->user()->id)->whereActive(0);
+        // })->
+        $branches = branchs::WhereHas('stores')->
             latest()->
             orderBy('top', 'DESC')->
             paginate(setting('app_page_branch'));
