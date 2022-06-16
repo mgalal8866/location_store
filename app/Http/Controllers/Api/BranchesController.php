@@ -58,9 +58,8 @@ class BranchesController extends Controller
         // $branches = branchs::WhereHas('stores', function($q)  use ($request){
         //     $q->whereUserId(auth('api')->user()->id)->whereActive(0);
         // })->
-        $branches = branchs::WhereHas('stores', function($q)  use ($request){
-            $q->whereUserId(auth('api')->user()->id);
-        })->
+        $branches = branchs::WhereHas('stores', function($q)  use ($request)
+        {$q->whereUserId(auth('api')->user()->id); })->
             latest()->
             orderBy('top', 'DESC')->
             paginate(setting('app_page_branch'));
@@ -167,7 +166,7 @@ class BranchesController extends Controller
          }
         $num_branch =  $store->branch->count();
 
-        if($store->branch_num >= $num_branch)
+        if($store->branch_num > $num_branch)
         {
             return response()->json([
                 'status' => true,

@@ -46,7 +46,6 @@ class StoresController extends Controller
                 'phone2'         => 'string',
                 'image'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             ]);
-
                 if($validator->fails()){
                     return $this->returnError('400',$validator->errors());
                 }
