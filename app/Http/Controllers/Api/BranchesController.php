@@ -61,8 +61,7 @@ class BranchesController extends Controller
         $branches = branchs::WhereHas('stores', function($q)  use ($request)
         {$q->whereUserId(auth('api')->user()->id); })->
             latest()->
-            orderBy('top', 'DESC')->
-            paginate(setting('app_page_branch'));
+            orderBy('top', 'DESC')->get();
             return $this->returnData('branches',new branchesCollectionbyuser($branches) ,'Done');
     }
 
