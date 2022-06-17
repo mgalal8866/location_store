@@ -21,17 +21,27 @@ class StoresController extends Controller
     }
     public function newstore(Request $request)
     {
-        $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first();
-           if($limit_branch == null){$limit_branch=='0';}else{ $limit_branch = $limit_branch->branch_num;}
+        $limit_branch =0;
+       $store =  stores::whereUserId(auth('api')->user()->id)->first();
+        // dd($limit_branch);
+        if($store == null){$limit_branch == 0 ; }else{ $limit_branch = $store->branch_num;}
 
         $num_branch =  branchs::WhereHas('stores', function($q){$q->whereUserId(auth('api')->user()->id); })->count();
 //Error hhhhher
-
-        if($limit_branch > $num_branch){
+// dd($limit_branch , $num_branch);
+        if($limit_branch > $num_branch  OR $limit_branch == 0){
+            if($limit_branch == 0){
             $validator = Validator::make($request->all(), [
+                    'category_id' => 'required|exists:categories,id',
+                    'name' => 'required|string|unique:stores',
+            ]);
+             }
+             if($limit_branch > $num_branch){
+                $validator = Validator::make($request->all(), [
                     'category_id' => 'required|exists:categories,id',
                     // 'name' => 'required|string|unique:stores',
             ]);
+             }
             $validatorvbranch = Validator::make($request->all(), [
                 'region_id'     => 'required|string|exists:regions,id',
                 'city_id'       => 'required|string|exists:cities,id',

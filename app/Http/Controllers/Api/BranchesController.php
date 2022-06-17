@@ -46,7 +46,7 @@ class BranchesController extends Controller
         // Cache::forget('setting');
         $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
-            whereRegionId($request->region_id)->
+            whereRegionId($request->region_id)->''
             orderBy('top', 'DESC')->
             paginate(setting('app_page_branch'));
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
