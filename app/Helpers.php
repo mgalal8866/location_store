@@ -14,3 +14,12 @@ function setting($key)
         return $setting->{$key};
     }
 }
+
+function timetask($key)
+{
+    $setting = Cache::rememberForever('timetask',  NullSetting::make());
+
+    if ($setting) {
+        return $setting->{$key};
+    }
+}
