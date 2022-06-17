@@ -15,11 +15,12 @@ class Slider extends Component
 
     public function add()
     {
+        $this->image = $this->uploadimages('slider',$this->image);
         $this->slider = ModelsSlider::create([
                 'type'  => $this->statetype,
                 'event' => $this->event,
                 'image' => $this->image]);
-                $this->uploadimages('slider',$this->image);
+
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
 
     }
