@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('db:backup')->weekly();
         // $schedule->command('backup:run')->everyFiveMinutes();
-        $schedule->command('notifi:send')->cron('* * * * *');
+        $schedule->command('notifi:send')->cron(timetask('delete_store'));
         // $schedule->command('DB:Restore')->everyMinute();
         // Log::info("working");
     }

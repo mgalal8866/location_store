@@ -1,7 +1,9 @@
 <?php
 
-use App\Models\setting;
+
+use App\Timetask;
 use App\NullSetting;
+use App\Models\setting;
 use Illuminate\Support\Facades\Cache;
 
 function setting($key)
@@ -17,9 +19,11 @@ function setting($key)
 
 function timetask($key)
 {
-    $setting = Cache::rememberForever('timetask',  NullSetting::make());
+    $timetask = Cache::rememberForever('timetask', [   'delete_store'            => '* * * * *'
 
-    if ($setting) {
-        return $setting->{$key};
+    ]);
+
+    if ($timetask) {
+        return $timetask->{$key};
     }
 }

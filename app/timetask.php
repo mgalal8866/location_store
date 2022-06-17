@@ -2,12 +2,14 @@
 
 namespace App;
 
-use App\Models\setting;
+use Google\Service\ShoppingContent\Resource\Collections;
 
-class NullSetting extends setting
+// use App\Models\setting;'
+
+class Timetask extends Collections
 {
     protected $attributes = [
-        'delete_store'            => '* * * * * ', //every minute
+        'delete_store'            => '* * * * *', //every minute
         'notification_expires'    => 'Default site name',
         'time_'              => 'default@gmail.com',
         'footer_text'             => 'default footer text',
