@@ -18,7 +18,7 @@ class Notification extends Component
         $this->getregion = regions::whereCityId($id)->get();
     }
     public function sendnotify(){
-        dd(User::when('gender' , function($query){($this->gender != 'all')? return $query->where('gender', 'like', $this->gender)};)->get());
+       // dd(User::when('gender' , function($query){($this->gender != 'all')? return $query->where('gender', 'like', $this->gender)};)->get());
     }
     public function render()
     {
