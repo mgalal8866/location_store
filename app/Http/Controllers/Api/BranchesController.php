@@ -11,7 +11,6 @@ use App\Http\Resources\branch;
 use App\Http\Resources\onebraches;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\branchbyuser;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\branchesCollection;
@@ -63,7 +62,7 @@ class BranchesController extends Controller
         {$q->whereUserId(auth('api')->user()->id); })->
             latest()->
             orderBy('top', 'DESC')->get();
-            return $this->returnData('branches', branchbyuser::collection($branches) ,'Done');
+            return $this->returnData('branches',new branchesCollectionbyuser($branches) ,'Done');
     }
 
 

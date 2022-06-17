@@ -16,15 +16,15 @@ class branchesCollectionbyuser extends ResourceCollection
     {
         return [
             'data' => branchbyuser::collection($this->collection),
-            'pagination' => [
-                'total'        => $this->total(),
-                'count'        => $this->count(),
-                'per_page'     => $this->perPage(),
-                'current_page' => $this->currentPage(),
-                'total_pages'  => $this->lastPage(),
-                'path'         => $this->path(),
-                'current_path' => $this->path().'?page='.$this->currentPage(),
-            ],
+            // 'pagination' => [
+            //     'total'        => $this->total(),
+            //     'count'        => $this->count(),
+            //     'per_page'     => $this->perPage(),
+            //     'current_page' => $this->currentPage(),
+            //     'total_pages'  => $this->lastPage(),
+            //     'path'         => $this->path(),
+            //     'current_path' => $this->path().'?page='.$this->currentPage(),
+            // ],
         ];
     }
 }
