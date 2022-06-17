@@ -25,8 +25,8 @@ class StoresController extends Controller
             ($limit_branch == null)?$limit_branch=='0': $limit_branch->branch_num;
 
         $num_branch =  branchs::WhereHas('stores', function($q){$q->whereUserId(auth('api')->user()->id); })->count();
-
-        if($limit_branch >= $num_branch){
+//Error hhhhher
+        if($limit_branch > $num_branch){
             $validator = Validator::make($request->all(), [
                     'category_id' => 'required|exists:categories,id',
                     // 'name' => 'required|string|unique:stores',
