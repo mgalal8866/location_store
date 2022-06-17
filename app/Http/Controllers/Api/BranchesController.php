@@ -11,6 +11,7 @@ use App\Http\Resources\branch;
 use App\Http\Resources\onebraches;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\branchbyuser;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\branchesCollection;
@@ -36,7 +37,7 @@ class BranchesController extends Controller
     public function lastbranch(Request $request)
     {
 
-        return  $this->returnData('branches',branch::collection(
+        return  $this->returnData('branches',branchbyuser::collection(
             branchs::whereActive(0)->whereAccept(0)->whereRegionId($request->region_id)->WhereHas('stores', function($q)
             {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
     }

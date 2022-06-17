@@ -17,7 +17,7 @@ class branch extends JsonResource
             'rating' => number_format($this->rating,2),
             'lat'    => $this->lat,
             'lng'    => $this->lng,
-            'product'=> $this->product->count()
+            'product'=> $this->product->count()??0
         ];
     }
 }
