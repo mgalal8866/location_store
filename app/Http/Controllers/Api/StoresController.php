@@ -22,7 +22,7 @@ class StoresController extends Controller
     public function newstore(Request $request)
     {
         $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first();
-            ($limit_branch == null)?$limit_branch=='0': $limit_branch = $limit_branch->branch_num;
+           if($limit_branch == null){$limit_branch=='0';}else{ $limit_branch = $limit_branch->branch_num;}
 
         $num_branch =  branchs::WhereHas('stores', function($q){$q->whereUserId(auth('api')->user()->id); })->count();
 //Error hhhhher
@@ -47,7 +47,6 @@ class StoresController extends Controller
                 if($validator->fails()){
                     return $this->returnError('400',$validator->errors());
                 }
-
                 if( $num_branch == 0)
                 {
                     $store = stores::firstOrCreate(array_merge(
