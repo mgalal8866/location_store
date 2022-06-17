@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 class Setting extends Component
 {
     use WithFileUploads;
-    public $logo,$favicon;
+    public $logo,$favicon,$timebackup;
     use GeneralTrait;
 
     private $translation;
@@ -40,7 +40,11 @@ class Setting extends Component
         //     }
 
         // }
+        public function setbackuptime()
+        {
 
+            dd($this->timebackup);
+        }
         public function updateSetting()
         {
             $setting = ModelsSetting::first();

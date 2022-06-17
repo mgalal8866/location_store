@@ -48,7 +48,7 @@ class Store extends Component
             $this->status = $status;
         }
 
-       
+
     public function render()
     {
 
@@ -66,7 +66,6 @@ class Store extends Component
         $stores = stores::with('branch')->
             when($this->status, function ($query, $status) {
                 return $query->where('active', $status);})->
-
             whereHas('user' , function ($query) {
                 return $query->where('mobile', 'like', '%'.$this->searchTerm.'%');})->
             orderBy($this->sortColumnName, $this->sortDirection)->

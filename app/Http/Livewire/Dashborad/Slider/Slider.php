@@ -20,8 +20,8 @@ class Slider extends Component
                 'type'  => $this->statetype,
                 'event' => $this->event,
                 'image' => $this->image]);
-
-        $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
+        $this->reset();
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Add Success']);
 
     }
     public function updatedStatetype()

@@ -122,7 +122,7 @@
                     {{-- @can('menu setting') --}}
                     <li class="nav-header">{{ __('tran.notification') }}</li>
                         <li class="nav-item">
-                            <a href="{{route('settingapp') }}" class="nav-link">
+                            <a href="{{route('setting/notification') }}" class="nav-link">
                                 <i class="nav-icon fas fa-bell"></i>
 
                                 <p> {{ __('tran.notification') }} </p>
@@ -133,7 +133,7 @@
                     <li class="nav-header">{{ __('tran.slider') }}</li>
                     <li class="nav-item">
                         <a href="{{route('slider') }}" class="nav-link">
-                            <i class="nav-icon fas fa-bell"></i>
+                            <i class="nav-icon fas fa-sliders-h"></i>
 
                             <p> {{ __('tran.slider') }} </p>
                         </a>

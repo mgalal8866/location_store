@@ -76,7 +76,7 @@
     <div class="row ">
         <div class="col-md-12">
             <div class="card   card-success card-tabs">
-                <div class="card-header p-0 pt-1">
+                <div   wire:ignore  class="card-header p-0 pt-1">
                     <ul class="nav nav-tabs" id="custom-tabs-five-tab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link  active" id="custom-tabs-five-overlay-tab" data-toggle="pill"
@@ -102,8 +102,8 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="tab-content" id="custom-tabs-five-tabContent">
-                        <div class="tab-pane fade show active" id="custom-tabs-five-overlay" role="tabpanel"
+                    <div    class="tab-content" id="custom-tabs-five-tabContent">
+                        <div  wire:ignore.self class="tab-pane fade show active" id="custom-tabs-five-overlay" role="tabpanel"
                             aria-labelledby="custom-tabs-five-overlay-tab">
                             <div class="col-md-6">
                                 <div class="card card-info">
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="custom-tabs-five-overlay-dark" role="tabpanel"
+                        <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-overlay-dark" role="tabpanel"
                             aria-labelledby="custom-tabs-five-overlay-dark-tab">
                             <div class="p-2" style="background-color: #f3f6f8;">
                                 <div class="card">
@@ -261,7 +261,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="custom-tabs-five-normal" role="tabpanel"
+                        <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-normal" role="tabpanel"
                             aria-labelledby="custom-tabs-five-normal-tab">
                             <div class="p-2" style="background-color: #f3f6f8;">
                                 <div class="row">
@@ -298,30 +298,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="custom-tabs-five-backup" role="tabpanel"
+                        <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-backup" role="tabpanel"
                             aria-labelledby="custom-tabs-five-backup-tab">
                             <div class="p-2" style="background-color: #f3f6f8;">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form wire:submit.prevent="updateSetting">
+                                        <form wire:submit.prevent="setbackuptime">
                                             <div class="form-group">
                                                 <label class="control-label">التوقيت</label>
-                                                <select class="form-control">
-                                                    <option value=''>everyFiveMinutes()</option>
-                                                    <option value=''>everyTenMinutes()</option>
-                                                    <option value=''>everyFifteenMinutes()</option>
-                                                    <option value=''>everyThirtyMinutes()</option>
-                                                    <option value=''>hourly()</option>
-                                                    <option value=''>hourlyAt(17)</option>
-                                                    <option value=''>daily()</option>
-                                                    <option value=''>dailyAt('13:00')</option>
-                                                    <option value=''>twiceDaily(1, 13)</option>
-                                                    <option value=''>weekly()</option>
-                                                    <option value=''>weeklyOn(1, ‘8:00’)</option>
-                                                    <option value=''>monthly()</option>
-                                                    <option value=''>monthlyOn(4, ’15:00′)</option>
-                                                    <option value=''>quarterly()</option>
-                                                    <option value=''>yearly()</option>
+                                                <select wire:model='timebackup' class="form-control">
+                                                    <option value='0 * * * *'>Hourly</option>
+                                                    <option value='0 0 * * *'>Daily</option>
+                                                    <option value='0 0 0 * *'>Weekly</option>
+                                                    <option value='0 0 1 * *'>Monthly</option>
+                                                    <option value='0 0 0 1 1'>Yearly</option>
+                                                    {{-- <option value=''>hourlyAt(17)</option> --}}
+                                                    {{-- <option value=''>dailyAt('13:00')</option> --}}
+                                                    {{-- <option value=''>twiceDaily(1, 13)</option> --}}
+                                                    {{-- <option value=''>dailyAt('13:00')</option> --}}
+                                                    {{-- <option value=''>twiceDaily(1, 13)</option> --}}
+                                                    {{-- <option value=''>weeklyOn(1, ‘8:00’)</option> --}}
+                                                    {{-- <option value=''>monthlyOn(4, ’15:00′)</option> --}}
+                                                    {{-- <option value=''>quarterly</option> --}}
                                                 </select>
                                                 {{-- <input type="text"  wire:model.defer="state.site_name" class="form-control" name="application_name" placeholder="اسم التطبيق" dir="rtl"> --}}
                                             </div>
@@ -329,7 +327,7 @@
 
                                         </div>
                                         <div class="card-footer">
-                                            {{-- <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button> --}}
+                                            <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button>
                                         </div>
                                     </form>
                                 </div>
@@ -344,6 +342,8 @@
 </div>
 
 
+
+ 
 {{-- <div class="col-lg-6 col-md-12">
                                             <div class="card">
                                                 <div class="card-header with-border">

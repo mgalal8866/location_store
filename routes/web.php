@@ -22,6 +22,7 @@ use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\category\Category;
 use App\Http\Livewire\Dashborad\category\Category2;
 use App\Http\Livewire\Dashborad\category\viewcategory;
+use App\Http\Livewire\Dashborad\Notification\Notification;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
 
@@ -113,6 +114,7 @@ Route::group(
         Route::get('/',[DashbordController::class,'index'])->name('dashborad');
         Route::get('/city',Citits::class)->name('city');
         Route::get('/setting/app',Setting::class)->name('settingapp');
+        Route::get('/notification/',Notification::class)->name('setting/notification');
         Route::get('/category',viewcategory::class)->name('category');
         Route::get('/category2',Category2::class)->name('category2');
         Route::get('/users',Citits::class)->name('users');
