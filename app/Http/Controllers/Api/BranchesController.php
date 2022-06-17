@@ -37,7 +37,7 @@ class BranchesController extends Controller
     public function lastbranch(Request $request)
     {
 
-        return  $this->returnData('branches',branchbyuser::collection(
+        return  $this->returnData('branches',branch::collection(
             branchs::whereActive(0)->whereAccept(0)->whereRegionId($request->region_id)->WhereHas('stores', function($q)
             {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
     }
@@ -63,7 +63,7 @@ class BranchesController extends Controller
         {$q->whereUserId(auth('api')->user()->id); })->
             latest()->
             orderBy('top', 'DESC')->get();
-            return $this->returnData('branches',new branchesCollectionbyuser($branches) ,'Done');
+            return $this->returnData('branches', branchbyuser::collection($branches) ,'Done');
     }
 
 
