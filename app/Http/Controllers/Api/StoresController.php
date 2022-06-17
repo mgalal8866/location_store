@@ -22,14 +22,14 @@ class StoresController extends Controller
     public function newstore(Request $request)
     {
         $limit_branch =  stores::whereUserId(auth('api')->user()->id)->first();
-            ($limit_branch == null)?$limit_branch=='0': $limit_branch->branch_num;
+            ($limit_branch == null)?$limit_branch=='0': $limit_branch = $limit_branch->branch_num;
 
         $num_branch =  branchs::WhereHas('stores', function($q){$q->whereUserId(auth('api')->user()->id); })->count();
 //Error hhhhher
         if($limit_branch > $num_branch){
             $validator = Validator::make($request->all(), [
                     'category_id' => 'required|exists:categories,id',
-                    // 'name' => 'required|string|unique:stores',
+                    'name' => 'required|string|unique:stores',
             ]);
             $validatorvbranch = Validator::make($request->all(), [
                 'region_id'     => 'required|string|exists:regions,id',
