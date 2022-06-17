@@ -19,10 +19,7 @@ function setting($key)
 
 function timetask($key)
 {
-    $timetask = Cache::rememberForever('timetask', [   'delete_store'            => '* * * * *'
-
-    ]);
-
+    $timetask = Cache::rememberForever('timetask', function () { return Timetask::make();});
     if ($timetask) {
         return $timetask->{$key};
     }

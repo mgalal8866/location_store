@@ -2,11 +2,12 @@
 
 namespace App;
 
-use Google\Service\ShoppingContent\Resource\Collections;
+
+use Illuminate\Support\Collection ;
 
 // use App\Models\setting;'
 
-class Timetask extends Collections
+class Timetask extends Collection
 {
     protected $attributes = [
         'delete_store'            => '* * * * *', //every minute

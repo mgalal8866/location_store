@@ -2,7 +2,7 @@
 
 
 use App\Models\User;
- 
+
 use App\Models\comments;
 use Illuminate\Http\Request;
 use League\Flysystem\Config;
@@ -37,8 +37,9 @@ use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
 */
 
 route::get('/set',function () {
-Storage::disk('google')->put('hello.text' ,'welcome');
+// Storage::disk('google')->put('hello.text' ,'welcome');
     // return setting('site_title');
+      dd(  timetask('delete_store'));
  });
 
 route::get('/pull',function () {
