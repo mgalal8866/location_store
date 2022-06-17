@@ -28,7 +28,7 @@ class onebraches extends JsonResource
             'image'       => $this->image,
             'description' => $this->description??'',
             'phone'       => $this->phone,
-            'phone2'      => $this->phone,
+            'phone2'      => $this->phone2,
             'city'        => $this->city->name,
             'region'      => $this->region->name,
             'opentime'    => $this->opentime??'',
