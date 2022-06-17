@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Dashborad\Slider;
 
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\slider as ModelsSlider;
 
 class Slider extends Component
 {
+    use GeneralTrait;
     use WithFileUploads;
     public $statetype ,$slider,$event,$image;
 
@@ -16,7 +18,8 @@ class Slider extends Component
         $this->slider = ModelsSlider::create([
                 'type'  => $this->statetype,
                 'event' => $this->event,
-                'image' => $this->image->store('/', 'slider')]);
+                'image' => $this->image]);
+                $this->uploadimages('slider',$this->image);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
 
     }

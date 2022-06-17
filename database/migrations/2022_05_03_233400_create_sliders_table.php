@@ -16,12 +16,6 @@ class CreateSlidersTable extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image');
-            // $table->boolean('urlstate')->default(0)->comment('[0 = false] [1 = true ]');
-            // $table->string('url')->nullable();
-            // $table->boolean('branchstate')->default(0)->comment('[0 = false] [1 = true ]');
-            // $table->unsignedBigInteger('branch_id')->nullable();
-            // $table->boolean('productstate')->default(0)->comment('[0 = false] [1 = true ]');
-            // $table->unsignedBigInteger('product_id')->nullable();
             $table->enum('type',['image','product','store','url'])->nullable();
             $table->string('event')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
