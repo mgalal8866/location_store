@@ -5,11 +5,12 @@ use App\Models\User;
 
 use App\Models\comments;
 use Illuminate\Http\Request;
-use League\Flysystem\Config;
+// use League\Flysystem\Config;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashborad\Citits;
 use Illuminate\Support\Facades\Artisan;
@@ -40,7 +41,9 @@ use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
 route::get('/set',function () {
 // Storage::disk('google')->put('hello.text' ,'welcome');
     // return setting('site_title');
-      dd(  timetask('delete_store'));
+    // Cache::forget('timetask');'
+    Cache::forever('delete_store', '$value',11);
+      dd(   Cache::get('delete_store'));
  });
 
 route::get('/pull',function () {
@@ -97,7 +100,9 @@ Route::post('save-token', function(Request $request)
 
 
 Route::get('mm',function(){
-    config()->set('err_message.keys.secret', "value");
+    // $url = config('app.url','http://hdtuto.com/');
+    $url = config()->set('err_message.keys.secret','http://hdtuto.com/');
+    // config()->set('err_message.keys.secret', "value");
     return config('err_message.keys.secret');
 });
 

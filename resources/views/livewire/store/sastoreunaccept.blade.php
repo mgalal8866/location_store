@@ -32,8 +32,8 @@
                 @foreach ( $branchnNotAccept as $branch)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td  class="text-success" >{{ $branch->stores->name }}</td>
-                        <td>{{ $branch->stores->user->name }}</td>
+                        <td class="text-success" >{{ $branch->stores->name??'' }}</td>
+                        <td>{{ $branch->stores->user->name??'' }}</td>
                         <td>{{ $branch->city->name }}</td>
                         <td>
                             <div class="btn-group">

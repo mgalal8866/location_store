@@ -95,5 +95,15 @@
     "to": "",
     "of": "",
     "results": "",
-    "Go to page :page": ""
+    "Go to page :page": "",
+    "notify_expiry_branch": "Notify Expiry Branch",
+    "notify_expiry_product": "Notify Expiry Product",
+    "setting_general": "Setting General",
+    "send_custom_notification": "Send Custom Notification",
+    "general": "General",
+    "log": "Log",
+    "daily": "Daily",
+    "title": "Title",
+    "body": "Body",
+    "gender": "Gender"
 }

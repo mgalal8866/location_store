@@ -13,14 +13,16 @@ function setting($key)
     });
 
     if ($setting) {
+        // dd($setting);
         return $setting->{$key};
     }
 }
 
+
 function timetask($key)
-{
-    $timetask = Cache::rememberForever('timetask', function () { return Timetask::make();});
-    if ($timetask) {
-        return $timetask->{$key};
+{   $timetask = Cache::rememberForever('timetask', function () { return Timetask::make();});
+    if ($timetask){
+
+        return $timetask[$key];
     }
 }

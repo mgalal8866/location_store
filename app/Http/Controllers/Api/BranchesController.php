@@ -75,26 +75,27 @@ class BranchesController extends Controller
     }
 
 // بحث عن طريق المدينه المحافظه المنتج المتجر
-    public function  search($query='')
+    public function  search(Request $request)
     {
-         $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
-         WhereHas('stores', function($q) use ($query){
-            $q->Where('name','like', '%'.  $query  . '%')->whereActive(0);
+         $ss = branchs::whereRegionId($request->region_id)->whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
+         WhereHas('stores', function($q) use ($request){
+            $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
         })->
-        orWhereHas('city', function($q1) use ($query){
-            $q1->Where('city_name_ar','like', '%'.  $query  . '%')
-            ->orWhere('city_name_en','like', '%'.  $query  . '%')->whereActive(0);
-        })->
-        orWhereHas('region', function($q3) use ($query){
-            $q3->Where('region_name_ar','like', '%'.  $query  . '%')
-            ->orWhere('region_name_en','like', '%'.  $query  . '%')->whereActive(0);
-        })->
-        orWhereHas('product', function($q4) use ($query){
-            $q4->Where('name','like', '%'.  $query  . '%')->whereActive(0);
+        orWhereHas('product', function($q4) use ($request){
+            $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
         })->paginate(setting('app_pagforsearch_branch'));
 
 
         return $this->returnData('branches', new branchesCollection($ss),'Done');
+
+        // orWhereHas('city', function($q1) use ($request){
+        //     $q1->Where('city_name_ar','like', '%'.  $request->search  . '%')
+        //     ->orWhere('city_name_en','like', '%'.  $request->search  . '%')->whereActive(0);
+        // })->
+        // orWhereHas('region', function($q3) use ($request){
+        //     $q3->Where('region_name_ar','like', '%'.  $request->search  . '%')
+        //     ->orWhere('region_name_en','like', '%'.  $request->search  . '%')->whereActive(0);
+        // })->
     }
 
 //تعديل متجر

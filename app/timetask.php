@@ -11,15 +11,7 @@ class Timetask extends Collection
 {
     protected $attributes = [
         'delete_store'            => '* * * * *', //every minute
-        'notification_expires'    => 'Default site name',
-        'time_'              => 'default@gmail.com',
-        'footer_text'             => 'default footer text',
-        'sidebar_collapse'        => false,
-        'app_page_branch'         => 10,
-        'app_pag'                 => 10,
-        'app_new_branch'          => 10,
-        'app_pagforsearch_branch' => 10,
-        'splash'                  => '',
+       
     ];
 
     //'* * * * * ', //every minute

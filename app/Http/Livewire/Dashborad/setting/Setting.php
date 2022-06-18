@@ -56,6 +56,7 @@ class Setting extends Component
             }
 
             Cache::forget('setting');
+            
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
                   }
     public function render()

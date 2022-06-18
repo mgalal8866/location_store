@@ -87,7 +87,7 @@
                             <a class="nav-link" id="custom-tabs-five-overlay-dark-tab" data-toggle="pill"
                                 href="#custom-tabs-five-overlay-dark" role="tab"
                                 aria-controls="custom-tabs-five-overlay-dark"
-                                aria-selected="false">{{ __('settingeneral') }}</a>
+                                aria-selected="false">{{ __('setting_general') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill"
@@ -343,7 +343,7 @@
 
 
 
- 
+
 {{-- <div class="col-lg-6 col-md-12">
                                             <div class="card">
                                                 <div class="card-header with-border">

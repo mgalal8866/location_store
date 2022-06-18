@@ -238,18 +238,18 @@ trait GeneralTrait
         $filename = $image->hashName();
         return  $filename;
     }
-    public function notificationFCM($title =null,$body =null, $user=null,$icon =null,$image =null,$link =null,$click =null){
+    public function notificationFCM($title =null,$body =null, $users=null,$icon =null,$image =null,$link =null,$click =null){
 
-        $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
+        // $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
         // return $firebaseToken;
         $SERVER_API_KEY = env('FCM_SERVER_KEY');
         $data = [
-            "registration_ids" => $firebaseToken,
+            "registration_ids" => $users,
             "notification" => [
                 "title" => $title,
                 "body" => $body,
-                "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
-                "image" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
+                // "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
+                "image" => $image,
                 "fcm_options.link" => $link,
                 "click_action" => $click,
 
