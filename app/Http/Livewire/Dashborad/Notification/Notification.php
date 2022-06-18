@@ -26,8 +26,8 @@ use GeneralTrait;
     }
     public function sendnotify(){
         $notify = $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
-        $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
-        //  dd(json_decode($notify, true)['success']);
+        // $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
+        dd(json_decode($notify, true));
     }
     public function render()
     {
