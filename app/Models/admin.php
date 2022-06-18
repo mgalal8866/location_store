@@ -12,6 +12,9 @@ class admin extends Authenticatable
     use HasFactory, Notifiable , HasRoles;
     protected $guard = 'admins';
     protected $guarded = [];
-
+    public function notifylog()
+    {
+        return $this->hasMany(notifylog::class);
+    }
 
 }

@@ -15,7 +15,11 @@ class notifylog extends Model
 
     public function setFilterAttribute($value)
 	{
- 
+
 	    $this->attributes['filter'] = json_encode($value);
 	}
+    public function admin()
+    {
+        return $this->belongsTo(admin::class,'admin_id');
+    }
 }

@@ -237,6 +237,7 @@
                                     <div class="card-body">
                                        <table class="table table-responsive-sm table-striped">
                                            <thead>
+                                                <th>{{ __('admin') }}</th>
                                                 <th>{{ __('title') }}</th>
                                                 <th>{{ __('body') }}</th>
                                                 <th>{{ __('image') }}</th>
@@ -245,6 +246,7 @@
                                            <tbody>
                                                @forelse ( $notifylog as $log )
                                                     <tr>
+                                                        <td>{{ $log->admin->name??'' }}</td>
                                                         <td>{{ $log->title }}</td>
                                                         <td>{{ $log->body }}</td>
                                                         <td>

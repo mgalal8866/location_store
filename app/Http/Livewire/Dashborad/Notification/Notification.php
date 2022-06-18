@@ -37,7 +37,7 @@ use WithPagination;
 
         if($this->users->count() != 0){
         $notify = $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
-            notifylog::create(['title' => $this->title ,'body' =>$this->body,'image' => $this->image,'filter'  => ['city'=>$this->city,'gender'=>$this->gender,'region'=>$this->region]]);
+            notifylog::create(['admin_id'=> Auth('admin')->user()->id,'title' => $this->title ,'body' =>$this->body,'image' => $this->image,'filter'  => ['city'=>$this->city,'gender'=>$this->gender,'region'=>$this->region]]);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
         }else{
             $this->dispatchBrowserEvent('infomsg',['msg' => 'No Users Or No Device token']);
