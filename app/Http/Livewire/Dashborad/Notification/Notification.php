@@ -18,7 +18,6 @@ use GeneralTrait;
         $this->getcity = cities::get();
         $this->title = 'MGGroup- Blog Magazine Script.';
         $this->body = 'MGGroup- Blog Magazine Script.';
-
         $this->image = 'https://w7.pngwing.com/pngs/537/580/png-transparent-bell-notification-communication-information-icon.png';
 
     }
