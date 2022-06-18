@@ -85,6 +85,7 @@ class AuthController extends Controller
     }
     public function editprofile(Request $request) {
 
+
         $validator = Validator::make($request->all(), [
             'name' => 'string|between:2,100',
             // 'mobile' => 'required|string|max:100|unique:users',
@@ -116,7 +117,7 @@ class AuthController extends Controller
         return response()->json([
             'user' => new ResourcesUser($user),
             'status' => 'true',
-            'msg' => config('err_message.success.editprofile')
+            'msg' => $request->all()//config('err_message.success.editprofile')
         ], 200);
     }
     public function logout() {
@@ -164,7 +165,7 @@ class AuthController extends Controller
         }
         $user->update(array_merge(
             $validator->validated(), ['password' => bcrypt($request->password)]));
-            
+
         return $this->returnSuccessMessage( 'تم تغير الباسورد بنجاح');
     }
 }
