@@ -21,8 +21,6 @@ use WithPagination;
   public $uploadimage, $countuser = 0 , $dd =true,$title,$body,$image,$users,$region= 'all',$city= 'all',$getcity,$getregion,$gender = 'all';
     public function mount(){
         $this->getcity = cities::get();
-        $this->title = 'MGGroup- Blog Magazine Script.';
-        $this->body = 'MGGroup- Blog Magazine Script.';
         $this->image = asset('assets/images/notify/bell.png');
 
     }
