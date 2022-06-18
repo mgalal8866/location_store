@@ -25,7 +25,7 @@ use GeneralTrait;
         $this->getregion = regions::whereCityId($id)->get();
     }
     public function sendnotify(){
-        dd($this->gender ,$this->city,$this->region );
+        dd($this->gender ,$this->city,$this->region, $this->users);
         $notify = $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
         // $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
         dd(json_decode($notify, true));
