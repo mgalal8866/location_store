@@ -26,9 +26,13 @@ use GeneralTrait;
     }
     public function sendnotify(){
         // dd($this->gender ,$this->city,$this->region, $this->users);
+        if($this->users != null){
         $notify = $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
-        dd(json_decode($notify, true));
+        }else{
+            $this->dispatchBrowserEvent('warningmsg',['msg' => 'No Users ..']);
+        }
+
     }
     public function render()
     {

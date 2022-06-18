@@ -73,7 +73,12 @@
             window.addEventListener('successmsg', e => {
                 toastr.success(e.detail.msg, 'Success!');
            });
-
+           window.addEventListener('warningmsg', e => {
+                toastr.warning(e.detail.msg, ' Warning!');
+           });
+           window.addEventListener('errormsg', e => {
+                toastr.warning(e.detail.msg, ' Error!');
+           });
 
         });
 
