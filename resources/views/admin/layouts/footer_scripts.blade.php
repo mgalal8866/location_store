@@ -79,6 +79,9 @@
            window.addEventListener('errormsg', e => {
                 toastr.warning(e.detail.msg, ' Error!');
            });
+           window.addEventListener('infomsg', e => {
+                toastr.info(e.detail.msg, ' info!');
+           });
 
         });
 

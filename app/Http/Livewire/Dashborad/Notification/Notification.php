@@ -30,7 +30,7 @@ use GeneralTrait;
         $notify = $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
         }else{
-            $this->dispatchBrowserEvent('warningmsg',['msg' => 'No Users ..']);
+            $this->dispatchBrowserEvent('infomsg',['msg' => 'No Users Or No Device token']);
         }
 
     }
