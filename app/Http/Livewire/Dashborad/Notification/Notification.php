@@ -26,7 +26,7 @@ use GeneralTrait;
     }
     public function sendnotify(){
         // dd($this->gender ,$this->city,$this->region, $this->users);
-        if($this->users != null){
+        if($this->users->count() != 0){
         $notify = $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
         }else{
