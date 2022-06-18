@@ -57,6 +57,10 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'mobile_verified_at' => 'datetime',
     ];
+    public function store()
+    {
+        return $this->hasMany(stores::class);
+    }
 
     public function getGenderAttribute($val)
     {

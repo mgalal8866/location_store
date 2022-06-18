@@ -144,11 +144,21 @@
                                     <div class="card-body">
                                         <form wire:submit.prevent="sendnotify">
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{ __('target_user') }}</label>
+                                                        <select  class="form-control" wire:model='target'>
+                                                                <option value='all' selected >{{ __('all') }} </option>
+                                                                <option value='0'>Normal User</option>
+                                                                <option value='1'>Has store</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label class="control-label">{{ __('gender') }}</label>
                                                         <select  class="form-control" wire:model='gender'>
-                                                                <option value='all' selected >Any</option>
+                                                                <option value='all' selected >{{ __('any') }}</option>
                                                                 <option value='0'>Male</option>
                                                                 <option value='1'>female</option>
                                                         </select>
@@ -158,7 +168,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">{{ __('city') }}</label>
                                                        <select  class="form-control" wire:model='city'>
-                                                            <option value='all' selected>All</option>
+                                                            <option value='all' selected>{{ __('all') }}</option>
                                                             @foreach ( $getcity as $ci )
                                                             <option value='{{ $ci->id }}'>{{ $ci->name }}</option>
                                                             @endforeach
@@ -169,7 +179,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">{{ __('region') }}</label>
                                                        <select  class="form-control" wire:model='region'>
-                                                            <option value='all' selected>All</option>
+                                                            <option value='all' selected>{{ __('all') }}</option>
                                                             @if($getregion != null)
                                                                 @foreach ( $getregion as $reg)
                                                                 <option value='{{ $reg->id }}'>{{ $reg->name }}</option>
@@ -203,7 +213,7 @@
                                                         <input type="text" wire:model.defer="image" class="form-control" name="homepage_title" placeholder="صورة" dir="rtl">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     <div class="form-group">
                                                         <div class="text-center" x-data="{ imagePreview: '{{$image}}' }">
                                                             <input wire:model="uploadimage" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
