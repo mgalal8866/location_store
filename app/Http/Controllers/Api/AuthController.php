@@ -85,7 +85,6 @@ class AuthController extends Controller
     }
     public function editprofile(Request $request) {
 
-
         $validator = Validator::make($request->all(), [
             'name' => 'string|between:2,100',
             // 'mobile' => 'required|string|max:100|unique:users',
@@ -117,7 +116,7 @@ class AuthController extends Controller
         return response()->json([
             'user' => new ResourcesUser($user),
             'status' => 'true',
-            'msg' => $request->all()//config('err_message.success.editprofile')
+            'msg' => config('err_message.success.editprofile')
         ], 200);
     }
     public function logout() {
