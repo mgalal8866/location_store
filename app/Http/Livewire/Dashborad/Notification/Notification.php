@@ -22,6 +22,7 @@ use GeneralTrait;
 
     }
     public function updatedCity($id){
+        $this->region= 'all';
         $this->getregion = regions::whereCityId($id)->get();
     }
     public function sendnotify(){
@@ -32,8 +33,6 @@ use GeneralTrait;
         }else{
             $this->dispatchBrowserEvent('infomsg',['msg' => 'No Users Or No Device token']);
         }
-        
-
     }
     public function render()
     {

@@ -148,8 +148,7 @@
                                     <div class="card-body">
                                         <form wire:submit.prevent="sendnotify">
 
-                                            <input wire:model='countuser' claas="">
-                                            <span><small>{{$users->pluck('device_token')??0}}</small></span>
+
 
                                             <div class="row">
                                                 <div clss="col-md-4">
@@ -185,6 +184,9 @@
                                                             @endif
                                                        </select>
                                                     </div>
+                                                </div>
+                                                <div clss="col-md-4">
+                                                    <span class="badge badge-pill badge-success">users :{{$users->count()??0}}</span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
