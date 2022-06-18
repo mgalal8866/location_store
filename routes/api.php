@@ -31,7 +31,7 @@ use App\Http\Controllers\Api\CategoriesController;
     });
     Route::get('/not', [CitiesController::class,'notifi']);
 /**************************  Settings ********************************** */
-    Route::get('/slider/{region_id?}', [Setting::class, 'slider']);
+    Route::get('/slider', [Setting::class, 'slider']);
     Route::get('/settingapp', [Setting::class, 'app']);
 /**************************  Settings ********************************** */
 

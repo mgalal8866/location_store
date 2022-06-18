@@ -211,11 +211,8 @@ class Branch extends Component
             $previousPath   = $branch->getAttributes()['image'];
             $mmm            = $this->branchlist[$nestedData[0]]['image']->store('/', 'branch');
             $branch->update(['image' =>  $mmm  ]);
-
             $this->branchlist[$nestedData[0]]['image'] = $branch->image;
             Storage::disk('branch')->delete($previousPath);
-
-
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Changed Image ✔']);
         }
 

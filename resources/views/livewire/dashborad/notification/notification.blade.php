@@ -150,15 +150,16 @@
 
                                             <input wire:model='countuser' claas="">
                                             <span>{{$countuser??0}}</span>
+
                                             <div class="row">
                                                 <div clss="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">{{ __('gender') }}</label>
-                                                       <select  class="form-control" wire:model='gender'>
-                                                            <option value='all' selected >Any</option>
-                                                            <option value='0'>Male</option>
-                                                            <option value='1'>female</option>
-                                                       </select>
+                                                        <select  class="form-control" wire:model='gender'>
+                                                                <option value='all' selected >Any</option>
+                                                                <option value='0'>Male</option>
+                                                                <option value='1'>female</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div clss="col-md-4">

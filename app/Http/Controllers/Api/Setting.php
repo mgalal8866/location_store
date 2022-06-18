@@ -25,7 +25,6 @@ class Setting extends Controller
         }else{
             $slider = slider::whereActive(0)->where('region_id',$request->region_id)->get();
         }
-
         return $this->returnData('slider',ResourcesSlider::collection($slider));
     }
 }

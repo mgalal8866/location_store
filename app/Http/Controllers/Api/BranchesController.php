@@ -77,13 +77,26 @@ class BranchesController extends Controller
 // بحث عن طريق المدينه المحافظه المنتج المتجر
     public function  search(Request $request)
     {
-         $ss = branchs::whereRegionId($request->region_id)->whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
+        if($request->region_id == null ){
+            $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
+            WhereHas('stores', function($q) use ($request){
+               $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+           })->
+           orWhereHas('product', function($q4) use ($request){
+               $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+           })->paginate(setting('app_pagforsearch_branch'));
+
+        }else{
+
+            $ss = branchs::whereRegionId($request->region_id)->whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
          WhereHas('stores', function($q) use ($request){
             $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
         })->
         orWhereHas('product', function($q4) use ($request){
             $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
         })->paginate(setting('app_pagforsearch_branch'));
+    }
+
 
 
         return $this->returnData('branches', new branchesCollection($ss),'Done');

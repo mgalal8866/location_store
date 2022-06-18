@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Dashborad\Notification;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
+use App\Models\User;
 use App\Models\cities;
 use App\Models\regions;
-use App\Models\User;
 use Livewire\Component;
-use DB;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Notification extends Component
 {
@@ -36,7 +36,6 @@ use GeneralTrait;
         ($this->city != 'all')?$query->where('city_id',$this->city):null;
         ($this->region != 'all')?$query->where('region_id',$this->region):null;
          $this->users =  $query->whereNotNull('device_token')->get();
-            // $this->countuser ==  $this->users->count();'
         return view('livewire.dashborad.notification.notification',['countuser'=> $this->users->count()])->layout('admin.layouts.masterdash');
     }
 }
