@@ -81,6 +81,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'notify' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/notify'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'category' => [
             'driver' => 'local',
             'root' => public_path('assets/images/category'),

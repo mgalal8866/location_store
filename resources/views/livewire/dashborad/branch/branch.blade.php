@@ -37,8 +37,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3" >
-
-                                        <div    class="form-group">
+                                        <div  class="form-group">
                                             <label for="selectactive1">{{ __('active') }}</label>
                                             <select id="selectactive1"  wire:model.lazy='activestore' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
                                                 <option value="">Select active</option>
