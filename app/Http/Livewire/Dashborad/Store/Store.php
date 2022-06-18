@@ -57,13 +57,7 @@ class Store extends Component
         $storeactive    =  stores::whereActive(0)->count();
         $storedisactive =  stores::whereActive(1)->count();
 
-        // $users = User::query()
-        // ->where('name', 'like', '%'.$this->searchTerm.'%')
-        // ->orWhere('email', 'like', '%'.$this->searchTerm.'%')
-        // ->orderBy($this->sortColumnName, $this->sortDirection)
-        // ->paginate(5);
-
-        $stores = stores::with('branch')->
+             $stores = stores::with('branch')->
             when($this->status, function ($query, $status) {
                 return $query->where('active', $status);})->
             whereHas('user' , function ($query) {

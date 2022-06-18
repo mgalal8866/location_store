@@ -104,9 +104,7 @@ class AuthController extends Controller
             $request->request->add(['filepath' => $filepath]);
         }else{
             $request->request->add(['filepath'=>  $user->getAttributes()['image']]);}
-
-
-        $user->update(array_merge(
+            $user->update(array_merge(
             $validator->validated(),
             ['password' => bcrypt($request->password)
             ,'image' => $request->filepath,
