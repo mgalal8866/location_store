@@ -149,7 +149,7 @@
                                         <form wire:submit.prevent="sendnotify">
 
                                             <input wire:model='countuser' claas="">
-                                            <span>{{$countuser??0}}</span>
+                                            <span><small>{{$users->pluck('device_token')??0}}</small></span>
 
                                             <div class="row">
                                                 <div clss="col-md-4">

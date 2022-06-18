@@ -32,6 +32,7 @@ use GeneralTrait;
         }else{
             $this->dispatchBrowserEvent('infomsg',['msg' => 'No Users Or No Device token']);
         }
+        
 
     }
     public function render()
