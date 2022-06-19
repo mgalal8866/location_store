@@ -159,7 +159,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label">{{ __('gender') }}</label>
                                                         <select  class="form-control" wire:model='gender'>
-                                                                <option value='all' selected >{{ __('any') }}</option>
+                                                                <option value='all' selected >{{ __('all') }}</option>
                                                                 <option value='0'>Male</option>
                                                                 <option value='1'>female</option>
                                                         </select>
