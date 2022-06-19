@@ -77,38 +77,31 @@ class BranchesController extends Controller
 // بحث عن طريق المدينه المحافظه المنتج المتجر
     public function  search(Request $request)
     {
-        if($request->region_id == null ){
-            $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
+        if($request->search != ''){
+            if($request->region_id == null ){
+                $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
+                WhereHas('stores', function($q) use ($request){
+                $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+            })->
+            orWhereHas('product', function($q4) use ($request){
+                $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+            })->paginate(setting('app_pagforsearch_branch'));
+
+            }else{
+
+                $ss = branchs::whereRegionId($request->region_id)->whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
             WhereHas('stores', function($q) use ($request){
-               $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-           })->
-           orWhereHas('product', function($q4) use ($request){
-               $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-           })->paginate(setting('app_pagforsearch_branch'));
+                $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+            })->
+            orWhereHas('product', function($q4) use ($request){
+                $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+            })->paginate(setting('app_pagforsearch_branch'));
 
+            }
         }else{
-
-            $ss = branchs::whereRegionId($request->region_id)->whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
-         WhereHas('stores', function($q) use ($request){
-            $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-        })->
-        orWhereHas('product', function($q4) use ($request){
-            $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-        })->paginate(setting('app_pagforsearch_branch'));
-    }
-
-
-
+            $ss = branchs::whereRegionId($request->region_id)->whereActive(55)->paginate(setting('app_pagforsearch_branch'));
+        }
         return $this->returnData('branches', new branchesCollection($ss),'Done');
-
-        // orWhereHas('city', function($q1) use ($request){
-        //     $q1->Where('city_name_ar','like', '%'.  $request->search  . '%')
-        //     ->orWhere('city_name_en','like', '%'.  $request->search  . '%')->whereActive(0);
-        // })->
-        // orWhereHas('region', function($q3) use ($request){
-        //     $q3->Where('region_name_ar','like', '%'.  $request->search  . '%')
-        //     ->orWhere('region_name_en','like', '%'.  $request->search  . '%')->whereActive(0);
-        // })->
     }
 
 //تعديل متجر

@@ -18,6 +18,7 @@ class Notification extends Component
 use GeneralTrait;
 use WithFileUploads;
 use WithPagination;
+protected $paginationTheme = 'bootstrap';
   public $target = 'all',$uploadimage, $countuser = 0 , $dd =true,$title,$body,$image,$users,$region= 'all',$city= 'all',$getcity,$getregion,$gender = 'all';
     public function mount(){
         $this->getcity = cities::get();

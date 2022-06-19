@@ -152,7 +152,6 @@
                                                                 <option value='0'>Normal User</option>
                                                                 <option value='1'>Has store</option>
                                                         </select>
-                                                        {{ $target }}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -280,10 +279,10 @@
                                            </tbody>
                                        </table>
                                        <div class="card-footer" >
-                                        <div class="d-flex justify-content-center">
-                                            {!! $notifylog->links() !!}
+                                            <div class="d-flex justify-content-center">
+                                                {!! $notifylog->links() !!}
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                               </div>
                             </div>
