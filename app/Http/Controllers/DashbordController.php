@@ -16,18 +16,7 @@ class DashbordController extends Controller
 {
     public function index()
     {
-            $countcities = cities::count();
-            $countregions = regions::count();
-            $countusers = User::count();
-            $countstores = stores::count();
-            $countproduct = products::count();
-            $countcomments = comments::count();
-            $countcategory = categories::count();
-            $fonts = fonts::whereIsDefault(1)->get();
-        return view('admin.livewire.dashborad',compact(
-            'countcities','countregions','countstores','countproduct'
-            ,'countcomments','countusers' ,'countcategory','fonts'
-        ));
+            
     }
 
 

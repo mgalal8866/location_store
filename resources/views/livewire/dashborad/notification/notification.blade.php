@@ -242,10 +242,10 @@
                         </div>
                         <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-normal" role="tabpanel"
                             aria-labelledby="custom-tabs-five-normal-tab">
-                            <div class="p-2" style="background-color: #f3f6f8;">
-                                <div class="card">
-                                    <div class="card-body">
-                                       <table class="table table-responsive-sm table-striped">
+                            {{-- <div class="p-2" style="background-color: #f3f6f8;"> --}}
+                                {{-- <div class="card">
+                                    <div class="card-body"> --}}
+                                       <table class=" table table-responsive-sm table-striped table-bordered">
                                            <thead>
                                                 <th>{{ __('admin') }}</th>
                                                 <th>{{ __('title') }}</th>
@@ -283,9 +283,9 @@
                                                 {!! $notifylog->links() !!}
                                             </div>
                                         </div>
-                                    </div>
-                              </div>
-                            </div>
+                                    {{-- </div>
+                              </div> --}}
+                            {{-- </div> --}}
                         </div>
                         {{-- <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-backup" role="tabpanel"
                             aria-labelledby="custom-tabs-five-backup-tab">
