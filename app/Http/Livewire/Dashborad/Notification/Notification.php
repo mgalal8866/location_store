@@ -46,17 +46,10 @@ use WithPagination;
     }
     public function render()
     {
-        // select * from `orders` where exists (
-        //     select *
-        //     from `order_items`
-        //     where `orders`.`id` = `order_items`.`order_id` and `status` = 1
-        // )
-        // dd(user::whereDoesntHave('store')->get());
         $notifylog = notifylog::paginate(10);
-        $query = DB::table('users');
+        $query =  user::query();// DB::table('users');
         ($this->gender != 'all')?$query->where('gender',$this->gender):null;
-        // ($this->target == 1)?$query->whereHas('stores'):(($this->target == 0)?$query->whereDoesntHave('stores'):null);
-        ($this->target == 1)?$query->join('store', 'user.id', '=', 'store.user_id'):null;
+        ($this->target == '1')?$query->whereHas('store'):($this->target == '0'?$query->whereDoesntHave('store') : ($this->target == 'all'??null));
         ($this->city   != 'all')?$query->where('city_id',$this->city):null;
         ($this->region != 'all')?$query->where('region_id',$this->region):null;
          $this->users =  $query->whereNotNull('device_token')->get();
