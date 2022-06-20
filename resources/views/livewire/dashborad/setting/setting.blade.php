@@ -87,7 +87,12 @@
                                             data-toggle="pill" href="#{{ $settings_section }}" role="tab"
                                             aria-controls="{{ $settings_section }}"
                                             aria-selected="true"> {{ __($settings_section) }}</a>
+
                                         @endforeach
+                                        <a   class="nav-link " id="notifysetting-tab"
+                                            data-toggle="pill" href="#notifysetting" role="tab"
+                                            aria-controls="notifysetting"
+                                            aria-selected="true"> {{ __($settings_section) }}</a>
                                 </div>
                             </div>
                             <div class="col-7 col-sm-9">
@@ -123,6 +128,27 @@
                                             </form>
                                         </div>
                                     @endforeach
+
+                                    <div wire:ignore.self class="tab-pane text-left fade "
+                                        id="notifysetting" role="tabpanel"
+                                        aria-labelledby="notifysetting-tab">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label class="control-label">التوقيت</label>
+                                                    <select wire:model='notifytime' class="form-control">
+                                                        <option value='0 * * * *'>Hourly</option>
+                                                        <option value='0 0 * * *'>Daily</option>
+                                                        <option value='0 0 0 * *'>Weekly</option>
+                                                        <option value='0 0 1 * *'>Monthly</option>
+                                                        <option value='0 0 0 1 1'>Yearly</option>
+                                                    </select>
+                                                   </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
                                 </div>
                         </div>
 

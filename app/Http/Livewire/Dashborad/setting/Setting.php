@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\Dashborad\setting;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Spatie\Valuestore\Valuestore;
+use Illuminate\Support\Facades\Cache;
+use App\Models\setting as ModelsSetting;
 use JoeDixon\Translation\Drivers\Translation;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-use App\Models\setting as ModelsSetting;
-use Illuminate\Support\Facades\Cache;
+
 class Setting extends Component
 {
     use WithFileUploads;
@@ -16,17 +18,19 @@ class Setting extends Component
     private $translation;
     public $i =0;
     public $state = [];
-    public $settings_sections,   $section = 'general' ,$settings,$setting ,$valueform;
-    public function mount(Translation $translation)
+    public $settings_sections,   $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
+    public function mount()
     {
-
+        $this->notifytime = getSettingsOf('notify');
         // $section = (isset(\request()->section) && \request()->section != '') ? \request()->section : 'general';
-
-
         // if ($setting) {
         //     $this->state = $setting->toArray();
         // }
 
+    }
+    public function UpdatedNotifytime(){
+        $settings = Valuestore::make(config_path('settings.json'));
+        $settings->put('notify', $this->notifytime);
     }
     public function up(){
         // $this->refresh;

@@ -1,15 +1,1 @@
-{
-    "site_title": "Location Store",
-    "site_slogan": "Location Store",
-    "site_description": "Location Store",
-    "site_keywords": "Location Store",
-    "site_email": "admin@bloggi.test",
-    "splash_screen": "Active",
-    "phone_number": "05123456789",
-    "app_new_branch": "10",
-    "app_pag": "10",
-    "app_page_branch": "10",
-    "app_pagforsearch_branch": "10",
-    "backup_time": "(* * * * *)",
-    "notify": "*/5 * * * *"
-}
+{"site_title":"Location Store","site_slogan":"Location Store","site_description":"Location Store","site_keywords":"Location Store","site_email":"locationstore@support.com","splash_screen":"Active","phone_number":"05123456789","app_new_branch":"10","app_pag":"10","app_page_branch":"10","app_pagforsearch_branch":"10","backup_time":"(* * * * *)","notify":"0 0 1 * *","splash":"https:\/\/locationstor.com\/assets\/images\/photo-1557682257-2f9c37a3a5f3.jpg","footer_text":"<strong>Copyright &copy; 2022 <a href=\"01024346011\">Mohamed Galal<\/a>.<\/strong>\n        All rights reserved.\n        <div class=\"float-right d-none d-sm-inline-block\">\n          <b>Version<\/b> 1.2.0-rc\n        <\/div>"}
