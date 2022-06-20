@@ -112,10 +112,10 @@ class BranchesController extends Controller
             $branch = branchs::findOrFail($request->branch_id);
 
                 $validatorvbranch = Validator::make($request->all(), [
-                    'name'        =>'string',
-                    'region_id'   =>'required|string|exists:regions,id',
-                    'city_id'     =>'required|string|exists:cities,id',
-                    'address'     =>'string',
+                    'name'        => 'string',
+                    'region_id'   => 'required|string|exists:regions,id',
+                    'city_id'     => 'required|string|exists:cities,id',
+                    'address'     => 'string',
                     'lat'         => 'string',
                     'lng'         => 'string',
                     'opentime'    => 'string',

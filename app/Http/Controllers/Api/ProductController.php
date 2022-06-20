@@ -22,9 +22,12 @@ class ProductController extends Controller
     public function insert_product(Request $request)
     {
 
-        $limit_peoduct =  branchs::find($request->branch_id)->product_num;
+        $limit_peoduct =  branchs::find($request->branch_id);
+        if( $limit_peoduct ==null){
+            return response()->json(['status' => true,'number' => '0']);
+        }
         $num_product =  products::whereBranchId($request->branch_id)->count();
-        if($limit_peoduct != $num_product){
+        if($limit_peoduct->product_num != $num_product){
             $product = products::create([
                     'branch_id' => $request->branch_id,
                     'name' => $request->name,
