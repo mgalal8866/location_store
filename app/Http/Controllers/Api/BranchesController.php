@@ -137,8 +137,7 @@ class BranchesController extends Controller
                 $branch->update(array_merge(
                         $validatorvbranch->validated(),
                         ['slug' => Str::slug($request->name),
-                        'image' => $image
-                        // 'user_id' =>  auth('api')->user()->id,
+                         'image' => $image
                         ]));
                         $branch->stores->update(['category_id' => $request->category_id]);
 

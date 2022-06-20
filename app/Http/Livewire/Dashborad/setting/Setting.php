@@ -16,7 +16,7 @@ class Setting extends Component
     private $translation;
     public $i =0;
     public $state = [];
-    public $settings_sections,   $section = 'general' ,$settings,$setting ,$valueform=[];
+    public $settings_sections,   $section = 'general' ,$settings,$setting ,$valueform;
     public function mount(Translation $translation)
     {
 
@@ -29,6 +29,7 @@ class Setting extends Component
 
     }
     public function up(){
+        // $this->refresh;
         dd($this->valueform);
         // for ($i = 0; $i < count($request->id); $i++) {
         //     $input['value'] = isset($request->value[$i]) ? $request->value[$i] : null;
@@ -74,17 +75,20 @@ class Setting extends Component
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
                   }
 
-                  public function render()
-                    {
-                        $this->i == 0;
-                        $this->settings_sections = ModelsSetting::select('section')->distinct()->pluck('section');
-                        $this->settings = ModelsSetting::whereSection($this->section)->get();
-                        $this->setting = ModelsSetting::first();
-                        foreach($this->settings as $settingitem)
-                        {
-                            $this->valueform[$this->i]['value'] = $settingitem->value ;
-                            $this->i +=  1;
-                        }
-                        return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
-                    }
+        public function render()
+        {
+            $this->reset('i');
+            $this->reset('valueform');
+
+            $this->settings_sections = ModelsSetting::select('section')->distinct()->pluck('section');
+            $this->settings = ModelsSetting::whereSection($this->section)->get();
+            $this->setting = ModelsSetting::first();
+            foreach($this->settings as $settingitem)
+            {
+                $this->valueform[$this->i]['value'] = $settingitem->value ;
+                $this->valueform[$this->i]['id'] = $settingitem->id ;
+                $this->i +=  1;
+            }
+            return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
+        }
 }

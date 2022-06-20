@@ -71,8 +71,7 @@ class ProductController extends Controller
     }
     public function productedit(Request $request){
         $product = products::findOrFail($request->product_id);
-        // DotenvEditor::setKey('APP_KEY', 'new_value')->save();
-          $product->update([
+        $product->update([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
                 'price' => $request->price,
@@ -135,10 +134,10 @@ class ProductController extends Controller
 
                 }
         }
-
      return $this->returnData('product', new product($product),'تم تعديل المنتج بنجاح ');
 
     }
+    
     public function  productdelete(Request $request){
         try {
             $branch = products::findOrFail($request->product_id);

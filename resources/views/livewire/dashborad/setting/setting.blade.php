@@ -104,24 +104,11 @@
                                                                     <label
                                                                         for="title">{{ __($setting->display_name) }}</label>
                                                                     @if ($setting->type == 'text')
-                                                                    <input type="text" wire:model='valueform.{{$loop->index }}.value'  id="value{{ $loop->index }}" class="form-control" >
-                                                                        {{-- <input type="text" wire:model='valueform.{{$loop->index }}.value' name="value[{{ $loop->index }}]" id="value" class="form-control" value="{{ $setting->value }}"> --}}
-                                                                    @elseif($setting->type == 'textarea')
-                                                                        <textarea  wire:model='valueform' name="value[{{ $loop->index }}]" id="value" class="form-control" cols="30" rows="10">{{ $setting->value }}</textarea>
-                                                                    @elseif($setting->type == 'image')
-                                                                        <input  type="file" name="value[{{ $loop->index }}]" id="value" class="form-control">
-                                                                    @elseif($setting->type == 'select')
-                                                                        {!! Form::select('value[' . $loop->index . ']', explode('|', $setting->details), $setting->value, ['id' => 'value', 'class' => 'form-control']) !!}
-                                                                    @elseif($setting->type == 'checkbox')
-                                                                        {!! Form::checkbox('value[' . $loop->index . ']', 1, $setting->value == 1 ? true : false, ['id' => 'value', 'class' => 'styled']) !!}
-                                                                    @elseif($setting->type == 'radio')
-                                                                        {!! Form::radio('value[' . $loop->index . ']', 1, $setting->value == 1 ? true : false, ['id' => 'value', 'class' => 'styled']) !!}
-                                                                    @endif
-
-                                                                    <input type="hidden" name="key[{{ $loop->index }}]" id="key" class="form-control" value="{{ $setting->key }}" readonly>
-                                                                    <input type="hidden" name="id[{{ $loop->index }}]" id="key" class="form-control" value="{{ $setting->id }}" readonly>
-                                                                    <input type="hidden" name="ordering[{{ $loop->index }}]" id="key" class="form-control" value="{{ $setting->ordering }}" readonly>
-
+                                                                    {{$setting->type}}
+                                                                    <input type="text" wire:model='valueform.{{ $loop->index }}.value'  id="value{{ $loop->index }}" class="form-control" >
+                                                                    {{-- @elseif($setting->type == 'image')
+                                                                        <input type="file"  wire:model='valueform.{{ $loop->index }}.value' name="value[{{ $loop->index }}]" id="value" class="form-control">
+                                                                    --}}@endif
                                                                     @error('value')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
