@@ -78,16 +78,16 @@ class BranchesController extends Controller
     public function  search(Request $request)
     {
         if($request->search != ''){
-            if($request->region_id == null ){
-                $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
-                WhereHas('stores', function($q) use ($request){
-                $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-            })->
-            orWhereHas('product', function($q4) use ($request){
-                $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-            })->paginate(setting('app_pagforsearch_branch'));
+            // if($request->region_id == null ){
+            //     $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
+            //     WhereHas('stores', function($q) use ($request){
+            //     $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+            // })->
+            // orWhereHas('product', function($q4) use ($request){
+            //     $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
+            // })->paginate(setting('app_pagforsearch_branch'));
 
-            }else{
+            // }else{
 
                 $ss = branchs::whereRegionId($request->region_id)->whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
             WhereHas('stores', function($q) use ($request){
@@ -97,7 +97,7 @@ class BranchesController extends Controller
                 $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
             })->paginate(setting('app_pagforsearch_branch'));
 
-            }
+            // }
         }else{
             $ss = branchs::whereRegionId($request->region_id)->whereActive(55)->paginate(setting('app_pagforsearch_branch'));
         }
@@ -132,11 +132,12 @@ class BranchesController extends Controller
             if( $request->image != null){
                 $image = $this->uploadimages('branch', $request->image);
             }else{
-                $image = null;
+                $image = $branch-> $this->getAttributes()['image'];
             }
                 $branch->update(array_merge(
                         $validatorvbranch->validated(),
                         ['slug' => Str::slug($request->name),
+                        'image' => $image
                         // 'user_id' =>  auth('api')->user()->id,
                         ]));
                         $branch->stores->update(['name' => $request->name,'category_id' => $request->category_id]);

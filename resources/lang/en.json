@@ -105,5 +105,6 @@
     "daily": "Daily",
     "title": "Title",
     "body": "Body",
-    "gender": "Gender"
+    "gender": "Gender",
+    "app_new_branch": "App New Branch"
 }
