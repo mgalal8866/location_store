@@ -11,5 +11,5 @@
     "app_page_branch": "10",
     "app_pagforsearch_branch": "10",
     "backup_time": "(* * * * *)",
-    "notify": "(*/5 * * * *)"
+    "notify": "*/5 * * * *"
 }

@@ -43,8 +43,9 @@ route::get('/set',function () {
 // Storage::disk('google')->put('hello.text' ,'welcome');
     // return setting('site_title');
     // Cache::forget('timetask');'
-    Cache::forever('delete_store', '$value',11);
-      dd(   Cache::get('delete_store'));
+
+    // Cache::forever('delete_store', '$value',11);
+      dd(  getSettingsOf('notify'));
  });
 
 route::get('/pull',function () {

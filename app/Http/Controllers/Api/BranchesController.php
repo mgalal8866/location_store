@@ -38,7 +38,7 @@ class BranchesController extends Controller
 
         return  $this->returnData('branches',branch::collection(
             branchs::whereActive(0)->whereAccept(0)->whereRegionId($request->region_id)->WhereHas('stores', function($q)
-            {$q->whereActive(0);})->latest()->take(setting('app_new_branch'))->get()));
+            {$q->whereActive(0);})->latest()->take(getSettingsOf('app_new_branch'))->get()));
     }
 // احضار الفروع  حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
@@ -48,7 +48,7 @@ class BranchesController extends Controller
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
             whereRegionId($request->region_id)->
             orderBy('top', 'DESC')->
-            paginate(setting('app_page_branch'));
+            paginate(getSettingsOf('app_page_branch'));
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
     }
 
@@ -95,7 +95,7 @@ class BranchesController extends Controller
             })->
             orWhereHas('product', function($q4) use ($request){
                 $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-            })->paginate(setting('app_pagforsearch_branch'));
+            })->paginate(getSettingsOf('app_pagforsearch_branch'));
 
             // }
         }else{
