@@ -140,7 +140,7 @@ class BranchesController extends Controller
                         'image' => $image
                         // 'user_id' =>  auth('api')->user()->id,
                         ]));
-                        $branch->stores->update(['name' => $request->name,'category_id' => $request->category_id]);
+                        $branch->stores->update(['category_id' => $request->category_id]);
 
                         return $this->returnSuccessMessage('تم تعديل المتجر بنجاح ','E000');
 
