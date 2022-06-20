@@ -132,7 +132,7 @@ class BranchesController extends Controller
             if( $request->image != null){
                 $image = $this->uploadimages('branch', $request->image);
             }else{
-                $image = $branch-> $this->getAttributes()['image'];
+                $image = $branch->getAttributes()['image'];
             }
                 $branch->update(array_merge(
                         $validatorvbranch->validated(),
