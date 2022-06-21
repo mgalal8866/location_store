@@ -18,7 +18,7 @@ class setting extends JsonResource
         [
             'splash'           => $this->where('key','splash_screen')->select('value AS splash')->first()->splash,
             'phone'            => $this->where('key','phone_number')->select('value')->first()->value,
-            'maintenance_mode' => boolval($this->where('key','maintenance_mode')->select('value')->first()->value)??false,
+            'maintenance_mode' => (bool)$this->where('key','maintenance_mode')->select('value')->first()->value??false,
         ];
     }
 }
