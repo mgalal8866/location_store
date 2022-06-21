@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Carbon\Carbon;
 use App\Models\comments;
 use Illuminate\Support\Facades\File;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class branchs extends Model
 {
+    use GeneralTrait;
     use HasFactory;
     use SoftDeletes;
     protected $guarded = [];
@@ -111,6 +113,13 @@ class branchs extends Model
     public function slider()
     {
         return $this->hasMany(slider::class);
+    }
+
+    public function setActiveAttribute($value){
+        if($this->getAttributes()['active'] != $value){
+                $this->notificationFCM('Alert ⚠️' , 'Your Branch Active Change',[$this->stores->user->device_token]);
+                $this->attributes['active'] = $value;
+        };
     }
     // public function getOpentimeAttribute($value){
     //     return    Carbon::parse($value)->toFormattedTime();

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class products extends Model
 {
-    use HasFactory , SoftDeletes;
+    use HasFactory , SoftDeletes ,GeneralTrait;
     protected $guarded = [];
     protected $casts = [
         'start_date' => 'datetime',
@@ -53,5 +54,11 @@ class products extends Model
     public function slider()
     {
         return $this->hasMany(slider::class);
+    }
+    public function setActiveAttribute($value){
+        if($this->getAttributes()['active'] != $value){
+                $this->notificationFCM('Alert ⚠️' , 'Your Product Active Change',[$this->branch->stores->user->device_token]);
+                $this->attributes['active'] = $value;
+        };
     }
 }
