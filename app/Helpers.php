@@ -10,15 +10,16 @@ use Illuminate\Support\Facades\Cache;
 
  function generateCache()
 {
-    $settings = Valuestore::make(config_path('settings.json'));
-    
-    Setting::all()->each(function ($item) use ($settings) {
-        $settings->put($item->key, $item->value);
+    $settings2 = Valuestore::make(config_path('settings.json'));
+    Setting::all()->each(function ($item) use ($settings2) {
+        $settings2->put($item->key, $item->value);
     });
+    return '';
 }
+
 function getSettingsOf($key) {
-    $settings = Valuestore::make(config_path('settings.json'));
-    return $settings->get($key);
+    $settings1 = Valuestore::make(config_path('settings.json'));
+    return $settings1->get($key);
 }
 
 function setting($key)

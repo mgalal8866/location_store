@@ -46,39 +46,12 @@ class notification extends Command
     {
 
         $firebaseToken =   User::whereNotNull('device_token')->get();
+        $notify = $this->notificationFCM( 'رسالة تلقائية',
+        Carbon::now(). ' تم ارسال  -  ' .$firebaseToken->pluck('name')[0],
+        $firebaseToken,
+       'https://www.holidayhometimes.com/wp-content/uploads/2013/03/HHT-location.jpg',);
 
-        $SERVER_API_KEY = getSettingsOf('FCM_SERVER_KEY');
-        $data = [
-            "registration_ids" => $firebaseToken->pluck('device_token'),
-            "notification" => [
-                "title" => 'رسالة تلقائية',
-                "body" => Carbon::now(). ' تم ارسال  -  ' .$firebaseToken->pluck('name')[0],
-                "icon" => 'https://www.holidayhometimes.com/wp-content/uploads/2013/03/HHT-location.jpg',
-                "image" => 'https://www.holidayhometimes.com/wp-content/uploads/2013/03/HHT-location.jpg',
-                "fcm_options.link" => '$link',
-                "click_action" => '',
-
-            ],
-            "actions"=> [
-                "title"=> "Like",
-                  "action"=> "like",
-                  "icon"=> "icons/heart.png"
-            ],
-        ];
-        $dataString = json_encode($data);
-        $headers = [
-            'Authorization: key=' . $SERVER_API_KEY,
-            'Content-Type: application/json',
-        ];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-        tasklog::create(['state'=> 'RUN' ,'type'=>['Notification'=> curl_exec($ch)]]);
+        tasklog::create(['state'=> 'RUN' ,'type'=>['Notification'=>  $notify]]);
         // return      ;
 
 

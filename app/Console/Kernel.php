@@ -19,8 +19,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        notification::class
-        ,DBbackup::class,
+        notification::class,
+        DBbackup::class,
         DBrestore::class,
         Notifyexpirebranch::class,
         Notifyexpireproduct::class

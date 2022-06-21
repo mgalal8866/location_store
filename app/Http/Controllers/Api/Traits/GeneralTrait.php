@@ -248,6 +248,7 @@ trait GeneralTrait
             "notification" => [
                 "title" => $title,
                 "body" => $body,
+
                 // "icon" => 'https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg',
                 "image" => $image,
                 "fcm_options.link" => $link,
