@@ -1,6 +1,6 @@
 <div >
     @section('title')
-    {{ setting('site_title') }}
+    {{ getSettingsOf('site_title') }}
     @stop
 
     @section('page')

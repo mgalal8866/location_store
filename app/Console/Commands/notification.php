@@ -78,10 +78,10 @@ class notification extends Command
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
+        tasklog::create(['state'=> 'RUN' ,'type'=>['Notification'=> curl_exec($ch)]]);
+        // return      ;
 
-        return  curl_exec($ch);
 
-        return 0;
-        tasklog::create(['state'=> 'RUN' ,'type'=>'Notification']);
+
     }
 }

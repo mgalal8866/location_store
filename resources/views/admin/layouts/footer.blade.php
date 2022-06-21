@@ -1,6 +1,6 @@
  <!-- /.content-wrapper -->
  <footer class="main-footer">
-    {!! setting('footer_text') !!}
+    {!! getSettingsOf('footer_text') !!}
 </footer>
 
 

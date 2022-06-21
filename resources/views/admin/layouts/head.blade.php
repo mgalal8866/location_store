@@ -1,5 +1,5 @@
 <title>
-    @yield('title',  setting('site_title'))
+    @yield('title',  getSettingsOf('site_title'))
 
 </title>
   <!-- Google Font: Source Sans Pro -->

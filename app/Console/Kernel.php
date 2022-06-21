@@ -6,6 +6,8 @@ use App\Console\Commands\DBbackup;
 use App\Console\Commands\DBrestore;
 use Illuminate\Support\Facades\Log;
 use App\Console\Commands\notification;
+use App\Console\Commands\Notifyexpirebranch;
+use App\Console\Commands\Notifyexpireproduct;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -19,7 +21,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         notification::class
         ,DBbackup::class,
-        DBrestore::class
+        DBrestore::class,
+        Notifyexpirebranch::class,
+        Notifyexpireproduct::class
     ];
 
     /**
@@ -30,9 +34,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('db:backup')->cron(getSettingsOf('backupgoogle'));
-        $schedule->command('notifi:send')->cron(getSettingsOf('notify'));
-       
+        // $schedule->command('db:backup')->cron(getSettingsOf('backupgoogle'));
+        // $schedule->command('notifi:send')->cron(getSettingsOf('notify'));
+        // $schedule->command('Notifyexpire:product')->cron(getSettingsOf('notify'));
+        $schedule->command('Notifyexpire:branch')->everyMinute();
+
     }
 
     /**
