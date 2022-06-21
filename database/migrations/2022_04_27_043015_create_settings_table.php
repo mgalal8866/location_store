@@ -22,7 +22,7 @@ class CreateSettingsTable extends Migration
             $table->string('type');
             $table->string('section');
             $table->string('ordering');
-            // $table->string('splash');
+            $table->tinyInteger('show')->default(0);
             // $table->string('site_title');
             // $table->string('site_name');
             // $table->string('site_email');

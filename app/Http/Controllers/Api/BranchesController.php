@@ -78,33 +78,22 @@ class BranchesController extends Controller
     public function  search(Request $request)
     {
         if($request->search != ''){
-            // if($request->region_id == null ){
-            //     $ss = branchs::whereActive(0)->whereAccept(0)->orderBy('top', 'DESC')->
-            //     WhereHas('stores', function($q) use ($request){
-            //     $q->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-            // })->
-            // orWhereHas('product', function($q4) use ($request){
-            //     $q4->Where('name','like', '%'.  $request->search  . '%')->whereActive(0);
-            // })->paginate(setting('app_pagforsearch_branch'));
-
-            // }else{
-                   // return $request->region_id;
                    $input= $request->search;
+                //    $ss = stores::where('name', 'LIKE', '%' . $input . '%')->
+                //    WhereHas('branch', function($q) use ($request) {
+                //     return $q->where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0) ->
+                //     orWhereHas('product', function($q) use ($request) {
+                //         return $q->where('name', 'LIKE', '%'. $request->search . '%')->whereActive(0);
+                //     });
+                //     })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
+                //     return $this->returnData('branches', $ss,'Done');
                    $ss = branchs::where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0)
                     ->WhereHas('stores', function($q) use ($input) {
                         return $q->where('name', 'LIKE', '%' . $input . '%')->whereActive(0);
                     })
                     ->orWhereHas('product', function($q) use ($input) {
                         return $q->where('name', 'LIKE', '%'. $input . '%')->whereActive(0);
-                    })->paginate(getSettingsOf('app_pagforsearch_branch'));
-
-
-                    // $ss =branchs::where('region_id','=',$request->region_id)
-                    // ->join('stores', 'branchs.stores_id', '=','stores.id')
-                    // ->join('products', 'branchs.id', '=','products.branch_id')
-                    // ->where('stores.name', 'LIKE', '%'. $input . '%')
-                    // ->orWhere('products.name', 'LIKE', '%'. $input . '%')
-                    // ->paginate(getSettingsOf('app_pagforsearch_branch'));
+                    })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
 
             //     $ss = branchs::where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0)->
             //     WhereHas('stores', function($query) use ($searchq){

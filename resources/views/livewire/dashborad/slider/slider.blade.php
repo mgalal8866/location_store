@@ -84,7 +84,7 @@
                     </div><!-- /.card-header -->
 
                     <!-- form start -->
-                    <form action="" enctype="multipart/form-data"accept-charset="utf-8">
+                    <form wire:submit.prevent='add' enctype="multipart/form-data"accept-charset="utf-8">
 
                         <div class="card-body">
 
@@ -116,12 +116,33 @@
                                     <input type="text" wire:model="event" class="form-control" name="title" placeholder="Select Store" value="">
                                 </div>
                             @endif
+
+                            <div class="form-group">
+                                <label>{{ __('city') }}</label>
+                                <select wire:model="selectCity" class="form-control" required>
+                                    <option value="" selected>Select Type</option>
+                                    @foreach ( $city as $ci)
+                                    <option value="{{ $ci->id }}">{{ $ci->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('region') }}</label>
+                                <select wire:model="selectRegions" class="form-control"  required>
+                                    <option value="" selected>Select Type</option>
+                                    @empty(! $regions)
+                                        @foreach ( $regions as $reg)
+                                            <option value="{{ $reg->id }}">{{ $reg->name }}</option>
+                                        @endforeach
+                                    @endempty
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">صورة (1920x1080)</label>
                                 <div class="display-block">
                                     <a class="btn btn-success btn-sm btn-file-upload">
                                         اختر صورة <input type="file" name="file" size="40"
-                                            accept=".png, .jpg, .jpeg, .gif" required=""
+                                            accept=".png, .jpg, .jpeg, .gif" required
                                            wire:model='image'">
                                            {{-- onchange="show_preview_image(this); --}}
                                     </a>
@@ -132,7 +153,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button  wire:click.prevent='add' class="btn btn-primary pull-right">{{ __('add') }} </button>
+                            <button  type="submit" class="btn btn-primary pull-right">{{ __('add') }} </button>
                         </div>
                         <!-- /.card-footer -->
                     </form><!-- form end -->

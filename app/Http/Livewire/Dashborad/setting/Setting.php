@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\setting as ModelsSetting;
 use JoeDixon\Translation\Drivers\Translation;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
+use PhpParser\Node\Stmt\Foreach_;
 
 class Setting extends Component
 {
@@ -23,81 +24,73 @@ class Setting extends Component
     {
         $this->notifytime = getSettingsOf('notify');
         $this->backupgoogle = getSettingsOf('backupgoogle');
-        // $section = (isset(\request()->section) && \request()->section != '') ? \request()->section : 'general';
-        // if ($setting) {
-        //     $this->state = $setting->toArray();
-        // }
+        $this->reset('i');
+        $this->reset('valueform');
+
+        $this->settings_sections = ModelsSetting::whereShow(0)->select('section')->distinct()->pluck('section');
+        $this->settings = ModelsSetting::whereShow(0)->whereSection($this->section)->get();
+
+        foreach($this->settings as $settingitem)
+        {
+            $this->valueform[$this->i]['value'] = $settingitem->value ;
+            $this->valueform[$this->i]['id'] = $settingitem->id ;
+            $this->valueform[$this->i]['key'] = $settingitem->key ;
+            $this->i +=  1;
+        }
+
+    }
+
+    public function UpdatedSection(){
+            $this->reset('i');
+            $this->reset('valueform');
+            $this->settings_sections = ModelsSetting::whereShow(0)->select('section')->distinct()->pluck('section');
+            $this->settings = ModelsSetting::whereShow(0)->whereSection($this->section)->get();
+            foreach($this->settings as $settingitem)
+            {
+                $this->valueform[$this->i]['value'] = $settingitem->value ;
+                $this->valueform[$this->i]['id'] = $settingitem->id ;
+                $this->valueform[$this->i]['key'] = $settingitem->key ;
+                $this->i +=  1;
+            }
 
     }
     public function UpdatedBackupgoogle(){
         $settings = Valuestore::make(config_path('settings.json'));
         $settings->put('backupgoogle', $this->backupgoogle);
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Backup Time Updated successfully!']);
     }
     public function UpdatedNotifytime(){
         $settings = Valuestore::make(config_path('settings.json'));
         $settings->put('notify', $this->notifytime);
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'notify Time Updated successfully!']);
     }
-    public function up(){
-        // $this->refresh;
-        dd($this->valueform);
-        // for ($i = 0; $i < count($request->id); $i++) {
-        //     $input['value'] = isset($request->value[$i]) ? $request->value[$i] : null;
-        //     Setting::whereId($request->id[$i])->first()->update($input);
-        // }
-        // $this->generateCache();
+    public function up($section){
+        foreach($this->valueform as $item)
+            {
+                $settings = Valuestore::make(config_path('settings.json'));
+                $setsetting = ModelsSetting::whereShow(0)->whereSection($this->section)->whereId($item['id'])->first();
+                $setsetting->update($item);
+                $settings->put($setsetting->key, $item['value']);
+            }
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
     }
 
 
-
-        // public function submit(){
-        //     if ($this->logo != null){
-        //         $this->logo = $this->uploadimages('assets',$this->logo);
-        //         // config()->set('setting_var.images.logo', $this->logo);
-        //         config(['setting_var.images.logo' => $this->logo]);
-        //     }
-        //     if ($this->favicon != null){
-        //         $this->favicon = $this->uploadimages('assets',$this->favicon);
-        //         config()->set('setting_var.images.favicon', $this->favicon);
-        //     }
-        //     if ($this->favicon != null || $this->logo != null){
-        //     session()->flash('message', 'Save Changes');
-        //     }
-
-        // }
-        public function setbackuptime()
-        {
-
-            dd($this->timebackup);
-        }
         public function updateSetting()
         {
-            $setting = ModelsSetting::first();
+            // $setting = ModelsSetting::first();
+            // if ($setting) {
+            //     $setting->update($this->state);
+            // } else {
+            //     ModelsSetting::create($this->state);
+            // }
+            // Cache::forget('setting');
 
-            if ($setting) {
-                $setting->update($this->state);
-            } else {
-                ModelsSetting::create($this->state);
-            }
-
-            Cache::forget('setting');
-
-            $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
-                  }
+            // $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
+        }
 
         public function render()
         {
-            $this->reset('i');
-            $this->reset('valueform');
-
-            $this->settings_sections = ModelsSetting::select('section')->distinct()->pluck('section');
-            $this->settings = ModelsSetting::whereSection($this->section)->get();
-            $this->setting = ModelsSetting::first();
-            foreach($this->settings as $settingitem)
-            {
-                $this->valueform[$this->i]['value'] = $settingitem->value ;
-                $this->valueform[$this->i]['id'] = $settingitem->id ;
-                $this->i +=  1;
-            }
             return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
         }
 }

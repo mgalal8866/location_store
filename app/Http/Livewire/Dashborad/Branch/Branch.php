@@ -125,7 +125,7 @@ class Branch extends Component
             //  "branchlist.*.city_id" => "required",
             //  "branchlist.*.opentime" => "required",
             //  "branchlist.*.closetime" => "required",
-            // "branchlist.*.numproduct" => "required|min:1|gt:0",
+            //  "branchlist.*.numproduct" => "required|min:1|gt:0",
             //  "branchlist.*.lat" => "required",
             //  "branchlist.*.lng" => "required",
         ];

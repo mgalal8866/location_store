@@ -8,14 +8,14 @@ use App\Http\Controllers\Controller;
 use App\Models\setting as ModelsSetting;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Http\Resources\slider as ResourcesSlider;
-
+use App\Http\Resources\setting as ResourcesSetting;
 class Setting extends Controller
 {
     use GeneralTrait;
 
     public function app()
     {
-        return $this->returnData('Settingapp',ModelsSetting::select('splash')->get());
+        return $this->returnData('Settingapp', new ResourcesSetting(ModelsSetting::first()));
     }
 
     public function slider(Request $request)

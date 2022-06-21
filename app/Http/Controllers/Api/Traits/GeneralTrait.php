@@ -252,7 +252,6 @@ trait GeneralTrait
                 "image" => $image,
                 "fcm_options.link" => $link,
                 "click_action" => $click,
-
             ],
             "actions"=> [
                 "title"=> "Like",

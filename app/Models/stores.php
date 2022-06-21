@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Models\User;
 use App\Models\branchs;
 use App\Models\categories;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class stores extends Model
 {
     use HasFactory;
+    use GeneralTrait;
     use SoftDeletes;
     protected $guarded = [];
 
@@ -42,7 +44,6 @@ class stores extends Model
             }
    }
 
-
    public function getActiveBadgeAttribute()
    {
        $badge=[
@@ -53,5 +54,10 @@ class stores extends Model
 
     }
 
-
+    public function setActiveAttribute($val){
+            if($this->getAttributes()['active'] != $val){
+                $this->notificationFCM('Alert ♥', 'Your Store Active Change',[$this->user->device_token]);
+            };
+            dd( $val);
+    }
 }

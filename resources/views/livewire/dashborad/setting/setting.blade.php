@@ -96,24 +96,20 @@
                                 </div>
                             </div>
                             <div class="col-7 col-sm-9">
-                                <div class="tab-content" id="vert-tabs-tabContent">
+                                <div wire:ignore.self  class="tab-content" id="vert-tabs-tabContent">
                                     @foreach ($settings_sections as $settings_section)
-                                        <div class="tab-pane text-left fade  {{$loop->index == 0 ? ' show active ' : ''}} "
+                                        <div  wire:ignore.self class="tab-pane text-left fade  {{$loop->index == 0 ? ' show active ' : ''}} "
                                             id="{{$settings_section}}" role="tabpanel"
                                             aria-labelledby="{{$settings_section}}-tab">
-                                            <form>
+                                            <form id="f{{$loop->index}}">
                                                 @foreach ($settings as $setting)
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <div class="form-group">
-                                                                    <label
-                                                                        for="title">{{ __($setting->display_name) }}</label>
+                                                                    <label for="title">{{ __($setting->display_name) }}</label>
                                                                     @if ($setting->type == 'text')
-                                                                    {{$setting->type}}
-                                                                    <input type="text" wire:model='valueform.{{ $loop->index }}.value'  id="value{{ $loop->index }}" class="form-control" >
-                                                                    {{-- @elseif($setting->type == 'image')
-                                                                        <input type="file"  wire:model='valueform.{{ $loop->index }}.value' name="value[{{ $loop->index }}]" id="value" class="form-control">
-                                                                    --}}@endif
+                                                                        <input type="text" wire:model.dafer='valueform.{{ $loop->index }}.value'  id="value{{ $loop->index }}" class="form-control" >
+                                                                    @endif
                                                                     @error('value')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
@@ -123,7 +119,7 @@
                                                         </div>
                                                 @endforeach
                                                 <div class="text-right">
-                                                    <button type="submit" wire:click.prevent='up'  class="btn btn-primary">{{__('save')}}</button>
+                                                    <button type="submit" wire:click.prevent="up('{{$settings_section}}')"  class="btn btn-primary">{{__('save')}}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -132,8 +128,8 @@
                                     <div wire:ignore.self class="tab-pane text-left fade "
                                         id="notifysetting" role="tabpanel"
                                         aria-labelledby="notifysetting-tab">
-                                        <div class="card">
-                                            <div class="card-body">
+                                        {{-- <div class="card">
+                                            <div class="card-body"> --}}
                                                 <div class="form-group">
                                                     <label class="control-label">Auto Notify </label>
                                                     <small class="text-danger">التغير يحفظ تلقائي</small>
@@ -156,14 +152,12 @@
                                                         <option value='0 0 0 1 1'>Yearly</option>
                                                     </select>
                                                 </div>
-                                            </div>
-
-
-                                        </div>
+                                            {{-- </div>
+                                        </div> --}}
                                     </div>
                                 </div>
+                            </div>
                         </div>
-
                     </div>
             </div>
         </div>
