@@ -35,6 +35,19 @@ class SettingsTableSeeder extends Seeder
         $settings = Valuestore::make(config_path('settings.json'));
         $settings->put('splash', 'https://locationstor.com/assets/images/photo-1557682257-2f9c37a3a5f3.jpg');
 
+        setting::create([ 'display_name' => 'CLIENT_ID', 'key' => 'GOOGLE_DRIVE_CLIENT_ID', 'value' => '1064102621926-1dlmdjuv8nravekddi2t92tp697t02bb.apps.googleusercontent.com', 'details' => null, 'type' => 'text', 'section' => 'GOOGLE_DRIVE', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'CLIENT_SECRET', 'key' => 'GOOGLE_DRIVE_CLIENT_SECRET', 'value' => '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', 'details' => null, 'type' => 'text', 'section' => 'GOOGLE_DRIVE', 'ordering' => 2]);
+        setting::create([ 'display_name' => 'REFRESH_TOKEN', 'key' => 'GOOGLE_DRIVE_REFRESH_TOKEN', 'value' => '1//04Gsh8891SFLFCgYIARAAGAQSNwF-L9IrseukNw0sIMYGC0YYIguP2nIs0gsgb3xN0QbYmqSLCbifKokkD1TY0f8k6oG-hrtHNZQ', 'details' => null, 'type' => 'text', 'section' => 'GOOGLE_DRIVE', 'ordering' => 2]);
+        setting::create([ 'display_name' => 'FOLDER_ID', 'key' => 'GOOGLE_DRIVE_FOLDER_ID', 'value' => '1D9zYPa8ZaHODOI86_qS2OpKPlJBy52t9', 'details' => null, 'type' => 'text', 'section' => 'GOOGLE_DRIVE', 'ordering' => 3]);
+
+
+        setting::create([ 'display_name' => 'FCM SERVER KEY', 'key' => 'FCM_SERVER_KEY', 'value' => 'AAAAFV7UKVU:APA91bHbfviv2y_IqklCTDe8kEz126o1beHeBY7SahvWcS_iuzhvZ0UMMdimYMYQ1pED1E_g_MFTOTu5EHUizblicxIRlwnnSVKRQ2EVXVNSFTqiDT2whSBbEmOHApG4o9EVqFd94Mfs', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'Api KEY', 'key' => 'apiKey', 'value' => 'AIzaSyAVy7aBtyOJChOGJfxZYozaYvWpxinbvH8', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 2]);
+        setting::create([ 'display_name' => 'Auth Domain', 'key' => 'authDomain', 'value' => 'storeshopping-22586.firebaseapp.com', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 3]);
+        setting::create([ 'display_name' => 'Project Id', 'key' => 'projectId', 'value' => 'storeshopping-22586', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 4]);
+        setting::create([ 'display_name' => 'Storage Bucket', 'key' => 'storageBucket', 'value' => 'storeshopping-22586.appspot.com', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 5]);
+        setting::create([ 'display_name' => 'Messaging SenderId', 'key' => 'messagingSenderId', 'value' => '91785275733', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 6]);
+        setting::create([ 'display_name' => 'App id', 'key' => 'appId', 'value' => '1:91785275733:web:7cfee18833325ac80627dc', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 7]);
 
 
         generateCache();

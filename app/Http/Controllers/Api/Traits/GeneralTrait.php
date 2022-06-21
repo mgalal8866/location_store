@@ -242,7 +242,7 @@ trait GeneralTrait
 
         // $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
         // return $firebaseToken;
-        $SERVER_API_KEY = env('FCM_SERVER_KEY');
+        $SERVER_API_KEY = getSettingsOf('FCM_SERVER_KEY');
         $data = [
             "registration_ids" => $users,
             "notification" => [

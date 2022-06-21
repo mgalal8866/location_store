@@ -18,15 +18,20 @@ class Setting extends Component
     private $translation;
     public $i =0;
     public $state = [];
-    public $settings_sections,   $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
+    public $settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
     public function mount()
     {
         $this->notifytime = getSettingsOf('notify');
+        $this->backupgoogle = getSettingsOf('backupgoogle');
         // $section = (isset(\request()->section) && \request()->section != '') ? \request()->section : 'general';
         // if ($setting) {
         //     $this->state = $setting->toArray();
         // }
 
+    }
+    public function UpdatedBackupgoogle(){
+        $settings = Valuestore::make(config_path('settings.json'));
+        $settings->put('backupgoogle', $this->backupgoogle);
     }
     public function UpdatedNotifytime(){
         $settings = Valuestore::make(config_path('settings.json'));

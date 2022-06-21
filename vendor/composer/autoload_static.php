@@ -760,6 +760,7 @@ class ComposerStaticInit9f0d54c84e225916a7d53a1693b0e86e
         'App\\Models\\setting' => __DIR__ . '/../..' . '/app/Models/setting.php',
         'App\\Models\\slider' => __DIR__ . '/../..' . '/app/Models/slider.php',
         'App\\Models\\stores' => __DIR__ . '/../..' . '/app/Models/stores.php',
+        'App\\Models\\tasklog' => __DIR__ . '/../..' . '/app/Models/tasklog.php',
         'App\\NullSetting' => __DIR__ . '/../..' . '/app/NullSetting.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

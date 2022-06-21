@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\tasklog;
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Artisan;
 
 class DBbackup extends Command
 {
@@ -44,6 +45,7 @@ class DBbackup extends Command
 
 
         Artisan::call('backup:run');
+        tasklog::create(['state'=> 'RUN' ,'type'=>'Back up To Google Drive']);
         // return 0;
 
     }

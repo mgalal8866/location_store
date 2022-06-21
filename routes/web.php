@@ -45,7 +45,7 @@ route::get('/set',function () {
     // Cache::forget('timetask');'
 
     // Cache::forever('delete_store', '$value',11);
-      dd(  getSettingsOf('notify'));
+      dd( getSettingsOf('FCM_SERVER_KEY'));
  });
 
 route::get('/pull',function () {

@@ -3,8 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use Illuminate\Support\Carbon;
+use App\Models\tasklog;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
@@ -45,10 +46,8 @@ class notification extends Command
     {
 
         $firebaseToken =   User::whereNotNull('device_token')->get();
-    //   Log::info($firebaseToken);
 
-        // return $firebaseToken;
-        $SERVER_API_KEY = env('FCM_SERVER_KEY');
+        $SERVER_API_KEY = getSettingsOf('FCM_SERVER_KEY');
         $data = [
             "registration_ids" => $firebaseToken->pluck('device_token'),
             "notification" => [
@@ -83,5 +82,6 @@ class notification extends Command
         return  curl_exec($ch);
 
         return 0;
+        tasklog::create(['state'=> 'RUN' ,'type'=>'Notification']);
     }
 }

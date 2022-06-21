@@ -97,6 +97,7 @@ return array(
     'App\\Models\\setting' => $baseDir . '/app/Models/setting.php',
     'App\\Models\\slider' => $baseDir . '/app/Models/slider.php',
     'App\\Models\\stores' => $baseDir . '/app/Models/stores.php',
+    'App\\Models\\tasklog' => $baseDir . '/app/Models/tasklog.php',
     'App\\NullSetting' => $baseDir . '/app/NullSetting.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
