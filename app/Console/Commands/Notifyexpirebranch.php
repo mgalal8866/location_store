@@ -22,63 +22,28 @@ class Notifyexpirebranch extends Command
 
     public function handle()
     {
-        // $branchs = branchs::where('expiry_date', '<', now()->addDays(7))->get();
-        //   foreach ($branchs as $branch) {
-        //     $notify = $this->notificationFCM( '🔔Alert Expire Branch  ',
-        //      ' سوف تنتهى صلاحيه متجرك يوم  ' . $branch->expiry_date ,
-        //        [$branch->stores->user->device_token]);
-        //     }
-
-        // tasklog::create(['state'=> 'RUN' ,'type'=>   $notify]);
-
-
-        // $branchs = branchs::where('expiry_date', '=', now()->toFormattedDate())->get();
-        //   foreach ($branchs as $branch) {
-        //     log::warning($branch);
-        //     $notify = $this->notificationFCM(
-        //     '🕦 Alert Expire Branch ',//Title
-        //      ' تم انتهاء صلاحيه المتجر '//Body
-        //      ."\n".
-        //      $branch->expiry_date
-        //      ."\n".
-        //      ' متجرك الان معطل ولايظهر للمستخدمين 🔕 '  ,
-        //        [$branch->stores->user->device_token]);
-
-        //     }
-        // tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
-
-
         $branchs = branchs::whereActive(0)->get();
-
         foreach ($branchs as $branch) {
             if($branch->expiry_date ==  now()->toFormattedDate() && $branch->expiry_date != null ){
-                // '🕦 Alert Expire Branch ',//Title
-                // $titele = ' تم انتهاء صلاحيه المتجر '//Body
-                // ."\n".
-                // $branch->expiry_date
-                // ."\n".
-                // ' متجرك الان معطل ولايظهر للمستخدمين 🔕 ';
-                 $titele = ' تم انتهاء صلاحيه المتجر   :start_date :expiry_date :newline :username :storename :cityname :regionname ';
+                $body = str_replace(array(':expiry_date', ':username' ,':storename',':cityname',':regionname' , ":newline", ':start_date'),
+                    array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_body_expire_date_branch'));
 
-                 $titele = str_replace(array(':expiry_date', ':username' ,':storename',':cityname',':regionname' , ":newline", ':start_date'),
-                    array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date),$titele);
-                    log::warning( $titele);
-                // $notify = $this->notificationFCM(
-                // '🕦 Alert Expire Branch ',//Title
-                // $titele  ,
-                //    [$branch->stores->user->device_token]);
-                //    tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
+                $title = str_replace(array(':expiry_date', ':username' ,':storename',':cityname',':regionname' , ":newline", ':start_date'),
+                    array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_title_expire_date_branch'));
+
+                $notify = $this->notificationFCM($title,$body ,[$branch->stores->user->device_token]);
+                tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
             }
             if($branch->expiry_date < now()->addDays(7) && $branch->expiry_date != null){
-                // $notify = $this->notificationFCM( '🔔Alert Expire Branch  ',
-                //      ' سوف تنتهى صلاحيه متجرك يوم  '   ."\n". $branch->expiry_date ,
-                //        [$branch->stores->user->device_token]);
-                // tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
+                $body = str_replace(array(':expiry_date', ':username' ,':storename',':cityname',':regionname' , ":newline", ':start_date'),
+                array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_body_before_expire_date_branch'));
+
+                $title = str_replace(array(':expiry_date', ':username' ,':storename',':cityname',':regionname' , ":newline", ':start_date'),
+                array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_title_before_expire_date_branch'));
+
+                $notify = $this->notificationFCM($title,$body,[$branch->stores->user->device_token]);
+                tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
             }
-
-
           }
-
-
     }
 }
