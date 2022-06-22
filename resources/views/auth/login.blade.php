@@ -19,7 +19,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a class="h1">    <b>{{setting('site_name')}}</b></a>
+                <a class="h1">    <b>{{getSettingsOf('site_title')}}</b></a>
             </div>
             <div class="card-body">
                                 <p class="login-box-msg">{{ __('msglogin') }}</p>

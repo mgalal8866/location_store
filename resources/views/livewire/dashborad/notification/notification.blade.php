@@ -9,6 +9,8 @@
       Notification
     @endsection
     @push('csslive')
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
         <style>
             .btn-success {
                 color: #fff;
@@ -85,6 +87,12 @@
                                 href="#custom-tabs-five-overlay-dark" role="tab"
                                 aria-controls="custom-tabs-five-overlay-dark"
                                 aria-selected="false">{{ __('send_custom_notification') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-user-tab" data-toggle="pill"
+                                href="#custom-user" role="tab"
+                                aria-controls="custom-user"
+                                aria-selected="false">{{ __('send_user_notification') }}</a>
                         </li>
                        <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-five-normal-tab" data-toggle="pill"
@@ -240,6 +248,73 @@
                                 </div>
                             </div>
                         </div>
+                        <div wire:ignore.self class="tab-pane fade" id="custom-user" role="tabpanel"
+                            aria-labelledby="custom-user-tab">
+                            <div class="p-2" style="background-color: #f3f6f8;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label class="control-label">{{ __('mobile') }}</label>
+                                                <input type="text"  wire:model.dafer="finduser" class="form-control" name="application_name" placeholder="عنوان" dir="rtl">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <center>
+                                                    <span style="display:inline-block; vertical-align: middle; " class="text-white bg-gradient-teal rounded "> User Name : {{$hasuser->name??'Not Found'}}  </span>
+                                                </center>
+                                            </div>
+                                        </div>
+                                            <form >
+                                                <div class="row">
+                                                        @if ( $hasuser != null)
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{ __('title') }}</label>
+                                                                <input type="text"  wire:model.defer="usertitle" class="form-control" name="application_name" placeholder="عنوان" dir="rtl">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{ __('body') }}</label>
+                                                                <input type="text" wire:model.defer="userbody" class="form-control" name="site_title" placeholder="الرساله"  dir="rtl">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group">
+                                                                <label class="control-label">{{ __('image') }}</label>
+                                                                <input type="text" wire:model.defer="userimage" class="form-control" name="homepage_title" placeholder="صورة" dir="rtl">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <div class="text-center" x-data="{ imagePreview: '{{$userimage}}' }">
+                                                                    <input wire:model="uploaduserimage" accept="image/png, image/gif, image/jpeg"  type="file" class="d-none" x-ref="image"
+                                                                        x-on:change="
+                                                                                    reader = new FileReader();
+                                                                                    reader.onload = (event) => {
+                                                                                        imagePreview = event.target.result;
+                                                                                        document.getElementById('image').src = `${imagePreview}`;
+                                                                                    };
+                                                                                    reader.readAsDataURL($refs.image.files[0]);;;
+
+                                                                                "/>
+                                                                    <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview ? imagePreview : '{{$userimage}}'" alt=" picture">
+                                                                </div>
+                                                            {{-- <img class="border-dark border" src="https://www.locationstor.com/assets/noimage.png" alt="image" style="max-width: 100px; max-height: 100px;"> --}}
+                                                            </div>
+                                                        </div>
+                                                        @endif
+                                                        @if ( $hasuser != null)
+                                                        <div class="card-footer">
+                                                            <button wire:click.prevent="sendnotifytouser" class="btn btn-primary pull-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسال</button>
+                                                        </div>
+                                                        @endif
+                                                </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-normal" role="tabpanel"
                             aria-labelledby="custom-tabs-five-normal-tab">
                             {{-- <div class="p-2" style="background-color: #f3f6f8;"> --}}
@@ -287,12 +362,13 @@
                               </div> --}}
                             {{-- </div> --}}
                         </div>
+
                         {{-- <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-backup" role="tabpanel"
                             aria-labelledby="custom-tabs-five-backup-tab">
                             <div class="p-2" style="background-color: #f3f6f8;">
-
                             </div>
                         </div> --}}
+
                     </div>
                 </div>
             </div>
@@ -300,5 +376,5 @@
 
 </div>
 @push('jslive')
-
+<script src="{{ URL::asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
 @endpush

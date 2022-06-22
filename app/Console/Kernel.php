@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('db:backup')->cron(getSettingsOf('backupgoogle'));
         $schedule->command('notifi:send')->cron(getSettingsOf('notify'));
         // $schedule->command('Notifyexpire:product')->cron(getSettingsOf('notify'));
-        $schedule->command('Notifyexpire:branch')->daily();
+        $schedule->command('Notifyexpire:branch')->everyMinute();
 
     }
 
