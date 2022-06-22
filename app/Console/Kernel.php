@@ -34,10 +34,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('db:backup')->cron(getSettingsOf('backupgoogle'));
-        // $schedule->command('notifi:send')->cron(getSettingsOf('notify'));
+        $schedule->command('db:backup')->cron(getSettingsOf('backupgoogle'));
+        $schedule->command('notifi:send')->cron(getSettingsOf('notify'));
         // $schedule->command('Notifyexpire:product')->cron(getSettingsOf('notify'));
-        $schedule->command('Notifyexpire:branch')->everyMinute();
+        $schedule->command('Notifyexpire:branch')->daily();
 
     }
 
