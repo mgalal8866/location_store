@@ -1,0 +1,20 @@
+{
+    "backupgoogle": "0 0 * * *",
+    "activebackupgoogle": true,
+
+    "notify": "0 0 * * *",
+    "activenotify": true,
+
+    "timenotifyexpirebranch": "0 0 * * *",
+    "activenotifyexpireproduct": true,
+
+    "timenotifyexpireproduct": "0 0 * * *",
+    "activenotifybranchviews": true,
+    "timenotifybranchviews": "0 0 * * *",
+
+    "activenotifyproductviews": true,
+    "timenotifyproductviews": "0 0 * * *",
+
+    "viewsproduct": 1000,
+    "viewsbranch": 1000
+}

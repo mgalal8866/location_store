@@ -34,6 +34,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(cities::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(about::class);
+    }
     public function comments()
     {
         return $this->hasMany(comments::class);
@@ -52,8 +56,6 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
     protected $casts = [
         'mobile_verified_at' => 'datetime',
     ];
@@ -61,7 +63,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(stores::class);
     }
-
     public function getGenderAttribute($val)
     {
         if($val == 0){

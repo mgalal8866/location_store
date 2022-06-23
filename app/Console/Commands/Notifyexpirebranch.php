@@ -32,9 +32,9 @@ class Notifyexpirebranch extends Command
                     array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_title_expire_date_branch'));
 
                 $notify = $this->notificationFCM($title,$body ,[$branch->stores->user->device_token]);
-                tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
+                tasklog::create(['state'=>  ($this->description) ,'type'=> $notify ]);
             }
-            if($branch->expiry_date < now()->addDays(7) && $branch->expiry_date != null){
+            if($branch->expiry_date < now()->addDays(7)  && $branch->expiry_date ==  now()->toFormattedDate()  &&  $branch->expiry_date != null){
                 $body = str_replace(array(':expiry_date', ':username' ,':storename',':cityname',':regionname' , ":newline", ':start_date'),
                 array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_body_before_expire_date_branch'));
 
@@ -42,7 +42,7 @@ class Notifyexpirebranch extends Command
                 array($branch->expiry_date, $branch->stores->user->name,$branch->stores->name,$branch->city->name,$branch->region->name , "\n", $branch->start_date), __('notify.task_notify_title_before_expire_date_branch'));
 
                 $notify = $this->notificationFCM($title,$body,[$branch->stores->user->device_token]);
-                tasklog::create(['state'=> 'Run Notification' ,'type'=> $notify ]);
+                tasklog::create(['state'=>  ($this->description) ,'type'=> $notify ]);
             }
           }
     }

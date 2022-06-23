@@ -68,7 +68,13 @@
                         </ul>
                     </li> --}}
                     {{-- @endcan --}}
-
+                    <li class="nav-header">{{ __('tran.users') }}</li>
+                    <li class="nav-item">
+                        <a href="{{route('users') }}" class="nav-link">
+                            <i class="nav-icon fas fa-store"></i>
+                           <p> {{ __('tran.users') }} </p>
+                        </a>
+                    </li>
                     {{-- @can('menu stores') --}}
                     <li class="nav-header">{{ __('tran.stores') }}</li>
                     <li class="nav-item">

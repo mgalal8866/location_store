@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class products extends Model
 {
     use HasFactory , SoftDeletes ,GeneralTrait;
+    
     protected $guarded = [];
     protected $casts = [
         'start_date' => 'datetime',
@@ -34,9 +35,9 @@ class products extends Model
             '1' => 'danger'
         ];
         return $badge[$this->active];
-     }
+    }
 
-     public function getActiveapiAttribute(){
+    public function getActiveapiAttribute(){
         if($this->active == 1){
             return 'غير مفعل';
         } else
@@ -44,6 +45,7 @@ class products extends Model
             return 'مفعل';
         }
     }
+
     public function getStartDateAttribute($value){
         return   $value ?  Carbon::parse($value)->toFormattedDate() : '';
     }
@@ -55,9 +57,10 @@ class products extends Model
     {
         return $this->hasMany(slider::class);
     }
+
     public function setActiveAttribute($value){
         if($this->getAttributes()['active'] != $value){
-                $this->notificationFCM('Alert ⚠️' , 'Your Product Active Change',[$this->branch->stores->user->device_token]);
+                $this->notificationFCM('Alert ⚠️' , ('Your Product Active Change ' . $this->Activeapi),[$this->branch->stores->user->device_token]);
                 $this->attributes['active'] = $value;
         };
     }

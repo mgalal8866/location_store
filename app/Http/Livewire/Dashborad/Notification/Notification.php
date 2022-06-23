@@ -71,7 +71,7 @@ protected $paginationTheme = 'bootstrap';
     //####################### custom notification #######################
     public function render()
     {
-        $notifylog = notifylog::paginate(10);
+        $notifylog = notifylog::latest()->paginate(10);
         $query =  user::query();// DB::table('users');
         ($this->gender != 'all')?$query->where('gender',$this->gender):null;
         ($this->target == '1')?$query->whereHas('store'):($this->target == '0'?$query->whereDoesntHave('store') : ($this->target == 'all'??null));

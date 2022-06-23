@@ -20,13 +20,13 @@ class Setting extends Component
     private $translation;
     public $i =0;
     public $state = [];
-    public $tasklog,$settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
+    public  $settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
     public function mount()
     {
 
-        $this->tasklog = tasklog::get();
-        $this->notifytime = getSettingsOf('notify');
-        $this->backupgoogle = getSettingsOf('backupgoogle');
+
+        $this->notifytime = gettaskvar('notify');
+        $this->backupgoogle = gettaskvar('backupgoogle');
         $this->reset('i');
         $this->reset('valueform');
         $this->settings_sections = ModelsSetting::whereShow(0)->select('section')->distinct()->pluck('section');
@@ -41,7 +41,7 @@ class Setting extends Component
         }
         $this->settings = $hassetting;
     }
-
+    //###############################################
     public function UpdatedSection(){
             $this->reset('i');
             $this->reset('valueform');
@@ -58,18 +58,8 @@ class Setting extends Component
 
 
     }
-    public function UpdatedBackupgoogle(){
-        $settings = Valuestore::make(config_path('settings.json'));
-        $settings->put('backupgoogle', $this->backupgoogle);
-        $this->dispatchBrowserEvent('successmsg',['msg' => 'Backup Time Updated successfully!']);
-    }
-    public function UpdatedNotifytime(){
-        $settings = Valuestore::make(config_path('settings.json'));
-        $settings->put('notify', $this->notifytime);
-        $this->dispatchBrowserEvent('successmsg',['msg' => 'notify Time Updated successfully!']);
-    }
     public function up($section){
-        
+
         foreach($this->valueform as $item)
             {
                 $settings = Valuestore::make(config_path('settings.json'));
@@ -79,6 +69,18 @@ class Setting extends Component
             }
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
     }
+    //###################### تعديل خاص بال تاسك ملف taskvar #######################
+    public function UpdatedBackupgoogle(){
+        $settings = Valuestore::make(config_path('taskvar.json'));
+        $settings->put('backupgoogle', $this->backupgoogle);
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'Backup Time Updated successfully!']);
+    }
+    public function UpdatedNotifytime(){
+        $settings = Valuestore::make(config_path('taskvar.json'));
+        $settings->put('notify', $this->notifytime);
+        $this->dispatchBrowserEvent('successmsg',['msg' => 'notify Time Updated successfully!']);
+    }
+    //###################### تعديل خاص بال تاسك ملف taskvar #######################
 
 
         public function updateSetting()
@@ -96,6 +98,7 @@ class Setting extends Component
 
         public function render()
         {
-            return view('livewire.dashborad.setting.setting')->layout('admin.layouts.masterdash');
+            $tasklog = tasklog::latest()->paginate(10);
+            return view('livewire.dashborad.setting.setting',['tasklog' =>$tasklog ])->layout('admin.layouts.masterdash');
         }
 }

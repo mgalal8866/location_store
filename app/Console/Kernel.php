@@ -6,8 +6,10 @@ use App\Console\Commands\DBbackup;
 use App\Console\Commands\DBrestore;
 use Illuminate\Support\Facades\Log;
 use App\Console\Commands\notification;
+use App\Console\Commands\Notifybranchviews;
 use App\Console\Commands\Notifyexpirebranch;
 use App\Console\Commands\Notifyexpireproduct;
+use App\Console\Commands\notifyproductviews;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -23,7 +25,9 @@ class Kernel extends ConsoleKernel
         DBbackup::class,
         DBrestore::class,
         Notifyexpirebranch::class,
-        Notifyexpireproduct::class
+        Notifyexpireproduct::class,
+        Notifybranchviews::class,
+        notifyproductviews::class
     ];
 
     /**
@@ -34,11 +38,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('db:backup')->cron(getSettingsOf('backupgoogle'));
-        $schedule->command('notifi:send')->cron(getSettingsOf('notify'));
-        // $schedule->command('Notifyexpire:product')->cron(getSettingsOf('notify'));
-        $schedule->command('Notifyexpire:branch')->everyMinute();
-
+        if(gettaskvar('activebackupgoogle')==true){
+            $schedule->command('db:backup')->cron(gettaskvar('backupgoogle'));
+        }elseif(gettaskvar('activenotify')==true){
+            $schedule->command('notifi:send')->cron(gettaskvar('notify'));
+        }elseif(gettaskvar('activenotifyexpirebranch')==true){
+            $schedule->command('Notifyexpire:branch')->cron(gettaskvar('timenotifyexpirebranch'));
+        }elseif(gettaskvar('activenotifyexpireproduct')==true){
+            $schedule->command('Notifyexpire:product')->cron(gettaskvar('timenotifyexpireproduct'));
+        }elseif(gettaskvar('activenotifybranchviews')==true){
+            $schedule->command('Notifybranch:views')->cron(gettaskvar('timenotifybranchviews'));
+        }elseif(gettaskvar('activenotifyproductviews')==true){
+            $schedule->command('Notifyproduct:views')->cron(gettaskvar('timenotifyproductviews'));
+        }
     }
 
     /**
