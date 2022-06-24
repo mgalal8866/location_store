@@ -87,7 +87,59 @@
                 <a href="{{ route('stores') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            @livewire('store.sastoreunaccept')
+        </div>
+        <div class="col-md-6">
+        @livewire('store.storerejected')
+        </div>
+    </div>
+    <div class="row">
+         {{-- Chart branches--}}
+        <div class="col-lg-6 col-6">
+            <div class="card card-danger">
+                <div class="card-header">
+                <h3 class="card-title">{{ __('branches') }}</h3>
+                <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+                </button>
+                </div>
+                </div>
+                <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 316px;" class="chartjs-render-monitor" width="316" height="250"></canvas>
+                </div>
+
+                </div>
+        </div>
+          {{-- Chart product--}}
+          <div class="col-lg-6 col-6">
+            <div class="card card-danger">
+                <div class="card-header">
+                <h3 class="card-title">{{ __('products') }}</h3>
+                <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+                </button>
+                </div>
+                </div>
+                <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="productChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 316px;" class="chartjs-render-monitor" width="316" height="250"></canvas>
+                </div>
+
+                </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -222,12 +274,51 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            @livewire('store.sastoreunaccept')
-        </div>
-        <div class="col-md-6">
-        @livewire('store.storerejected')
-        </div>
-    </div>
+
 </div>
+@push('jslive')
+<script src="{{ URL::asset('assets/plugins/chart.js/Chart.min.js')}}"></script>
+<script>
+ $(function () {
+
+        //  {{ json_encode($topregions->pluck('name'),JSON_UNESCAPED_UNICODE,JSON_HEX_APOS)  }};
+    var donutData = {
+
+      labels:   [ 'Active', 'unActive', ],
+      datasets: [
+        {data: [{{ $activebranch }},{{ $unactivebranch }}],
+          backgroundColor : ['#00a65a','#f56954'],}]
+    }
+
+    var donutproductData = {
+      labels: [ 'Active', 'unActive', ],
+      datasets: [
+        {data: [{{ $activeproduct }},{{ $unactiveproduct }}],
+          backgroundColor : ['#00a65a','#f56954'],}]
+    }
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var productChartChartCanvas = $('#productChart').get(0).getContext('2d')
+    var pieproductData        = donutproductData;
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData;
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
+    new Chart(productChartChartCanvas, {
+      type: 'pie',
+      data: pieproductData,
+      options: pieOptions
+    })
+ })
+</script>
+@endpush
