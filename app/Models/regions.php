@@ -22,4 +22,8 @@ class regions extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function slider()
+    {
+        return $this->hasMany(slider::class);
+    }
 }

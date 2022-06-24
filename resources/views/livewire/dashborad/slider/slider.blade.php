@@ -204,6 +204,7 @@
                                                         Image Only
                                                        @endif
                                                     </td>
+                                                    <td><span class="badge badge-success ">{{ $slide->region->city->name }} , {{ $slide->region->name }} </span></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button

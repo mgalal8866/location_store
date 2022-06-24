@@ -27,5 +27,8 @@ class slider extends Model
     {
         return $this->belongsTo(products::class,'event','id');
     }
-
+    public function region()
+    {
+        return $this->belongsTo(regions::class);
+    }
 }
