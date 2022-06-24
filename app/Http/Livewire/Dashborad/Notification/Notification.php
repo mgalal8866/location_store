@@ -97,7 +97,27 @@ $viewsbranch;
 
     public function updateSetting(){
         $taskvar = Valuestore::make(config_path('taskvar.json'));
-        $taskvar->put('activenotifyexpirebranch', $this->activenotifyexpirebranch);
+        $taskvar->put('backupgoogle' ,$this->backupgoogle);
+        $taskvar->put('activebackupgoogle' ,$this->activebackupgoogle);
+        
+        $taskvar->put('notify' ,$this->notify);
+        $taskvar->put('activenotify' ,$this->activenotify);
+
+        $taskvar->put('activenotifyexpirebranch' ,$this->activenotifyexpirebranch);
+        $taskvar->put('timenotifyexpirebranch' ,$this->timenotifyexpirebranch);
+
+        $taskvar->put('activenotifybranchviews' ,$this->activenotifybranchviews);
+        $taskvar->put('timenotifybranchviews' ,$this->timenotifybranchviews);
+        $taskvar->put('viewsbranch' ,(int)$this->viewsbranch);
+
+        $taskvar->put('activenotifyexpireproduct' ,$this->activenotifyexpireproduct);
+        $taskvar->put('timenotifyexpireproduct' ,$this->timenotifyexpireproduct);
+
+        $taskvar->put('activenotifyproductviews' ,$this->activenotifyproductviews);
+        $taskvar->put('timenotifyproductviews' ,$this->timenotifyproductviews);
+        $taskvar->put('viewsproduct' ,(int)$this->viewsproduct);
+
+
     }
 
 

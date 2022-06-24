@@ -20,7 +20,7 @@ class cities extends Model
 
     public function branch()
     {
-        return $this->hasMany(branchs::class);
+        return $this->hasMany(branchs::class,'city_id');
     }
 
     public function region()

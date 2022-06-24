@@ -16,18 +16,22 @@ use App\Models\categories;
 class Dashborad extends Component
 {
 
-    public $countcities ,$countregions,$countusers,$countstores,$countbranchs,$countproduct,$countcomments,$countcategory,$fonts;
+    public $topcity=[],$topregions =[] , $countcities ,$countregions,$countusers,$countstores,$countbranchs,$countproduct,$countcomments,$countcategory,$fonts;
 
     public function mount(){
-            $this->countcities = cities::count();
-            $this->countregions = regions::count();
-            $this->countusers = User::count();
-            $this->countstores = stores::count();
-            $this->countbranchs = branchs::count();
-            $this->countproduct = products::count();
-            $this->countcomments = comments::count();
-            $this->countcategory = categories::count();
-            $this->fonts = fonts::whereIsDefault(1)->get();
+        $this->topregions           = regions::whereHas('branch')->withCount(['branch'])->orderBy('branch_count', 'desc')->take(5)->get();
+        $this->topcity              = cities::whereHas('branch')->withCount(['branch'])->orderBy('branch_count', 'desc')->take(5)->get();
+        $this->TopStoreHasBranch    = stores::whereHas('branch')->withCount(['branch'])->orderBy('branch_count', 'desc')->take(5)->get();
+        $this->TopBranchHasProduct  = branchs::whereHas('product')->withCount(['product'])->orderBy('product_count', 'desc')->take(5)->get();
+        $this->countcities          = cities::count();
+        $this->countregions         = regions::count();
+        $this->countusers           = User::count();
+        $this->countstores          = stores::count();
+        $this->countbranchs         = branchs::count();
+        $this->countproduct         = products::count();
+        $this->countcomments        = comments::count();
+        $this->countcategory        = categories::count();
+        $this->fonts = fonts::whereIsDefault(1)->get();
     }
 
     public function render()

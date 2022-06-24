@@ -18,6 +18,10 @@ class regions extends Model
     {
         return $this->belongsTo(cities::class);
     }
+    public function branch()
+    {
+        return $this->hasMany(branchs::class ,'region_id');
+    }
     public function user()
     {
         return $this->hasMany(User::class);

@@ -117,20 +117,39 @@
 
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" id="checkboxSuccess2" wire:model='activenotifyexpireproduct'>
-                                                            <label for="checkboxSuccess2">
-                                                            </label>
-                                                        </div>
-                                                        <label class="control-label">{{ __('activenotifyexpireproduct') }} ({{ __('daily') }})</label>
+                                                        <label class="control-label">{{ __('notify_expiry_product') }} </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <input type="checkbox" wire:model='activenotifyexpireproduct'>
+                                                                    </span>
+                                                                </div>
+                                                                <select wire:model='timenotifyexpireproduct' class="form-control"  {{$activenotifyexpireproduct == false ? 'disabled' : ' '}}>
+                                                                    <option value='0 * * * *'>Hourly</option>
+                                                                    <option value='0 0 * * *'>Daily</option>
+                                                                    <option value='0 0 0 * *'>Weekly</option>
+                                                                    <option value='0 0 1 * *'>Monthly</option>
+                                                                    <option value='0 0 0 1 1'>Yearly</option>
+                                                                </select>
+                                                            </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" id="checkboxSuccess2" wire:model='dd'>
-                                                            <label for="checkboxSuccess2">
-                                                            </label>
-                                                        </div>
-                                                        <label class="control-label">{{ __('notify_expiry_product') }} ({{ __('daily') }})</label>
+                                                        <label class="control-label">{{ __('notify_product_views') }}</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <input type="checkbox" wire:model='activenotifyproductviews'>
+                                                                    </span>
+                                                                </div>
+                                                                <input  class="form-control" type="text" wire:model='viewsproduct' {{$activenotifyproductviews == false ? 'disabled' : ' '}}>
+                                                                <select wire:model='timenotifyproductviews' class="form-control"  {{$activenotifyproductviews == false ? 'disabled' : ' '}}>
+                                                                    <option value='0 * * * *'>Hourly</option>
+                                                                    <option value='0 0 * * *'>Daily</option>
+                                                                    <option value='0 0 0 * *'>Weekly</option>
+                                                                    <option value='0 0 1 * *'>Monthly</option>
+                                                                    <option value='0 0 0 1 1'>Yearly</option>
+                                                                </select>
+                                                            </div>
                                                     </div>
                                                     {{-- <div class="form-group">
                                                         <label class="control-label">عدد المتاجر فى البحث</label>
@@ -149,7 +168,7 @@
                                             </div>
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <label class="control-label">{{ __('notify_expiry_branch') }} ({{ __('daily') }})</label>
+                                                        <label class="control-label">{{ __('notify_expiry_branch') }} </label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
@@ -166,15 +185,15 @@
                                                             </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">{{ __('notify_expiry_branch') }} ({{ __('daily') }})</label>
+                                                        <label class="control-label">{{ __('notify_branch_views') }}</label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <input type="checkbox" wire:model='activenotifyexpirebranch'>
+                                                                        <input type="checkbox" wire:model='activenotifybranchviews'>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text">
-                                                                <select wire:model='timenotifyexpirebranch' class="form-control"  {{$activenotifyexpirebranch == false ? 'disabled' : ' '}}>
+                                                                <input  class="form-control" type="text" wire:model='viewsbranch' {{$activenotifybranchviews == false ? 'disabled' : ' '}}>
+                                                                <select wire:model='timenotifybranchviews' class="form-control"  {{$activenotifybranchviews == false ? 'disabled' : ' '}}>
                                                                     <option value='0 * * * *'>Hourly</option>
                                                                     <option value='0 0 * * *'>Daily</option>
                                                                     <option value='0 0 0 * *'>Weekly</option>

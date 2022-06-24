@@ -3,18 +3,14 @@
     "activebackupgoogle": true,
     "notify": "0 0 * * *",
     "activenotify": true,
-    "activenotifyexpirebranch": true,
+    "activenotifyexpirebranch": false,
     "timenotifyexpirebranch": "0 0 * * *",
-
     "activenotifybranchviews": true,
     "timenotifybranchviews": "0 0 * * *",
-    "viewsbranch": 1000,
-
+    "viewsbranch": 8,
     "activenotifyexpireproduct": true,
     "timenotifyexpireproduct": "0 0 * * *",
-
     "activenotifyproductviews": true,
     "timenotifyproductviews": "0 0 * * *",
     "viewsproduct": 1000
-
 }
