@@ -1,12 +1,12 @@
 <div>
     @section('title')
-    {{ setting('site_title')}}- Notification
+    {{ getsettingsof('site_title')}} -  {{__('notification')}}
     @stop
     @section('page')
-    Notification
+     {{__('notification')}}
     @endsection
     @section('page2')
-      Notification
+      {{__('notification')}}
     @endsection
     @push('csslive')
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/select2/css/select2.min.css')}}">
@@ -106,44 +106,93 @@
                     <div class="tab-content" id="custom-tabs-five-tabContent">
                         <div wire:ignore.self class="tab-pane fade show active" id="custom-tabs-five-overlay" role="tabpanel"
                             aria-labelledby="custom-tabs-five-overlay-tab">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="card">
-                                        <div class="card-header with-border">
-                                            <h3 class="card-title">{{ __('setting_general') }}</h3>
+                            <form wire:submit.prevent="updateSetting">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-header with-border">
+                                                <h3 class="card-title">{{ __('product') }}</h3>
+                                            </div>
+
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <div class="icheck-success d-inline">
+                                                            <input type="checkbox" id="checkboxSuccess2" wire:model='activenotifyexpireproduct'>
+                                                            <label for="checkboxSuccess2">
+                                                            </label>
+                                                        </div>
+                                                        <label class="control-label">{{ __('activenotifyexpireproduct') }} ({{ __('daily') }})</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="icheck-success d-inline">
+                                                            <input type="checkbox" id="checkboxSuccess2" wire:model='dd'>
+                                                            <label for="checkboxSuccess2">
+                                                            </label>
+                                                        </div>
+                                                        <label class="control-label">{{ __('notify_expiry_product') }} ({{ __('daily') }})</label>
+                                                    </div>
+                                                    {{-- <div class="form-group">
+                                                        <label class="control-label">عدد المتاجر فى البحث</label>
+                                                        <input type="number" class="form-control" name="recaptcha_lang"
+                                                        wire:model.defer="state.app_pagforsearch_branch" min="0"  placeholder="عدد المتاجر فى البحث" value="" dir="rtl">
+                                                    </div> --}}
+                                                </div>
+
+
                                         </div>
-                                        <form wire:submit.prevent="updateSetting">
-                                            @csrf
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="checkbox" id="checkboxSuccess2" wire:model='dd'>
-                                                        <label for="checkboxSuccess2">
-                                                        </label>
-                                                    </div>
-                                                    <label class="control-label">{{ __('notify_expiry_branch') }} ({{ __('daily') }})</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="checkbox" id="checkboxSuccess2" wire:model='dd'>
-                                                        <label for="checkboxSuccess2">
-                                                        </label>
-                                                    </div>
-                                                    <label class="control-label">{{ __('notify_expiry_product') }} ({{ __('daily') }})</label>
-                                                </div>
-                                                {{-- <div class="form-group">
-                                                    <label class="control-label">عدد المتاجر فى البحث</label>
-                                                    <input type="number" class="form-control" name="recaptcha_lang"
-                                                    wire:model.defer="state.app_pagforsearch_branch" min="0"  placeholder="عدد المتاجر فى البحث" value="" dir="rtl">
-                                                </div> --}}
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="card">
+                                            <div class="card-header with-border">
+                                                <h3 class="card-title">{{ __('branch') }}</h3>
                                             </div>
-                                            <div class="card-footer">
-                                                <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button>
-                                            </div>
-                                        </form>
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{ __('notify_expiry_branch') }} ({{ __('daily') }})</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <input type="checkbox" wire:model='activenotifyexpirebranch'>
+                                                                    </span>
+                                                                </div>
+                                                                <select wire:model='timenotifyexpirebranch' class="form-control"  {{$activenotifyexpirebranch == false ? 'disabled' : ' '}}>
+                                                                    <option value='0 * * * *'>Hourly</option>
+                                                                    <option value='0 0 * * *'>Daily</option>
+                                                                    <option value='0 0 0 * *'>Weekly</option>
+                                                                    <option value='0 0 1 * *'>Monthly</option>
+                                                                    <option value='0 0 0 1 1'>Yearly</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">{{ __('notify_expiry_branch') }} ({{ __('daily') }})</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <input type="checkbox" wire:model='activenotifyexpirebranch'>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text">
+                                                                <select wire:model='timenotifyexpirebranch' class="form-control"  {{$activenotifyexpirebranch == false ? 'disabled' : ' '}}>
+                                                                    <option value='0 * * * *'>Hourly</option>
+                                                                    <option value='0 0 * * *'>Daily</option>
+                                                                    <option value='0 0 0 * *'>Weekly</option>
+                                                                    <option value='0 0 1 * *'>Monthly</option>
+                                                                    <option value='0 0 0 1 1'>Yearly</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary pull-right">حفظ التغييرات</button>
                             </div>
+                        </form>
                         </div>
                         <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-overlay-dark" role="tabpanel"
                             aria-labelledby="custom-tabs-five-overlay-dark-tab">
@@ -256,7 +305,7 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <label class="control-label">{{ __('mobile') }}</label>
-                                                <input type="text"  wire:model.dafer="finduser" class="form-control" name="application_name" placeholder="عنوان" dir="rtl">
+                                                <input type="text"  wire:model.dafer="finduser" class="form-control" name="application_name" placeholder="Mobile" dir="">
                                             </div>
                                             <div class="col-md-4">
                                                 <center>

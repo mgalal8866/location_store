@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Models\cities;
 use App\Models\regions;
 use Livewire\Component;
+use App\Models\notifylog;
+use App\Models\notifyimage;
+use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-use App\Models\notifyimage;
-use App\Models\notifylog;
-use Livewire\WithPagination;
 
 class Notification extends Component
 {
@@ -21,12 +22,35 @@ use WithPagination;
 protected $paginationTheme = 'bootstrap';
   public $target = 'all',$uploadimage, $countuser = 0 , $dd =true,$title,$body,$image,$users,$region= 'all',$city= 'all',$getcity,$getregion,$gender = 'all';
   public  $finduser,$uploaduserimage,$usertitle,$userbody,$userimage,$hasuser; //For notify user
-
+  public  $backupgoogle,$activebackupgoogle,$notify,$activenotify,
+$activenotifyexpirebranch,
+$timenotifyexpirebranch,
+$activenotifybranchviews,
+$timenotifybranchviews,
+$activenotifyexpireproduct,
+$timenotifyexpireproduct,
+$activenotifyproductviews,
+$timenotifyproductviews,
+$viewsproduct,
+$viewsbranch;
     public function mount(){
         $this->getcity = cities::get();
         $this->image = asset('assets/images/notify/bell.png');
         $this->userimage = asset('assets/images/notify/bell.png');
-
+        $this->backupgoogle              = gettaskvar('backupgoogle');
+        $this->activebackupgoogle        = gettaskvar('activebackupgoogle');
+        $this->notify                    = gettaskvar('notify');
+        $this->activenotify              = gettaskvar('activenotify');
+        $this->activenotifyexpirebranch  = gettaskvar('activenotifyexpirebranch');
+        $this->timenotifyexpirebranch    = gettaskvar('timenotifyexpirebranch');
+        $this->activenotifybranchviews   = gettaskvar('activenotifybranchviews');
+        $this->timenotifybranchviews     = gettaskvar('timenotifybranchviews');
+        $this->activenotifyexpireproduct = gettaskvar('activenotifyexpireproduct');
+        $this->timenotifyexpireproduct   = gettaskvar('timenotifyexpireproduct');
+        $this->activenotifyproductviews  = gettaskvar('activenotifyproductviews');
+        $this->timenotifyproductviews    = gettaskvar('timenotifyproductviews');
+        $this->viewsproduct              = gettaskvar('viewsproduct');
+        $this->viewsbranch               = gettaskvar('viewsbranch');
     }
     //####################### send notification to one user #######################
     public function updatedFinduser($value){
@@ -47,6 +71,7 @@ protected $paginationTheme = 'bootstrap';
         }
     }
     //####################### send notification to one user #######################
+
     //####################### custom notification #######################
     public function updatedCity($id){
         $this->region= 'all';
@@ -69,6 +94,13 @@ protected $paginationTheme = 'bootstrap';
         }
     }
     //####################### custom notification #######################
+
+    public function updateSetting(){
+        $taskvar = Valuestore::make(config_path('taskvar.json'));
+        $taskvar->put('activenotifyexpirebranch', $this->activenotifyexpirebranch);
+    }
+
+
     public function render()
     {
         $notifylog = notifylog::latest()->paginate(10);

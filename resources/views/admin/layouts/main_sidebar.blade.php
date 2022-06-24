@@ -71,7 +71,8 @@
                     <li class="nav-header">{{ __('tran.users') }}</li>
                     <li class="nav-item">
                         <a href="{{route('users') }}" class="nav-link">
-                            <i class="nav-icon fas fa-store"></i>
+
+                            <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                            <p> {{ __('tran.users') }} </p>
                         </a>
                     </li>
