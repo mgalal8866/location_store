@@ -3,7 +3,12 @@
 
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Branch Expire</h3>
+                <button type="button" class="btn btn-default float-right" id="daterangebranch-btn">
+                  <i class="far fa-calendar-alt"></i> Date range picker
+                  <i class="fas fa-caret-down"></i>
+                </button>
+
+            <h3 class="card-title"> <i class=" fas fa-stopwatch"> </i> Branch Expire</h3>
           </div>
             <div class="card-body p-0">
                 <table class="table  table-sm table-responsive-sm">
@@ -40,3 +45,31 @@
 
 
 </div>
+
+@push('jslive')
+    <script>
+       $('#daterangebranch-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'This week'  : [moment(), moment().add(7, 'days')],
+
+        },
+        startDate: moment(),
+        endDate  : moment().add(7, 'days'),
+
+        },
+        function (start, end) {
+            // $('#reportrange span').html(start.format('Y-m-d') + ' - ' + end.format('Y-m-d'))
+
+            @this.set('startdate',start),
+            @this.set('enddate' ,end )
+        }
+
+    )
+    </script>
+@endpush

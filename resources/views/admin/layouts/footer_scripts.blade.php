@@ -29,6 +29,7 @@
 <script src="{{ URL::asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ URL::asset('assets/dist/js/adminlte.js') }}"></script>
+
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{ URL::asset('assets/dist/js/demo.js') }}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -50,6 +51,7 @@
 
 <script>
 
+ 
   $(document).ready(function() {
         toastr.options = {
                         "closeButton": true,
@@ -111,6 +113,7 @@
             $('#updateModal').modal('hide');
 
         });
+
  </script>
 
 
