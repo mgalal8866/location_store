@@ -98,6 +98,16 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-6">
+            @livewire('dashborad.check-expire-branch')
+
+        </div>
+        <div class="col-md-6">
+            @livewire('dashborad.check-expireproduct')
+
+        </div>
+    </div>
+    <div class="row">
          {{-- Chart branches--}}
         <div class="col-lg-6 col-6">
             <div class="card card-danger">
@@ -139,7 +149,6 @@
                 </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6">
             <div class="card">
