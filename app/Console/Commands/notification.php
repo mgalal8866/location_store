@@ -51,7 +51,7 @@ class notification extends Command
         $firebaseToken,
        'https://www.holidayhometimes.com/wp-content/uploads/2013/03/HHT-location.jpg',);
 
-        tasklog::create(['state'=> 'RUN' ,'type'=>['Notification'=>  $notify]]);
+        tasklog::create(['state'=> 'RUN' ,'type' => 'Notification']);
         // return      ;
 
 

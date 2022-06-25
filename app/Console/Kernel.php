@@ -30,26 +30,31 @@ class Kernel extends ConsoleKernel
         notifyproductviews::class
     ];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
     protected function schedule(Schedule $schedule)
     {
         if(gettaskvar('activebackupgoogle')==true){
-            $schedule->command('db:backup')->cron(gettaskvar('backupgoogle'));
-        }elseif(gettaskvar('activenotify')==true){
+           $schedule->command('db:backup')->cron(gettaskvar('backupgoogle'));
+           log::warning('activebackupgoogle');
+        }
+        if(gettaskvar('activenotify')==true){
             $schedule->command('notifi:send')->cron(gettaskvar('notify'));
-        }elseif(gettaskvar('activenotifyexpirebranch')==true){
+            log::warning('notifi');
+        }
+        if(gettaskvar('activenotifyexpirebranch')==true){
             $schedule->command('Notifyexpire:branch')->cron(gettaskvar('timenotifyexpirebranch'));
-        }elseif(gettaskvar('activenotifyexpireproduct')==true){
+            log::warning('activenotifyexpirebranch');
+        }
+        if(gettaskvar('activenotifyexpireproduct')==true){
             $schedule->command('Notifyexpire:product')->cron(gettaskvar('timenotifyexpireproduct'));
-        }elseif(gettaskvar('activenotifybranchviews')==true){
+            log::warning('activenotifyexpireproduct');
+        }
+        if(gettaskvar('activenotifybranchviews')==true){
             $schedule->command('Notifybranch:views')->cron(gettaskvar('timenotifybranchviews'));
-        }elseif(gettaskvar('activenotifyproductviews')==true){
+            log::warning('activenotifybranchviews');
+        }
+        if(gettaskvar('activenotifyproductviews')==true){
             $schedule->command('Notifyproduct:views')->cron(gettaskvar('timenotifyproductviews'));
+            log::warning('activenotifyproductviews');
         }
     }
 

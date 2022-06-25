@@ -1,16 +1,16 @@
 {
-    "backupgoogle": "0 0 * * *",
+    "backupgoogle": "* * * * *",
     "activebackupgoogle": true,
-    "notify": "0 0 * * *",
+    "notify": "* * * * *",
     "activenotify": true,
-    "activenotifyexpirebranch": false,
-    "timenotifyexpirebranch": "0 0 * * *",
+    "activenotifyexpirebranch": true,
+    "timenotifyexpirebranch": "* * * * *",
     "activenotifybranchviews": true,
-    "timenotifybranchviews": "0 0 * * *",
+    "timenotifybranchviews": "* * * * *",
     "viewsbranch": 8,
     "activenotifyexpireproduct": true,
-    "timenotifyexpireproduct": "0 0 * * *",
+    "timenotifyexpireproduct": "* * * * *",
     "activenotifyproductviews": true,
-    "timenotifyproductviews": "0 0 * * *",
+    "timenotifyproductviews": "* * * * *",
     "viewsproduct": 1000
 }
