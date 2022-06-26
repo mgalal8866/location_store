@@ -51,7 +51,7 @@ class branchs extends Model
     }
     public function region()
     {
-        return $this->belongsTo(regions::class ,'id');
+        return $this->belongsTo(regions::class ,'region_id');
     }
     public function product()
     {
