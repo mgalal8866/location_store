@@ -27,6 +27,7 @@ use App\Http\Livewire\Dashborad\Dashborad;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
+use App\Http\Livewire\Dashborad\Users\NewUser;
 use App\Http\Livewire\Dashborad\Users\Users;
 
 /*
@@ -132,6 +133,7 @@ Route::group(
         Route::get('/store/branchse/{slug}',Branch::class)->name('branch');
         Route::get('/user/comments',Citits::class)->name('comments');
         Route::get('/users',Users::class)->name('users');
+        Route::get('/user/new',NewUser::class)->name('newuser');
 
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
         Route::get('home', function () {

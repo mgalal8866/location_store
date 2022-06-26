@@ -18,6 +18,7 @@
 
             <div  class="d-flex justify-content-between  mb-2">
                 <div>
+                <a name="" id="" class="btn btn-primary" href="{{ route('newuser') }}" role="button">New User</a>
                     <label  for="pages">{{__('show')}}</label>
                     <select class="form-select" wire:model="pages" name="pages" id="pages">
                         <option value="10" > 10 </option>
