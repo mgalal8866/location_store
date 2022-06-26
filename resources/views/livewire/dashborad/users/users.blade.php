@@ -4,14 +4,35 @@
     @stop
 
     @section('page')
-    Dashborad
+    {{__('users')}}
     @endsection
     @section('page1')
+    {{__('Dashboard')}}
     @endsection
     @section('page2')
+    {{__('users')}}
     @endsection
 
     <div class="card">
+        <div class="card-header" >
+
+            <div  class="d-flex justify-content-between  mb-2">
+                <div>
+                    <label  for="pages">{{__('show')}}</label>
+                    <select class="form-select" wire:model="pages" name="pages" id="pages">
+                        <option value="10" > 10 </option>
+                        <option value="25" > 25 </option>
+                        <option value="50" > 50 </option>
+                        <option value="100" > 100 </option>
+                        <option value="200" > 200 </option>
+                    </select>
+                </div>
+                <div>
+                    <x-search-input wire:model="searchTerm" />
+                </div>
+            </div>
+
+        </div>
         <div class="card-body p-0 table-responsive">
             {{-- <div class="row"> --}}
                 <table class="table table-hover table-striped">
@@ -28,37 +49,38 @@
                         <tbody>
                             @forelse ( $users as $user )
                             <tr>
-                                <td >{{ $user->name }}</td>
+                                <td >{{ $user->name }}
+                                    <br>
+                                    <small>
+                                        {{__('created')}}  {{$user->created_at->format('Y-m-d')}}
+                                    </small>
+                                </td>
                                 <td>{{ $user->city->name??'' }},{{ $user->region->name??'' }}</td>
                                 <td>{{ $user->store->count() }}</td>
                                 <td>{{ $user->mobile }}</td>
                                 <td>{{ $user->ip_address }}</td>
                                 <td>
-                                    <ul class="list-group">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Total:
-                                        <span class="badge badge-primary badge-pill">{{ $user->messages->count() }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            Seen:
-                                        <span class="badge badge-primary badge-pill">{{ $user->messages->where('IsSeen',0)->count() }}</span>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            UnSeen:
-                                        <span class="badge badge-primary badge-pill">{{ $user->messages->where('IsSeen',1)->count() }}</span>
-                                        </li>
-                                    </ul>
 
-
+                                    {{-- <small> --}}
+                                        {{__('total')}} : <span class="badge badge-primary badge-pill"> {{ $user->messages->count() }} </span>
+                                    {{-- </small> --}}
+                                    <br>
+                                    {{-- <small> --}}
+                                        {{__('seen')}}  :  <span class="badge badge-success badge-pill">{{ $user->messages->where('IsSeen',0)->count() }}</span>
+                                    {{-- </small> --}}
+                                    <br>
+                                    {{-- <small> --}}
+                                        {{__('unseen')}} : <span class="badge badge-danger badge-pill">{{ $user->messages->where('IsSeen',1)->count() }}</span>
+                                    {{-- </small> --}}
                                 </td>
                             </tr>
                             @empty
-
+                                <tr>
+                                    <td colspan="6"> <center> NO DATA </center></td>
+                                </tr>
                             @endforelse
-
                         </tbody>
                 </table>
-            {{-- </div> --}}
             <div class="card-footer" >
                 <div class="d-flex justify-content-center">
                     {!! $users->links() !!}

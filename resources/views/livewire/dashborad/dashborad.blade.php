@@ -91,19 +91,19 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            @livewire('store.sastoreunaccept')
+            @livewire('dashborad.home.branch-wating-active')
         </div>
         <div class="col-md-6">
-        @livewire('store.storerejected')
+            @livewire('dashborad.home.product-wating-active')
+        {{-- @livewire('dashborad.home.storerejected') --}}
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            @livewire('dashborad.check-expire-branch')
-
+            @livewire('dashborad.home.check-expire-branch')
         </div>
         <div class="col-md-6">
-            @livewire('dashborad.check-expireproduct')
+            @livewire('dashborad.home.check-expireproduct')
 
         </div>
     </div>

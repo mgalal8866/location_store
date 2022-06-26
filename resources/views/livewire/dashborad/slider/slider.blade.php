@@ -119,7 +119,7 @@
 
                             <div class="form-group">
                                 <label>{{ __('city') }}</label>
-                                <select wire:model="selectCity" class="form-control" required>
+                                <select wire:model="selectCity" class="form-control" >
                                     <option value="" selected>Select Type</option>
                                     @foreach ( $city as $ci)
                                     <option value="{{ $ci->id }}">{{ $ci->name }}</option>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ __('region') }}</label>
-                                <select wire:model="selectRegions" class="form-control"  required>
+                                <select wire:model="selectRegions" class="form-control"  >
                                     <option value="" selected>Select Type</option>
                                     @empty(! $regions)
                                         @foreach ( $regions as $reg)
@@ -142,8 +142,7 @@
                                 <div class="display-block">
                                     <a class="btn btn-success btn-sm btn-file-upload">
                                         اختر صورة <input type="file" name="file" size="40"
-                                            accept=".png, .jpg, .jpeg, .gif" required
-                                           wire:model='image'">
+                                            accept=".png, .jpg, .jpeg, .gif" wire:model='image' required>
                                            {{-- onchange="show_preview_image(this); --}}
                                     </a>
                                 </div>
@@ -204,7 +203,7 @@
                                                         Image Only
                                                        @endif
                                                     </td>
-                                                    <td><span class="badge badge-success ">{{ $slide->region->city->name }} , {{ $slide->region->name }} </span></td>
+                                                    <td><span class="badge badge-success ">{{ $slide->region->city->name??'N/A' }}  ,  {{ $slide->region->name??'' }} </span></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Dashborad;
+namespace App\Http\Livewire\Dashborad\Home;
 
 use App\Models\products;
 use Livewire\Component;
@@ -20,6 +20,6 @@ class CheckExpireproduct extends Component
         $productexpire = products::whereHas('branch' , function($q){
             $q->whereActive(0);
         })->whereBetween('expiry_date', [$this->startdatep, $this->enddatep ])->whereActive(0)->WhereNotNull('expiry_date')->paginate(5);
-        return view('livewire.dashborad.check-expireproduct',['productexpire' => $productexpire]);
+        return view('livewire.dashborad.home.check-expireproduct',['productexpire' => $productexpire]);
     }
 }

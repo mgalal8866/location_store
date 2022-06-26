@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class products extends Model
 {
     use HasFactory , SoftDeletes ,GeneralTrait;
-    
+
     protected $guarded = [];
     protected $casts = [
         'start_date' => 'datetime',
@@ -60,7 +60,7 @@ class products extends Model
 
     public function setActiveAttribute($value){
         if($this->getAttributes()['active'] != $value){
-                $this->notificationFCM('Alert ⚠️' , ('Your Product Active Change ' . $this->Activeapi),[$this->branch->stores->user->device_token]);
+                $this->notificationFCM('Alert ⚠️' , ('📢 Your Product Active Change ' .( $value == 0) ? __('active') : __('unactive')),[$this->branch->stores->user->device_token]);
                 $this->attributes['active'] = $value;
         };
     }

@@ -25,12 +25,15 @@ class Slider extends Component
     }
     public function add()
     {
+        // dd( $this->image);
         $this->image = $this->uploadimages('slider',$this->image);
+
         $this->slider = ModelsSlider::create([
                 'type'  => $this->statetype,
                 'event' => $this->event,
                 'image' => $this->image,
-                'region_id' => $this->selectRegions]);
+                'active' => 0,
+                'region_id' => $this->selectRegions??null]);
         $this->reset();
         $this->city = cities::get();
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Add Success']);

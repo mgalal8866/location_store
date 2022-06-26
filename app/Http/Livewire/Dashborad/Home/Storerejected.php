@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Store;
+namespace App\Http\Livewire\Dashborad\Home;
 
 use App\Models\branchs;
 use Livewire\Component;
@@ -25,6 +25,6 @@ class Storerejected extends Component
     public function render()
     {
         $branchrejected = branchs::whereAccept(2)->get();
-        return view('livewire.store.storerejected',['branchrejected'=>$branchrejected]);
+        return view('livewire.dashborad.home.storerejected',['branchrejected'=>$branchrejected]);
     }
 }

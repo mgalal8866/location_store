@@ -10,10 +10,14 @@ class Users extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    public $pages =10, $status;
+	public $searchTerm = null;
     
+
+
     public function render()
     {
-        $users = User::latest()->paginate(10);
+        $users = User::where('mobile', 'like', '%'.$this->searchTerm.'%')->latest()->paginate($this->pages);
         return view('livewire.dashborad.users.users',['users'=> $users])->layout('admin.layouts.masterdash');
     }
 }

@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $productexpire->firstItem() + $index }}</td>
                         <td><a href="{{route('branch',['slug' => $product->branch->stores->slug]) }}" class="nav-link"> {{ $product->branch->stores->name??'' }} </a></td>
-                        <td>{{ $product->branch->city->name??''  }} - {{ $product->branch->region->name??''  }}</td>
+                        <td><span class="badge badge-info">{{ $product->branch->city->name??''  }} - {{ $product->branch->region->name??''  }}</span></td>
                         <td><span class="badge bg-danger">{{ $product->expiry_date }}</span></td>
                     </tr>
                 @empty

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Dashborad;
+namespace App\Http\Livewire\Dashborad\Home;
 
 use App\Models\branchs;
 use Livewire\Component;
@@ -27,6 +27,6 @@ class CheckExpireBranch extends Component
     {
         $branchexpire = branchs::whereBetween('expiry_date', [$this->startdate, $this->enddate ])->whereActive(0)->WhereNotNull('expiry_date')->paginate(5);
 
-        return view('livewire.dashborad.check-expire-branch',['branchexpire' => $branchexpire]);
+        return view('livewire.dashborad.home.check-expire-branch',['branchexpire' => $branchexpire]);
     }
 }

@@ -10,7 +10,7 @@ class Store extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public    $pages, $status;
+    public $pages, $status;
 	public $searchTerm = null;
     public $sortColumnName = 'created_at';
 

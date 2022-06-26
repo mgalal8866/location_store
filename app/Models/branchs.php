@@ -117,7 +117,7 @@ class branchs extends Model
 
     public function setActiveAttribute($value){
         if($this->getAttributes()['active'] != $value){
-                $this->notificationFCM('Alert ⚠️' , 'Your Branch Active Change',[$this->stores->user->device_token]);
+                $this->notificationFCM('Alert ⚠️' , '📢 Your BranchIs ' . (($value == 0 )?   __('active') : __('unactive')) . ' Now',[$this->stores->user->device_token]);
                 $this->attributes['active'] = $value;
         };
     }

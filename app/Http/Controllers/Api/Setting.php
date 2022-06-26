@@ -20,11 +20,15 @@ class Setting extends Controller
 
     public function slider(Request $request)
     {
-        if($request->region_id == null ){
-            $slider = slider::whereActive(0)->get();
+        $slider =  slider::whereActive(0)->get();
+
+        if(  $slider->where('region_id',$request->region_id)->count() > 0 ){
+            
+            return $this->returnData('slider',ResourcesSlider::collection($slider->where('region_id',$request->region_id)));
         }else{
-            $slider = slider::whereActive(0)->where('region_id',$request->region_id)->get();
+
+            return $this->returnData('slider',ResourcesSlider::collection($slider->whereNull('region_id')));
         }
-        return $this->returnData('slider',ResourcesSlider::collection($slider));
+        // return $this->returnData('slider',ResourcesSlider::collection($slider));
     }
 }
