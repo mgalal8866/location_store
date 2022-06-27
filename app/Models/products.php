@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class products extends Model
@@ -63,5 +64,8 @@ class products extends Model
                 $this->notificationFCM('Alert ⚠️' , ('📢 Your Product Active Change ' .( $value == 0) ? __('active') : __('unactive')),[$this->branch->stores->user->device_token]);
                 $this->attributes['active'] = $value;
         };
+    }
+    public function setSlugAttribute($value){
+        $this->attributes['slug'] = Str::slug($value->stores->name . ' branch ' .   ($value->product->count() + 1));
     }
 }

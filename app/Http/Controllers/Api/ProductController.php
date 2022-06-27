@@ -31,7 +31,7 @@ class ProductController extends Controller
             $product = products::create([
                     'branch_id' => $request->branch_id,
                     'name' => $request->name,
-                    'slug' => Str::slug($request->name),
+                    'slug' => $limit_peoduct,
                     'price' => $request->price,
                     'description' => $request->description,
 
@@ -137,7 +137,7 @@ class ProductController extends Controller
      return $this->returnData('product', new product($product),'تم تعديل المنتج بنجاح ');
 
     }
-    
+
     public function  productdelete(Request $request){
         try {
             $branch = products::findOrFail($request->product_id);
