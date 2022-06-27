@@ -24,7 +24,10 @@ class Slider extends Component
         $this->validate([
             'image' => 'image|max:1024',
         ]);
+        // dd($this->image);
     }
+
+
     // public function updatedImage()
     // {
     //     dd($this->image->temporaryUrl());
