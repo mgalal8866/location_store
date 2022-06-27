@@ -66,6 +66,6 @@ class products extends Model
         };
     }
     public function setSlugAttribute($value){
-        $this->attributes['slug'] = Str::slug($value->stores->name . ' branch ' .   ($value->product->count() + 1));
+        $this->attributes['slug'] = Str::slug($value->stores->name . ' product ' .   ($value->product->count() + 1));
     }
 }

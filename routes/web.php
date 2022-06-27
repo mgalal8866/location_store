@@ -29,6 +29,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
 use App\Http\Livewire\Dashborad\Users\NewUser;
 use App\Http\Livewire\Dashborad\Users\Users;
+use App\Models\branchs;
+use App\Models\stores;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,10 +106,24 @@ Route::post('save-token', function(Request $request)
 
 
 Route::get('mm',function(){
-    // $url = config('app.url','http://hdtuto.com/');
-    $url = config()->set('err_message.keys.secret','http://hdtuto.com/');
-    // config()->set('err_message.keys.secret', "value");
-    return config('err_message.keys.secret');
+$bb = stores::get();
+$i = 1;
+// foreach($bb as  $bm){
+//     foreach($bm->branch as $key => $b){
+//          $b->update(['slug'=> ['name'=>$bm->name, 'number'=> ($i ++)] ]);
+//     }
+//     $i = 1;
+// }
+
+
+$bb = branchs::get();
+$i = 1;
+foreach($bb as  $bm){
+    foreach($bm->product as  $b){
+         $b->update(['slug'=> ['name'=>$bm->name, 'number'=> ($i ++)] ]);
+    }
+    $i = 1;
+}
 });
 
 Auth::routes();
