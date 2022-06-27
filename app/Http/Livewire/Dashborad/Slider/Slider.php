@@ -19,6 +19,16 @@ class Slider extends Component
     {
         $this->city = cities::get();
     }
+    public function updatedImage()
+    {
+        $this->validate([
+            'image' => 'image|max:1024',
+        ]);
+    }
+    // public function updatedImage()
+    // {
+    //     dd($this->image->temporaryUrl());
+    // }
     public function UpdatedSelectCity()
     {
         $this->regions = regions::whereCityId($this->selectCity)->get();
