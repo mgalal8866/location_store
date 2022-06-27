@@ -153,7 +153,7 @@
                                     </a>
                                 </div>
                                 <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
-                                    <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
+                                    <div class="progress-bar bg-success  progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
                                         <span class="sr-only">40% Complete (success)</span>
                                     </div>
                                 </div>

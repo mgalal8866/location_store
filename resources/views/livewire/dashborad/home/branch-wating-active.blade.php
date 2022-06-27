@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $branchnNotAccept->firstItem() + $index }}</td>
                         <td class="text-success">
-                            <a href="{{route('branch',['slug' => $branch->stores->slug]) }}" class="nav-link">{{ $branch->stores->name??'N/A'}}</a>
+                            <a href="{{route('branch',['slug' => $branch->stores->slug]).'#'. $branch->slug??'' }}" class="nav-link">{{ $branch->stores->name??'N/A'}}</a>
                         </td>
                         <td>{{ $branch->stores->user->name??'N/A'}}</td>
                         <td><span class="badge badge-info">{{ $branch->city->name??'N/A' }} - {{ $branch->region->name?? 'N/A'}}</span></td>

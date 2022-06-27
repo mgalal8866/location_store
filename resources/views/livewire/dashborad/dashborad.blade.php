@@ -1,4 +1,4 @@
-<div >
+<div>
     @section('title')
     {{ getSettingsOf('site_title') }}
     @stop

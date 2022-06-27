@@ -106,7 +106,7 @@
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                     @foreach($stores->branch as $branch)
                         <li class="nav-item">
-                            <a class="nav-link {{$loop->index== 0?'active':''}}" id="branch-tab-{{$loop->index}}" data-toggle="pill" href="#branch{{$branch->slug}}" role="tab" aria-controls="branch{{$branch->slug}}" aria-selected="true">     <i class="fas fa-store"></i> Branch {{$loop->index + 1}}</a>
+                            <a class="nav-link {{$loop->index== 0?'active':''}}" id="branch-tab-{{$loop->index}}" data-toggle="pill" href="#{{$branch->slug}}" role="tab" aria-controls="branch{{$branch->slug}}" aria-selected="true">     <i class="fas fa-store"></i> Branch {{$loop->index + 1}}</a>
                         </li>
                     @endforeach
                 </ul>

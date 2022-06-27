@@ -24,7 +24,7 @@
                     @forelse ( $branchexpire as $index  => $branch)
                         <tr>
                             <td>{{ $branchexpire->firstItem() + $index }}</td>
-                            <td><a href="{{route('branch',['slug' => $branch->stores->slug]) }}" class="nav-link">{{ $branch->stores->name }}</a></td>
+                            <td><a href="{{route('branch',['slug' => $branch->stores->slug]) .'#'. $branch->slug}}" class="nav-link">{{ $branch->stores->name }}</a></td>
                             <td><span class="badge badge-info">{{ $branch->city->name }} -  {{ $branch->region->name }}</span></td>
                             <td><span class="badge bg-danger">{{ $branch->expiry_date }}</span></td>
                         </tr>

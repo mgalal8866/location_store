@@ -93,6 +93,7 @@
                                 </td>
                                 <td>
                                     <a  class="btn btn-sm btn-danger" href="{{ route('newuser', ['id' => $user->id , 'editmode' => true]) }}">Edit</a>
+                                    <a  class="btn btn-sm btn-info" href="{{ route('messageuser', ['id' => $user->id ]) }}"><i class="fas fa-mail-bulk    "></i> </a>
                                 </td>
                             </tr>
                             @empty

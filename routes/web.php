@@ -27,6 +27,7 @@ use App\Http\Livewire\Dashborad\Dashborad;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
+use App\Http\Livewire\Dashborad\Users\Message;
 use App\Http\Livewire\Dashborad\Users\NewUser;
 use App\Http\Livewire\Dashborad\Users\Users;
 use App\Models\branchs;
@@ -150,7 +151,7 @@ Route::group(
         Route::get('/user/comments',Citits::class)->name('comments');
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
-
+        Route::get('/user/message/{id?}',Message::class)->name('messageuser');
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
         Route::get('home', function () {
             return view('admin.layouts.pagenew');
