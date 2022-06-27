@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
             @foreach ( $products as $key => $item )
                 <div class="col-md-6 col-xl-6">
                     <div class="card card-success card-outline ">

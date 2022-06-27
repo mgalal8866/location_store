@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashborad\Store;
 
+use App\Models\branchs;
 use App\Models\stores;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,23 +11,12 @@ class Store extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $pages, $status;
+    public $pages, $status,$idstore;
 	public $searchTerm = null;
     public $sortColumnName = 'created_at';
-
     public $sortDirection = 'desc';
 
-//  public $postId;
 
-//     public function getPostProperty()
-//     {
-//         return Post::find($this->postId);
-//     }
-
-//     public function deletePost()
-//     {
-//         $this->post->delete();
-//     }
         public function sortBy($columnName)
         {
             if ($this->sortColumnName === $columnName) {
@@ -47,7 +37,21 @@ class Store extends Component
             $this->resetPage();
             $this->status = $status;
         }
+        public function deleteId($id)
+        {
+            $this->idstore = $id;
+        }
+        public function delete()
+        {
+            $store = stores::find($this->idstore);
 
+            foreach($store->branch as $branch){
+               $branch->product()->delete();
+            }
+            $store->branch()->delete();
+            $store->delete();
+
+        }
 
     public function render()
     {
