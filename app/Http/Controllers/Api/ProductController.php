@@ -73,7 +73,7 @@ class ProductController extends Controller
         $product = products::findOrFail($request->product_id);
         $product->update([
                 'name' => $request->name,
-                'slug' => Str::slug($request->name),
+                'slug' => $product->branch,
                 'price' => $request->price,
                 'description' => $request->description,
              ]);
