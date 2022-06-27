@@ -122,17 +122,8 @@ class branchs extends Model
                 $this->attributes['active'] = $value;
         };
     }
-    public function setSlugAttribute(){
-        $idlast = branchs::where('stores_id' , $this->attributes['stores_id'])->latest()->first();
-
-        $this->attributes['slug'] = Str::slug($this->stores->name . ' branch ' .  $idlast);
+    public function setSlugAttribute($value){
+        $this->attributes['slug'] = Str::slug($value->name . ' branch ' .   ($value->branch->count() + 1));
     }
-
-    // public function getOpentimeAttribute($value){
-    //     return    Carbon::parse($value)->toFormattedTime();
-    // }
-    // public function getClosetimeAttribute($value){
-    //     return   Carbon::parse($value)->toFormattedTime();
-    // }
 
 }
