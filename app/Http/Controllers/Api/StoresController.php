@@ -75,7 +75,7 @@ class StoresController extends Controller
                     {
                         $image = null;
                     }
-                $store->branch()->create(array_merge($validatorvbranch->validated(),['image' => $image ]));
+                $store->branch()->create(array_merge($validatorvbranch->validated(),['image' => $image ,'slug'=>'']));
                 return $this->returnSuccessMessage(config('err_message.success.newstore'),'0');
             }else
             {
