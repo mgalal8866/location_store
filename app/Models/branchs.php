@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Carbon\Carbon;
 use App\Models\comments;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class branchs extends Model
@@ -121,6 +122,12 @@ class branchs extends Model
                 $this->attributes['active'] = $value;
         };
     }
+    public function setSlugAttribute($value){
+        $idlast = branchs::where('stores_id' , $this->attributes['stores_id'])->latest()->first();
+
+        $this->attributes['slug'] = Str::slug($this->stores->name . ' branch ' .  $idlast);
+    }
+
     // public function getOpentimeAttribute($value){
     //     return    Carbon::parse($value)->toFormattedTime();
     // }

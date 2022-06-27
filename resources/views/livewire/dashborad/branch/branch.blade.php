@@ -106,7 +106,7 @@
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                     @foreach($stores->branch as $branch)
                         <li class="nav-item">
-                            <a class="nav-link {{$loop->index== 0?'active':''}}" id="branch-tab-{{$loop->index}}" data-toggle="pill" href="#branch{{$loop->index}}" role="tab" aria-controls="branch{{$loop->index}}" aria-selected="true">     <i class="fas fa-store"></i> Branch {{$loop->index + 1}}</a>
+                            <a class="nav-link {{$loop->index== 0?'active':''}}" id="branch-tab-{{$loop->index}}" data-toggle="pill" href="#branch{{$branch->slug}}" role="tab" aria-controls="branch{{$branch->slug}}" aria-selected="true">     <i class="fas fa-store"></i> Branch {{$loop->index + 1}}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -407,7 +407,19 @@
     }
 </style>
 @endpush
+@push('jslive')
+<script>
+ var hash = document.location.hash;
+ if (hash) {
+ $('.nav-tabs a[href="'+hash+'"]').tab('show');
+ }
 
+ // Change hash for page-reload
+ $('.nav a').on('shown.bs.tab', function (e) {
+ window.location.hash = e.target.hash;
+ });
+ </script>
+@endpush
     {{-- @push('alpine-plugins')
     <!-- Alpine Plugins -->
     <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
