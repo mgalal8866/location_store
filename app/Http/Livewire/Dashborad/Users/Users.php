@@ -12,8 +12,11 @@ class Users extends Component
     protected $paginationTheme = 'bootstrap';
     public $pages =10, $status;
 	public $searchTerm = null;
-    
 
+        //    public function showuser($id , $editmode =true)
+        //     {
+        //         $this->emit('newPost', $id , $editmode );
+        //     }
 
     public function render()
     {

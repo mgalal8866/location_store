@@ -12,13 +12,26 @@
     @section('page2')
     {{__('users')}}
     @endsection
-
+    <div>
+        @if (session()->has('msg'))
+         <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('msg')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
+    </div>
+    <div class="m-1">
+    <a name="" id="" class="btn btn-primary" href="{{ route('newuser') }}" role="button">New User</a>
+    </div>
     <div class="card">
         <div class="card-header" >
 
+
             <div  class="d-flex justify-content-between  mb-2">
                 <div>
-                <a name="" id="" class="btn btn-primary" href="{{ route('newuser') }}" role="button">New User</a>
+
                     <label  for="pages">{{__('show')}}</label>
                     <select class="form-select" wire:model="pages" name="pages" id="pages">
                         <option value="10" > 10 </option>
@@ -40,11 +53,13 @@
                     <thead class="">
                         <tr>
                             <th>{{ __('name') }}</th>
+                            <th>{{ __('mobile') }}</th>
+                            <th>{{ __('gender') }}</th>
                             <th>{{ __('loaction') }}</th>
                             <th>{{ __('stores') }}</th>
-                            <th>{{ __('mobile') }}</th>
                             <th>{{ __('ip_address') }}</th>
                             <th>{{ __('messages') }}</th>
+                            <th>{{ __('action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,9 +71,11 @@
                                         {{__('created')}}  {{$user->created_at->format('Y-m-d')}}
                                     </small>
                                 </td>
+                                <td>{{ $user->mobile }}</td>
+                                <td>{{ $user->gender }}</td>
                                 <td>{{ $user->city->name??'' }},{{ $user->region->name??'' }}</td>
                                 <td>{{ $user->store->count() }}</td>
-                                <td>{{ $user->mobile }}</td>
+
                                 <td>{{ $user->ip_address }}</td>
                                 <td>
 
@@ -74,10 +91,13 @@
                                         {{__('unseen')}} : <span class="badge badge-danger badge-pill">{{ $user->messages->where('IsSeen',1)->count() }}</span>
                                     {{-- </small> --}}
                                 </td>
+                                <td>
+                                    <a  class="btn btn-sm btn-danger" href="{{ route('newuser', ['id' => $user->id , 'editmode' => true]) }}">Edit</a>
+                                </td>
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6"> <center> NO DATA </center></td>
+                                    <td colspan="7"> <center> NO DATA </center></td>
                                 </tr>
                             @endforelse
                         </tbody>
