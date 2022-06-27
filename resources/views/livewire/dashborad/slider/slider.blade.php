@@ -139,12 +139,18 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">صورة (1920x1080)</label>
+                                <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                 <div class="display-block">
                                     <a class="btn btn-success btn-sm btn-file-upload">
                                         اختر صورة <input type="file" name="file" size="40"
                                             accept=".png, .jpg, .jpeg, .gif" wire:model='image' required>
                                            {{-- onchange="show_preview_image(this); --}}
                                     </a>
+                                </div>
+                                <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
+                                    <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
                                 </div>
                                 {{-- <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
                                     id="img_preview_file" class="img-file-upload-preview"> --}}
