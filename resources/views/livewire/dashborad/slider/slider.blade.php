@@ -138,13 +138,18 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">صورة (1920x1080)</label>
+                                <label class="control-label">صورة (1920x1080)
+                                    {{-- @if ($image)
+                                    {{ $image->getClientOriginalName() }}
+                                    @else
+                                    Choose Image
+                                    @endif --}}
+                                </label>
                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                 <div class="display-block">
                                     <a class="btn btn-success btn-sm btn-file-upload">
                                         اختر صورة <input type="file" name="file" size="40"
                                             accept=".png, .jpg, .jpeg, .gif" wire:model='image' required>
-                                           {{-- onchange="show_preview_image(this); --}}
                                     </a>
                                 </div>
                                 <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
@@ -152,6 +157,11 @@
                                         <span class="sr-only">40% Complete (success)</span>
                                     </div>
                                 </div>
+                                @if ($image)
+                                <img src="{{ $image->temporaryUrl() }}" class="img d-block mt-2 w-100 rounded">
+                                @else
+                                {{-- <img src="{{ $state['avatar_url'] ?? '' }}" class="img d-block mb-2 w-100 rounded"> --}}
+                                @endif
                                 {{-- <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
                                     id="img_preview_file" class="img-file-upload-preview"> --}}
                             </div>
