@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class regions extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    use SoftDeletes;
     Public function getNameAttribute()
     {
         $region_name = 'region_name_'.config('err_message.config.lang_for_felid');

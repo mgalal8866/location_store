@@ -9,24 +9,19 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Dashborad\Citits;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\DashbordController;
 use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Branch\Branch;
 use App\Http\Livewire\Dashborad\Slider\Slider;
 use App\Http\Livewire\Dashborad\setting\Setting;
-use App\Http\Livewire\Dashborad\category\Category;
 use App\Http\Livewire\Dashborad\category\Category2;
 use App\Http\Livewire\Dashborad\category\viewcategory;
+use App\Http\Livewire\Dashborad\City\Citits;
+use App\Http\Livewire\Dashborad\City\Regions;
 use App\Http\Livewire\Dashborad\Dashborad;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Livewire\Dashborad\Slider\Slider as SliderSlider;
 use App\Http\Livewire\Dashborad\Users\Message;
 use App\Http\Livewire\Dashborad\Users\NewUser;
 use App\Http\Livewire\Dashborad\Users\Users;
@@ -139,16 +134,17 @@ Route::group(
 
         Route::get('/',Dashborad::class)->name('dashborad');
         Route::get('/city',Citits::class)->name('city');
+        Route::get('/city/regions/{id?}',Regions::class)->name('regions');
         Route::get('/setting/app',Setting::class)->name('settingapp');
         Route::get('/notification/',Notification::class)->name('setting/notification');
         Route::get('/category',viewcategory::class)->name('category');
         Route::get('/category2',Category2::class)->name('category2');
-        Route::get('/users',Citits::class)->name('users');
+        // Route::get('/users',Citits::class)->name('users');
         Route::get('/slider',Slider::class)->name('slider');
-        Route::get('/city/regions',Citits::class)->name('regions');
+
         Route::get('/stores',Store::class)->name('stores');
         Route::get('/store/branchse/{slug}',Branch::class)->name('branch');
-        Route::get('/user/comments',Citits::class)->name('comments');
+        // Route::get('/user/comments',comme::class)->name('comments');
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
         Route::get('/user/message/{id?}',Message::class)->name('messageuser');
