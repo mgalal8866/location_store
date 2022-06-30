@@ -41,16 +41,46 @@ class Store extends Component
         {
             $this->idstore = $id;
         }
-        public function delete()
+        public function delete($state)
         {
             $store = stores::find($this->idstore);
-
-            foreach($store->branch as $branch){
-               $branch->product()->delete();
+            if($state=='soft'){
+                    foreach($store->branch as $branch){
+                        if($branch->product->count() > 0 ){
+                            foreach($branch->product as $product){
+                                if($product->product_images->count() > 0 ){
+                                    foreach($product->product_images as $product_image){
+                                        deleteimage('product', $product_image->getAttributes()['img'] );
+                                        $product_image->delete();
+                                    }
+                                }
+                                $product->delete();
+                            }
+                        }
+                        deleteimage('branch', $branch->getAttributes()['image']);
+                        $branch->delete();
+                    }
+                    $store->delete();
+            }elseif($state == 'hard'){
+                foreach($store->branch as $branch){
+                    if($branch->product->count() > 0 ){
+                        foreach($branch->product as $product){
+                            if($product->product_images->count() > 0 ){
+                                foreach($product->product_images as $product_image){
+                                    deleteimage('product', $product_image->getAttributes()['img'] );
+                                    $product_image->forceDelete();
+                                }
+                            }
+                            $product->forceDelete();
+                        }
+                    }
+                    deleteimage('branch', $branch->getAttributes()['image']);
+                    $branch->forceDelete();
+                }
+                $store->forceDelete();
             }
-            $store->branch()->delete();
-            $store->delete();
-
+            $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted Success']);
+            $this->dispatchBrowserEvent('closeModal');
         }
 
     public function render()

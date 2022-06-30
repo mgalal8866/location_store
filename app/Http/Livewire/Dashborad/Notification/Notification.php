@@ -99,7 +99,7 @@ $viewsbranch;
         $taskvar = Valuestore::make(config_path('taskvar.json'));
         $taskvar->put('backupgoogle' ,$this->backupgoogle);
         $taskvar->put('activebackupgoogle' ,$this->activebackupgoogle);
-        
+
         $taskvar->put('notify' ,$this->notify);
         $taskvar->put('activenotify' ,$this->activenotify);
 
@@ -120,7 +120,11 @@ $viewsbranch;
 
     }
 
-
+    public function clearall(){
+        // notifylog::delete();
+        DB::table('notifylogs')->delete();
+        $this->dispatchBrowserEvent('infomsg',['msg' => 'Clear all Done']);
+    }
     public function render()
     {
         $notifylog = notifylog::latest()->paginate(10);

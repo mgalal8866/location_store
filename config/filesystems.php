@@ -93,6 +93,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'splash' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'assets'=> [
             'driver' => 'local',
             'root' => public_path('assets'),

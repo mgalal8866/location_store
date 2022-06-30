@@ -385,9 +385,12 @@
                         </div>
                         <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-normal" role="tabpanel"
                             aria-labelledby="custom-tabs-five-normal-tab">
-                            {{-- <div class="p-2" style="background-color: #f3f6f8;"> --}}
-                                {{-- <div class="card">
-                                    <div class="card-body"> --}}
+                                    <div class="card-header">
+                                        <button wire:click='clearall' type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#edit-region">
+                                            <i class="fas fa-trash-alt    "></i> {{ __('clear-all') }}
+                                          </button>
+                                    </div>
+                                    <div class="card-body">
                                        <table class=" table table-responsive-sm table-striped table-bordered">
                                            <thead>
                                                 <th>{{ __('admin') }}</th>
@@ -416,19 +419,18 @@
                                                     </tr>
                                                @empty
                                                <tr>
-                                                   <td colspan="4"> <center> No data .. </center></td>
+                                                   <td colspan="5"> <center> No data .. </center></td>
                                                 </tr>
                                                @endforelse
                                            </tbody>
                                        </table>
-                                       <div class="card-footer" >
+                                    </div>
+                                    <div class="card-footer" >
                                             <div class="d-flex justify-content-center">
                                                 {!! $notifylog->links() !!}
                                             </div>
-                                        </div>
-                                    {{-- </div>
-                              </div> --}}
-                            {{-- </div> --}}
+                                    </div>
+
                         </div>
 
                         {{-- <div wire:ignore.self class="tab-pane fade" id="custom-tabs-five-backup" role="tabpanel"

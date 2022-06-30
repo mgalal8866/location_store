@@ -16,6 +16,7 @@ class Citits extends Component
         }elseif($state == 'hard'){
             $this->city->forceDelete();
         }
+        $this->dispatchBrowserEvent('closeModal');
         $this->reset();
     }
     public function delete($id){
@@ -54,6 +55,7 @@ class Citits extends Component
             $this->city->update(['city_name_ar' =>  $this->namear ,'city_name_en'=> $this->nameen]);
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Success Edit']);
         }
+        $this->dispatchBrowserEvent('closeModal');
         $this->reset();
     }
     public function render()

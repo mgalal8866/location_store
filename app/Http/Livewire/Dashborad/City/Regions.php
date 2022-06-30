@@ -23,7 +23,8 @@ class Regions extends Component
         }elseif($state == 'hard'){
             $this->region->forceDelete();
         }
-        $this->reset();
+        $this->dispatchBrowserEvent('closeModal');
+        $this->resetExcept('idr');
     }
     public function delete($id){
         $this->region = ModelsRegions::find($id);
@@ -44,7 +45,7 @@ class Regions extends Component
        $this->namear    = $this->region->region_name_ar;
        $this->modeedit  = true;
     }
-    public function newcity()
+    public function newragion()
     {
         $this->validate([
             'namear' => 'required',
@@ -52,13 +53,14 @@ class Regions extends Component
         ]);
 
         if($this->modeedit == false){
-            ModelsRegions::create(['region_name_ar' =>  $this->namear ,'region_name_en'=> $this->nameen]);
+            ModelsRegions::create(['city_id'=>$this->idr ,'region_name_ar' =>  $this->namear ,'region_name_en'=> $this->nameen]);
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Success Add']);
         }elseif($this->modeedit == true){
             $this->region->update(['region_name_ar' =>  $this->namear ,'region_name_en'=> $this->nameen]);
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Success Edit']);
         }
-        $this->reset();
+        $this->dispatchBrowserEvent('closeModal');
+        $this->resetExcept('idr');
     }
     public function render()
     {

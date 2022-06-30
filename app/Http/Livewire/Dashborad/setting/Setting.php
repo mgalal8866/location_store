@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Livewire\Dashborad\setting;
+use App\Models\tasklog;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use PhpParser\Node\Stmt\Foreach_;
 use Spatie\Valuestore\Valuestore;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use App\Models\setting as ModelsSetting;
 use JoeDixon\Translation\Drivers\Translation;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
-use App\Models\tasklog;
-use PhpParser\Node\Stmt\Foreach_;
 
 class Setting extends Component
 {
@@ -20,7 +21,7 @@ class Setting extends Component
     private $translation;
     public $i =0;
     public $state = [];
-    public  $settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
+    public $importsplash, $images, $settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
     public function mount()
     {
 
@@ -58,6 +59,10 @@ class Setting extends Component
 
 
     }
+    public function clearall(){
+        DB::table('tasklogs')->delete();
+        $this->dispatchBrowserEvent('infomsg',['msg' => 'Clear all Done']);
+    }
     public function up($section){
 
         foreach($this->valueform as $item)
@@ -83,21 +88,19 @@ class Setting extends Component
     //###################### تعديل خاص بال تاسك ملف taskvar #######################
 
 
-        public function updateSetting()
+        public function uploadsplash()
         {
-            // $setting = ModelsSetting::first();
-            // if ($setting) {
-            //     $setting->update($this->state);
-            // } else {
-            //     ModelsSetting::create($this->state);
-            // }
-            // Cache::forget('setting');
+          $slpash =  ModelsSetting::where('key','splash_screen')->first();
 
-            // $this->dispatchBrowserEvent('successmsg',['msg' => 'Settings updated successfully!']);
+          deleteimage('splash',$slpash->value);
+          $this->importsplash = $this->uploadimages('splash',$this->importsplash);
+          $slpash->update(['value' =>  $this->importsplash ]);
+          $this->dispatchBrowserEvent('successmsg',['msg' => 'uploaded Done']);
         }
 
         public function render()
         {
+            $this->images = ModelsSetting::where('key','splash_screen')->first()->value;
             $tasklog = tasklog::latest()->paginate(10);
             return view('livewire.dashborad.setting.setting',['tasklog' =>$tasklog ])->layout('admin.layouts.masterdash');
         }

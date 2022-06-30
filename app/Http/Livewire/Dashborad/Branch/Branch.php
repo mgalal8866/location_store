@@ -144,7 +144,7 @@ class Branch extends Component
                     'active'     => $this->branchlist[$index]['active'],
                     'top'        => $this->branchlist[$index]['top'],
                     'description'=> $this->branchlist[$index]['descriptionbranch'],
-                    'start_date' => ($this->branchlist[$index]['start_date'] == '')? null : $this->branchlist[$index]['start_date'],
+                    // 'start_date' => ($this->branchlist[$index]['start_date'] == '')? null : $this->branchlist[$index]['start_date'],
                     'expiry_date'=> ($this->branchlist[$index]['expiry_date'] == '')? null :$this->branchlist[$index]['expiry_date'],
                     'address'    => $this->branchlist[$index]['address'],
                     'accept'     => $this->branchlist[$index]['approval'],
@@ -159,23 +159,11 @@ class Branch extends Component
                     'product_num'=> $this->branchlist[$index]['numproduct'],
                 ]
             );
-        //     dd($this->branchlist[$index]['branch_id'],$this->branchlist[$index]['active'],$this->branchlist[$index]['top'],
-        //     $this->branchlist[$index]['descriptionbranch'],
-        //     $this->branchlist[$index]['start_date'],
-        //     $this->branchlist[$index]['expiry_date'],
-        //     $this->branchlist[$index]['address'],
-        //     $this->branchlist[$index]['approval'],
-        //     $this->branchlist[$index]['phone'],
-        //     $this->branchlist[$index]['phonetwo'],
-        //     $this->branchlist[$index]['city_id'],
-        //   $this->branchlist[$index]['lat'],
-        //   $this->branchlist[$index]['lng'],
-        //     $this->branchlist[$index]['region_id'],
-        //    $this->branchlist[$index]['opentime'],
-        //     $this->branchlist[$index]['closetime'],
-        //   $this->branchlist[$index]['numproduct']
-        // );
+
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Update Success ✔']);
+        if($this->branchlist[$index]['expiry_date'] == ''){
+            $this->dispatchBrowserEvent('warningmsg',['msg' => 'Expiry Date not Set']);
+        }
 
     }
 

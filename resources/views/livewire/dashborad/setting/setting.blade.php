@@ -95,6 +95,8 @@
 
                                 <a class="nav-link " id="tasklog-tab" data-toggle="pill" href="#tasklog" role="tab"
                                     aria-controls="tasklog" aria-selected="true">Task Log</a>
+                                <a class="nav-link " id="images-tab" data-toggle="pill" href="#images" role="tab"
+                                    aria-controls="images" aria-selected="true">{{__('images')}}</a>
                             </div>
                         </div>
                         <div class="col-7 col-sm-9">
@@ -173,7 +175,13 @@
                                 </div>
                                 <div wire:ignore.self class="tab-pane text-left fade " id="tasklog" role="tabpanel"
                                     aria-labelledby="tasklog-tab">
-                                    <table class="table table-sm table-inverse table-responsive">
+                                    <div class="card-header">
+                                        <button wire:click='clearall' type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#edit-region">
+                                            <i class="fas fa-trash-alt    "></i> {{ __('clear-all') }}
+                                          </button>
+                                    </div>
+                                    <table class=" table table-responsive-sm table-striped table-bordered">
+                                    {{-- <table class="table table-sm table-inverse table-responsive"> --}}
                                         <thead class="thead-inverse">
                                             <tr>
                                                 <th>state</th>
@@ -197,6 +205,48 @@
                                             @endforelse
                                         </tbody>
                                     </table>
+                                </div>
+                                <div wire:ignore.self class="tab-pane text-left fade " id="images" role="tabpanel"
+                                aria-labelledby="images-tab">
+                                    <div class="card-header">
+
+                                        <table class="table table-responsive-sm table-striped table-bordered">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>{{__('image')}}</th>
+                                                    <th>{{__('image')}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Splash</td>
+                                                    <td>
+                                                        <img src="{{ asset('assets/images/'.$images)}}" alt="Splash" style="height: 100px; width: 200px"  class="img-thumbnail">
+                                                    </td>
+                                                    <td>
+
+                                                        <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                                                <a class="btn btn-success btn-sm btn-file-upload">
+                                                                    اختر صورة <input type="file" name="file" size="40"
+                                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='importsplash' required>
+                                                                </a>
+                                                            <div  x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
+                                                                <div class="progress-bar bg-success  progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
+                                                                    <span class="sr-only">40% Complete (success)</span>
+                                                                </div>
+                                                            </div>
+                                                            <button  wire:loading.attr="disabled"  wire:click='uploadsplash' type="button" class="btn btn-outline-success btn-sm"> {{__('save')}} </button>
+
+                                                        </div>
+
+                                                        </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -11,14 +11,14 @@
 
     <div>
         <!-- Button trigger modal -->
-        <button wire:click="$set('modeedit', false)" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editcity">
+        <button wire:click="$set('modeedit', false)" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#edit-city">
           {{ __('new_city') }}
         </button>
 
 
 
         <!-- Edit -->
-        <div wire:ignore.self class="modal fade" id="editcity" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div wire:ignore.self class="modal fade" id="edit-city" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -53,7 +53,7 @@
             </div>
         </div>
         <!-- delete -->
-        <div wire:ignore.self class="modal fade" id="deletecity" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div wire:ignore.self class="modal fade" id="delete-city" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -95,8 +95,8 @@
                                 <td><i class="fa-solid fa-house-building"></i>{{$city->region->count()}}</td>
                                 <td>
                                     <button wire:click='showregion({{ $city->id}})'      class="btn btn-info    btn-sm"><i class="far fa-eye"></i> {{ __('tran.show') }}</button>
-                                    <button wire:click="editcity({{ $city->id}},true)" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editcity"><i class="fas fa-pencil-alt"></i> {{ __('tran.edit') }}</button>
-                                    <button wire:click="delete({{ $city->id}})"          class="btn btn-danger  btn-sm" data-toggle="modal" data-target="#deletecity"><i class="fas fa-trash-alt"></i> {{ __('tran.delete') }}</button>
+                                    <button wire:click="editcity({{ $city->id}},true)" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-city"><i class="fas fa-pencil-alt"></i> {{ __('tran.edit') }}</button>
+                                    <button wire:click="delete({{ $city->id}})"          class="btn btn-danger  btn-sm" data-toggle="modal" data-target="#delete-city"><i class="fas fa-trash-alt"></i> {{ __('tran.delete') }}</button>
                                 </td>
                             </tr>
                         @empty

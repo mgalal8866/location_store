@@ -9,7 +9,7 @@
     {{ __('region') }}
     @endsection
       <!-- Edit -->
-      <div wire:ignore.self class="modal fade" id="editcity" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="edit-region" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -38,36 +38,39 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('close') }}</button>
-                    <button wire:click='newcity()' type="button" class="btn btn-primary">{{ __('save') }}</button>
+                    <button wire:click='newragion' type="button" class="btn btn-primary">{{ __('save') }}</button>
                 </div>
             </div>
         </div>
     </div>
-         <!-- delete -->
-         <div wire:ignore.self class="modal fade" id="deletecity" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{__('delete')}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="modal-body">
-                            Are you sure for delete ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('close') }}</button>
-                        <button wire:click="deletregion('soft')"  type="button" class="btn btn-warning">{{ __('softDelete') }}</button>
-                        <button wire:click="deletregion('hard')"  type="button" class="btn btn-danger">{{ __('hardDelete') }}</button>
+    <!-- delete -->
+    <div wire:ignore.self class="modal fade" id="delete-region" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('delete')}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                        Are you sure for delete ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('close') }}</button>
+                    <button wire:click="deletregion('soft')"  type="button" class="btn btn-warning">{{ __('softDelete') }}</button>
+                    <button wire:click="deletregion('hard')"  type="button" class="btn btn-danger">{{ __('hardDelete') }}</button>
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
         <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('city') }}" class="btn btn-outline-success">Back To City</a>
+                    <button wire:click="$set('modeedit', false)" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#edit-region">
+                        <i class=" fas fa-plus fa-fw"></i> {{ __('new_region') }}
+                      </button>
+                    <a href="{{ route('city') }}" class="btn btn-outline-success">Back <i class="fas fa-backspace    "></i></a>
                     {{-- <center><strong>{{ $regions->city->name }}</strong></center> --}}
                 </div>
                 <div class="card-body p-0">
@@ -85,8 +88,8 @@
                                     <td>{{$loop->index +1}}</td>
                                     <td>{{$region->name}}</td>
                                     <td>
-                                        <button wire:click="editregion({{ $region->id}},true)" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editcity"><i class="fas fa-pencil-alt"></i> {{ __('tran.edit') }}</button>
-                                        <button wire:click="delete({{ $region->id}})"          class="btn btn-danger  btn-sm" data-toggle="modal" data-target="#deletecity"><i class="fas fa-trash-alt"></i> {{ __('tran.delete') }}</button>
+                                        <button wire:click="editregion({{ $region->id}},true)" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-region"><i class="fas fa-pencil-alt"></i> {{ __('tran.edit') }}</button>
+                                        <button wire:click="delete({{ $region->id}})"          class="btn btn-danger  btn-sm" data-toggle="modal" data-target="#delete-region"><i class="fas fa-trash-alt"></i> {{ __('tran.delete') }}</button>
                                     </td>
                                 </tr>
                             @empty

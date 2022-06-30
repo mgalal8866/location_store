@@ -4,6 +4,15 @@ use App\NullSetting;
 use App\Models\setting;
 use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+
+
+if (! function_exists('deleteimage')) {
+    function deleteimage($path,$image)
+    {
+        Storage::disk($path)->delete($image);
+    }
+}
 
     if (! function_exists('generateCache')) {
         function generateCache()

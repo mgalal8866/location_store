@@ -51,11 +51,11 @@
 
 <script>
 
- 
+
   $(document).ready(function() {
         toastr.options = {
                         "closeButton": true,
-                        "debug": true,
+                        "debug": false,
                         "newestOnTop": true,
                         "progressBar": true,
                         "positionClass": "toast-bottom-right",
@@ -99,7 +99,16 @@
             $('#modal-create').modal('hide');
             $('#modal-delete').modal('hide');
             $('#modal-edit').modal('hide');
+            $('#delete-region').modal('hide');
+            $('#edit-region').modal('hide');
+            $('#delete-city').modal('hide');
+            $('#edit-city').modal('hide');
         });
+
+        window.addEventListener('deleteModal', event=> {
+            $('#deleteModal').modal('hide');
+        });
+
 
         window.addEventListener('Toast' , (e)=> {
             Toast.fire({icon: (e.detail.ev),

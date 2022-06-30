@@ -23,7 +23,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                   <button type="button" wire:click.prevent="delete()" class="btn btn-danger close-modal" data-dismiss="modal">Yes, Delete</button>
+                   <button type="button" wire:click.prevent="delete('soft')" class="btn btn-danger close-modal" data-dismiss="modal">{{__('softdelete')}}</button>
+                   <button type="button" wire:click.prevent="delete('hard')" class="btn btn-danger close-modal" data-dismiss="modal">{{__('harddelete')}}</button>
+
                 </div>
             </div>
         </div>

@@ -22,20 +22,29 @@
                                         @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Select Image : </label>
-                                        <div style="margin-bottom: 10px;">
-                                          
-                                            <img src="{{$photo ??''}}" alt="favicon" style="max-width: 100px; max-height: 100px;">
+
+                                        <div class="form-group">
+                                           
+                                            <div style="margin-bottom: 10px;">
+                                              <img src="{{$photo ??''}}" alt="favicon" style="max-width: 100px; max-height: 100px;">
+                                            </div>
+                                            <label class="control-label">Select Image :
+                                                ( @if($image)
+                                                {{$image->getClientOriginalName()}}
+                                                @endif )</label>
+                                            <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                                <a class="btn btn-success btn-sm btn-file-upload">
+                                                    اختر صورة <input type="file" name="file" size="40"
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='image' required>
+                                                </a>
+                                            <div  x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
+                                                <div class="progress-bar bg-success  progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
+                                                    <span class="sr-only">40% Complete (success)</span>
+                                                </div>
+                                            </div>
+                                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+
                                         </div>
-                                        <div class="display-block">
-                                            <a class='btn btn-success btn-sm btn-file-upload'>
-                                                {{ __('tran.selectimage') }}
-                                                <input type="file" id="upload{{ $iteration }}" wire:model="image" accept=".png" onchange="$('#upload-file-edit1').html($(this).val());">
-                                            </a>
-                                            (.png)
-                                        </div>
-                                        @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-                                        {{-- <span wire:ignore class='badge badge-info' id="upload-file-edit1">{{ $img }}</span> --}}
                                 </div>
                                 <div class="form-group">
                                     <label>{{__('tran.parentselect')}}</label>

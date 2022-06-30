@@ -117,13 +117,15 @@ class branchs extends Model
     }
 
     public function setActiveAttribute($value){
+        ($value == 0 )?($this->attributes['start_date'] = now()->toFormattedDate()) : '';
         if($this->getAttributes()['active'] != $value){
-                $this->notificationFCM('Alert ⚠️' , '📢 Your BranchIs ' . (($value == 0 )?   __('active') : __('unactive')) . ' Now',[$this->stores->user->device_token]);
+                $this->notificationFCM('Alert ⚠️' , '📢 Your Branch Is ' . (($value == 0 )?   __('active') : __('unactive')) . ' Now',[$this->stores->user->device_token]);
                 $this->attributes['active'] = $value;
-        };
+        }
     }
     public function setSlugAttribute($value){
         $this->attributes['slug'] = Str::slug($value->name . ' branch ' .   ($value->branch->count() + 1));
     }
+
 
 }
