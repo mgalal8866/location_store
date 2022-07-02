@@ -10,7 +10,14 @@
     @endsection
     @section('page2')
     @endsection
-
+<amp-ad width="100vw" height="320"
+     type="adsense"
+     data-ad-client="ca-pub-9908015336564777"
+     data-ad-slot="1088039513"
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div>
+</amp-ad>
     <div class="row">
         {{-- City --}}
             <div class="col-lg-3 col-6">
