@@ -38,7 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $loop->index == 0 ? 'active' :'' }}" id="{{ $product->slug }}-tab"
                          data-toggle="pill" href="#{{$product->slug}}"role="tab"
-                         aria-controls="{{$product->slug}}" aria-selected="true" >{{ $product->name }}   {{$loop->index}}
+                         aria-controls="{{$product->slug}}" aria-selected="true" ><i class="fas fa-store-alt    "></i> {{ $product->name }}
                     </a>
                 </li>
             @endforeach
