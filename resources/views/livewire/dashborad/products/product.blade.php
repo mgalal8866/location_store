@@ -49,7 +49,7 @@
                 @foreach($products as $product)
                     <div wire:ignore.self class="tab-pane fade {{$loop->index == 0 ? ' show active' : '' }}"
                         id="{{$product->slug}}" role="tabpanel" aria-labelledby="{{$product->slug}}-tab">
-                       
+
                         <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-4">
@@ -60,7 +60,7 @@
                                             <div class="display-block">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image1' >
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model.dafer='productlist.{{$loop->index}}.image1' >
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
@@ -83,7 +83,7 @@
                                             <div class="display-block">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image2' >
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model.dafer='productlist.{{$loop->index}}.image2' >
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
@@ -106,7 +106,7 @@
                                             <div class="display-block">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image3' >
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model.dafer='productlist.{{$loop->index}}.image3' >
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">

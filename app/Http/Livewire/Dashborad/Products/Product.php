@@ -114,9 +114,9 @@ class Product extends Component
             $this->productlist[$this->i]['description']      = $product->description;
             $this->productlist[$this->i]['start_date']       = $product->start_date;
             $this->productlist[$this->i]['expiry_date']      = $product->expiry_date;
-            $this->productlist[$this->i]['photo1']       = $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg');
-            $this->productlist[$this->i]['photo2']       = $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg');
-            $this->productlist[$this->i]['photo3']       = $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg');
+            $this->productlist[$this->i]['photo1']           = $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg');
+            $this->productlist[$this->i]['photo2']           = $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg');
+            $this->productlist[$this->i]['photo3']           = $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg');
 
             $this->i +=  1;
         }
