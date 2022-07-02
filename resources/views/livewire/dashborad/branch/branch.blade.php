@@ -133,13 +133,17 @@
                             >
                         <div class="row  shadow p-3 mb-5   rounded text-dark d-flex align-items-center" x-data="{ show: false }">
                             <div >
-                                    <a class="btn btn-app bg-danger m-1" @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
+                                <a class="btn btn-app bg-danger m-1" href="{{route('product',['slug' => $branch->id])}}" >
+                                    <span class="badge bg-teal"> {{$branch->product->count()}}</span>
+                                    <i class="fas fa-inbox"></i> {{__('product')}}
+                                </a>
+                                    {{-- <a class="btn btn-app bg-danger m-1" @click="show = !show" :aria-expanded="show ? 'true' : 'false'">
                                         <span class="badge bg-teal"> {{$branch->product->count()}}</span>
                                         <i class="fas fa-inbox"></i> {{__('product')}}
-                                    </a>
-                                @if($branch->product->count() != 0)
+                                    </a> --}}
+                                {{-- @if($branch->product->count() != 0)
                                     <livewire:dashborad.branch.products :branch="$branch" :wire:key="$loop->index">
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                         <form id="F{{$loop->index}}"  enctype="multipart/form-data">

@@ -6,7 +6,13 @@ use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-
+if (! function_exists('uploadimages')) {
+    function uploadimages($folder,$image){
+        $image->store('/',$folder);
+        $filename = $image->hashName();
+        return  $filename;
+    }
+}
 if (! function_exists('deleteimage')) {
     function deleteimage($path,$image)
     {

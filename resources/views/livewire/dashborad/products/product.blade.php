@@ -1,4 +1,36 @@
+@push('csslive')
+    <style>
+.imgprod {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+    </style>
+@endpush
 <div>
+    <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Confirm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true close-btn">×</span>
+                    </button>
+                </div>
+               <div class="modal-body">
+                    <p>Are you sure want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                   <button type="button" wire:click.prevent="delete('soft')" class="btn btn-danger close-modal" data-dismiss="modal">{{__('softdelete')}}</button>
+                   <button type="button" wire:click.prevent="delete('hard')" class="btn btn-danger close-modal" data-dismiss="modal">{{__('harddelete')}}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card card-primary card-outline card-outline-tabs">
         <div  wire:ignore class="card-header p-0 border-bottom-0">
           <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
@@ -17,7 +49,7 @@
                 @foreach($products as $product)
                     <div wire:ignore.self class="tab-pane fade {{$loop->index == 0 ? ' show active' : '' }}"
                         id="{{$product->slug}}" role="tabpanel" aria-labelledby="{{$product->slug}}-tab">
-                        {{ $product->name }}
+                       
                         <form id="F{{$loop->index}}"  enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-4">
@@ -28,7 +60,7 @@
                                             <div class="display-block">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image1' required>
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image1' >
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
@@ -37,10 +69,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- @if ($productlist[$loop->index]['image1']) --}}
-                                        {{-- <img src="" class="img d-block mt-2 w-100 rounded"> --}}
+                                        @if ($productlist[$loop->index]['photo1']??'')
+                                        <img src="{{$productlist[$loop->index]['photo1']??''}}" class="img imgprod d-block mt-2 w-20 rounded">
                                         {{-- {{ $productlist[{{$loop->index}}]['image1']->temporaryUrl() }} --}}
-                                        {{-- @endif --}}
+                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -51,7 +83,7 @@
                                             <div class="display-block">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image2' required>
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image2' >
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
@@ -60,10 +92,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- @if ($productlist[$loop->index]['image2']) --}}
-                                        {{-- <img src="" class="img d-block mt-2 w-100 rounded"> --}}
+                                        @if ($productlist[$loop->index]['photo2']??'')
+                                        <img src="{{$productlist[$loop->index]['photo2']??''}}" class="img imgprod d-block mt-2 w-20 rounded">
                                         {{-- {{ $productlist[{{$loop->index}}]['image1']->temporaryUrl() }} --}}
-                                        {{-- @endif --}}
+                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -74,7 +106,7 @@
                                             <div class="display-block">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image3' required>
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='productlist.{{$loop->index}}.image3' >
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
@@ -83,10 +115,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- @if ($productlist[$loop->index]['image1']) --}}
-                                        {{-- <img src="" class="img d-block mt-2 w-100 rounded"> --}}
+                                        @if ($productlist[$loop->index]['photo3']??'')
+                                        <img src="{{$productlist[$loop->index]['photo3']??''}}" class="img imgprod d-block mt-2 w-20 rounded">
                                         {{-- {{ $productlist[{{$loop->index}}]['image1']->temporaryUrl() }} --}}
-                                        {{-- @endif --}}
+                                         @endif
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +134,7 @@
                                     <div class="form-group">
                                         <label for="price{{$loop->index}}">{{ __('price')  }}</label>
                                         <input type="text" id="price{{$loop->index}}" wire:model.defer='productlist.{{$loop->index}}.price' class="form-control @error('productlist.'.$loop->index.'.price') is-invalid @enderror" >
-                                        @error('productlist.'.$loop->index.'.price')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
+                                        @error('productlist.'. $loop->index .'.price')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -112,6 +144,37 @@
                                             <option value="0">{{ __('active') }}</option>
                                             <option value="1">{{ __('unactive') }}</option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="price">{{__('start_date')}}</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        </div>
+                                        <x-datepicker wire:model.dafer="productlist.{{$loop->index}}.start_date" id="prostart_date{{$loop->index}}" :error="'productlist.{{$loop->index}}.start_date'" />
+
+                                        @error('productlist.'.$loop->index.'.start_date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="price">{{__('expiry_date')}}</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        </div>
+                                        <x-datepicker wire:model.dafer="productlist.{{$loop->index}}.expiry_date" id="proexpiry_date{{$loop->index}}" :error="'productlist.{{$loop->index}}.expiry_date'" />
+                                        @error('productlist.'.$loop->index.'.expiry_date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +189,9 @@
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-success" wire:click.prevent="save({{$loop->index}})"> {{ __('save') }} </button>
-                                <button class="btn btn-danger" wire:click.prevent="save({{$loop->index}})"> {{ __('delete') }} </button>
+                                {{-- <button class="btn btn-danger" wire:click.prevent="deleteId({{$loop->index}})"> {{ __('delete') }} </button> --}}
+                                <button type="button" wire:click="deleteId({{$loop->index}})" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"> {{ __('delete') }}</button>
+
                             </div>
                         </form>
                     </div>

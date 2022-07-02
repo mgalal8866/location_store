@@ -50,7 +50,7 @@ class Store extends Component
                             foreach($branch->product as $product){
                                 if($product->product_images->count() > 0 ){
                                     foreach($product->product_images as $product_image){
-                                        deleteimage('product', $product_image->getAttributes()['img'] );
+                                        // deleteimage('product', $product_image->getAttributes()['img'] );
                                         $product_image->delete();
                                     }
                                 }
