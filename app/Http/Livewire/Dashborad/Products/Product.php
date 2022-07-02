@@ -12,7 +12,24 @@ class Product extends Component
     public function mount($slug=null)
     {
             $this->slug = $slug;
+            $this->products = products::where('branch_id',$this->slug)->get();
+            foreach($this->products as $product)
+            {
+                $this->productlist[$this->i]['product_id']       = $product->id;
+                $this->productlist[$this->i]['slug']             = $product->slug;
+                $this->productlist[$this->i]['active']           = $product->active;
+                $this->productlist[$this->i]['name']             = $product->name;
+                $this->productlist[$this->i]['price']            = $product->price;
+                $this->productlist[$this->i]['description']      = $product->description;
+                $this->productlist[$this->i]['start_date']       = $product->start_date;
+                $this->productlist[$this->i]['expiry_date']      = $product->expiry_date;
+                $this->productlist[$this->i]['photo1']           = $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg');
+                $this->productlist[$this->i]['photo2']           = $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg');
+                $this->productlist[$this->i]['photo3']           = $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg');
 
+                $this->i +=  1;
+            }
+            $this->i =0;
 
     }
 
@@ -103,24 +120,7 @@ class Product extends Component
 
     public function render()
     {
-        $this->products = products::where('branch_id',$this->slug)->get();
-        foreach($this->products as $product)
-        {
-            $this->productlist[$this->i]['product_id']       = $product->id;
-            $this->productlist[$this->i]['slug']             = $product->slug;
-            $this->productlist[$this->i]['active']           = $product->active;
-            $this->productlist[$this->i]['name']             = $product->name;
-            $this->productlist[$this->i]['price']            = $product->price;
-            $this->productlist[$this->i]['description']      = $product->description;
-            $this->productlist[$this->i]['start_date']       = $product->start_date;
-            $this->productlist[$this->i]['expiry_date']      = $product->expiry_date;
-            $this->productlist[$this->i]['photo1']           = $product->product_images->where('is_default','1')->first()->img ?? asset('assets/images/noimage.jpg');
-            $this->productlist[$this->i]['photo2']           = $product->product_images->where('is_default','!=','1')->where('position',2)->first()->img ?? asset('assets/images/noimage.jpg');
-            $this->productlist[$this->i]['photo3']           = $product->product_images->where('is_default','!=','1')->where('position',3)->first()->img ?? asset('assets/images/noimage.jpg');
 
-            $this->i +=  1;
-        }
-        $this->i =0;
         return view('livewire.dashborad.products.product')->layout('admin.layouts.masterdash');
     }
 }
