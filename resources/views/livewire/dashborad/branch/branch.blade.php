@@ -133,7 +133,7 @@
                             >
                         <div class="row  shadow p-3 mb-5   rounded text-dark d-flex align-items-center" x-data="{ show: false }">
                             <div >
-                                <a class="btn btn-app bg-danger m-1" @if($branch->product->count() != 0)href="{{route('product',['slug' => $branch->id])}} @endif" >
+                                <a class="btn btn-app bg-danger m-1" @if($branch->product->count() != 0) href="{{route('product',['slug' => $branch->id])}} @endif" >
                                     <span class="badge bg-teal"> {{$branch->product->count()}}</span>
                                     <i class="fas fa-inbox"></i> {{__('product')}}
                                 </a>
