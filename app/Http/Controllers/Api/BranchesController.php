@@ -102,22 +102,55 @@ class BranchesController extends Controller
     {
         if($request->search != ''){
                    $input= $request->search;
-                //    $ss = stores::where('name', 'LIKE', '%' . $input . '%')->
-                //    WhereHas('branch', function($q) use ($request) {
-                //     return $q->where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0) ->
-                //     orWhereHas('product', function($q) use ($request) {
-                //         return $q->where('name', 'LIKE', '%'. $request->search . '%')->whereActive(0);
-                //     });
-                //     })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
-                //     return $this->returnData('branches', $ss,'Done');
-                   $ss = branchs::where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0)
-                    ->WhereHas('stores', function($q) use ($input) {
-                        return $q->where('name', 'LIKE', '%' . $input . '%')->whereActive(0);
-                    })
-                    ->orWhereHas('product', function($q) use ($input) {
-                        return $q->where('name', 'LIKE', '%'. $input . '%')->whereActive(0);
-                    })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
 
+                //    $ss = branchs::where(function ($query) use ($request) {
+                //         $reg = regions::main($request->region_id) ;
+                //         if( $reg->main != null and $reg->main == true){
+                //             $query->whereCityId($reg->city_id);
+                //          }else{
+                //             $query->whereRegionId($request->region_id);
+                //         };
+                //     })->whereActive(0)->whereAccept(0)
+                //     ->WhereHas('stores', function($q) use ($input) {
+                //         return $q->where('name', 'LIKE', '%' . $input . '%')->whereActive(0);
+                //     })
+                //     ->orWhereHas('product', function($qq) use ($input) {
+                    // $qq->whereActive(0)->whereAccept(0)->where(function ($query) use ($request) {
+                    //     $reg = regions::main($request->region_id) ;
+                    //     if( $reg->main != null and $reg->main == true){
+                    //         $query->whereCityId($reg->city_id);
+                    //      }else{
+                    //         $query->whereRegionId($request->region_id);
+                    //     };});
+
+                //         return $qq->where('name', 'LIKE', '%'. $input . '%')->whereActive(0);
+                //     })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
+
+                $ss=  branchs::whereActive(0)->whereAccept(0)->where(function ($query) use ($request) {
+                        $reg = regions::main($request->region_id) ;
+                        if( $reg->main != null and $reg->main == true){
+                            $query->whereCityId($reg->city_id);
+                         }else{
+                            $query->whereRegionId($request->region_id);
+                        };})
+                        ->WhereHas('stores', function($q) use ($request) {
+                                   $q->where('name', 'LIKE', '%' . $request->search . '%')->whereActive(0);
+                                })->orWhere(function ($query) use ($request)
+                                {
+                                    $query->whereActive(0)->whereAccept(0)->where(function ($query) use ($request) {
+                                        $reg = regions::main($request->region_id) ;
+                                        if( $reg->main != null and $reg->main == true){
+                                            $query->whereCityId($reg->city_id);
+                                         }else{
+                                            $query->whereRegionId($request->region_id);
+                                        };});
+
+                                        $query->whereHas('product', function ($query) use ($request)
+                                        {
+                                                $query->where('name', 'LIKE', '%'. $request->search . '%');
+                                        });
+
+                                })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
             //     $ss = branchs::where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0)->
             //     WhereHas('stores', function($query) use ($searchq){
             //     $query->Where('name','like', "%{$searchq}%")->whereActive(0);
