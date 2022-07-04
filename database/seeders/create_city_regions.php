@@ -21,7 +21,7 @@ class create_city_regions extends Seeder
       //
 
         $jsoncity = File::get('public/city/cities.json');
-        //File::get("database/data/todo.json");
+        // File::get("database/data/todo.json");
         $city = json_decode($jsoncity);
 
         foreach ($city as $key => $value) {
@@ -39,6 +39,7 @@ class create_city_regions extends Seeder
                 "city_id" => $value->city_id,
                 "region_name_ar" => $value->region_name_ar,
                 "region_name_en" => $value->region_name_en,
+                "main" => $value->main??false,
                 "slug" => Str::slug($value->region_name_en)
             ]);
         }

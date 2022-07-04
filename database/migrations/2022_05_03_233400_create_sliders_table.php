@@ -19,6 +19,7 @@ class CreateSlidersTable extends Migration
             $table->enum('type',['image','product','store','url'])->nullable();
             $table->string('event')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->tinyInteger('active')->default('1')->comment('[0 = مفعل] [1 = غير مفعل]');
             $table->timestamps();
         });

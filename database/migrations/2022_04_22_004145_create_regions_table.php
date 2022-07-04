@@ -19,6 +19,7 @@ class CreateRegionsTable extends Migration
 			$table->string('region_name_ar', 250);
             $table->string('region_name_en', 250);
             $table->string('slug')->nullable();
+            $table->boolean('main')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

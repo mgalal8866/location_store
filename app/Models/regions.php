@@ -31,4 +31,10 @@ class regions extends Model
     {
         return $this->hasMany(slider::class);
     }
+
+    public function scopeMain($query,$id){
+
+        return regions::whereId($id)->select('main','city_id')->first();
+
+    }
 }

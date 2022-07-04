@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\branchesCollection;
 use App\Http\Resources\branchesCollectionbyuser;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
+use App\Models\regions;
 
 class BranchesController extends Controller
 {
@@ -37,19 +38,41 @@ class BranchesController extends Controller
     {
 
         return  $this->returnData('branches',branch::collection(
-            branchs::whereActive(0)->whereAccept(0)->whereRegionId($request->region_id)->WhereHas('stores', function($q)
+            branchs::whereActive(0)->whereAccept(0)->where(function ($query) use ($request) {
+                $reg = regions::whereId($request->region_id)->first() ;
+                if( $reg->main != null and $reg->main == true){
+                    $query->whereCityId($reg->city_id);
+                }else{
+                    $query->whereRegionId($request->region_id);
+                };
+            })->WhereHas('stores', function($q)
             {$q->whereActive(0);})->latest()->take(getSettingsOf('app_new_branch'))->get()));
     }
 // احضار الفروع  حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
         // Cache::forget('setting');
+        // $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
+        // {$q->whereCategoryId($request->category_id)->whereActive(0);})->
+        //     whereRegionId($request->region_id)->
+        //     orderBy('top', 'DESC')->
+        //     paginate(getSettingsOf('app_page_branch'));
+        //     return $this->returnData('branches',new branchesCollection($branches) ,'Done');
+
         $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
-            whereRegionId($request->region_id)->
-            orderBy('top', 'DESC')->
+            where(function ($query) use ($request) {
+                $reg = regions::main($request->region_id) ;
+
+                if( $reg->main != null and $reg->main == true){
+                    $query->whereCityId($reg->city_id);
+                }else{
+                    $query->whereRegionId($request->region_id);
+                };
+            })->orderBy('top', 'DESC')->
             paginate(getSettingsOf('app_page_branch'));
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
+
     }
 
 // احضار الفروع الخاصه بالمستخدم

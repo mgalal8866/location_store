@@ -28,10 +28,6 @@ class Slider extends Component
     }
 
 
-    // public function updatedImage()
-    // {
-    //     dd($this->image->temporaryUrl());
-    // }
     public function UpdatedSelectCity()
     {
         $this->regions = regions::whereCityId($this->selectCity)->get();
@@ -46,7 +42,8 @@ class Slider extends Component
                 'event' => $this->event,
                 'image' => $this->image,
                 'active' => 0,
-                'region_id' => $this->selectRegions??null]);
+                'region_id' => $this->selectRegions??null,
+                'city_id' => $this->selectCity??null]);
         $this->reset();
         $this->city = cities::get();
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Add Success']);
