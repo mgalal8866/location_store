@@ -10,8 +10,8 @@ class comment extends JsonResource
     {
         return [
             'comment'   => $this->comment??'',
-            'user_id'   => $this->user_id,
-            'user_name' => $this->user->name,
+            'user_id'   => $this->user_id??'',
+            'user_name' => $this->user->name??'',
             'rating'    => $this->rating
         ];
     }
