@@ -30,11 +30,14 @@
             </div>
         </div>
     </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-end mb-2">
-
+                    <a  href="{{route('newstore')}}" class="btn btn-outline-success">
+                        {{ __('new_store') }}
+                    </a>
                     <div class="btn-group">
                         <button wire:click="filterStoreByStatus" type="button" class="btn btn-info ">
                             <span class="mr-1">{{__('all')}}</span>

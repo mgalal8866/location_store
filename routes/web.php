@@ -22,6 +22,7 @@ use App\Http\Livewire\Dashborad\City\Regions;
 use App\Http\Livewire\Dashborad\Dashborad;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use App\Http\Livewire\Dashborad\Products\Product;
+use App\Http\Livewire\Dashborad\Store\Newstore;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Dashborad\Users\Message;
 use App\Http\Livewire\Dashborad\Users\NewUser;
@@ -145,7 +146,7 @@ Route::group(
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');
         Route::get('/store/branchse/{slug}',Branch::class)->name('branch');
-        // Route::get('/user/comments',comme::class)->name('comments');
+        Route::get('/store/new',Newstore::class)->name('newstore');
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
         Route::get('/user/message/{id?}',Message::class)->name('messageuser');
