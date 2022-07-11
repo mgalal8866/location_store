@@ -102,7 +102,7 @@ Route::post('/about/message', [AboutController::class,'sendmessage']);
 
 
 /**************************  PromotionController ********************************** */
-Route::post('/promotion', [PromotionController::class,'getpromotion']);
+Route::get('/promotion', [PromotionController::class,'getpromotion']);
 /**************************  PromotionController ********************************** */
 
 
