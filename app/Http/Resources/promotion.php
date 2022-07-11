@@ -15,10 +15,10 @@ class promotion extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $request->id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'image' => $request->image,
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'image' => $this->image,
         ];
     }
 }
