@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\AboutController;
 use App\Models\comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,10 +8,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\CitiesController;
 use App\Http\Controllers\Api\StoresController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BranchesController;
+use App\Http\Controllers\Api\PromotionController;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Http\Controllers\Api\CategoriesController;
 
@@ -98,6 +99,12 @@ Route::group(['middleware' => ['only.api','jwt.verify'] ], function ($router) {
 /**************************  ProductController ********************************** */
 Route::post('/about/message', [AboutController::class,'sendmessage']);
 /**************************  ProductController ********************************** */
+
+
+/**************************  PromotionController ********************************** */
+Route::post('/promotion', [PromotionController::class,'getpromotion']);
+/**************************  PromotionController ********************************** */
+
 
 });
 
