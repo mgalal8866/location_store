@@ -55,9 +55,12 @@ class stores extends Model
     }
 
     public function setActiveAttribute($value){
-        if($this->getAttributes()['active'] != $value){
-                $this->notificationFCM('Alert ⚠️' , 'Your Store Active Change',[$this->user->device_token]);
-                $this->attributes['active'] = $value;
-        };
-    }
+   
+        if($this->getAttributes()['active']??null !=null){
+                if($this->getAttributes()['active'] != $value ){
+                        $this->notificationFCM('Alert ⚠️' , 'Your Store Active Change',[$this->user->device_token]);
+                        $this->attributes['active'] = $value;
+                };
+            }
+        }
 }
