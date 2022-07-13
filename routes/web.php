@@ -3,52 +3,37 @@
 
 use App\Models\User;
 
-use App\Models\comments;
-use Illuminate\Http\Request;
+use App\Models\stores;
+use App\Models\branchs;
 // use League\Flysystem\Config;
 
+use App\Models\comments;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Livewire\Dashborad\Dashborad;
+use App\Http\Controllers\PrivacyController;
+use App\Http\Livewire\Dashborad\City\Citits;
 use App\Http\Livewire\Dashborad\Store\Store;
+use App\Http\Livewire\Dashborad\Users\Users;
+use App\Http\Livewire\Dashborad\City\Regions;
 use App\Http\Livewire\Dashborad\Branch\Branch;
 use App\Http\Livewire\Dashborad\Slider\Slider;
-use App\Http\Livewire\Dashborad\setting\Setting;
-use App\Http\Livewire\Dashborad\category\Category2;
-use App\Http\Livewire\Dashborad\category\viewcategory;
-use App\Http\Livewire\Dashborad\City\Citits;
-use App\Http\Livewire\Dashborad\City\Regions;
-use App\Http\Livewire\Dashborad\Dashborad;
-use App\Http\Livewire\Dashborad\Notification\Notification;
-use App\Http\Livewire\Dashborad\Products\Product;
-use App\Http\Livewire\Dashborad\Store\Newstore;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Dashborad\Users\Message;
 use App\Http\Livewire\Dashborad\Users\NewUser;
-use App\Http\Livewire\Dashborad\Users\Users;
-use App\Models\branchs;
-use App\Models\stores;
+use App\Http\Livewire\Dashborad\Store\Newstore;
+use App\Http\Livewire\Dashborad\setting\Setting;
+use App\Http\Livewire\Dashborad\Products\Product;
+use App\Http\Livewire\Dashborad\category\Category2;
+use App\Http\Livewire\Dashborad\category\viewcategory;
+use App\Http\Livewire\Dashborad\Notification\Notification;
+use App\Models\setting as ModelsSetting;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-route::get('/set',function () {
-// Storage::disk('google')->put('hello.text' ,'welcome');
-    // return setting('site_title');
-    // Cache::forget('timetask');'
 
-    // Cache::forever('delete_store', '$value',11);
-      dd( getSettingsOf('FCM_SERVER_KEY'));
- });
 
 route::get('/pull',function () {
     $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
@@ -61,9 +46,6 @@ route::get('/down',function () {
    Artisan::call('down --render="maintenance"');
    return  redirect('/');
 });
-
-
-
 
 route::get('/up',function () {
     Artisan::call('up');
@@ -103,26 +85,11 @@ Route::post('save-token', function(Request $request)
 })->name('save-token');
 
 
-Route::get('mm',function(){
-$bb = stores::get();
-$i = 1;
-// foreach($bb as  $bm){
-//     foreach($bm->branch as $key => $b){
-//          $b->update(['slug'=> ['name'=>$bm->name, 'number'=> ($i ++)] ]);
-//     }
-//     $i = 1;
-// }
+ Route::get('/privacy', function () {
+   $privacy = ModelsSetting::where('key','privacy')->first();
 
+    return view('privacy',compact('privacy'));})->name('privacy');
 
-$bb = branchs::get();
-$i = 1;
-foreach($bb as  $bm){
-    foreach($bm->product as  $b){
-         $b->update(['slug'=> ['name'=>$bm->name, 'number'=> ($i ++)] ]);
-    }
-    $i = 1;
-}
-});
 
 Auth::routes();
 // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
@@ -141,11 +108,10 @@ Route::group(
         Route::get('/notification/',Notification::class)->name('setting/notification');
         Route::get('/category',viewcategory::class)->name('category');
         Route::get('/category2',Category2::class)->name('category2');
-        // Route::get('/users',Citits::class)->name('users');
         Route::get('/slider',Slider::class)->name('slider');
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');
-        Route::get('/store/branchse/{slug}',Branch::class)->name('branch');
+        Route::get('/store/branchse/{slug?}',Branch::class)->name('branch');
         Route::get('/store/new',Newstore::class)->name('newstore');
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');

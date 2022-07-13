@@ -21,7 +21,9 @@ class Setting extends Component
     private $translation;
     public $i =0;
     public $state = [];
-    public $importsplash, $images, $settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
+
+    public $codetext,$importsplash, $images, $settings_sections, $backupgoogle,  $section = 'general' ,$settings,$setting ,$valueform ,$notifytime;
+
     public function mount()
     {
 
@@ -64,9 +66,13 @@ class Setting extends Component
         $this->dispatchBrowserEvent('infomsg',['msg' => 'Clear all Done']);
     }
     public function up($section){
-
+        // dd($this->codetext);
         foreach($this->valueform as $item)
             {
+                if($item['key'] == 'privacy'){
+                    $item['value'] = $this->codetext ;
+                }
+
                 $settings = Valuestore::make(config_path('settings.json'));
                 $setsetting = ModelsSetting::whereShow(0)->whereSection($this->section)->whereId($item['id'])->first();
                 $setsetting->update($item);

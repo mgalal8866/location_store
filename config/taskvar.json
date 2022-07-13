@@ -11,6 +11,6 @@
     "activenotifyexpireproduct": true,
     "timenotifyexpireproduct": "0 0 * * *",
     "activenotifyproductviews": true,
-    "timenotifyproductviews": '0 0 * * *',
+    "timenotifyproductviews": "0 0 * * *",
     "viewsproduct": 1000
 }

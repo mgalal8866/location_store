@@ -51,14 +51,7 @@ class BranchesController extends Controller
 // احضار الفروع  حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
-        // Cache::forget('setting');
-        // $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
-        // {$q->whereCategoryId($request->category_id)->whereActive(0);})->
-        //     whereRegionId($request->region_id)->
-        //     orderBy('top', 'DESC')->
-        //     paginate(getSettingsOf('app_page_branch'));
-        //     return $this->returnData('branches',new branchesCollection($branches) ,'Done');
-
+       
         $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
             where(function ($query) use ($request) {
@@ -102,29 +95,6 @@ class BranchesController extends Controller
     {
         if($request->search != ''){
                    $input= $request->search;
-
-                //    $ss = branchs::where(function ($query) use ($request) {
-                //         $reg = regions::main($request->region_id) ;
-                //         if( $reg->main != null and $reg->main == true){
-                //             $query->whereCityId($reg->city_id);
-                //          }else{
-                //             $query->whereRegionId($request->region_id);
-                //         };
-                //     })->whereActive(0)->whereAccept(0)
-                //     ->WhereHas('stores', function($q) use ($input) {
-                //         return $q->where('name', 'LIKE', '%' . $input . '%')->whereActive(0);
-                //     })
-                //     ->orWhereHas('product', function($qq) use ($input) {
-                    // $qq->whereActive(0)->whereAccept(0)->where(function ($query) use ($request) {
-                    //     $reg = regions::main($request->region_id) ;
-                    //     if( $reg->main != null and $reg->main == true){
-                    //         $query->whereCityId($reg->city_id);
-                    //      }else{
-                    //         $query->whereRegionId($request->region_id);
-                    //     };});
-
-                //         return $qq->where('name', 'LIKE', '%'. $input . '%')->whereActive(0);
-                //     })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
 
                 $ss=  branchs::whereActive(0)->whereAccept(0)->where(function ($query) use ($request) {
                         $reg = regions::main($request->region_id) ;

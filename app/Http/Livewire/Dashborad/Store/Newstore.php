@@ -2,39 +2,49 @@
 
 namespace App\Http\Livewire\Dashborad\Store;
 
-use App\Http\Resources\branch;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Models\cities;
 use App\Models\stores;
 use App\Models\regions;
 use Livewire\Component;
 use App\Models\categories;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
+use App\Http\Resources\branch;
 use Illuminate\Support\Facades\Auth;
 
 class Newstore extends Component
 {
+    use WithFileUploads ,GeneralTrait;
     public $name,$activestore,$numberbranch,$categorys,$selectcity,$citys,$regions,$subcategorys ,$branchlist = [],$selectcategory,
     $selectsubcategory;
     public function mount()
     {
         $this->categorys    = categories::all();
         $this->citys        = cities::all();
+        $this->numberbranch = '1';
+        $this->activestore = '0';
         $this->branchlist=[
-            ['active'=>'0',
-            'descriptionbranch'=>'test0',
-            'approval'=>'1',
-            'top'=>'0',
-            'opentime'=>'',
-            'closetime'=>'',
-            'start_date'=>'',
-            'expiry_date'=>'',
-            'city_id'=>'',
-            'region_id'=>'',
-            'address'=>'',
-            'phone'=>'',
-            'phonetwo'=>'',
-            'lat'=>'',
-            'lng'=>'']
+            [
+                'importimage'       => '',
+                'image'             => asset('assets/images/noimage.jpg'),
+                'active'            => '0',
+                'descriptionbranch' => '',
+                'approval'          => '0',
+                'top'               => '0',
+                'numproduct'        => '1',
+                'opentime'          => '',
+                'closetime'         => '',
+                'start_date'        => '',
+                'expiry_date'       => '',
+                'city_id'           => '',
+                'region_id'         => '',
+                'address'           => '',
+                'phone'             => '',
+                'phonetwo'          => '',
+                'lat'               => '',
+                'lng'               => ''
+            ]
         ];
 
     }
@@ -53,22 +63,26 @@ class Newstore extends Component
     public function addbranch()
     {
         $this->branchlist[]=
-            ['active'=>  '1',
-            'descriptionbranch'=>'1',
-            'approval'=>'1',
-            'top'=>'0',
-            'opentime'=>'',
-            'closetime'=>'',
-            'start_date'=>'',
-            'expiry_date'=>'',
-            'city_id'=>'',
-            'region_id'=>'',
-            'address'=>'',
-            'phone'=>'',
-            'phonetwo'=>'',
-            'lat'=>'',
-            'lng'=>'']
-        ;
+            [
+            'importimage'       => '',
+            'image'             => asset('assets/images/noimage.jpg'),
+            'active'            => '0',
+            'descriptionbranch' => '',
+            'approval'          => '0',
+            'top'               => '0',
+            'numproduct'        => '1',
+            'opentime'          => '',
+            'closetime'         => '',
+            'start_date'        => '',
+            'expiry_date'       => '',
+            'city_id'           => '',
+            'region_id'         => '',
+            'address'           => '',
+            'phone'             => '',
+            'phonetwo'          => '',
+            'lat'               => '',
+            'lng'               => ''
+            ];
     }
 
     public function removebranch($index)
@@ -98,9 +112,71 @@ class Newstore extends Component
         }
     }
 
+    public function checkstore()
+    {
+        if(empty($this->branchlist[0]['region_id']))
+        {
+            $this->dispatchBrowserEvent('openalertModal');
+            // $this->dispatchBrowserEvent('closealertModal');
+
+        }else{
+            $this->savestore();
+
+        }
+
+    }
+    public function SaveStoreToAllRegion()
+    {
+
+        $store = stores::create(
+            ['name'        => $this->name??null
+            ,'slug'        => Str::slug($this->name)
+            ,'category_id' => $this->subcategorys??$this->selectcategory
+            ,'active'      => $this->activestore??null
+            ,'branch_num'  => $this->numberbranch??null
+            ,'user_id'     => Auth::user()->id??null
+            ]
+        );
+            $regions = regions::whereNull('main')->get();
+            foreach(  $regions as $index1 => $region){
+                foreach( $this->branchlist as $index => $branch)
+                {
+                        if($this->branchlist[$index]['importimage'] != null){
+                            $importimages = $this->uploadimages('branch',$this->branchlist[$index]['importimage']);
+                        }else
+                        {
+                            $importimages = null;
+                        }
+                            $store->branch()->create([
+                                'slug2'        =>$this->name .' branch ' . $index . ($index1+1) ,
+                                'image'       => $importimages??null,
+                                'region_id'   => $region->id,
+                                'city_id'     => $region->city_id,
+                                'address'     => empty($this->branchlist[$index]['address'])?null:$this->branchlist[$index]['address'],
+                                'accept'      => $this->branchlist[$index]['approval']??null,
+                                'active'      => $this->branchlist[$index]['active']??null,
+                                'top'         => $this->branchlist[$index]['top']??null,
+                                'product_num' => $this->branchlist[$index]['numproduct']??null,
+                                'lat'         => empty($this->branchlist[$index]['lat'])?null:$this->branchlist[$index]['lat'],
+                                'lng'         => empty($this->branchlist[$index]['lng'])?null:$this->branchlist[$index]['lng'],
+                                'opentime'    => empty($this->branchlist[$index]['opentime'])?null:$this->branchlist[$index]['opentime'],
+                                'closetime'   => empty($this->branchlist[$index]['closetime'])?null:$this->branchlist[$index]['closetime'],
+                                'start_date'  => empty($this->branchlist[$index]['start_date'])?null:$this->branchlist[$index]['start_date'],
+                                'expiry_date' => empty($this->branchlist[$index]['expiry_date'])?null:$this->branchlist[$index]['expiry_date'],
+                                'description' => empty($this->branchlist[$index]['descriptionbranch'])?null:$this->branchlist[$index]['descriptionbranch'],
+                                'phone'       => empty($this->branchlist[$index]['phone'])?null:$this->branchlist[$index]['phonetwo'],
+                                'phone2'      => empty($this->branchlist[$index]['phonetwo'])?null:$this->branchlist[$index]['phonetwo'],
+                            ]);
+                }
+
+            }
+            $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Store Success ❤ ']);
+
+    }
+
     public function savestore()
     {
-    //   dd($this->branchlist);
+
         $store = stores::create(
             ['name'        => $this->name??null
             ,'slug'        => Str::slug($this->name)
@@ -112,23 +188,36 @@ class Newstore extends Component
         );
 
         foreach( $this->branchlist as $index => $branch){
+            if($this->branchlist[$index]['importimage'] != null){
+                $importimages = $this->uploadimages('branch',$this->branchlist[$index]['importimage']);
+            }else
+            {
+                $importimages = null;
+            }
+
                 $store->branch()->create([
-                    'region_id'   => $this->branchlist[$index]['region_id']??null,
-                    'city_id'     => $this->branchlist[$index]['city_id']??null,
-                    'address'     => $this->branchlist[$index]['address']??null,
+                    'slug2'        =>$this->name .' branch ' . ($index+1) ,
+                    'image'       => $importimages??null,
+                    'region_id'   => empty($this->branchlist[$index]['region_id'])?null:$this->branchlist[$index]['region_id'],
+                    'city_id'     => empty($this->branchlist[$index]['city_id'])?null:$this->branchlist[$index]['city_id'],
+                    'address'     => empty($this->branchlist[$index]['address'])?null:$this->branchlist[$index]['address'],
                     'accept'      => $this->branchlist[$index]['approval']??null,
+                    'active'      => $this->branchlist[$index]['active']??null,
                     'top'         => $this->branchlist[$index]['top']??null,
-                    'lat'         => $this->branchlist[$index]['lat']??null,
-                    'lng'         => $this->branchlist[$index]['lng']??null,
-                    'opentime'    => $this->branchlist[$index]['opentime']??null,
-                    'closetime'   => $this->branchlist[$index]['closetime']??null,
-                    'start_date'  => $this->branchlist[$index]['start_date']??null,
-                    'expiry_date' => $this->branchlist[$index]['expiry_date']??null,
-                    'description' => $this->branchlist[$index]['descriptionbranch']??null,
-                    'phone'       => $this->branchlist[$index]['phone']??null,
-                    'phone2'      => $this->branchlist[$index]['phonetwo']??null,
+                    'product_num' => $this->branchlist[$index]['numproduct']??null,
+                    'lat'         => empty($this->branchlist[$index]['lat'])?null:$this->branchlist[$index]['lat'],
+                    'lng'         => empty($this->branchlist[$index]['lng'])?null:$this->branchlist[$index]['lng'],
+                    'opentime'    => empty($this->branchlist[$index]['opentime'])?null:$this->branchlist[$index]['opentime'],
+                    'closetime'   => empty($this->branchlist[$index]['closetime'])?null:$this->branchlist[$index]['closetime'],
+                    'start_date'  => empty($this->branchlist[$index]['start_date'])?null:$this->branchlist[$index]['start_date'],
+                    'expiry_date' => empty($this->branchlist[$index]['expiry_date'])?null:$this->branchlist[$index]['expiry_date'],
+                    'description' => empty($this->branchlist[$index]['descriptionbranch'])?null:$this->branchlist[$index]['descriptionbranch'],
+                    'phone'       => empty($this->branchlist[$index]['phone'])?null:$this->branchlist[$index]['phonetwo'],
+                    'phone2'      => empty($this->branchlist[$index]['phonetwo'])?null:$this->branchlist[$index]['phonetwo'],
                 ]);
             }
+
+
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Store Success ❤ ']);
 
 

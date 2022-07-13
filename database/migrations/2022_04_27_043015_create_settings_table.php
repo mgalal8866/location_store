@@ -17,7 +17,7 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('display_name');
             $table->string('key');
-            $table->string('value')->nullable();
+            $table->longText('value')->nullable();
             $table->string('details')->nullable();
             $table->string('type');
             $table->string('section');

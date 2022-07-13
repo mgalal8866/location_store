@@ -9,6 +9,7 @@
         Setting App
     @endsection
     @push('csslive')
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.css')}}">
         <style>
             .btn-success {
                 color: #fff;
@@ -125,6 +126,15 @@
                                                             @endif
                                                             @if ($setting->type == 'boolean')
                                                             {!! Form::select('value[' . $loop->index . ']', explode('|', $setting->details) , $setting->value , ['id' => 'value', 'class' => 'form-control',  ' wire:model.dafer' => 'valueform.'. $loop->index .'.value',]) !!}
+
+
+                                                            @endif
+                                                            @if ($setting->type == 'textarea')
+                                                            <div wire:ignore >
+                                                                <textarea  id="summernote">
+                                                                    {{ $setting->value  }}
+                                                                </textarea>
+                                                            </div>
 
 
                                                             @endif
@@ -257,3 +267,28 @@
     </div>
 
 </div>
+@push('jslive')
+<script src="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+ <script>
+
+    // Livewire.emit('codetext', $('#summernote').summernote('code'));
+      $(function () {
+    // Summernote
+    // $('#summernote').summernote()
+    $('#summernote').summernote({
+        height: 200,
+        codemirror: {
+            theme: 'monokai'
+        },
+        callbacks: {
+            onChange: function(contents, $editable) {
+                @this.set('codetext', contents);
+            }
+        }
+    });
+  });
+
+ </script>
+
+@endpush

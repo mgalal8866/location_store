@@ -117,15 +117,21 @@ class branchs extends Model
     }
 
     public function setActiveAttribute($value){
-        ($value == 0 )?($this->attributes['start_date'] = now()->toFormattedDate()) : '';
-        if($this->getAttributes()['active'] != $value){
-                $this->notificationFCM('Alert ⚠️' , '📢 Your Branch Is ' . (($value == 0 )?   __('active') : __('unactive')) . ' Now',[$this->stores->user->device_token]);
-                $this->attributes['active'] = $value;
+        if($this->getAttributes()['active']??null !=null){
+                ($value == 0 )?($this->attributes['start_date'] = now()->toFormattedDate()) : '';
+                if($this->getAttributes()['active'] != $value){
+                        $this->notificationFCM('Alert ⚠️' , '📢 Your Branch Is ' . (($value == 0 )?   __('active') : __('unactive')) . ' Now',[$this->stores->user->device_token]);
+                        $this->attributes['active'] = $value;
+                }
+        }else{
+            $this->attributes['active'] = $value;
         }
     }
     public function setSlugAttribute($value){
         $this->attributes['slug'] = Str::slug($value->name . ' branch ' .   ($value->branch->count() + 1));
     }
-
+    public function setSlug2Attribute($value){
+        $this->attributes['slug'] = Str::slug($value);
+    }
 
 }

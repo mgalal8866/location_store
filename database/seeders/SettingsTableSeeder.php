@@ -27,6 +27,7 @@ class SettingsTableSeeder extends Seeder
         setting::create([ 'display_name' => 'app_page_branch', 'key' => 'app_page_branch', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'pages', 'ordering' => 3]);
         setting::create([ 'display_name' => 'app_pagforsearch_branch', 'key' => 'app_pagforsearch_branch', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 7]);
         setting::create([ 'display_name' => 'maintenance_mode', 'key' => 'maintenance_mode', 'value' => false, 'details' => null, 'type' => 'text', 'section' => 'maintenance', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'privacy', 'key' => 'privacy', 'value' => "privacy", 'details' => null, 'type' => 'text', 'section' => 'privacy', 'ordering' => 1]);
 
         setting::create([ 'display_name' => 'footer_text', 'key' => 'footer_text', 'value' => '<strong>Copyright &copy; 2022 <a href="01024346011">Mohamed Galal</a>.</strong>
         All rights reserved.
