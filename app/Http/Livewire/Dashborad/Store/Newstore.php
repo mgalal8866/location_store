@@ -137,9 +137,9 @@ class Newstore extends Component
             ,'user_id'     => Auth::user()->id??null
             ]
         );
-            $regions = regions::where('main',null)->get();
-            dd($regions);
-            foreach(  $regions as $index1 => $region){
+            $region = regions::where('main',null)->get();
+            dd($region);
+            foreach(  $region as $index1 => $regionitem){
                 foreach( $this->branchlist as $index => $branch)
                 {
                     if($this->branchlist[$index]['importimage'] != null){
@@ -152,8 +152,8 @@ class Newstore extends Component
                     $store->branch()->create([
                         'slug2'        =>$this->name .' branch ' . $index . ($index1+1) ,
                         'image'       => $importimages??null,
-                        'region_id'   => $region->id,
-                        'city_id'     => $region->city_id,
+                        'region_id'   => $regionitem->id,
+                        'city_id'     => $regionitem->city_id,
                         'address'     => empty($this->branchlist[$index]['address'])?null:$this->branchlist[$index]['address'],
                         'accept'      => $this->branchlist[$index]['approval']??null,
                         'active'      => $this->branchlist[$index]['active']??null,
