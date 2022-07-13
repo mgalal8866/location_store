@@ -137,7 +137,7 @@ class Newstore extends Component
             ,'user_id'     => Auth::user()->id??null
             ]
         );
-            $region = regions::where('main',null)->get();
+            $region = regions::whereMain(false)->get();
             dd($region);
             foreach(  $region as $index1 => $regionitem){
                 foreach( $this->branchlist as $index => $branch)
