@@ -277,9 +277,9 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor.create(document.querySelector('#note'));
-    $('form').submit(function() {
-        @this.set('codetext', $('#note').val());
-    })
+    // $('form').submit(function() {
+    //     @this.set('codetext', $('#note').val());
+    // })
 </script>
 
  <script>
@@ -296,6 +296,9 @@
         //     }
         // }
     });
+    $('form').submit(function() {
+        @this.set('codetext', $('#summernote').val());
+    })
   });
 
  </script>
