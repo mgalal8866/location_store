@@ -179,10 +179,10 @@
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
 
-                                                                <img src="{{ $branchlist[$index]['image'] }}" alt="image" style="height: 100px; width: 200px"  class="img-thumbnail">
+                                                                <img src="{{ $branchlist[$index]['image'] }}" alt="image" style="height: 150px; width: 100px"  class="img-thumbnail">
 
                                                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                                                        <a class="btn btn-success btn-sm btn-file-upload">
+                                                                        <a class="btn btn-success btn-sm btn-file-upload pt-2">
                                                                             اختر صورة <input id="importimage{{ $index }}" type="file" name="file" size="40"
                                                                                 accept=".png, .jpg, .jpeg, .gif" wire:model='branchlist.{{ $index }}.importimage' required>
                                                                         </a>

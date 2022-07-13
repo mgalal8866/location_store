@@ -4,12 +4,9 @@ namespace App\Http\Livewire\Dashborad\setting;
 use App\Models\tasklog;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use PhpParser\Node\Stmt\Foreach_;
 use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 use App\Models\setting as ModelsSetting;
-use JoeDixon\Translation\Drivers\Translation;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Setting extends Component
@@ -52,9 +49,9 @@ class Setting extends Component
             foreach($hassetting  as $settingitem)
             {
                 $this->valueform[$this->i]['value'] = $settingitem->value ;
-                $this->valueform[$this->i]['id'] = $settingitem->id ;
-                $this->valueform[$this->i]['key'] = $settingitem->key ;
-                $this->valueform[$this->i]['type'] = $settingitem->type ;
+                $this->valueform[$this->i]['id']    = $settingitem->id ;
+                $this->valueform[$this->i]['key']   = $settingitem->key ;
+                $this->valueform[$this->i]['type']  = $settingitem->type ;
                 $this->i +=  1;
             }
             $this->settings = $hassetting;

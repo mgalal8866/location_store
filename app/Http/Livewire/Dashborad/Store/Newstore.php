@@ -138,7 +138,7 @@ class Newstore extends Component
             ]
         );
             $region = regions::whereMain(false)->get();
-            dd($region);
+
             foreach(  $region as $index1 => $regionitem){
                 foreach( $this->branchlist as $index => $branch)
                 {
@@ -197,7 +197,7 @@ class Newstore extends Component
             }
 
                 $store->branch()->create([
-                    'slug2'        =>$this->name .' branch ' . ($index+1) ,
+                    'slug2'       =>$this->name .' branch ' . ($index+1) ,
                     'image'       => $importimages??null,
                     'region_id'   => empty($this->branchlist[$index]['region_id'])?null:$this->branchlist[$index]['region_id'],
                     'city_id'     => empty($this->branchlist[$index]['city_id'])?null:$this->branchlist[$index]['city_id'],

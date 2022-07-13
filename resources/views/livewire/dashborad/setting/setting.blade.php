@@ -109,7 +109,7 @@
                                         class="tab-pane text-left fade  {{ $loop->index == 0 ? ' show active ' : '' }} "
                                         id="{{ $settings_section }}" role="tabpanel"
                                         aria-labelledby="{{ $settings_section }}-tab">
-                                        <form id="f{{ $settings_section }}">
+                                        <form wire:submit.prevent="up('{{ $settings_section }}')" id="f{{ $settings_section }}">
                                             @foreach ($settings->where('section', $settings_section) as $setting)
                                                 <div class="row">
                                                     <div class="col-12">
@@ -135,6 +135,10 @@
                                                                     {{ $setting->value  }}
                                                                 </textarea>
                                                             </div>
+                                                            <div wire:ignore class="form-group">
+                                                                <label for="note">Note:</label>
+                                                                <textarea id="note" data-note="@this" wire:model.defer="codetext" class="form-control"> {{ $setting->value  }}</textarea>
+                                                            </div>
 
 
                                                             @endif
@@ -147,7 +151,7 @@
                                             @endforeach
                                             <div class="text-right">
                                                 <button type="submit"
-                                                    wire:click.prevent="up('{{ $settings_section }}')"
+
                                                     class="btn btn-primary" wire:loading.attr="disabled">{{ __('save') }}</button>
                                             </div>
                                         </form>
@@ -270,12 +274,17 @@
 @push('jslive')
 <script src="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector('#note'));
+    $('form').submit(function() {
+        @this.set('codetext', $('#note').val());
+    })
+</script>
+
  <script>
 
-    // Livewire.emit('codetext', $('#summernote').summernote('code'));
       $(function () {
-    // Summernote
-    // $('#summernote').summernote()
     $('#summernote').summernote({
         height: 200,
         codemirror: {
