@@ -109,7 +109,7 @@
                                         class="tab-pane text-left fade  {{ $loop->index == 0 ? ' show active ' : '' }} "
                                         id="{{ $settings_section }}" role="tabpanel"
                                         aria-labelledby="{{ $settings_section }}-tab">
-                                        <form wire:submit.prevent="up('{{ $settings_section }}')" id="f{{ $settings_section }}">
+                                        <form wire:submitwire:click.prevent="up('{{ $settings_section }}')" id="f{{ $settings_section }}">
                                             @foreach ($settings->where('section', $settings_section) as $setting)
                                                 <div class="row">
                                                     <div class="col-12">
@@ -137,7 +137,7 @@
                                                             </div>
                                                             <div wire:ignore class="form-group">
                                                                 <label for="note">Note:</label>
-                                                                <textarea id="note" data-note="@this" wire:model.defer="codetext" class="form-control"> {{ $setting->value  }}</textarea>
+                                                                <textarea id="note" data-note="@this" wire:model.defer="state.note" class="form-control"></textarea>
                                                             </div>
 
 
@@ -284,17 +284,17 @@
 
  <script>
 
-      $(function () {
+   $(function () {
     $('#summernote').summernote({
         height: 200,
         codemirror: {
             theme: 'monokai'
         },
-        callbacks: {
-            onChange: function(contents, $editable) {
-                @this.set('codetext', contents);
-            }
-        }
+        // callbacks: {
+        //     onChange: function(contents, $editable) {
+        //         @this.set('codetext', contents);
+        //     }
+        // }
     });
   });
 
