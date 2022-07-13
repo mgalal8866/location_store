@@ -110,6 +110,7 @@
                                         id="{{ $settings_section }}" role="tabpanel"
                                         aria-labelledby="{{ $settings_section }}-tab">
                                         <form wire:submit.prevent="up('{{ $settings_section }}')" id="f{{ $settings_section }}">
+                                            {{-- wire:submit.prevent="up('{{ $settings_section }}')"  --}}
                                             @foreach ($settings->where('section', $settings_section) as $setting)
                                                 <div class="row">
                                                     <div class="col-12">
@@ -131,9 +132,7 @@
                                                             @endif
                                                             @if ($setting->type == 'textarea')
                                                             <div wire:ignore >
-                                                                <textarea  id="summernote">
-                                                                    {{ $setting->value  }}
-                                                                </textarea>
+                                                                <textarea id="summernote"> {{ $setting->value }} </textarea>
                                                             </div>
                                                             <div wire:ignore class="form-group">
                                                                 {{-- <label for="note">Note:</label> --}}
@@ -290,14 +289,14 @@
         codemirror: {
             theme: 'monokai'
         },
-        // callbacks: {
-        //     onChange: function(contents, $editable) {
-        //         @this.set('codetext', contents);
-        //     }
-        // }
+        callbacks: {
+            onChange: function(contents) {
+                @this.set('codetext', contents);
+            }
+        }
     });
     // $('form').submit(function() {
-    //     @this.set('codetext', $('#summernote').val());
+    //     @this.set('codetext', ($('#summernote').val()));
     // })
   });
 
