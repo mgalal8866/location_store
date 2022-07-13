@@ -138,37 +138,38 @@ class Newstore extends Component
             ]
         );
             $regions = regions::whereNull('main')->get();
+            dd($regions);
             foreach(  $regions as $index1 => $region){
                 foreach( $this->branchlist as $index => $branch)
                 {
-                        if($this->branchlist[$index]['importimage'] != null){
-                            $importimages = $this->uploadimages('branch',$this->branchlist[$index]['importimage']);
-                        }else
-                        {
-                            $importimages = null;
-                        }
-                            $store->branch()->create([
-                                'slug2'        =>$this->name .' branch ' . $index . ($index1+1) ,
-                                'image'       => $importimages??null,
-                                'region_id'   => $region->id,
-                                'city_id'     => $region->city_id,
-                                'address'     => empty($this->branchlist[$index]['address'])?null:$this->branchlist[$index]['address'],
-                                'accept'      => $this->branchlist[$index]['approval']??null,
-                                'active'      => $this->branchlist[$index]['active']??null,
-                                'top'         => $this->branchlist[$index]['top']??null,
-                                'product_num' => $this->branchlist[$index]['numproduct']??null,
-                                'lat'         => empty($this->branchlist[$index]['lat'])?null:$this->branchlist[$index]['lat'],
-                                'lng'         => empty($this->branchlist[$index]['lng'])?null:$this->branchlist[$index]['lng'],
-                                'opentime'    => empty($this->branchlist[$index]['opentime'])?null:$this->branchlist[$index]['opentime'],
-                                'closetime'   => empty($this->branchlist[$index]['closetime'])?null:$this->branchlist[$index]['closetime'],
-                                'start_date'  => empty($this->branchlist[$index]['start_date'])?null:$this->branchlist[$index]['start_date'],
-                                'expiry_date' => empty($this->branchlist[$index]['expiry_date'])?null:$this->branchlist[$index]['expiry_date'],
-                                'description' => empty($this->branchlist[$index]['descriptionbranch'])?null:$this->branchlist[$index]['descriptionbranch'],
-                                'phone'       => empty($this->branchlist[$index]['phone'])?null:$this->branchlist[$index]['phonetwo'],
-                                'phone2'      => empty($this->branchlist[$index]['phonetwo'])?null:$this->branchlist[$index]['phonetwo'],
-                            ]);
-                }
+                    if($this->branchlist[$index]['importimage'] != null){
+                        $importimages = $this->uploadimages('branch',$this->branchlist[$index]['importimage']);
+                    }else
+                    {
+                        $importimages = null;
+                    }
 
+                    $store->branch()->create([
+                        'slug2'        =>$this->name .' branch ' . $index . ($index1+1) ,
+                        'image'       => $importimages??null,
+                        'region_id'   => $region->id,
+                        'city_id'     => $region->city_id,
+                        'address'     => empty($this->branchlist[$index]['address'])?null:$this->branchlist[$index]['address'],
+                        'accept'      => $this->branchlist[$index]['approval']??null,
+                        'active'      => $this->branchlist[$index]['active']??null,
+                        'top'         => $this->branchlist[$index]['top']??null,
+                        'product_num' => $this->branchlist[$index]['numproduct']??null,
+                        'lat'         => empty($this->branchlist[$index]['lat'])?null:$this->branchlist[$index]['lat'],
+                        'lng'         => empty($this->branchlist[$index]['lng'])?null:$this->branchlist[$index]['lng'],
+                        'opentime'    => empty($this->branchlist[$index]['opentime'])?null:$this->branchlist[$index]['opentime'],
+                        'closetime'   => empty($this->branchlist[$index]['closetime'])?null:$this->branchlist[$index]['closetime'],
+                        'start_date'  => empty($this->branchlist[$index]['start_date'])?null:$this->branchlist[$index]['start_date'],
+                        'expiry_date' => empty($this->branchlist[$index]['expiry_date'])?null:$this->branchlist[$index]['expiry_date'],
+                        'description' => empty($this->branchlist[$index]['descriptionbranch'])?null:$this->branchlist[$index]['descriptionbranch'],
+                        'phone'       => empty($this->branchlist[$index]['phone'])?null:$this->branchlist[$index]['phonetwo'],
+                        'phone2'      => empty($this->branchlist[$index]['phonetwo'])?null:$this->branchlist[$index]['phonetwo'],
+                    ]);
+                }
             }
             $this->dispatchBrowserEvent('successmsg',['msg' => 'Save Store Success ❤ ']);
 
