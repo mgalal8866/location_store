@@ -18,15 +18,12 @@ class create_city_regions extends Seeder
     public function run()
     {
         cities::truncate();
-      //
 
         $jsoncity = File::get('public/city/cities.json');
-        // File::get("database/data/todo.json");
         $city = json_decode($jsoncity);
 
         foreach ($city as $key => $value) {
             cities::create([
-                "id" => $value->id,
                 "city_name_ar" => $value->city_name_ar,
                 "city_name_en" => $value->city_name_en,
                 "slug" => Str::slug($value->city_name_en),
