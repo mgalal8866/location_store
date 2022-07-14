@@ -14,8 +14,8 @@ class CreateProductImagesTable extends Migration
     public function up()
     {
         Schema::create('product_images', function (Blueprint $table) {
-            $table->increments('id');
-            $table->bigInteger('products_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('products_id');
 			$table->string('img');
             $table->tinyInteger('position')->default('0');
             $table->tinyInteger('is_default')->default('0')->comment('[1 = افتراضى] [0 = غير افتراضى]');
