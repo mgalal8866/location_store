@@ -34,27 +34,21 @@ class Kernel extends ConsoleKernel
     {
         if(gettaskvar('activebackupgoogle')==true){
            $schedule->command('db:backup')->cron(gettaskvar('backupgoogle'));
-
         }
         if(gettaskvar('activenotify')==true){
             $schedule->command('notifi:send')->cron(gettaskvar('notify'));
-
         }
         if(gettaskvar('activenotifyexpirebranch')==true){
             $schedule->command('Notifyexpire:branch')->cron(gettaskvar('timenotifyexpirebranch'));
-
         }
         if(gettaskvar('activenotifyexpireproduct')==true){
             $schedule->command('Notifyexpire:product')->cron(gettaskvar('timenotifyexpireproduct'));
-
         }
         if(gettaskvar('activenotifybranchviews')==true){
             $schedule->command('Notifybranch:views')->cron(gettaskvar('timenotifybranchviews'));
-
         }
         if(gettaskvar('activenotifyproductviews')==true){
-            $schedule->command('Notifyproduct:views')->cron('0 0 * * *');
-            log::warning(gettaskvar('timenotifyproductviews'));
+            $schedule->command('Notifyproduct:views')->cron(gettaskvar('timenotifyproductviews'));
         }
     }
 
