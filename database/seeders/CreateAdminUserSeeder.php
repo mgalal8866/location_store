@@ -17,17 +17,17 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run()
     {
-         User::create([
-            'name' => 'Brand',
-            'mobile' => '01024346010',
-            'password' => bcrypt('01024346010'),
-            'city_id' => 3,
-            'region_id' => 8,
-            'gender' =>0
-        ]);
+        //  User::create([
+        //     'name' => 'ADMIN',
+        //     'mobile' => '01024346010',
+        //     'password' => bcrypt('01024346011'),
+        //     'city_id' => 3,
+        //     'region_id' => 8,
+        //     'gender' =>0
+        // ]);
 
         $admin = admin::create([
-            'name' => 'Brand',
+            'name' => 'ADMIN',
             'mobile' => '01024346011',
             'password' => bcrypt('01024346011')
         ]);
