@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // feek::class,
             create_city_regions::class,
-            PermissionTableseeder::class,
+            // PermissionTableseeder::class,
             CreateAdminUserSeeder::class,
             SettingsTableSeeder::class
         ]);
