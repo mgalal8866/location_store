@@ -53,8 +53,8 @@ class Kernel extends ConsoleKernel
             log::warning('activenotifybranchviews');
         }
         if(gettaskvar('activenotifyproductviews')==true){
-            $schedule->command('Notifyproduct:views')->cron(gettaskvar('timenotifyproductviews'));
-            log::warning('activenotifyproductviews'.gettaskvar('timenotifyproductviews'));
+            $schedule->command('Notifyproduct:views')->cron('\''.gettaskvar('timenotifyproductviews').'\'');
+            log::warning('activenotifyproductviews' . '\''. gettaskvar(('timenotifyproductviews').'\''));
         }
     }
 
