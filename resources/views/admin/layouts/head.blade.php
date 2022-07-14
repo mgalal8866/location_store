@@ -2,6 +2,7 @@
     @yield('title',  getSettingsOf('site_title'))
 
 </title>
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -38,6 +39,9 @@
         ?> }</style>
 
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9908015336564777"
+     crossorigin="anonymous"></script>
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 
   @livewireStyles
   @stack('csslive')
