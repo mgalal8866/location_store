@@ -25,9 +25,11 @@ class SettingsTableSeeder extends Seeder
         setting::create([ 'display_name' => 'app_new_branch', 'key' => 'app_new_branch', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'pages', 'ordering' => 1]);
         setting::create([ 'display_name' => 'app_pag', 'key' => 'app_pag', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'pages', 'ordering' => 2]);
         setting::create([ 'display_name' => 'app_page_branch', 'key' => 'app_page_branch', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'pages', 'ordering' => 3]);
-        setting::create([ 'display_name' => 'app_pagforsearch_branch', 'key' => 'app_pagforsearch_branch', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 7]);
-        setting::create([ 'display_name' => 'maintenance_mode', 'key' => 'maintenance_mode', 'value' => false, 'details' => null, 'type' => 'text', 'section' => 'maintenance', 'ordering' => 1]);
-        setting::create([ 'display_name' => 'privacy', 'key' => 'privacy', 'value' => "privacy", 'details' => null, 'type' => 'text', 'section' => 'privacy', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'app_pagforsearch_branch', 'key' => 'app_pagforsearch_branch', 'value' => 10, 'details' => null, 'type' => 'text', 'section' => 'pages', 'ordering' => 4]);
+        setting::create([ 'display_name' => 'maintenance_mode', 'key' => 'maintenance_mode', 'value' => false, 'details' => 'false|true', 'type' => 'boolean', 'section' => 'maintenance', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'privacy', 'key' => 'privacy', 'value' => "privacy", 'details' => null, 'type' => 'textarea', 'section' => 'privacy', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'splash screen', 'key' => 'splash_screen', 'value' => "g0jW3rBoPatZVUUpLbjmpdwFB0NPcpBzmHmhfSLS.png", 'details' => null, 'type' => 'text', 'section' => 'image', 'ordering' => 1,'show' => 1]);
+
 
         setting::create([ 'display_name' => 'footer_text', 'key' => 'footer_text', 'value' => '<strong>Copyright &copy; 2022 <a href="01024346011">Mohamed Galal</a>.</strong>
         All rights reserved.
