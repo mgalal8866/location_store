@@ -17,7 +17,7 @@ class create_city_regions extends Seeder
      */
     public function run()
     {
-        cities::truncate();
+        // cities::truncate();
 
         $jsoncity = File::get('public/city/cities.json');
         $city = json_decode($jsoncity);
