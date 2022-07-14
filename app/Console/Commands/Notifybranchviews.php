@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\branchs;
 use App\Models\tasklog;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Notifybranchviews extends Command
@@ -22,6 +23,7 @@ class Notifybranchviews extends Command
 
     public function handle()
     {
+        log::warning('Notifybranch');
         $branchs = branchs::whereActive(0)->get();
         foreach ($branchs as $branch) {
             if($branch->view >= gettaskvar('viewsbranch') && $branch->view != null ){

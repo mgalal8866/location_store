@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\tasklog;
 use App\Models\products;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class notifyproductviews extends Command
@@ -27,6 +28,7 @@ class notifyproductviews extends Command
      */
     public function handle()
     {
+        log::warning('Notifyproduct');
         $products = products::whereActive(0)->get();
         foreach ($products as $product) {
             if($product->view ==  gettaskvar('viewsproduct') && $product->view != null ){

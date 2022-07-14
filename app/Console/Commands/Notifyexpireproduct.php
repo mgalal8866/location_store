@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Models\products;
 use App\Models\tasklog;
 use Illuminate\Console\Command;
-
+use Illuminate\Support\Facades\Log;
 class Notifyexpireproduct extends Command
 {
     use GeneralTrait;
@@ -19,6 +19,7 @@ class Notifyexpireproduct extends Command
 
     public function handle()
     {
+        log::warning('Notifyexpire');
         $products = products::whereActive(0)->get();
         foreach ($products as $product) {
 

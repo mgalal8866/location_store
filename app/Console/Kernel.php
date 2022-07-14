@@ -34,27 +34,27 @@ class Kernel extends ConsoleKernel
     {
         if(gettaskvar('activebackupgoogle')==true){
            $schedule->command('db:backup')->cron(gettaskvar('backupgoogle'));
-           log::warning('activebackupgoogle');
+
         }
         if(gettaskvar('activenotify')==true){
             $schedule->command('notifi:send')->cron(gettaskvar('notify'));
-            log::warning('notifi');
+
         }
         if(gettaskvar('activenotifyexpirebranch')==true){
             $schedule->command('Notifyexpire:branch')->cron(gettaskvar('timenotifyexpirebranch'));
-            log::warning('activenotifyexpirebranch');
+
         }
         if(gettaskvar('activenotifyexpireproduct')==true){
             $schedule->command('Notifyexpire:product')->cron(gettaskvar('timenotifyexpireproduct'));
-            log::warning('activenotifyexpireproduct');
+
         }
         if(gettaskvar('activenotifybranchviews')==true){
             $schedule->command('Notifybranch:views')->cron(gettaskvar('timenotifybranchviews'));
-            log::warning('activenotifybranchviews');
+
         }
         if(gettaskvar('activenotifyproductviews')==true){
-            $schedule->command('Notifyproduct:views')->cron('\''.gettaskvar('timenotifyproductviews').'\'');
-            log::warning('activenotifyproductviews' . '\''. gettaskvar(('timenotifyproductviews').'\''));
+            $schedule->command('Notifyproduct:views')->cron('0 0 * * *');
+            log::warning(gettaskvar('timenotifyproductviews'));
         }
     }
 

@@ -44,7 +44,7 @@ class notification extends Command
      */
     public function handle()
     {
-
+        log::warning('notifi');
         $firebaseToken =   User::whereNotNull('device_token')->get();
         $notify = $this->notificationFCM( 'رسالة تلقائية',
         Carbon::now(). ' تم ارسال  -  ' .$firebaseToken->pluck('name')[0],

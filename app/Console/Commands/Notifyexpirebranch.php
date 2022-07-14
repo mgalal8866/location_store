@@ -21,7 +21,7 @@ class Notifyexpirebranch extends Command
     }
 
     public function handle()
-    {
+    { log::warning('Notifyexpire');
         $branchs = branchs::whereActive(0)->get();
         foreach ($branchs as $branch) {
             if($branch->expiry_date ==  now()->toFormattedDate() && $branch->expiry_date != null ){
