@@ -127,7 +127,7 @@ class Newstore extends Component
     }
     public function SaveStoreToAllRegion()
     {
- 
+
         $store = stores::create(
             ['name'        => $this->name??null
             ,'slug'        => Str::slug($this->name)
@@ -166,7 +166,7 @@ class Newstore extends Component
                         'start_date'  => empty($this->branchlist[$index]['start_date'])?null:$this->branchlist[$index]['start_date'],
                         'expiry_date' => empty($this->branchlist[$index]['expiry_date'])?null:$this->branchlist[$index]['expiry_date'],
                         'description' => empty($this->branchlist[$index]['descriptionbranch'])?null:$this->branchlist[$index]['descriptionbranch'],
-                        'phone'       => empty($this->branchlist[$index]['phone'])?null:$this->branchlist[$index]['phonetwo'],
+                        'phone'       => empty($this->branchlist[$index]['phone'])?null:$this->branchlist[$index]['phone'],
                         'phone2'      => empty($this->branchlist[$index]['phonetwo'])?null:$this->branchlist[$index]['phonetwo'],
                     ]);
                 }
