@@ -90,10 +90,10 @@ Route::post('save-token', function(Request $request)
    $privacy = ModelsSetting::where('key','privacy')->first();
     return view('privacy',compact('privacy'));})->name('privacy');
 
-    Route::get('/Home', function () {return view('landing');})->name('Home');
-
+ Route::get('/Home', function () {return view('landing');})->name('Home');
 
 Auth::routes();
+
 // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
 Route::group(
     [
