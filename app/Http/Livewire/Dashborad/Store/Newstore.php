@@ -127,11 +127,11 @@ class Newstore extends Component
     }
     public function SaveStoreToAllRegion()
     {
-
+ 
         $store = stores::create(
             ['name'        => $this->name??null
             ,'slug'        => Str::slug($this->name)
-            ,'category_id' => $this->subcategorys??$this->selectcategory
+            ,'category_id' => $this->selectsubcategory??$this->selectcategory
             ,'active'      => $this->activestore??null
             ,'branch_num'  => $this->numberbranch??null
             ,'user_id'     => Auth::user()->id??null
