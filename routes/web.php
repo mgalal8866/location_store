@@ -120,7 +120,7 @@ Route::group(
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
         Route::get('/user/message/{id?}',Message::class)->name('messageuser');
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
-        Route::get('home', function () {
-            return view('admin.layouts.pagenew');
-        })->name('home');
+      //  Route::get('home', function () {
+        //    return view('admin.layouts.pagenew');
+    //    })->name('home');
     });
