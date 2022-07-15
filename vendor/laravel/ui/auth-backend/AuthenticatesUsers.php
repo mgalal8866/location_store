@@ -84,7 +84,7 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
+            $this->credentials($request), $request->boolean('remember')
         );
     }
 
@@ -154,7 +154,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'mobile';
+        return 'email';
     }
 
     /**
@@ -177,7 +177,7 @@ trait AuthenticatesUsers
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('home');
+            : redirect('/');
     }
 
     /**
@@ -198,6 +198,6 @@ trait AuthenticatesUsers
      */
     protected function guard()
     {
-        return Auth::guard('admin');
+        return Auth::guard();
     }
 }
