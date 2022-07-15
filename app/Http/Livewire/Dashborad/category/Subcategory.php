@@ -14,6 +14,7 @@ class Subcategory extends Component
     }
     public function render()
     {
+        
         $this->categorys = categories::get();
         return view('livewire.dashborad.category.subcategory')->layout('admin.layouts.masterdash');
     }
