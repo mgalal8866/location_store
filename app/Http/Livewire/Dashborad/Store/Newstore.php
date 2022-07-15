@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Auth;
 class Newstore extends Component
 {
     use WithFileUploads ,GeneralTrait;
-    public $name,$activestore,$numberbranch,$categorys,$selectcity,$citys,$regions,$subcategorys ,$branchlist = [],$selectcategory,
+
+    public $images, $name,$activestore,$numberbranch,$categorys,$selectcity,$citys,$regions,$subcategorys ,$branchlist = [],$selectcategory,
     $selectsubcategory;
     public function mount()
     {
@@ -127,7 +128,15 @@ class Newstore extends Component
     }
     public function SaveStoreToAllRegion()
     {
-
+    //     foreach( $this->branchlist as $index => $branch){
+    //     if($this->branchlist[$index]['importimage'] != null){
+    //         $importimages = $this->uploadimages('branch',$this->branchlist[$index]['importimage']);
+    //     }else
+    //     {
+    //         $importimages = null;
+    //     }
+    //     dd( $this->branchlist[$index]['importimage'],$importimages );
+    // }
         $store = stores::create(
             ['name'        => $this->name??null
             ,'slug'        => Str::slug($this->name)

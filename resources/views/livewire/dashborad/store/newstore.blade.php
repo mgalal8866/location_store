@@ -178,13 +178,16 @@
                                                     <div class="card-body box-profile">
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
-
+                                                                @if ($images)
+                                                                <img src="{{ $images->temporaryUrl() }}">
+                                                                @endif
                                                                 <img src="{{ $branchlist[$index]['image'] }}" alt="image" style="height: 150px; width: 100px"  class="img-thumbnail">
 
                                                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                                                         <a class="btn btn-success btn-sm btn-file-upload pt-2">
                                                                             اختر صورة <input id="importimage{{ $index }}" type="file" name="file" size="40"
-                                                                                accept=".png, .jpg, .jpeg, .gif" wire:model='branchlist.{{ $index }}.importimage' required>
+                                                                                accept=".png, .jpg, .jpeg, .gif" wire:model='images' required>
+                                                                                {{-- branchlist.{{ $index }}.importimage --}}
                                                                         </a>
                                                                     <div  x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
                                                                         <div class="progress-bar bg-success  progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
