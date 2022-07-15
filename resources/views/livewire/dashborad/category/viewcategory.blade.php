@@ -22,7 +22,7 @@
 
     </style>
 @endpush
- <div class="card">
+    <div class="card">
         <div class="card-header" >
             <button class="btn btn-success  btn-sm float-right" data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>
         </div>
@@ -49,7 +49,7 @@
                                                 </span>
                                             @endif
                                             {{$category->name}}
-                                     
+
                                         </td>
                                         <td>
                                             <i class="fa fa-university" aria-hidden="true">{{$category->store->count()}}</i>

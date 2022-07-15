@@ -47,7 +47,7 @@
                             <label>{{__('tran.parentselect')}}</label>
                             <select   wire:model="parent" class="form-control">
                              <option value="">{{__('tran.parentselect')}}</option>
-                            @foreach($categorys as $itemm)
+                            @foreach( $categoryslist as $itemm)
                                 @if (!$itemm->parent_id)
                                     <option value="{{$itemm->id}}">{{$itemm->name}}</option>
                                 @endif

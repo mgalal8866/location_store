@@ -382,6 +382,8 @@
 
                                         </div>
                                     </div>
+                                  
+                                    @if ($branchlist[$loop->index]['lat'] != null)
                                     <div class="mapouter">
                                         <div class="gmap_canvas">
                                             <iframe   width="100%"  height="500" id="gmap_canvas" src="https://maps.google.com/maps?q={{$branchlist[$loop->index]['lat']}},{{ $branchlist[$loop->index]['lng']  }}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="1" scrolling="no" marginheight="0" marginwidth="0"></iframe>
@@ -391,6 +393,7 @@
                                                 </style>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="card-footer bg-secondary">
                                     <button class="btn btn-success" wire:click.prevent="save({{$loop->index}})"> Save </button>

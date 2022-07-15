@@ -24,7 +24,7 @@
                                 <div class="form-group">
 
                                         <div class="form-group">
-                                           
+
                                             <div style="margin-bottom: 10px;">
                                               <img src="{{$photo ??''}}" alt="favicon" style="max-width: 100px; max-height: 100px;">
                                             </div>
@@ -35,7 +35,7 @@
                                             <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
-                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='image' required>
+                                                        accept=".png, .jpg, .jpeg, .gif" wire:model='image' >
                                                 </a>
                                             <div  x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
                                                 <div class="progress-bar bg-success  progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">

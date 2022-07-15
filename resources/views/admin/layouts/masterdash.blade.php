@@ -38,6 +38,7 @@
 
     <!-- Main content -->
     <section class="content">
+  
     @yield('content')
         @isset($slot)
         {{$slot}}

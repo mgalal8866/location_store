@@ -113,8 +113,8 @@
                                             {{-- wire:submit.prevent="up('{{ $settings_section }}')"  --}}
                                             @foreach ($settings->where('section', $settings_section) as $setting)
                                                 <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
+                                                    <div  class="col-12">
+                                                        <div wire:ignore.self class="form-group">
                                                             <label
                                                                 for="title">{{ __($setting->display_name) }}</label>
                                                             @if ($setting->type == 'text')
@@ -132,12 +132,12 @@
                                                             @endif
                                                             @if ($setting->type == 'textarea')
                                                             <div wire:ignore >
-                                                                <textarea id="summernote"> {{ $setting->value }} </textarea>
+                                                                <textarea wire:ignore  id="summernote"> {{ $setting->value }} </textarea>
                                                             </div>
-                                                            <div wire:ignore class="form-group">
+                                                            {{-- <div wire:ignore class="form-group"> --}}
                                                                 {{-- <label for="note">Note:</label> --}}
                                                                 {{-- <textarea id="note" data-note="@this" wire:model.defer="note" class="form-control"></textarea> --}}
-                                                            </div>
+                                                            {{-- </div> --}}
 
 
                                                             @endif
@@ -148,10 +148,16 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            <div class="text-right">
-                                                <button type="submit"
 
-                                                    class="btn btn-primary" wire:loading.attr="disabled">{{ __('save') }}</button>
+
+                                            <div class="text-right">
+                                            
+                                                <div wire:loading wire:target="up">
+
+                                                    Saving ...
+
+                                                </div>
+                                                <button type="submit"  class="btn btn-primary"   wire:loading.attr="disabled">{{ __('save') }}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -274,12 +280,12 @@
 <script src="{{ URL::asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 
 {{-- <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script> --}}
-<script>
-    // ClassicEditor.create(document.querySelector('#note'));
-    // $('form').submit(function() {
-    //     @this.set('codetext', $('#note').val());
-    // })
-</script>
+{{-- <script> --}}
+    {{-- // ClassicEditor.create(document.querySelector('#note')); --}}
+    {{-- // $('form').submit(function() { --}}
+    {{-- //     @this.set('codetext', $('#note').val()); --}}
+    {{-- // }) --}}
+{{-- </script> --}}
 
  <script>
 
