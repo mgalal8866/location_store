@@ -21,6 +21,18 @@
 /* ==================================================
    Global Styles
 ================================================== */
+:root {
+    --backgroundselect: #1e90ff;
+    --color: #0f406b;
+    --white: #ffffff;
+    --background: #5d2079;
+
+    --background2: #5d207998;
+    /* #149077 */
+    /* #16A085 */
+    /* 1ABC9C */
+    /* var(--background2); */
+  }
 
 *
 {
@@ -33,7 +45,7 @@ html
 {
 	height: 100%;
 	overflow: auto;
-	
+
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
@@ -47,26 +59,26 @@ body
 	font-weight: 300;
 	color: #999;
 	background: #FFF;
-	
+
 	text-rendering: optimizeLegibility;
 	vertical-align: baseline;
 }
 
 ::selection
 {
-	background: #149077;
+	background: var(--backgroundselect);
 	color: #FFF;
 }
 
 ::-moz-selection
 {
-	background: #149077;
+	background: var(--backgroundselect);
 	color: #FFF;
 }
 
 a
 {
-	color: #16A085;
+	color: var(--background);
 	text-decoration: none;
 }
 
@@ -109,7 +121,7 @@ h1, h2, h3
 		font-size: 38px;
 		line-height: 38px;
 	}
-		
+
 	h3
 	{
 		font-size: 32px;
@@ -122,12 +134,12 @@ h1, h2, h3
 
 .colour1
 {
-	background: #16A085;
+	background: var(--background);
 }
 
 .colour2
 {
-	background: #1ABC9C;
+	background: var(--background2);
 }
 
 .colour3
@@ -159,20 +171,20 @@ h1, h2, h3
 		margin-left: -12px;
 		z-index: 11;
 	}
-	
+
 		.arrow-white:after
 		{
 			border-color: #FFF rgba(255,255,255,0) rgba(255,255,255,0) rgba(255,255,255,0); /** Using RGB to remove dark line in Firefox **/
 		}
-		
+
 		.arrow-theme:after
 		{
-			border-color: #16A085 rgba(22,160,133,0) rgba(22,160,133,0) rgba(22,160,133,0);
+			border-color: var(--background) rgba(22,160,133,0) rgba(22,160,133,0) rgba(22,160,133,0);
 		}
-		
+
 		.arrow-themelight:after
 		{
-			border-color: #1ABC9C rgba(26,188,156,0) rgba(26,188,156,0) rgba(26,188,156,0);
+			border-color: var(--background2) rgba(26,188,156,0) rgba(26,188,156,0) rgba(26,188,156,0);
 		}
 
 		.arrow-grey:after
@@ -198,7 +210,7 @@ h1, h2, h3
 		max-width: 1000px;
 		text-align: center;
 	}
-	
+
 #topcontainer
 {
 
@@ -212,7 +224,7 @@ h1, h2, h3
 		color: #444;
 		font-weight: 400;
 	}
-	
+
 		#topcontainer h1 span
 		{
 			font-size: 70px;
@@ -231,9 +243,9 @@ h1, h2, h3
 	{
 		font-size: 90px;
 		line-height: 90px;
-		color: #1abc9c;
+		color: var(--background2);
 	}
-	
+
 #countdown
 {
 	color: #FFF;
@@ -272,7 +284,7 @@ h1, h2, h3
 				line-height: 18px;
 				margin: 0;
 			}
-		
+
 #maincont
 {
 	color: #FFF;
@@ -283,12 +295,12 @@ h1, h2, h3
 		color: #FFF;
 		opacity: 0.6;
 	}
-	
+
 		#maincont a:hover
 		{
 			opacity: 1;
 		}
-	
+
 	#maincont #signupform
 	{
 		margin: 0 auto 20px auto;
@@ -321,15 +333,15 @@ h1, h2, h3
 				font-family: inherit;
 				font-size: 20px;
 				color: #333;
-				
+
 				-webkit-border-radius: 0px;
 				-moz-border-radius: 0px;
 				border-radius: 0px;
-				
+
 				-webkit-appearance: none;
 			}
 
-		button.formbutton, .sb-search-submit 
+		button.formbutton, .sb-search-submit
 		{
 			width: 60px;
 			height: 60px;
@@ -354,26 +366,26 @@ h1, h2, h3
 				outline: none;
 				z-index: -1;
 			}
-			
+
 			button.formbutton
 			{
 				color: #FFF;
-				background: #16A085;
+				background: var(--background);
 				z-index: 90;
 				border: 0;
 				height: 50px;
 			}
-			
+
 			button.formbutton span
 			{
 				font-size: 19px;
 			}
-			
+
 				button.formbutton:hover
 				{
-					background: #149077;
+					background: var(--backgroundselect);
 				}
-			
+
 #quotecont
 {
 	padding: 30px 0;
@@ -383,11 +395,11 @@ h1, h2, h3
 	{
 		background: #CCC;
 	}
-	
+
 		#quotecont .owl-theme .owl-controls .owl-page.active span,
 		#quotecont .owl-theme .owl-controls.clickable .owl-page:hover span
 		{
-			background: #1ABC9C;
+			background: var(--background2);
 		}
 
 #footercont
@@ -413,12 +425,12 @@ h1, h2, h3
 			font-size: 36px;
 			color: #999;
 		}
-		
+
 			#footercont #socialmedia ul li a:hover
 			{
-				color: #1ABC9C;
+				color: var(--background2);
 			}
-			
+
 	#footercont p.backtotop
 	{
 		margin: 0 0 40px 0;
@@ -433,19 +445,19 @@ h1, h2, h3
 			line-height: 32px;
 			color: #999;
 			padding: 5px 12px;
-			
+
 			-webkit-border-radius: 4px;
 			-moz-border-radius: 4px;
 			border-radius: 4px;
 		}
-		
+
 			#footercont p.backtotop a:hover
 			{
-				background-color: #1ABC9C;
+				background-color: var(--background2);
 				color: #FFF;
 				text-decoration: none;
 			}
-			
+
 				#footercont p.backtotop a:active
 				{
 					top: 2px;
@@ -463,7 +475,7 @@ h1, h2, h3
 		font-size: 23px;
 		line-height: 29px;
 	}
-	
+
 	#topcontainer h1
 	{
 		font-size: 54px;
@@ -476,51 +488,51 @@ h1, h2, h3
 			font-size: 70px;
 			line-height: 70px;
 		}
-	
+
 	#countdown #countdowncont
 	{
 		max-width: 400px;
 	}
-	
+
 		#countdown #countdowncont ul#countscript li
 		{
 			width: 50%;
 			padding: 10px 0;
 		}
-		
+
 			#countdown #countdowncont ul#countscript li span
 			{
 				font-size: 70px;
 				line-height: 70px;
 			}
-			
+
 	#quotecont
 	{
 		padding: 15px 0;
 	}
-		
+
 	#footercont
 	{
 		font-size: 19px;
 	}
-		
+
 		#footercont #footerleft
 		{
 			float: none;
 			padding: 30px 0;
 			text-align: center;
 		}
-		
+
 			#footercont #socialmedia ul li a
 			{
 				font-size: 32px;
 			}
-		
+
 		#footercont #footerright
 		{
 			float: none;
 		}
-	
+
 }
 
 /* ==================================================
@@ -528,19 +540,19 @@ h1, h2, h3
 ================================================== */
 
 @media screen and (max-width: 480px)
-{	
+{
 
 	body
 	{
 		font-size: 21px;
 		line-height: 27px;
 	}
-	
+
 	#topcontainer h1
 	{
 		font-size: 36px;
 		line-height: 36px;
-		
+
 	}
 
 		#topcontainer h1 span
@@ -548,12 +560,12 @@ h1, h2, h3
 			font-size: 50px;
 			line-height: 50px;
 		}
-	
+
 	#countdown #countdowncont ul#countscript li
 	{
 		padding: 6px 0;
 	}
-	
+
 		#countdown #countdowncont ul#countscript li span
 		{
 			font-size: 62px;
@@ -565,27 +577,27 @@ h1, h2, h3
 			font-size: 16px;
 			line-height: 16px;
 		}
-		
+
 	#maincont #signupform
 	{
 		margin: 0 auto 20px auto;
 		width: 100%;
 	}
-	
+
 	#quotecont
 	{
 		padding: 5px 0;
 	}
-	
+
 	#footercont #socialmedia ul li
 	{
 		margin: 0 5px;
 	}
-	
+
 		#footercont #socialmedia ul li a
 		{
 			font-size: 28px;
 		}
-	
+
 }
 
