@@ -27,7 +27,6 @@ use App\Http\Livewire\Dashborad\Store\Newstore;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\Products\Product;
 use App\Http\Livewire\Dashborad\category\Category2;
-use App\Http\Livewire\Dashborad\category\Subcategory;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use App\Models\setting as ModelsSetting;
@@ -88,18 +87,17 @@ Route::post('save-token', function(Request $request)
 
  Route::get('/privacy', function () {
    $privacy = ModelsSetting::where('key','privacy')->first();
+
     return view('privacy',compact('privacy'));})->name('privacy');
 
- Route::get('/Home', function () {return view('landing');})->name('Home');
 
 Auth::routes();
-
 // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
 
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'auth:admin' ]
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'auth' ]
 
     ], function(){
 
@@ -109,7 +107,6 @@ Route::group(
         Route::get('/setting/app',Setting::class)->name('settingapp');
         Route::get('/notification/',Notification::class)->name('setting/notification');
         Route::get('/category',viewcategory::class)->name('category');
-        Route::get('/subcategory/{slug?}',Subcategory::class)->name('subcategory');
         Route::get('/category2',Category2::class)->name('category2');
         Route::get('/slider',Slider::class)->name('slider');
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
@@ -120,7 +117,8 @@ Route::group(
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
         Route::get('/user/message/{id?}',Message::class)->name('messageuser');
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
-      //  Route::get('home', function () {
-        //    return view('admin.layouts.pagenew');
-    //    })->name('home');
+        Route::get('home', function () {
+            return view('admin.layouts.pagenew');
+        })->name('home');
     });
+
