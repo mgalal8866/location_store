@@ -10,6 +10,8 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::asset('assets/images/notify/bell.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::asset('assets/images/notify/bell.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::asset('assets/images/notify/bell.png')}}">
@@ -24,19 +26,14 @@
 <script src="{{ URL::asset('assets/Front/js/scripts.js')}}"></script>
 <!--[if lt IE 9]><script src="{{ URL::asset('https://html5shiv.googlecode.com/svn/trunk/html5.js')}}"></script><![endif]-->
 </head>
+
 <body id="backtotop">
-
-    <div class="fullwidth2 clearfix">
-        <div id="topcontainer" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
-            <img style="height:7rem" src="{{ URL::asset('assets/images/notify/bell.png')}}">
-            {{-- <p> --}}
-                {{--    <span class="fa fa-signal"></span> --}}
-              {{-- </p> --}}
-            {{-- <h1><span>Progress</span><br />is coming soon</h1>
-            <p>It's almost ready ... honest</p> --}}
-
-        </div>
-    </div>
+    <nav class="navbar ">
+        <a class="navbar-brand" href="https://api.whatsapp.com/send?phone=01024346011">
+          <img src="{{ URL::asset('assets/Front/images/WhatsApp.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
+          01024346011
+        </a>
+      </nav>
 <div class="fullwidth2 clearfix">
         <div id="quotecont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
 
@@ -57,6 +54,16 @@
 
         </div>
 </div>
+
+
+    <div class="second-row-item-app">
+        <nav>
+            <a href="#"><img class="download-btn" src="{{ URL::asset('assets/Front/images/download-1.svg')}}" alt=""></a>
+            <a href="#" ><img class="img" src="{{ URL::asset('assets/images/notify/bell.png')}}"></a>
+            <a href="#"><img class="download-btn" src="{{ URL::asset('assets/Front/images/download-2.svg')}}" alt=""></a>
+        </nav>
+    </div>
+
 
 {{-- <div class="arrow-separator arrow-grey"></div> --}}
 
@@ -130,7 +137,7 @@
 </div>
 <div class="arrow-separator arrow-grey"></div>
 
-<div class="fullwidth clearfix">
+<div class="center">
 	<div id="footercont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
 
 		<p class="backtotop"><a title="" href="#backtotop"><span class="fa fa-angle-double-up"></span></a></p>

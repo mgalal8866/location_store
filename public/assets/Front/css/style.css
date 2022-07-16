@@ -26,8 +26,8 @@
     --color: #0f406b;
     --white: #ffffff;
     --background: #5d2079;
-
     --background2: #5d207998;
+
     /* #149077 */
     /* #16A085 */
     /* 1ABC9C */
@@ -140,6 +140,7 @@ h1, h2, h3
 .colour2
 {
 	background: var(--background2);
+
 }
 
 .colour3
@@ -195,7 +196,30 @@ h1, h2, h3
 /* ==================================================
    General Layout Styles
 ================================================== */
+ .navbar{
+    background-color: var(--background2) !important ;
+    color: var(--white)  !important;
+ }
+ .navbar-brand{
+    text-shadow: #0f406b;
+    color: var(--white);
+ }
+.second-row-item-app {
+    text-align: center;
+    /* margin: auto; */
+    /* width: 50%; */
+}
 
+.second-row-item-app  #img{
+    height: 7rem;
+}
+.second-row-item-app a img{
+    height: 4rem;
+}
+nav a {
+    display: inline-block;
+    padding: 5px;
+  }
 .fullwidth
 {
 	width: 100%;
@@ -570,28 +594,28 @@ h1, h2, h3
 
 	}
 
-		#topcontainer h1 span
-		{
-			font-size: 50px;
-			line-height: 50px;
-		}
+    #topcontainer h1 span
+    {
+        font-size: 50px;
+        line-height: 50px;
+    }
 
 	#countdown #countdowncont ul#countscript li
 	{
 		padding: 6px 0;
 	}
 
-		#countdown #countdowncont ul#countscript li span
-		{
-			font-size: 62px;
-			line-height: 62px;
-		}
+    #countdown #countdowncont ul#countscript li span
+    {
+        font-size: 62px;
+        line-height: 62px;
+    }
 
-		#countdown #countdowncont ul#countscript li p
-		{
-			font-size: 16px;
-			line-height: 16px;
-		}
+    #countdown #countdowncont ul#countscript li p
+    {
+        font-size: 16px;
+        line-height: 16px;
+    }
 
 	#maincont #signupform
 	{
@@ -609,10 +633,24 @@ h1, h2, h3
 		margin: 0 5px;
 	}
 
-		#footercont #socialmedia ul li a
-		{
-			font-size: 28px;
-		}
+    #footercont #socialmedia ul li a
+    {
+        font-size: 28px;
+    }
+    .second-row-item-app {
+        text-align: center;
+        /* margin: auto; */
+        /* width: 50%; */
+    }
+
+    .second-row-item-app a img{
+        height: 3rem;
+    }
+
+
+    .item img{
+        max-width: 100%;
+        height: auto;   }
 
 }
 
