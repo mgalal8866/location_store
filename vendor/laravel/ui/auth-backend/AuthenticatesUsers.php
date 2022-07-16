@@ -34,7 +34,7 @@ trait AuthenticatesUsers
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the mobile and
+        // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
@@ -70,7 +70,7 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->mobile() => 'required|string',
+            $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
     }
@@ -84,7 +84,7 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
+            $this->credentials($request), $request->boolean('remember')
         );
     }
 
@@ -96,7 +96,7 @@ trait AuthenticatesUsers
      */
     protected function credentials(Request $request)
     {
-        return $request->only($this->mobile(), 'password');
+        return $request->only($this->username(), 'password');
     }
 
     /**
@@ -143,16 +143,16 @@ trait AuthenticatesUsers
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->mobile() => [trans('auth.failed')],
+            $this->username() => [trans('auth.failed')],
         ]);
     }
 
     /**
-     * Get the login mobile to be used by the controller.
+     * Get the login username to be used by the controller.
      *
      * @return string
      */
-    public function mobile()
+    public function username()
     {
         return 'mobile';
     }
