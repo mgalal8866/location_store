@@ -18,7 +18,6 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        dd(';');
     	$validator = Validator::make($request->all(), [
             'mobile'     => 'required',
             'password'   => 'required|string|min:6',
