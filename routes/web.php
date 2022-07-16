@@ -90,9 +90,11 @@ Route::post('save-token', function(Request $request)
 
     return view('privacy',compact('privacy'));})->name('privacy');
 
+    Route::get('/', function () {return view('Front.layout');})->name('front');
 
 Auth::routes();
 // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -101,6 +103,12 @@ Route::group(
 
     ], function(){
 
+
+Route::group(
+    [
+        'prefix' => 'admin',
+
+    ], function(){
         Route::get('/',Dashborad::class)->name('dashborad');
         Route::get('/city',Citits::class)->name('city');
         Route::get('/city/regions/{id?}',Regions::class)->name('regions');
@@ -122,3 +130,4 @@ Route::group(
         })->name('home');
     });
 
+    });
