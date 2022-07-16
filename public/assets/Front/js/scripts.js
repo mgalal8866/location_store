@@ -57,5 +57,21 @@ $(window).load(function() {
 		lazyLoad: false,
 		transitionStyle: "backSlide" /** fade, backSlide, goDown, fadeUp - Remove whole line for slide transition **/
 	});
+    $("#commentslider1").owlCarousel({
+		autoPlay: false, /** for autoplay - change false to 4000 to auto change every 4 seconds (for example) **/
+		autoHeight: true,
+		stopOnHover: true,
+		navigation: false,
+		navigationText: ["prev","next"],
+		pagination: true,
+		paginationNumbers: false,
+		paginationSpeed: 500,
+		goToFirstSpeed: 500,
+		slideSpeed: 500,
+		rewindSpeed: 500,
+		singleItem: true,
+		lazyLoad: false,
+		transitionStyle: "backSlide" /** fade, backSlide, goDown, fadeUp - Remove whole line for slide transition **/
+	});
 });
 

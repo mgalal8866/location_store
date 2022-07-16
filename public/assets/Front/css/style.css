@@ -399,11 +399,13 @@ h1, h2, h3
 					background: var(--backgroundselect);
 				}
 
-#quotecont
-{
+/* #quotecont
+{ */
 	/* padding: 30px 0; */
+/* } */
+.qq{
+    padding: 30px 0;
 }
-
 	#quotecont .owl-theme .owl-controls .owl-page span
 	{
 		background: #CCC;

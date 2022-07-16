@@ -28,10 +28,10 @@
 
     <div class="fullwidth2 clearfix">
         <div id="topcontainer" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
-
-            <p>
+            <img style="height:7rem" src="{{ URL::asset('assets/images/notify/bell.png')}}">
+            {{-- <p> --}}
                 {{--    <span class="fa fa-signal"></span> --}}
-                <img style="height:7rem" src="{{ URL::asset('assets/images/notify/bell.png')}}"></p>
+              {{-- </p> --}}
             {{-- <h1><span>Progress</span><br />is coming soon</h1>
             <p>It's almost ready ... honest</p> --}}
 
@@ -40,7 +40,7 @@
 <div class="fullwidth2 clearfix">
         <div id="quotecont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
 
-            <div id="commentslider" class="owl-carousel">
+            <div id="commentslider1" class="owl-carousel">
                 <div class="item">
                     <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
 
@@ -109,7 +109,7 @@
 <div class="arrow-separator arrow-themelight"></div>
 
 <div class="fullwidth colour3 clearfix">
-	<div id="quotecont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
+	<div id="quotecont" class="bodycontainer qq clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
 
         <div id="commentslider" class="owl-carousel">
             <div class="item">
