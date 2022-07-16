@@ -26,17 +26,40 @@
 </head>
 <body id="backtotop">
 
-<div class="fullwidth clearfix">
-	<div id="topcontainer" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
+    <div class="fullwidth2 clearfix">
+        <div id="topcontainer" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
 
-		<p>
-            {{--    <span class="fa fa-signal"></span> --}}
-            <img style="height:7rem" src="{{ URL::asset('assets/images/notify/bell.png')}}"></p>
-		<h1><span>Progress</span><br />is coming soon</h1>
-		<p>It's almost ready ... honest</p>
+            <p>
+                {{--    <span class="fa fa-signal"></span> --}}
+                <img style="height:7rem" src="{{ URL::asset('assets/images/notify/bell.png')}}"></p>
+            {{-- <h1><span>Progress</span><br />is coming soon</h1>
+            <p>It's almost ready ... honest</p> --}}
 
-	</div>
+        </div>
+    </div>
+<div class="fullwidth2 clearfix">
+        <div id="quotecont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
+
+            <div id="commentslider" class="owl-carousel">
+                <div class="item">
+                    <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
+
+                </div>
+                <div class="item">
+                    <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
+
+                </div>
+                <div class="item">
+                    <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
+
+                </div>
+            </div>
+
+        </div>
 </div>
+
+{{-- <div class="arrow-separator arrow-grey"></div> --}}
+
 
 <div class="arrow-separator arrow-white"></div>
 
@@ -66,9 +89,7 @@
 
 	</div>
 </div>
-
 <div class="arrow-separator arrow-theme"></div>
-
 <div class="fullwidth colour2 clearfix">
 	<div id="maincont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
 
@@ -85,7 +106,6 @@
 
 	</div>
 </div>
-
 <div class="arrow-separator arrow-themelight"></div>
 
 <div class="fullwidth colour3 clearfix">
@@ -108,7 +128,6 @@
 
 	</div>
 </div>
-
 <div class="arrow-separator arrow-grey"></div>
 
 <div class="fullwidth clearfix">
