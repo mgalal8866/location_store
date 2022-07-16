@@ -39,15 +39,15 @@
 
             <div id="commentslider1" class="owl-carousel">
                 <div class="item">
-                    <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
+                    <img  src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" >
 
                 </div>
                 <div class="item">
-                    <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
+                    <img  src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" >
 
                 </div>
                 <div class="item">
-                    <img class="d-block w-100" src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" alt="Second slide">
+                    <img  src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" >
 
                 </div>
             </div>

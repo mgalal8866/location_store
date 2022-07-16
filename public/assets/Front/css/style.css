@@ -654,3 +654,16 @@ nav a {
 
 }
 
+/* @media screen and (max-width: 480px){
+.second-row-item-app  #img{
+    height: 7rem;
+}
+.second-row-item-app a img{
+    height: 4rem;
+}
+nav a {
+    display: inline-block;
+    padding: 5px;
+  } */
+
+
