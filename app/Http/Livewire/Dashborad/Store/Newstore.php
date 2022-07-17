@@ -138,14 +138,14 @@ class Newstore extends Component
     //     dd( $this->branchlist[$index]['importimage'],$importimages );
     // }
 
-dd(Auth::guard('admin')->id());
+
         $store = stores::create(
             ['name'        => $this->name??null
             ,'slug'        => Str::slug($this->name)
             ,'category_id' => $this->selectsubcategory??$this->selectcategory
             ,'active'      => $this->activestore??null
             ,'branch_num'  => $this->numberbranch??null
-            ,'user_id'     => Auth::user()->id??null
+            ,'user_id'     => Auth::guard('admin')->id()??null
             ]
         );
             $region = regions::whereMain(false)->get();
@@ -195,7 +195,7 @@ dd(Auth::guard('admin')->id());
             ,'category_id' => $this->selectsubcategory??$this->selectcategory
             ,'active'      => $this->activestore??null
             ,'branch_num'  => $this->numberbranch??null
-            ,'user_id'     => Auth::user()->id??null
+            ,'user_id'     => Auth::guard('admin')->id()??null
             ]
         );
 
