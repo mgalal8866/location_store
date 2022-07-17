@@ -137,6 +137,8 @@ class Newstore extends Component
     //     }
     //     dd( $this->branchlist[$index]['importimage'],$importimages );
     // }
+
+dd(Auth::user()->id);
         $store = stores::create(
             ['name'        => $this->name??null
             ,'slug'        => Str::slug($this->name)
