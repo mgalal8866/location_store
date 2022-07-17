@@ -1,5 +1,5 @@
 <div >
-    <!-- /.modal -->
+
     <div wire:ignore.self  class="modal fade" id="modal-delete">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -9,6 +9,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <div wire:loading>
+
+            Processing Payment...
+
+         </div>
           <div class="modal-body">
             <p>  {{ __('tran.surefordelete') }} </p>
             <p>
@@ -18,8 +23,8 @@
               &hellip;</p>
           </div>
           <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-outline-light" data-dismiss="modal">{{ __('tran.close') }}</button>
-            <button type="button" class="btn btn-danger" wire:click="delete()">{{ __('tran.delete') }}</button>
+            <button  wire:loading.attr="disabled" type="button" class="btn btn-outline-light" data-dismiss="modal">{{ __('tran.close') }}</button>
+            <button  wire:loading.attr="disabled" type="button" class="btn btn-danger" wire:click="delete()">{{ __('tran.delete') }}</button>
           </div>
         </div>
       </div>

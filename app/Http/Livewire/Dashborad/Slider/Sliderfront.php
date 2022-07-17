@@ -27,7 +27,6 @@ class Sliderfront extends Component
 
     public function add()
     {
-        // dd( $this->image);
         $this->image = $this->uploadimages('sliderfront',$this->image);
 
         $this->slider = ModelsSliderfront::create([

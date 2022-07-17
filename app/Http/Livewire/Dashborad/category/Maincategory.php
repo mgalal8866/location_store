@@ -2,23 +2,21 @@
 
 namespace App\Http\Livewire\Dashborad\Category;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Livewire\Component;
 use App\Models\categories;
 use Illuminate\Support\Str;
+use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
-class Subcategory extends Component
+class Maincategory extends Component
 {
+    use WithPagination;
     use WithFileUploads;
     use GeneralTrait;
-    public $mcategorys,$maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo ;
-    public function mount($slug)
-    {
-        $this->mainslug = $slug ;
-        $this->categorys = categories::get();
-        $this->cat = categories::where('slug', $this->mainslug)->first();
-    }
+
+    protected $paginationTheme = 'bootstrap';
+    public $photo, $name, $slug,$image;
     public function view($slug,$name1)
     {
         $this->slug = $slug;
@@ -35,10 +33,10 @@ class Subcategory extends Component
         $category->update([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
-            'parent_id' => $this->cat->id ,
+            'parent_id' => null,
             'image' => $this->image??$category->getAttributes()['image']
         ]);
-        $this->resetExcept('cat');
+        $this->reset();
         $this->image = null;
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
@@ -48,12 +46,8 @@ class Subcategory extends Component
     {
 
         $category = categories::where('slug',$slug)->first();
-        if($parent){
-            $parent = categories::where('slug',$parent)->first();
-             $this->parent = $parent->slug;
-       }else{
-           $this->parent='';
-       }
+
+
         $this->photo = $category->image;
         $this->slug = $slug;
         $this->name = $category->name;
@@ -75,18 +69,15 @@ class Subcategory extends Component
     }
     public function delete()
     {
-
         $category = categories::where('slug',$this->slug)->first();
         $category->delete();
-        $this->resetExcept('cat');
+        $this->reset();
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
-        // dd($this->cat);
     }
     public function render()
     {
-
-        $this->mcategorys = categories::where('parent_id', $this->cat['id'])->get();
-        return view('livewire.dashborad.category.subcategory')->layout('admin.layouts.masterdash');
+        $categorys = categories::whereParentId(null)->latest()->paginate(10);
+        return view('livewire.dashborad.category.maincategory',['categorys' => $categorys])->layout('admin.layouts.masterdash');
     }
 }

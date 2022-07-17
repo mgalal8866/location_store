@@ -19,7 +19,7 @@ class CitiesController extends Controller
     }
 
     public function getregions(Request $request){
-       return $this->returnData('regions',region::collection(regions::whereCityId($request->id_city)->get()),'');
+       return $this->returnData('regions',region::collection(regions::whereMain('0')->whereCityId($request->id_city)->get()),'');
     }
 
     public function notifi(){

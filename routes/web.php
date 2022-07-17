@@ -27,6 +27,8 @@ use App\Http\Livewire\Dashborad\Store\Newstore;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\Products\Product;
 use App\Http\Livewire\Dashborad\category\Category2;
+use App\Http\Livewire\Dashborad\Category\Maincategory;
+use App\Http\Livewire\Dashborad\Category\Subcategory;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use App\Http\Livewire\Dashborad\Slider\Sliderfront;
@@ -117,6 +119,8 @@ Route::group(
         Route::get('/category',viewcategory::class)->name('category');
         Route::get('/category2',Category2::class)->name('category2');
         Route::get('/slider',Slider::class)->name('slider');
+        Route::get('/maincategory',Maincategory::class)->name('maincategory');
+        Route::get('/subcategory/{slug?}',Subcategory::class)->name('subcategory');
         Route::get('/slider/front',Sliderfront::class)->name('sliderfront');
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');

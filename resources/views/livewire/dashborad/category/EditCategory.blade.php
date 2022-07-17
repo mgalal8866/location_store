@@ -51,9 +51,9 @@
                                     <select   wire:model="parent" class="form-control">
                                     <option value="">{{__('tran.parentselect')}}</option>
                                     @foreach($categorys as $itemm)
-                                        @if (!$itemm->parent_id && $slug != $itemm->slug )
+                                        {{-- @if (!$itemm->parent_id && $slug != $itemm->slug ) --}}
                                             <option value="{{$itemm->slug}}">{{$itemm->name}}</option>
-                                        @endif
+                                        {{-- @endif --}}
                                     @endforeach
                                     </select>
                                 </div>
