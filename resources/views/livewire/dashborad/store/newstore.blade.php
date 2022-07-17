@@ -186,7 +186,7 @@
                                                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                                                         <a class="btn btn-success btn-sm btn-file-upload pt-2">
                                                                             اختر صورة <input id="importimage{{ $index }}" type="file" name="file" size="40"
-                                                                                accept=".png, .jpg, .jpeg, .gif" wire:model='images' required>
+                                                                                accept=".png, .jpg, .jpeg, .gif" wire:model='branchlist.{{ $index }}.importimage' required>
                                                                                 {{-- branchlist.{{ $index }}.importimage --}}
                                                                         </a>
                                                                     <div  x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
