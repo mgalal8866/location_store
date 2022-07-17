@@ -87,6 +87,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'sliderfront' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/sliderfront'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'notify' => [
             'driver' => 'local',
             'root' => public_path('assets/images/notify'),

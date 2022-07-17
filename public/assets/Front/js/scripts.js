@@ -26,16 +26,16 @@ $(document).ready(function() {
 
 /** Countdown Timer **/
 
-$(document).ready(function() {
-	"use strict";
-	$("#countdown").countdown({
-		date: "22 July 2022 12:00:00", /** Enter new date here **/
-		format: "on"
-	},
-	function() {
-		// callback function
-	});
-});
+// $(document).ready(function() {
+// 	"use strict";
+// 	$("#countdown").countdown({
+// 		date: "22 July 2022 12:00:00", /** Enter new date here **/
+// 		format: "on"
+// 	},
+// 	function() {
+// 		// callback function
+// 	});
+// });
 
 /** Owl Carousel **/
 

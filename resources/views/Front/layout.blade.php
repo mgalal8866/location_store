@@ -6,9 +6,9 @@
 <head>
 <!-- Website Template designed by www.downloadwebsitetemplates.co.uk -->
 <meta charset="UTF-8">
-<title>Dalil Misr</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
+<title>{{$setting->where('key','site_title')->first()->value??''}}</title>
+<meta name="description" content="{{$setting->where('key','site_description')->first()->value??''}}">
+<meta name="keywords" content="{{$setting->where('key','site_keywords')->first()->value??''}}">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -29,38 +29,38 @@
 
 <body id="backtotop">
     <nav class="navbar ">
-        <a class="navbar-brand" href="https://api.whatsapp.com/send?phone=01024346011">
+        <a class="navbar-brand" href="https://api.whatsapp.com/send?phone={{$setting->where('key','phone_number')->first()->value??''}}">
           <img src="{{ URL::asset('assets/Front/images/WhatsApp.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
-          01024346011
+         {{$setting->where('key','phone_number')->first()->value??''}}
         </a>
+        <center>
+            <a class="navbar-brand" href="https://api.whatsapp.com/send?phone={{$setting->where('key','phone_number')->first()->value??''}}">
+                {{$setting->where('key','site_title')->first()->value??''}}
+              </a>
+        </center>
       </nav>
 <div class="fullwidth2 clearfix">
         <div id="quotecont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
-
             <div id="commentslider1" class="owl-carousel">
-                <div class="item">
-                    <img  src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" >
-
-                </div>
-                <div class="item">
-                    <img  src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" >
-
-                </div>
-                <div class="item">
-                    <img  src="{{ URL::asset('assets/Front/images/slider/tutorial-computer-900x288.jpg')}}" >
-
-                </div>
+                @foreach ($sliderfront as $slide )
+                    <div class="item">
+                        <img  src="{{ $slide->image }}" >
+                    </div>
+                @endforeach
             </div>
-
         </div>
 </div>
 
 
     <div class="second-row-item-app">
         <nav>
-            <a href="#"><img class="download-btn" src="{{ URL::asset('assets/Front/images/download-1.svg')}}" alt=""></a>
+            @if ($setting->where('key','app_google')->first()->value)
+                <a href="{{ $setting->where('key','app_google')->first()->value??'' }}"><img class="download-btn" src="{{ URL::asset('assets/Front/images/download-1.svg')}}" alt=""></a>
+            @endif
             <a href="#" ><img class="img" src="{{ URL::asset('assets/images/notify/bell.png')}}"></a>
-            <a href="#"><img class="download-btn" src="{{ URL::asset('assets/Front/images/download-2.svg')}}" alt=""></a>
+            @if ($setting->where('key','app_google')->first()->value)
+                <a href="{{ $setting->where('key','app_google')->first()->value??'' }}"><img class="download-btn" src="{{ URL::asset('assets/Front/images/download-2.svg')}}" alt=""></a>
+            @endif
         </nav>
     </div>
 
@@ -135,24 +135,49 @@
 
 	</div>
 </div>
-<div class="arrow-separator arrow-grey"></div>
+
 
 <div class="center">
 	<div id="footercont" class="bodycontainer clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
-
+        <center>
 		<p class="backtotop"><a title="" href="#backtotop"><span class="fa fa-angle-double-up"></span></a></p>
-		<div id="socialmedia" class="clearfix">
-			<ul>
-				<li><a title="" href="#" rel="external"><span class="fa fa-facebook"></span></a></li>
-				<li><a title="" href="#" rel="external"><span class="fa fa-twitter"></span></a></li>
-				<li><a title="" href="#" rel="external"><span class="fa fa-google-plus"></span></a></li>
-				<li><a title="" href="#" rel="external"><span class="fa fa-linkedin"></span></a></li>
-				<li><a title="" href="#" rel="external"><span class="fa fa-pinterest"></span></a></li>
-			</ul>
-		</div>
-		<p>Free Responsive Website Template by <a title="website template" href="https://www.downloadwebsitetemplates.co.uk" rel="external">Website Template</a> - Icons by <a title="" href="https://fortawesome.github.io/Font-Awesome/" rel="external">Font Awesome</a></p>
-	</div>
-</div>
 
+        <div id="socialmedia" class="clearfix">
+			<ul>
+                @foreach ( $setting->where('section','front') as  $set)
+                    @if ($set->key == 'facebook')
+                    <li><a title="" href="{{ $set->value }}" rel="external"><span class="fa fa-facebook"></span></a></li>
+                    @endif
+                    @if ($set->key == 'twitter')
+                    <li><a title="" href="#" rel="external"><span class="fa fa-twitter"></span></a></li>
+                    @endif
+                @endforeach
+
+				</ul>
+		</div>
+
+            <strong>Copyright &copy; 2022 <a href="https://api.whatsapp.com/send?phone=01024346011">Mohamed Galal</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> {{$setting->where('key','version')->first()->value??''}}
+            </div>
+            <br>
+            <strong><a href="https://dalil-misr.com/privacy">Privcy</a>.</strong>
+        </center>
+    </div>
+</div>
+<script>
+ var user =  "{{ $setting->where('key','count_down')->first()->value }}";
+    $(document).ready(function() {
+	"use strict";
+	$("#countdown").countdown({
+		date: user, /** Enter new date here **/
+		format: "on"
+	},
+	function() {
+		// callback function
+	});
+});
+</script>
 </body>
 </html>

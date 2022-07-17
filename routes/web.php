@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\FrontController;
 use App\Models\User;
 
 use App\Models\stores;
@@ -29,6 +29,7 @@ use App\Http\Livewire\Dashborad\Products\Product;
 use App\Http\Livewire\Dashborad\category\Category2;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use App\Http\Livewire\Dashborad\Notification\Notification;
+use App\Http\Livewire\Dashborad\Slider\Sliderfront;
 use App\Models\setting as ModelsSetting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -89,8 +90,7 @@ Route::post('save-token', function(Request $request)
    $privacy = ModelsSetting::where('key','privacy')->first();
 
     return view('privacy',compact('privacy'));})->name('privacy');
-
-    Route::get('/', function () {return view('Front.layout');})->name('front');
+    Route::get('/',[FrontController::class,'index'])->name('front');
 
 Auth::routes();
 // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
@@ -117,6 +117,7 @@ Route::group(
         Route::get('/category',viewcategory::class)->name('category');
         Route::get('/category2',Category2::class)->name('category2');
         Route::get('/slider',Slider::class)->name('slider');
+        Route::get('/slider/front',Sliderfront::class)->name('sliderfront');
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');
         Route::get('/store/branchse/{slug?}',Branch::class)->name('branch');

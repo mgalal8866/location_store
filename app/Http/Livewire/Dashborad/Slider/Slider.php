@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Dashborad\Slider;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Models\cities;
 use App\Models\regions;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\slider as ModelsSlider;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Slider extends Component
 {
@@ -55,6 +56,7 @@ class Slider extends Component
     public function  deleteslider($id)
     {
          $slider = ModelsSlider::find($id);
+         Storage::disk('slider')->delete($slider->getAttributes()['image']);
          $slider->delete();
          $this->dispatchBrowserEvent('successmsg',['msg' => 'Deleted ✔']);
     }

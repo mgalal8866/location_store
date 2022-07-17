@@ -54,6 +54,11 @@ class SettingsTableSeeder extends Seeder
         setting::create([ 'display_name' => 'Messaging SenderId', 'key' => 'messagingSenderId', 'value' => '91785275733', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 6]);
         setting::create([ 'display_name' => 'App id', 'key' => 'appId', 'value' => '1:91785275733:web:7cfee18833325ac80627dc', 'details' => null, 'type' => 'text', 'section' => 'Firebase', 'ordering' => 7]);
 
+        setting::create([ 'display_name' => 'Link App Google', 'key' => 'app_google', 'value' => '#', 'details' => null, 'type' => 'text', 'section' => 'front', 'ordering' => 1]);
+        setting::create([ 'display_name' => 'Link App Apple', 'key' => 'app_apple', 'value' => '#', 'details' => null, 'type' => 'text', 'section' => 'front', 'ordering' => 2]);
+        setting::create([ 'display_name' => 'Count Down', 'key' => 'count_down', 'value' => '22 July 2022 12:00:00', 'details' => null, 'type' => 'text', 'section' => 'front', 'ordering' => 3]);
+        setting::create([ 'display_name' => 'FaceBook', 'key' => 'facebook', 'value' => 'http://facebook.com/', 'details' => null, 'type' => 'text', 'section' => 'front', 'ordering' => 4]);
+        setting::create([ 'display_name' => 'version', 'key' => 'version', 'value' => '1.0.0', 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 4,'show' => 1]);
 
         generateCache();
 
