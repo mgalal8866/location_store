@@ -200,6 +200,7 @@ class Newstore extends Component
         );
 
         foreach( $this->branchlist as $index => $branch){
+       dd($this->branchlist[$index]['importimage']);
             if($this->branchlist[$index]['importimage'] != null){
                 $importimages = $this->uploadimages('branch',$this->branchlist[$index]['importimage']);
             }else
