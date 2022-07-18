@@ -11,7 +11,7 @@
           </div>
           <div wire:loading>
 
-            Processing Payment...
+            Processing ...
 
          </div>
           <div class="modal-body">

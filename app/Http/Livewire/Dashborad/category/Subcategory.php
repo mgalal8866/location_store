@@ -12,7 +12,7 @@ class Subcategory extends Component
 {
     use WithFileUploads;
     use GeneralTrait;
-    public $mcategorys,$maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo ;
+    public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo,$iteration ;
     public function mount($slug)
     {
         $this->mainslug = $slug ;
@@ -23,6 +23,26 @@ class Subcategory extends Component
     {
         $this->slug = $slug;
         $this->name = $name1;
+    }
+    public function create()
+    {
+
+        if ($this->image != null){
+           $this->image = $this->uploadimages('category',$this->image);
+        }
+            categories::create([
+                'name' => $this->name,
+                'slug' => Str::slug($this->name),
+                'parent_id'=>  $this->cat->id??null,
+                'image' => $this->image??null,
+                'active' => 0
+            ]);
+
+        // $this->iteration++;
+        $this->resetExcept('cat');
+        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
+
     }
     public function update()
     {
@@ -86,7 +106,7 @@ class Subcategory extends Component
     public function render()
     {
 
-        $this->mcategorys = categories::where('parent_id', $this->cat['id'])->get();
-        return view('livewire.dashborad.category.subcategory')->layout('admin.layouts.masterdash');
+        $mcategorys = categories::where('parent_id', $this->cat['id'])->latest()->paginate(10);;
+        return view('livewire.dashborad.category.subcategory',['mcategorys' => $mcategorys])->layout('admin.layouts.masterdash');
     }
 }

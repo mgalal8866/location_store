@@ -10,6 +10,7 @@ class FrontController extends Controller
 {
    public function index()
    {
+   
     $setting = setting::get();
     $sliderfront = sliderfront::get();
    return view('Front.layout',compact('setting','sliderfront'));

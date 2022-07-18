@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
             $table->string('image')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

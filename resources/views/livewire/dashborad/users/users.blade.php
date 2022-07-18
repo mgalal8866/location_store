@@ -58,6 +58,8 @@
                             <th>{{ __('loaction') }}</th>
                             <th>{{ __('stores') }}</th>
                             <th>{{ __('ip_address') }}</th>
+                            <th>{{ __('Online') }}</th>
+                            <th>{{ __('last_seen') }}</th>
                             <th>{{ __('messages') }}</th>
                             <th>{{ __('action') }}</th>
                         </tr>
@@ -77,6 +79,20 @@
                                 <td>{{ $user->store->count() }}</td>
 
                                 <td>{{ $user->ip_address }}</td>
+                                <td>
+                                    @if(Cache::has('user-is-online-' . $user->id))
+                                        <span class="text-success">Online</span>
+                                    @else
+                                        <span class="text-secondary">Offline</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($user->last_seen != null)
+                                        {{ \Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}
+                                    @else
+                                        No data
+                                    @endif
+                                </td>
                                 <td>
 
                                     {{-- <small> --}}

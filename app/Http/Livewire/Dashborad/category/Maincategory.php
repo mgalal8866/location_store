@@ -16,7 +16,7 @@ class Maincategory extends Component
     use GeneralTrait;
 
     protected $paginationTheme = 'bootstrap';
-    public $photo, $name, $slug,$image;
+    public $photo, $name, $slug,$image,$iteration;
     public function view($slug,$name1)
     {
         $this->slug = $slug;
@@ -75,6 +75,27 @@ class Maincategory extends Component
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
     }
+
+    public function create()
+    {
+
+        if ($this->image != null){
+           $this->image = $this->uploadimages('category',$this->image);
+        }
+            categories::create([
+                'name' => $this->name,
+                'slug' => Str::slug($this->name),
+                'parent_id'=> null,
+                'image' => $this->image??null,
+                'active' => 0
+            ]);
+        $this->reset();
+        $this->iteration++;
+        $this->dispatchBrowserEvent('closeModal');
+        $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
+
+    }
+
     public function render()
     {
         $categorys = categories::whereParentId(null)->latest()->paginate(10);

@@ -2,12 +2,12 @@
     <div wire:ignore.self class="modal fade" id="modal-edit">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header ">
-              <h4 class="modal-title">{{ __('tran.editcategory')}}</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+                <div class="modal-header ">
+                    <h4 class="modal-title">{{ __('tran.editcategory')}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <form wire:submit.prevent="update()" enctype="multipart/form-data">
                         @csrf
                     <div  class="modal-body">
@@ -22,9 +22,7 @@
                                         @enderror
                                 </div>
                                 <div class="form-group">
-
                                         <div class="form-group">
-
                                             <div style="margin-bottom: 10px;">
                                               <img src="{{$photo ??''}}" alt="favicon" style="max-width: 100px; max-height: 100px;">
                                             </div>
@@ -37,6 +35,7 @@
                                                     اختر صورة <input type="file" name="file" size="40"
                                                         accept=".png, .jpg, .jpeg, .gif" wire:model='image' >
                                                 </a>
+                                            </div>
                                             <div  x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
                                                 <div class="progress-bar bg-success  progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
                                                     <span class="sr-only">40% Complete (success)</span>
@@ -51,23 +50,20 @@
                                     <select   wire:model="parent" class="form-control">
                                     <option value="">{{__('tran.parentselect')}}</option>
                                     @foreach($categorys as $itemm)
-                                        {{-- @if (!$itemm->parent_id && $slug != $itemm->slug ) --}}
                                             <option value="{{$itemm->slug}}">{{$itemm->name}}</option>
-                                        {{-- @endif --}}
                                     @endforeach
                                     </select>
                                 </div>
                     </div>
                     <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('tran.close') }}</button>
-               ` <span  x-on:click="on = false">
-                    <button type="submit" id="sdsd"class="btn btn-primary"  >{{ __('tran.save') }}</button>
-                </span>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('tran.close') }}</button>
+                        <span  x-on:click="on = false">
+                        <button type="submit" id="sdsd"class="btn btn-primary"  >{{ __('tran.save') }}</button>
+                        </span>
                     </div>
                 </form>
           </div>
           <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
 </div>

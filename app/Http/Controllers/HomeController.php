@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('dashborad');
     }
+    public function adminindex()
+    {
+        return redirect()->route('dashborad');
+    }
 }

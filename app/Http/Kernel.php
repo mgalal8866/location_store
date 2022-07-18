@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LastUserActivity::class,
         ],
         // 'admin' => [
         //     \App\Http\Middleware\EncryptCookies::class,
@@ -50,6 +51,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LastUserActivity::class,
         ],
     ];
 
@@ -80,5 +82,6 @@ class Kernel extends HttpKernel
         'jwt.verify' => \App\Http\Middleware\jwtmiddleware::class,
         'only.api' => \App\Http\Middleware\Checkaccessfromapi::class,
         'CheckForMaintenanceMode' =>  \App\Http\Middleware\CheckForMaintenanceMode::class,
+        'IsAdmin' =>  \App\Http\Middleware\IsAdminMiddleware::class,
     ];
 }

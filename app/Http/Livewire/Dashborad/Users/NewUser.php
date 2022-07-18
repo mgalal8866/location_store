@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class NewUser extends Component
 {
-    public $title ,$user = null , $editmode = false ,$name ,$gender,$mobile , $password ,$password_confirmation , $citys=[] , $regions =[], $selectcity, $selectregion;
+    public $admin,$title ,$user = null , $editmode = false ,$name ,$gender,$mobile , $password ,$password_confirmation , $citys=[] , $regions =[], $selectcity, $selectregion;
     // protected $listeners = ['newPost'];
 
     public function mount($id = null , $editmode=false)
@@ -27,6 +27,7 @@ class NewUser extends Component
             $this->selectcity   = $this->user->city_id;
             $this->selectregion = $this->user->region_id;
             $this->gender       = $this->user->getAttributes()['gender'];
+            $this->admin        = $this->user->is_admin;
 
         }else{
             $this->title = 'New User' ;
@@ -45,6 +46,7 @@ class NewUser extends Component
     ];
     public function saveuser()
     {
+
         if($this->editmode== true && $this->user != null){
 
              $this->user->update
@@ -54,7 +56,8 @@ class NewUser extends Component
                 'password'  => bcrypt($this->password),
                 'city_id'   => $this->selectcity,
                 'region_id' => $this->selectregion,
-                'gender'    => $this->gender
+                'gender'    => $this->gender,
+                'is_admin'  => $this->admin
             ]);
 
             session()->flash('msg','تم تعديل المستخدم بنجاح');
@@ -69,7 +72,8 @@ class NewUser extends Component
                 'password'  => bcrypt($this->password),
                 'city_id'   => $this->selectcity,
                 'region_id' => $this->selectregion,
-                'gender'    => $this->gender
+                'gender'    => $this->gender,
+                'is_admin'  => $this->admin
             ]);
 
             session()->flash('msg', 'بنجاح ' .$user->name . ' تم أضافه المستخدم' );

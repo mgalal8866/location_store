@@ -17,7 +17,7 @@
                 <form wire:submit.prevent='saveuser' >
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="">{{ __('name') }}</label>
                                     <input type="text" wire:model.dafer='name' id="username" class="form-control" placeholder="{{ __('name') }}" required>
@@ -37,6 +37,15 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
+                                    <label for="">{{ __('type') }}</label>
+                                    <select class="form-control" wire:model.lazy='admin' required>
+                                        <option value="0">{{__('user')}}</option>
+                                        <option value="1">{{__('admin')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
                                     <label for="">{{ __('city') }}</label>
                                     <select class="form-control" wire:model.lazy='gender' required>
                                         <option value="">{{__('gender')}}</option>
@@ -52,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="">{{ __('password') }}</label>
                                     <input type="text"  wire:model.dafer='password'  class="form-control" placeholder="{{ __('password') }}" required>
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    {{-- <small id="helpId" class="text-muted">Help text</small> --}}
                                     @error('password') <span class="text-danger text-right"  role="alert">
                                         *{{ $message }}
                                      </span> @enderror

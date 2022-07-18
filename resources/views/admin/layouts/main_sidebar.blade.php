@@ -16,11 +16,17 @@
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                         <span class="right badge badge-success">
-                            @if (!empty(Auth::user()->getRoleNames()))
-                                @foreach (Auth::user()->getRoleNames() as $v)
-                                    {{ $v }}
-                                @endforeach
-                            @endif
+
+                                @if (!empty(Auth::user()->getRoleNames()))
+                                    @foreach (Auth::user()->getRoleNames() as $v)
+                                        {{ $v }}
+                                    @endforeach
+                                @endif
+                                {{-- @if (Auth::user()->is_admin==1)
+                                   Admin
+                                @endif --}}
+
+
                         </span>
                 </div>
             </div>

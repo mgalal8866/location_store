@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\cities;
 use App\Models\regions;
 use App\Models\comments;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifymobile;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +30,7 @@ class User extends Authenticatable implements JWTSubject
     'device_token',
     'city_id',
     'region_id',
-    'image',];
+    'image','is_admin'];
     public function city()
     {
         return $this->belongsTo(cities::class);
