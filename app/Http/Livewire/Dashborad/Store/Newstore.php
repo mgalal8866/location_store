@@ -145,7 +145,7 @@ class Newstore extends Component
             ,'category_id' => $this->selectsubcategory??$this->selectcategory
             ,'active'      => $this->activestore??null
             ,'branch_num'  => $this->numberbranch??null
-            ,'user_id'     => Auth::user()->id()??null
+            ,'user_id'     => Auth::guard()->id()??null
             ]
         );
             $region = regions::whereMain(false)->get();
@@ -195,7 +195,7 @@ class Newstore extends Component
             ,'category_id' => $this->selectsubcategory??$this->selectcategory
             ,'active'      => $this->activestore??null
             ,'branch_num'  => $this->numberbranch??null
-            ,'user_id'     => Auth::user()->id()??null
+            ,'user_id'     => Auth::guard()->id()??null
             ]
         );
 
