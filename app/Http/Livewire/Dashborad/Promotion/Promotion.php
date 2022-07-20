@@ -11,7 +11,7 @@ class Promotion extends Component
 {
 use GeneralTrait;
 use WithFileUploads;
-public $idaction,$image;
+public $idaction,$image,$title,$description,$promotion;
 public function updatedImage()
 {
     // dd( \Carbon\Carbon::now());
@@ -22,28 +22,51 @@ public function updatedImage()
         public function view($id)
         {
                 $this->idaction = $id;
+                $this->promotion =  ModelsPromotion::find($id);
+                $this->title =  $this->promotion->title;
+                $this->description =  $this->promotion->description;
+                // $this->image =  $promotion->image;
+
         }
 
         public function edit()
         {
-            $promotion =  ModelsPromotion::find($this->idaction);
-            $promotion->update([
-            'title'=>'',
-            'title'=>'',
-            'title'=>'']);
-
+            if ($this->image != null){
+                $this->image = uploadimages('promotion',$this->image);
+             }
+            // $promotion =  ModelsPromotion::find($this->idaction);
+           $this->promotion->update([
+                'title'       => $this->title ,
+                'description' => $this->description,
+                'image'       => $this->image??$this->promotion->getAttributes()['image']
+            ]);
+            $this->dispatchBrowserEvent('successmsg',['msg' => 'Save  Success ✔']);
+            $this->reset();
         }
+
+
         public function delete()
         {
             $promotion =  ModelsPromotion::find($this->idaction);
             deleteimage('promotion',  $promotion->getAttributes()['image']);
             $promotion->delete();
-            $this->reste();
+            $this->reset();
+        }
+        public function save($type)
+        {
+            if($type == 'new')
+            {
+                $this->image= uploadimages('promotion',$this->image);
+                $promotion =  ModelsPromotion::create(['title'=> $this->title,'description'=> $this->description,'image'=> $this->image]);
+                $this->dispatchBrowserEvent('successmsg',['msg' => 'Save  Success ✔']);
+                $this->reset();
+            }
+
         }
 
     public function render()
     {
-        $promotion = ModelsPromotion::get();
-        return view('livewire.dashborad.promotion.promotion',['promotion' => $promotion])->layout('admin.layouts.masterdash');
+        $promotionview = ModelsPromotion::get();
+        return view('livewire.dashborad.promotion.promotion',['promotionview' => $promotionview])->layout('admin.layouts.masterdash');
     }
 }

@@ -18,6 +18,7 @@ class branch extends JsonResource
             'lat'    => $this->lat,
             'lng'    => $this->lng,
             'region_id'    => $this->region_id,
+            'region_name'    => $this->region->name,
             'product'=> $this->product->count()??0
         ];
     }

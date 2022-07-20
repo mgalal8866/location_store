@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => env('APP_URL', 'https://xxx_clients-domain_xxx.com'),
+    'asset_url' => null,
 
     /*
     |--------------------------------------------------------------------------

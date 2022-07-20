@@ -113,7 +113,7 @@ return [
         ],
         'promotion' => [
             'driver' => 'local',
-            'root' => public_path('assets/promotion'),
+            'root' => public_path('assets/images/promotion'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
