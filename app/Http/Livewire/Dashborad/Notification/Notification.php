@@ -12,6 +12,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Notification extends Component
@@ -64,7 +65,7 @@ $viewsbranch;
     public function sendnotifytouser(){
         if($this->hasuser->count() != 0){
          $notify= $this->notificationFCM($this->usertitle,$this->userbody,[$this->hasuser->device_token],$this->userimage,$this->userimage);
-        notifylog::create(['admin_id'=> Auth('admin')->user()->id,'title' => $this->usertitle ,'body' =>$this->userbody,'image' => $this->userimage,'filter'  => ['user'=>$this->hasuser->name]]);
+        notifylog::create(['admin_id'=> Auth::guard()->id()??null,'title' => $this->usertitle ,'body' =>$this->userbody,'image' => $this->userimage,'filter'  => ['user'=>$this->hasuser->name]]);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
         }else{
             $this->dispatchBrowserEvent('infomsg',['msg' => 'No Users Or No Device token']);
@@ -87,7 +88,7 @@ $viewsbranch;
         if($this->users->count() != 0){
             $notify= $this->notificationFCM($this->title,$this->body,$this->users->pluck('device_token'),$this->image,$this->image);
 
-        notifylog::create(['admin_id'=> Auth('admin')->user()->id,'title' => $this->title ,'body' =>$this->body,'image' => $this->image,'filter'  => ['city'=>$this->city,'gender'=>$this->gender,'region'=>$this->region]]);
+        notifylog::create(['admin_id'=> Auth::guard()->id()??null,'title' => $this->title ,'body' =>$this->body,'image' => $this->image,'filter'  => ['city'=>$this->city,'gender'=>$this->gender,'region'=>$this->region]]);
         $this->dispatchBrowserEvent('successmsg',['msg' => 'Send to '.json_decode($notify, true)['success'] .'  Successfully!']);
         }else{
             $this->dispatchBrowserEvent('infomsg',['msg' => 'No Users Or No Device token']);

@@ -167,7 +167,7 @@
                                             <div class="col-md-8" >
                                                 <div class="form-group">
                                                     <label for="inputDescription{{ $index }}">{{ __('description')}}</label>
-                                                    <textarea id="inputDescription{{ $index }}" wire:model.defer='branchlist.{{ $index }}.descriptionbranch'    rows="5" class="form-control @error('branchlist.descriptionbranch') is-invalid @enderror" ></textarea>
+                                                    <textarea id="inputDescription{{ $index }}" wire:model.defer='branchlist.{{ $index }}.descriptionbranch'    rows="5" class="form-control @error('branchlist.descriptionbranch') is-invalid @enderror" required></textarea>
                                                     @error('branchlist.descriptionbranch')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>

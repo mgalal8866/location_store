@@ -37,7 +37,15 @@
     <?= !empty($fonts->whereIsDefault(1)->first()->font_url) ? $fonts->whereIsDefault(1)->first()->font_url : ''; ?>
     <style>body { <?php echo $fonts->whereIsDefault(1)->first()->font_family; ;
         ?> }</style>
+    <style>
+        img.table-avatar,
+            .table-avatar img {
+                border-radius: 50%;
+                display: inline;
+                width: 3rem;
+            }
 
+        </style>
 
 {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9908015336564777"
      crossorigin="anonymous"></script>

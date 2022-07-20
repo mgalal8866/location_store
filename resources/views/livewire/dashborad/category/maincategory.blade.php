@@ -142,17 +142,7 @@
     @section('page2')
     Category
     @endsection
-@push('csslive')
-    <style>
-    img.table-avatar,
-        .table-avatar img {
-            border-radius: 50%;
-            display: inline;
-            width: 2.5rem;
-        }
 
-    </style>
-@endpush
     <div class="card">
         <div class="card-header" >
             <button class="btn btn-success  btn-sm float-right" data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>

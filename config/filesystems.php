@@ -111,6 +111,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'promotion' => [
+            'driver' => 'local',
+            'root' => public_path('assets/promotion'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'assets'=> [
             'driver' => 'local',
             'root' => public_path('assets'),

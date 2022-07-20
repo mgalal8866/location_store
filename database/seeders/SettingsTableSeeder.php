@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\fonts;
 use App\Models\setting;
 use Illuminate\Database\Seeder;
 use Spatie\Valuestore\Valuestore;
@@ -60,6 +61,7 @@ class SettingsTableSeeder extends Seeder
         setting::create([ 'display_name' => 'FaceBook', 'key' => 'facebook', 'value' => 'http://facebook.com/', 'details' => null, 'type' => 'text', 'section' => 'front', 'ordering' => 4]);
         setting::create([ 'display_name' => 'version', 'key' => 'version', 'value' => '1.0.0', 'details' => null, 'type' => 'text', 'section' => 'general', 'ordering' => 4,'show' => 1]);
 
+        fonts::create(['font_name' => 'Cairo','font_url' => '<link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">' ,'font_family' => "font-family: 'Cairo', sans-serif;" , 'is_default' => '1']);
         generateCache();
 
     }

@@ -31,6 +31,7 @@ use App\Http\Livewire\Dashborad\category\Maincategory;
 use App\Http\Livewire\Dashborad\category\Subcategory;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use App\Http\Livewire\Dashborad\Notification\Notification;
+use App\Http\Livewire\Dashborad\Promotion\Promotion;
 use App\Http\Livewire\Dashborad\Slider\Sliderfront;
 use App\Models\setting as ModelsSetting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -111,6 +112,7 @@ Route::group(
         'prefix' => 'admin',
 
     ], function(){
+        // dd('');
         Route::get('/',Dashborad::class)->name('dashborad');
         Route::get('/city',Citits::class)->name('city');
         Route::get('/city/regions/{id?}',Regions::class)->name('regions');
@@ -129,6 +131,7 @@ Route::group(
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
         Route::get('/user/message/{id?}',Message::class)->name('messageuser');
+        Route::get('/promotion',Promotion::class)->name('promotion');
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
         Route::get('home', function () {
             return view('admin.layouts.pagenew');

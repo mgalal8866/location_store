@@ -112,21 +112,32 @@
 
                     {{-- @can('menu setting') --}}
                     <li class="nav-header">{{ __('tran.category') }}</li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{route('category') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
-                            {{-- <i class="nav-icon fas fa-album-collection"></i> --}}
                             <p>
                                 {{ __('tran.category') }}
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{route('maincategory') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             {{-- <i class="nav-icon fas fa-album-collection"></i> --}}
                             <p>
                                 {{ __('maincategory') }}
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-header">{{ __('promotion') }}</li>
+
+                    <li class="nav-item">
+                        <a href="{{route('promotion') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            {{-- <i class="nav-icon fas fa-album-collection"></i> --}}
+                            <p>
+                                {{ __('promotion') }}
                             </p>
                         </a>
                     </li>
