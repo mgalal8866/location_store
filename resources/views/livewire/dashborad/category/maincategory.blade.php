@@ -27,14 +27,17 @@
                             </div>
                             <div class="form-group">
                                     <div class="form-group">
+
+                                        <label class="control-label">Select Image : </label>
+                                        @if($image)
+                                            <div class="col-lg-2 col-2">
+                                                <img src="{{$image->temporaryUrl()}}" alt="" style="max-width: 100px; max-height: 100px;">
+                                            </div>
+                                        @else
                                         <div style="margin-bottom: 10px;">
-                                          <img src="{{$photo ??''}}" alt="" style="max-width: 100px; max-height: 100px;">
-                                        </div>
-                                        <label class="control-label">Select Image :
-                                            @if($image)
-                                            {{$image->getClientOriginalName()}}
-                                            @endif
-                                        </label>
+                                            <img src="{{$photo ??''}}" alt="" style="max-width: 100px; max-height: 100px;">
+                                          </div>
+                                        @endif
                                         <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                             <a class="btn btn-success btn-sm btn-file-upload">
                                                 اختر صورة <input type="file" name="file" size="40"
@@ -99,9 +102,10 @@
                                 <div class="form-group">
                                     <label class="control-label">Select Image :
                                         @if($image)
-                                            {{$image->getClientOriginalName()}}
-                                            <img src="{{$image->temporaryUrl()}}" alt="" style="max-width: 100px; max-height: 100px;">
-                                        @endif
+                                            <div class="col-lg-2 col-2">
+                                                <img src="{{$image->temporaryUrl()}}" alt="" style="max-width: 100px; max-height: 100px;">
+                                            </div>
+                                         @endif
                                     </label>
                                     <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                         <a class="btn btn-success btn-sm btn-file-upload">
@@ -145,7 +149,7 @@
 
     <div class="card">
         <div class="card-header" >
-            <button class="btn btn-success  btn-sm float-right" data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>
+            <button class="btn btn-success  btn-sm float-right" wire:click='new' data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>
         </div>
         <div wire:ignore.self class="card-body p-0">
             <table class="table table-hover  table-striped">

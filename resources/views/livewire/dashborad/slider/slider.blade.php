@@ -138,13 +138,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">صورة (1920x1080)
-                                    {{-- @if ($image)
-                                    {{ $image->getClientOriginalName() }}
-                                    @else
-                                    Choose Image
-                                    @endif --}}
+                                <label class="control-label">صورة
                                 </label>
+                                @if ($image)
+                                    <div class="col-lg-2 col-2">
+                                        <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail" alt="">
+                                    </div>
+                                @endif
                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                 <div class="display-block">
                                     <a class="btn btn-success btn-sm btn-file-upload">
@@ -157,13 +157,7 @@
                                         <span class="sr-only">40% Complete (success)</span>
                                     </div>
                                 </div>
-                                @if ($image)
-                                <img src="{{ $image->temporaryUrl() }}" class="img d-block mt-2 w-100 rounded">
-                                @else
-                                {{-- <img src="{{ $state['avatar_url'] ?? '' }}" class="img d-block mb-2 w-100 rounded"> --}}
-                                @endif
-                                {{-- <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-                                    id="img_preview_file" class="img-file-upload-preview"> --}}
+
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -203,7 +197,11 @@
                                          @forelse ($slider as $slide )
                                            <tr role="row">
                                                     <td class="sorting_1">{{ $slide->id }}</td>
-                                                    <td><img src="{{ $slide->image }}"alt="" style="width: 200px;"></td>
+                                                    <td>
+                                                        <div class="col-lg-12 col-12">
+                                                            <img src="{{ $slide->image }}" class="img-thumbnail" alt="">
+                                                        </div>
+                                                    </td>
                                                     <td><span class="badge badge-success ">{{ $slide->type }} </span></td>
                                                     <td>
                                                         @if($slide->type == 'product')

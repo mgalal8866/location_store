@@ -2,7 +2,7 @@
     @yield('title',  getSettingsOf('site_title'))
 
 </title>
-
+@livewireStyles
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ URL::asset('assets/css/plugins/summernote/summernote-bs4.min.css') }}">
-  <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets') .'/'. config('setting_var.images.favicon')}}">
+  <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/favicon.ico')}}">
   <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 
   <link rel="stylesheet" href="{{ URL::asset('assets/plugins/toastr/toastr.min.css') }}">
@@ -51,7 +51,7 @@
      crossorigin="anonymous"></script>
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script> --}}
 
-  @livewireStyles
+
   @stack('csslive')
   @yield('css')
 

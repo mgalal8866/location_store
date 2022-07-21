@@ -178,11 +178,15 @@
                                                     <div class="card-body box-profile">
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
-                                                                @if ($images)
-                                                                <img src="{{ $images->temporaryUrl() }}">
-                                                                @endif
-                                                                <img src="{{ $branchlist[$index]['image'] }}" alt="image" style="height: 150px; width: 100px"  class="img-thumbnail">
-
+                                                                <div class="row  text-center">
+                                                                <div class="col-lg-8 col-md-8  text-center">
+                                                                    @if ($branchlist[$index]['importimage'])
+                                                                    <img src="{{ $branchlist[$index]['importimage']->temporaryUrl() }}"  class="img-thumbnail" alt="">
+                                                                    @else
+                                                                    <img src="{{ $branchlist[$index]['image'] }}" alt=""class="img-thumbnail">
+                                                                    @endif
+                                                                </div>
+                                                            </div>
                                                                 <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                                                         <a class="btn btn-success btn-sm btn-file-upload pt-2">
                                                                             اختر صورة <input id="importimage{{ $index }}" type="file" name="file" size="40"

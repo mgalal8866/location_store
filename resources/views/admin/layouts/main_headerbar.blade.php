@@ -15,7 +15,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        @if(Auth::guard('admin')->check())
+        @if(Auth::guard()->check())
       <li class="nav-item">
        <a class="nav-link" href="#" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"> Logout

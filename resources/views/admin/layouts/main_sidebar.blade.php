@@ -2,7 +2,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ route('dashborad') }}" class="brand-link">
-            <img src="{{ URL::asset('assets') .'/'. config('setting_var.images.logo')}}" alt=" Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="{{ URL::asset('assets/logo.png')}}" alt=" Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">{{  getSettingsOf('site_title')}}</span>
         </a>
 

@@ -11,21 +11,16 @@ class Promotion extends Component
 {
 use GeneralTrait;
 use WithFileUploads;
-public $idaction,$image,$title,$description,$promotion;
-public function updatedImage()
-{
-    // dd( \Carbon\Carbon::now());
-    $this->validate([
-        'image' => 'image|max:1024',
-    ]);
-}
+public $idaction,$image,$title,$description,$promotion,$oldimage;
+
+
         public function view($id)
         {
                 $this->idaction = $id;
                 $this->promotion =  ModelsPromotion::find($id);
                 $this->title =  $this->promotion->title;
                 $this->description =  $this->promotion->description;
-                // $this->image =  $promotion->image;
+                $this->oldimage =  $this->promotion->image;
 
         }
 
@@ -57,7 +52,7 @@ public function updatedImage()
             if($type == 'new')
             {
                 $this->image= uploadimages('promotion',$this->image);
-                $promotion =  ModelsPromotion::create(['title'=> $this->title,'description'=> $this->description,'image'=> $this->image]);
+                ModelsPromotion::create(['title'=> $this->title,'description'=> $this->description,'image'=> $this->image]);
                 $this->dispatchBrowserEvent('successmsg',['msg' => 'Save  Success ✔']);
                 $this->reset();
             }

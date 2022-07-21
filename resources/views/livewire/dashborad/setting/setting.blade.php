@@ -151,7 +151,7 @@
 
 
                                             <div class="text-right">
-                                            
+
                                                 <div wire:loading wire:target="up">
 
                                                     Saving ...
@@ -241,10 +241,16 @@
                                                 <tr>
                                                     <td>Splash</td>
                                                     <td>
+
                                                         <img src="{{ asset('assets/images/'.$images)}}" alt="Splash" style="height: 100px; width: 200px"  class="img-thumbnail">
                                                     </td>
                                                     <td>
+                                                        @if($importsplash)
+                                                            <div class="col-lg-2 col-2">
+                                                                <img src="{{$importsplash->temporaryUrl()}}" alt="" style="max-width: 100px; max-height: 100px;">
+                                                            </div>
 
+                                                        @endif
                                                         <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                                     اختر صورة <input type="file" name="file" size="40"

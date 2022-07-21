@@ -39,54 +39,54 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-route::get('/pull',function () {
-    $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
-    Artisan::call('git pull');
-        $output = $output .  '<h4>'. Artisan::output().'</h4>';
-    return $output;
- });
+// route::get('/pull',function () {
+//     $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
+//     Artisan::call('git pull');
+//         $output = $output .  '<h4>'. Artisan::output().'</h4>';
+//     return $output;
+//  });
 
-route::get('/down',function () {
-   Artisan::call('down --render="maintenance"');
-   return  redirect('/');
-});
+// route::get('/down',function () {
+//    Artisan::call('down --render="maintenance"');
+//    return  redirect('/');
+// });
 
-route::get('/up',function () {
-    Artisan::call('up');
-    return  redirect('/');
- })->middleware('CheckForMaintenanceMode');
+// route::get('/up',function () {
+//     Artisan::call('up');
+//     return  redirect('/');
+//  })->middleware('CheckForMaintenanceMode');
 
- route::get('/run',function () {
-    Artisan::call('schedule:run');
- });
+//  route::get('/run',function () {
+//     Artisan::call('schedule:run');
+//  });
 
 
- Route::get('/artisan', function (Request $request) {
-  $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
+//  Route::get('/artisan', function (Request $request) {
+//   $output ='<style> body{background-color:black;} h4{color: #4de04d;} </style>';
 
-    foreach( $request->get('command') as $command){
-        Artisan::call($command);
-        $output = $output .  '<h4>'. Artisan::output().'</h4>';
-    }
-    return $output;
-});
- //artisan?commend[]=view:clear&commend[]=config:clear
+//     foreach( $request->get('command') as $command){
+//         Artisan::call($command);
+//         $output = $output .  '<h4>'. Artisan::output().'</h4>';
+//     }
+//     return $output;
+// });
+//  //artisan?commend[]=view:clear&commend[]=config:clear
 
-Route::get('/gen', function () {
+// Route::get('/gen', function () {
 
-    return view('gen');
-});
+//     return view('gen');
+// });
 
-Route::get('/firebase', function () {
+// Route::get('/firebase', function () {
 
-    return view('firebase');
-});
-Route::post('save-token', function(Request $request)
-{
-    $user = User::find(2);
-    $user->update(['device_token'=> $request->token]);
-    return response()->json(['token saved successfully.']);
-})->name('save-token');
+//     return view('firebase');
+// });
+// Route::post('save-token', function(Request $request)
+// {
+//     $user = User::find(2);
+//     $user->update(['device_token'=> $request->token]);
+//     return response()->json(['token saved successfully.']);
+// })->name('save-token');
 
 
  Route::get('/privacy', function () {
@@ -96,21 +96,16 @@ Route::post('save-token', function(Request $request)
     Route::get('/',[FrontController::class,'index'])->name('front');
 
 Auth::routes();
-// Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
-
+ Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
+Route::get('/promotion',Promotion::class)->name('promotion');
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        // 'auth:admin'
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'auth','IsAdmin' ]
-
     ], function(){
-
-
 Route::group(
     [
         'prefix' => 'admin',
-
     ], function(){
         // dd('');
         Route::get('/',Dashborad::class)->name('dashborad');
@@ -131,7 +126,7 @@ Route::group(
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');
         Route::get('/user/message/{id?}',Message::class)->name('messageuser');
-        Route::get('/promotion',Promotion::class)->name('promotion');
+
         // Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
         Route::get('home', function () {
             return view('admin.layouts.pagenew');

@@ -17,6 +17,12 @@ class Maincategory extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $photo, $name, $slug,$image,$iteration;
+
+    public function new()
+    {
+        $this->reset();
+    }
+    
     public function view($slug,$name1)
     {
         $this->slug = $slug;

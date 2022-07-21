@@ -52,16 +52,20 @@
                             @enderror
                     </div>
                    <div class="form-group">
+
+                        <label class="control-label">Select Image : </label>
                         <div style="margin-bottom: 10px;">
-                        @if($image)
-                          <img src="{{ $image->temporaryUrl() }}" alt="Selected" style="max-width: 100px; max-height: 100px;">
-                          @endif
-                        </div>
-                        <label class="control-label">Select Image :
+                        @if($oldimage && !$image)
+                            <div class="col-lg-2 col-2">
+                                <img src="{{$oldimage}}" alt="" style="max-width: 100px; max-height: 100px;">
+                            </div>
+                        @endif
+                        <div style="margin-bottom: 10px;">
                             @if($image)
-                            {{-- {{dd($image->temporaryUrl() )}} --}}
-                            {{$image->getClientOriginalName()}}
-                            @endif </label>
+                              <img src="{{ $image->temporaryUrl() }}" alt="Selected" style="max-width: 100px; max-height: 100px;">
+                            @endif
+                        </div>
+                      </div>
                         <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                             <a class="btn btn-success btn-sm btn-file-upload">
                                 اختر صورة <input type="file" name="file" size="40"
@@ -118,16 +122,13 @@
                             @enderror
                     </div>
                    <div class="form-group">
+
+                        <label class="control-label">Select Image :</label>
                         <div style="margin-bottom: 10px;">
-                        @if($image)
-                          <img src="{{ $image->temporaryUrl() }}" alt="Selected" style="max-width: 100px; max-height: 100px;">
-                          @endif
-                        </div>
-                        <label class="control-label">Select Image :
                             @if($image)
-                            {{-- {{dd($image->temporaryUrl() )}} --}}
-                            {{$image->getClientOriginalName()}}
-                            @endif </label>
+                              <img src="{{ $image->temporaryUrl() }}" alt="Selected" style="max-width: 100px; max-height: 100px;">
+                            @endif
+                        </div>
                         <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                             <a class="btn btn-success btn-sm btn-file-upload">
                                 اختر صورة <input type="file" name="file" size="40"
@@ -149,7 +150,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click.prevent="save('new')" class="btn btn-success close-modal" data-dismiss="modal">{{__('save')}}</button>
+                    <button type="button" wire:loading.attr="disabled" wire:click.prevent="save('new')" class="btn btn-success close-modal" data-dismiss="modal">{{__('save')}}</button>
                 </div>
             </div>
         </div>
