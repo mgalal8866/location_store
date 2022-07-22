@@ -86,21 +86,20 @@ class AuthController extends Controller
     }
     public function editprofile(Request $request) {
 
-        log::warning($request->all());
+        // log::warning($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'string|between:2,100',
-            // 'mobile' => 'required|string|max:100|unique:users',
             'password' => '',
-            'region_id'=>'',
-            'city_id'=>'',
+            'region_id'=>'exists:regions,id',
+            'city_id'=>'exists:cities,id',
             'gender' =>'string',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            // return response()->json($validator->errors()->toJson(), 400);
+            return  response()->json($validator->errors()->toJson(), 400);
         }
         $user = auth('api')->user();
-
         if($request->has('image')) {
             $filepath = $this->uploadimages('user', $request->image);
             $request->request->add(['filepath' => $filepath]);
