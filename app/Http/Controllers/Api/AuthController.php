@@ -6,9 +6,9 @@ use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as ResourcesUser;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
 
 class AuthController extends Controller
 {
@@ -58,17 +58,19 @@ class AuthController extends Controller
             'city_id'  =>'string',
             'gender'   =>'string',
             'image'    =>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
         ]);
+
         if($request->has('image')) {
             $filepath = $this->uploadimages('user', $request->image);
             $request->request->add(['filepath' => $filepath]);
         }else{
-            $request->request->add(['filepath'=>null]);}
+            $request->request->add(['filepath'=>null]);
+        }
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
+
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password'    => bcrypt($request->password)
@@ -84,6 +86,7 @@ class AuthController extends Controller
     }
     public function editprofile(Request $request) {
 
+        log::warning($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'string|between:2,100',
             // 'mobile' => 'required|string|max:100|unique:users',
