@@ -58,7 +58,7 @@ class StoresController extends Controller
             ]);
                 if($validator->fails()){
                     log::error($validator->errors());
-                    return $this->returnError('400',$validator->errors());
+                    return $this->returnSuccessMessage($validator->errors(),'400');
                 }
                 if( $num_branch == 0)
                 {
