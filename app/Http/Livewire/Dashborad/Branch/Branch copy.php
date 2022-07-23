@@ -8,16 +8,15 @@ use App\Models\branchs;
 use App\Models\regions;
 use Livewire\Component;
 use App\Models\categories;
-use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use Livewire\FileUploadConfiguration;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Livewire\FileUploadConfiguration;
 
 class Branch extends Component
 {
     use WithFileUploads;
-    use WithPagination;
+
     public $image;
     public
     $name,
@@ -40,10 +39,6 @@ class Branch extends Component
         $this->categorys    = categories::all();
         $this->citys        = cities::all();
         $this->stores       = stores::whereSlug($this->slug)->first();
-        $branchs       = branchs::wherehas('stores' ,function($q){
-            $q->whereSlug($this->slug);
-        })->paginate(5);
-
         $this->name         = $this->stores->name;
         $this->activestore  = $this->stores->getAttributes()['active'];
         $this->numberbranch = $this->stores->branch_num;
@@ -215,6 +210,8 @@ class Branch extends Component
         }
 
     }
+
+
     public function updatedRegion($value, $nested)
     {
         $nestedData = explode(".", $nested);

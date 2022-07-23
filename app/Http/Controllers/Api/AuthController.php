@@ -89,7 +89,7 @@ class AuthController extends Controller
         // log::warning($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'string|between:2,100',
-            'password' => '',
+            'password' => 'string',
             'region_id'=>'exists:regions,id',
             'city_id'=>'exists:cities,id',
             'gender' =>'string',

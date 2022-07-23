@@ -21,6 +21,7 @@ class StoresController extends Controller
     }
     public function newstore(Request $request)
     {
+        Log::warning($request->all());
         $limit_branch =0;
        $store =  stores::whereUserId(auth('api')->user()->id)->first();
     //    dd($limit_branch);
