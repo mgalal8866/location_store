@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api\Traits\GeneralTrait;
 use App\Models\branchs;
+use Illuminate\Support\Facades\Log;
 
 class StoresController extends Controller
 {
@@ -21,7 +22,7 @@ class StoresController extends Controller
     }
     public function newstore(Request $request)
     {
-        Log::warning($request->all());
+        log::warning($request->all());
         $limit_branch =0;
        $store =  stores::whereUserId(auth('api')->user()->id)->first();
     //    dd($limit_branch);
