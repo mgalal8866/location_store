@@ -34,7 +34,7 @@ class StoresController extends Controller
             if($limit_branch == 0){
             $validator = Validator::make($request->all(), [
                     'category_id' => 'required|exists:categories,id',
-                    'name' => 'required|string|unique:stores',
+                    'name' => 'required|string',
             ]);
              }
              if($limit_branch > $num_branch){
