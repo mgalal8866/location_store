@@ -25,12 +25,11 @@ class StoresController extends Controller
         log::warning($request->all());
         $limit_branch =0;
        $store =  stores::whereUserId(auth('api')->user()->id)->first();
-    //    dd($limit_branch);
+
         if($store == null){$limit_branch == 0 ; }else{ $limit_branch = $store->branch_num;}
 
         $num_branch =  branchs::WhereHas('stores', function($q){$q->whereUserId(auth('api')->user()->id); })->count();
-//Error hhhhher
-// dd($limit_branch , $num_branch);
+
         if($limit_branch> $num_branch  OR $limit_branch == 0){
             if($limit_branch == 0){
             $validator = Validator::make($request->all(), [
@@ -58,6 +57,7 @@ class StoresController extends Controller
                 'image'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             ]);
                 if($validator->fails()){
+                    log::error($validator->errors());
                     return $this->returnError('400',$validator->errors());
                 }
                 if( $num_branch == 0)
