@@ -1,6 +1,34 @@
 <div>
 
-    @include('livewire.dashborad.category.DeleteCategory')
+    <div wire:ignore.self  class="modal fade" id="modal-delete">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ __('tran.delcategory') }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div wire:loading>
+
+              Processing ...
+
+           </div>
+            <div class="modal-body">
+              <p>  {{ __('tran.surefordelete') }} </p>
+              <p>
+                @isset($name)
+                <strong>{{ $name }} </strong>
+                @endisset
+                &hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button  wire:loading.attr="disabled" type="button" class="btn btn-outline-light" data-dismiss="modal">{{ __('tran.close') }}</button>
+              <button  wire:loading.attr="disabled" type="button" class="btn btn-danger" wire:click="delete()">{{ __('tran.delete') }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
 {{-- ################# MODEL edit ################# --}}
 <div wire:ignore.self class="modal fade" id="modal-edit">
     <div class="modal-dialog">
@@ -78,10 +106,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header ">
-                <h4 class="modal-title">{{ __('tran.newcategory')}}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <h4 class="modal-title">{{ __('tran.newcategory')}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <form wire:submit.prevent="create" enctype="multipart/form-data">
                     @csrf
@@ -115,7 +143,7 @@
                                         @error('image') <span class="text-danger">{{ $message }}</span> @enderror
 
                                     </div>
-                                    {{-- <span wire:ignore class='badge badge-info' id="upload-file-info2"></span> --}}
+                                  
                                 </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -131,17 +159,16 @@
         <!-- /.modal-dialog -->
     </div>
 
-@push('csslive')
-    <style>
-    img.table-avatar,
-        .table-avatar img {
-            border-radius: 50%;
-            display: inline;
-            width: 2.5rem;
-        }
-
-    </style>
-@endpush
+        @push('csslive')
+            <style>
+            img.table-avatar,
+                .table-avatar img {
+                    border-radius: 50%;
+                    display: inline;
+                    width: 2.5rem;
+                }
+            </style>
+        @endpush
         <div class="card">
             <div class="card-header" >
                 <button class="btn btn-success  btn-sm float-right" data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>
@@ -162,7 +189,6 @@
                                 </thead>
                                 <tbody>
                                     @foreach($mcategorys  as $category)
-                                        {{-- @foreach($category->categoryrens as $category) --}}
                                             <tr>
                                                 <td> {{$category->name}} </td>
                                                 <td>{{$category->_parent->name}} </td>
@@ -183,7 +209,6 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        {{-- @endforeach --}}
                                     @endforeach
                                 </tbody>
                             </table>

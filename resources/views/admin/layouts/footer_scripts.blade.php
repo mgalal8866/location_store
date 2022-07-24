@@ -43,10 +43,10 @@
 @stack('before-livewire-scripts')
 @livewireScripts
 @stack('after-livewire-scripts')
+<!-- Alpine Core -->
+<script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
 @stack('alpine-plugins')
-<!-- Alpine Core -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 
 <script>
