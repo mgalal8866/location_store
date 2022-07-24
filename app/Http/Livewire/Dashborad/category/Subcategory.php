@@ -62,8 +62,8 @@ class Subcategory extends Component
             'parent_id' => $this->cat['id'] ,
             'image' => $this->image??$category->getAttributes()['image']
         ]);
-        $this->resetExcept('cat');
-        $this->image = null;
+        // $this->resetExcept('cat');
+        // $this->image = null;
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
 
