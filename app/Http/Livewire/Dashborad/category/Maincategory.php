@@ -13,7 +13,7 @@ class Maincategory extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    // use GeneralTrait;
+  
 
     protected $paginationTheme = 'bootstrap';
     public $photo, $name, $slug,$image,$iteration;

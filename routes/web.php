@@ -21,8 +21,8 @@ use App\Http\Livewire\Dashborad\Products\Product;
 use App\Http\Livewire\Dashborad\Branch\Viewbranch;
 use App\Http\Livewire\Dashborad\Slider\Sliderfront;
 use App\Http\Livewire\Dashborad\Promotion\Promotion;
-use App\Http\Livewire\Dashborad\Category\Subcategory;
-use App\Http\Livewire\Dashborad\Category\Maincategory;
+use App\Http\Livewire\Dashborad\category\Subcategory;
+use App\Http\Livewire\Dashborad\category\Maincategory;
 use App\Http\Livewire\Dashborad\Notification\Notification;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 

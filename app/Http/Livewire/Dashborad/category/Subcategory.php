@@ -12,6 +12,8 @@ class Subcategory extends Component
 {
     use WithFileUploads;
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    
     public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo ;
     public function mount($slug)
     {
