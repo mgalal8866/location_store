@@ -39,14 +39,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form wire:submit.prevent="update()" enctype="multipart/form-data">
+            <form wire:submit.prevent="update()" >
                     @csrf
                 <div  class="modal-body">
                             <div class="form-group">
                                 <label>{{ __('tran.namecategory')}}</label>
-                                    <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name" placeholder="{{ __('name_category')}}" >
                                     @error('name')
-                                    {{-- @if($errors->has('name')) --}}
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -57,11 +56,7 @@
                                         <div style="margin-bottom: 10px;">
                                           <img src="{{$photo ??''}}" alt="" style="max-width: 100px; max-height: 100px;">
                                         </div>
-                                        <label class="control-label">Select Image :
-                                            @if($image)
-                                            {{$image->getClientOriginalName()}}
-                                            @endif
-                                        </label>
+                                        <label class="control-label">Select Image : </label>
                                         <div x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                             <a class="btn btn-success btn-sm btn-file-upload">
                                                 اختر صورة <input type="file" name="file" size="40"
@@ -116,7 +111,7 @@
                     <div class="modal-body">
                                 <div class="form-group">
                                     <label>{{ __('tran.namecategory')}}</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
+                                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" >
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -143,7 +138,7 @@
                                         @error('image') <span class="text-danger">{{ $message }}</span> @enderror
 
                                     </div>
-                                  
+
                                 </div>
                     </div>
                     <div class="modal-footer justify-content-between">

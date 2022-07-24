@@ -57,7 +57,7 @@ class Subcategory extends Component
         $category->update([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
-            'parent_id' => $this->cat->id ,
+            'parent_id' => $this->cat['id'] ,
             'image' => $this->image??$category->getAttributes()['image']
         ]);
         $this->resetExcept('cat');
@@ -80,7 +80,7 @@ class Subcategory extends Component
         $this->slug = $slug;
         $this->name = $category->name;
 
-   
+
     }
     public function active($slug)
     {
@@ -107,7 +107,7 @@ class Subcategory extends Component
     }
     public function render()
     {
-        $mcategorys = categories::where('parent_id', $this->cat['id'])->latest()->paginate(10);;
+        $mcategorys = categories::where('parent_id', $this->cat['id'])->latest()->paginate(10);
         return view('livewire.dashborad.category.subcategory',['mcategorys' => $mcategorys])->layout('admin.layouts.masterdash');
     }
 }
