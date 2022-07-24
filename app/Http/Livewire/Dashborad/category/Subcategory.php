@@ -48,6 +48,8 @@ class Subcategory extends Component
     }
     public function update()
     {
+
+        dd($this->name,$this->cat['id']);
         if ($this->image != null){
            $this->image = $this->uploadimages('category',$this->image);
         }
