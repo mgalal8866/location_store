@@ -44,6 +44,19 @@ class Viewbranch extends Component
         $this->categorys    = categories::all();
         $this->citys        = cities::all();
     }
+    public function active($slugbranch)
+    {
+
+            $branchs = branchs::where('slug',$slugbranch)->first();
+
+            if( $branchs->getAttributes()['active'] == 1) {
+                $branchs->update(['active' => 0,]);
+                $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'branchs is avtive now']);
+            }else {
+                $branchs->update(['active' => 1,]);
+                $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'branchs is Desavtive now']);
+            }
+    }
 
     public function render()
     {

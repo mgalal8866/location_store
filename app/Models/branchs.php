@@ -66,10 +66,10 @@ class branchs extends Model
 
     public function getActivebtnAttribute(){
         if($this->active == 1){
-            return '<button type="button" class="btn btn-danger dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Deactivate</button>';
+            return '<button type="button" class="btn btn-danger  btn-sm"  aria-haspopup="true" aria-expanded="false">Deactivate</button>';
         } else
         {
-            return '<button type="button" class="btn btn-success dropdown-toggle  btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Active</button>';
+            return '<button type="button" class="btn btn-success btn-sm"  aria-haspopup="true" aria-expanded="false">Active</button>';
         }
     }
     public function getAcceptbtnAttribute(){

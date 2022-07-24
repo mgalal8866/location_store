@@ -16,7 +16,7 @@
                 <div  class="modal-body">
                             <div class="form-group">
                                 <label>{{ __('tran.namecategory')}}</label>
-                                    <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.lazy="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
                                     @error('name')
                                     {{-- @if($errors->has('name')) --}}
                                     <span class="invalid-feedback" role="alert">
@@ -88,12 +88,12 @@
                     <div class="modal-body">
                                 <div class="form-group">
                                     <label>{{ __('tran.namecategory')}}</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
-                                    @error('name')
+                                        <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.lazy="name" placeholder="{{ __('tran.name')  .   __('tran.category')}}" autofocus>
+                                        @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
+                                        @enderror
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Select Image :

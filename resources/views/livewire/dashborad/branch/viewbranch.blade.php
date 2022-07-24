@@ -86,7 +86,7 @@
             </div>
         </div>
     </form>
-    <x-table.table :headers="['ID','image','city','description','product','address','time','date']">
+    <x-table.table :headers="['ID','image','city','description','product','address','time','date','status','action']">
         @foreach($branchs as $branch)
         <tr>
             <td>{{$branch->id}}</td>
@@ -97,6 +97,16 @@
             <td>{{($branch->address ?? '')}}</td>
             <td>From :  {{($branch->opentime ?? '') . ' To : ' . $branch->closetime ?? ''}}</td>
             <td>From :  {{($branch->start_date ?? '') . ' To : ' . $branch->expiry_date ?? ''}}</td>
+            <td >
+                <div class="btn-group" wire:click="active('{{ $branch->slug }}')">
+                    {!!($branch->activebtn ?? '') !!}
+                      {{-- <div class="dropdown-menu">
+                          <button class="dropdown-item"  wire:click="active('{{ $category->slug }}')"  href="">Active</button>
+                          <button class="dropdown-item"   wire:click="active('{{ $category->slug }}')" href="">Deactivate</button>
+                      </div> --}}
+               </div>
+            </td>
+            <td><button type="button" class="btn btn-outline-success"> <i class="fas fa-edit"></i>View</button></td>
         </tr>
         @endforeach
     </x-table.table>
