@@ -80,7 +80,7 @@ class Subcategory extends Component
         $this->slug = $slug;
         $this->name = $category->name;
 
-        return;
+   
     }
     public function active($slug)
     {

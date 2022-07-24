@@ -7,13 +7,13 @@ use App\Models\categories;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Http\Controllers\Api\Traits\GeneralTrait;
+// use App\Http\Controllers\Api\Traits\GeneralTrait;
 
 class Maincategory extends Component
 {
     use WithPagination;
     use WithFileUploads;
-    use GeneralTrait;
+    // use GeneralTrait;
 
     protected $paginationTheme = 'bootstrap';
     public $photo, $name, $slug,$image,$iteration;
@@ -31,7 +31,7 @@ class Maincategory extends Component
     public function update()
     {
         if ($this->image != null){
-           $this->image = $this->uploadimages('category',$this->image);
+           $this->image = uploadimages('category',$this->image);
         }
         $category = categories::where('slug',$this->slug)->first();
 
@@ -50,15 +50,10 @@ class Maincategory extends Component
     }
     public function edit($slug,$parent='')
     {
-
         $category = categories::where('slug',$slug)->first();
-
-
         $this->photo = $category->image;
         $this->slug = $slug;
         $this->name = $category->name;
-
-        return;
     }
     public function active($slug)
     {
@@ -86,7 +81,7 @@ class Maincategory extends Component
     {
 
         if ($this->image != null){
-           $this->image = $this->uploadimages('category',$this->image);
+           $this->image = uploadimages('category',$this->image);
         }
             categories::create([
                 'name' => $this->name,
