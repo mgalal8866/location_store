@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\FrontController;
 use App\Models\User;
-
 use App\Models\stores;
+
 use App\Models\branchs;
+use App\Models\comments;
 // use League\Flysystem\Config;
 
-use App\Models\comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\setting as ModelsSetting;
+use App\Http\Controllers\FrontController;
 use App\Http\Livewire\Dashborad\Dashborad;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Livewire\Dashborad\City\Citits;
@@ -26,14 +27,14 @@ use App\Http\Livewire\Dashborad\Users\NewUser;
 use App\Http\Livewire\Dashborad\Store\Newstore;
 use App\Http\Livewire\Dashborad\setting\Setting;
 use App\Http\Livewire\Dashborad\Products\Product;
+use App\Http\Livewire\Dashborad\Branch\Viewbranch;
 use App\Http\Livewire\Dashborad\category\Category2;
-use App\Http\Livewire\Dashborad\category\Maincategory;
+use App\Http\Livewire\Dashborad\Slider\Sliderfront;
+use App\Http\Livewire\Dashborad\Promotion\Promotion;
 use App\Http\Livewire\Dashborad\category\Subcategory;
+use App\Http\Livewire\Dashborad\category\Maincategory;
 use App\Http\Livewire\Dashborad\category\viewcategory;
 use App\Http\Livewire\Dashborad\Notification\Notification;
-use App\Http\Livewire\Dashborad\Promotion\Promotion;
-use App\Http\Livewire\Dashborad\Slider\Sliderfront;
-use App\Models\setting as ModelsSetting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -122,6 +123,7 @@ Route::group(
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');
         Route::get('/store/branchse/{slug?}',Branch::class)->name('branch');
+        Route::get('/store/branchs/{slug?}',Viewbranch::class)->name('viewbranch');
         Route::get('/store/new',Newstore::class)->name('newstore');
         Route::get('/users',Users::class)->name('users');
         Route::get('/user/new/{id?}/{editmode?}',NewUser::class)->name('newuser');

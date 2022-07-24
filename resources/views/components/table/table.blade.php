@@ -1,7 +1,7 @@
 <div>
 
-    <table class="table table-dark">
-        <thead class="thead-dark">
+    <table class="table table-ligth">
+        <thead class=" thead-ligth">
             <tr>
                 @foreach ($headers as $header )
                     <th>{{$header}}</th>
