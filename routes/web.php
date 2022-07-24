@@ -97,7 +97,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     Route::get('/',[FrontController::class,'index'])->name('front');
 
 Auth::routes();
- Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
+//  Route::post('livewire/message/{name}', '\Livewire\Controllers\HttpConnectionHandler');
 Route::get('/promotion',Promotion::class)->name('promotion');
 Route::group(
     [
