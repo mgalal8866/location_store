@@ -114,8 +114,8 @@ Route::group(
         Route::get('/city/regions/{id?}',Regions::class)->name('regions');
         Route::get('/setting/app',Setting::class)->name('settingapp');
         Route::get('/notification/',Notification::class)->name('setting/notification');
-        Route::get('/category',viewcategory::class)->name('category');
-        Route::get('/category2',Category2::class)->name('category2');
+        // Route::get('/category',viewcategory::class)->name('category');
+        // Route::get('/category2',Category2::class)->name('category2');
         Route::get('/slider',Slider::class)->name('slider');
         Route::get('/maincategory',Maincategory::class)->name('maincategory');
         Route::get('/subcategory/{slug?}',Subcategory::class)->name('subcategory');
