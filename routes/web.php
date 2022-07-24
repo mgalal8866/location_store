@@ -107,7 +107,7 @@ Route::group(
         // Route::get('/category2',Category2::class)->name('category2');
         Route::get('/slider',Slider::class)->name('slider');
         Route::get('/maincategory',Maincategory::class)->name('maincategory');
-        Route::get('/subcategory/{slug?}',Subcategory::class)->name('subcategory');
+        Route::get('/subcategory/{mainslug?}',Subcategory::class)->name('subcategory');
         Route::get('/slider/front',Sliderfront::class)->name('sliderfront');
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');
