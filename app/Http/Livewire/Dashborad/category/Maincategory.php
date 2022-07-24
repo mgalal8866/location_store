@@ -22,7 +22,7 @@ class Maincategory extends Component
     {
         $this->reset();
     }
-    
+
     public function view($slug,$name1)
     {
         $this->slug = $slug;

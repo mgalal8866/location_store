@@ -7,10 +7,12 @@ use Livewire\Component;
 use App\Models\categories;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Subcategory extends Component
 {
     use WithFileUploads;
+    use WithPagination;
     use GeneralTrait;
     public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo,$iteration ;
     public function mount($slug)
@@ -105,7 +107,6 @@ class Subcategory extends Component
     }
     public function render()
     {
-
         $mcategorys = categories::where('parent_id', $this->cat['id'])->latest()->paginate(10);;
         return view('livewire.dashborad.category.subcategory',['mcategorys' => $mcategorys])->layout('admin.layouts.masterdash');
     }
