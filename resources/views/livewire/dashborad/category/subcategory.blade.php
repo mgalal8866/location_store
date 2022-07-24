@@ -44,7 +44,7 @@
                 <div  class="modal-body">
                             <div class="form-group">
                                 <label>{{ __('tran.namecategory')}}</label>
-                                    <input class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name" placeholder="{{ __('name_category')}}" >
+                                    <input id='nameedit' class="form-control @error('name') is-invalid @enderror" type="text" wire:model.defer="name" placeholder="{{ __('name_category')}}" >
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
