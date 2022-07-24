@@ -81,7 +81,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('tran.close') }}</button>
-                     <button wire:click.prevent="update()" type="submit" id="btnedit" class="btn btn-primary"  >{{ __('tran.save') }}</button>
+                     <button wire:click.prevent='update()' id="btnedit" class="btn btn-primary"  >{{ __('tran.save') }}</button>
                 </div>
             </form>
       </div>
