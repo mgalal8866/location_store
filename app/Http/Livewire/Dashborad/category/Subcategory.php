@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dashborad\Category;
 
-use App\Http\Controllers\Api\Traits\GeneralTrait;
 use Livewire\Component;
 use App\Models\categories;
 use Illuminate\Support\Str;
@@ -13,8 +12,7 @@ class Subcategory extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    use GeneralTrait;
-    public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo,$iteration ;
+    public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat,$image,$photo ;
     public function mount($slug)
     {
         $this->mainslug = $slug ;
@@ -97,13 +95,11 @@ class Subcategory extends Component
     }
     public function delete()
     {
-
         $category = categories::where('slug',$this->slug)->first();
         $category->delete();
         $this->resetExcept('cat');
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Delete Done']);
-        // dd($this->cat);
     }
     public function render()
     {
