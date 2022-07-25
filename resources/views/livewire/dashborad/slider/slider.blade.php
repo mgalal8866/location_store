@@ -162,7 +162,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button  type="submit" class="btn btn-primary pull-right">{{ __('add') }} </button>
+                            <button  wire:loading.attr="disabled"  type="submit" class="btn btn-primary pull-right">{{ __('add') }} </button>
                         </div>
                         <!-- /.card-footer -->
                     </form><!-- form end -->

@@ -309,7 +309,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-footer">
-                                                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسال</button>
+                                                <button  wire:loading.attr="disabled" type="submit" class="btn btn-primary pull-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسال</button>
                                             </div>
                                         </form>
                                     </div>
@@ -374,7 +374,7 @@
                                                         @endif
                                                         @if ( $hasuser != null)
                                                         <div class="card-footer">
-                                                            <button wire:click.prevent="sendnotifytouser" class="btn btn-primary pull-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسال</button>
+                                                            <button wire:loading.attr="disabled" wire:click.prevent="sendnotifytouser" class="btn btn-primary pull-right"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسال</button>
                                                         </div>
                                                         @endif
                                                 </div>
