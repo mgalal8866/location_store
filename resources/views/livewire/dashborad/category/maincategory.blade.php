@@ -149,7 +149,7 @@
 
     <div class="card">
         <div class="card-header" >
-            <button class="btn btn-success  btn-sm float-right" wire:click='new' data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>
+            <button class="btn btn-success  btn-sm float-right" wire:click='newcat' data-toggle="modal" data-target="#modal-create"> <i class=" fas fa-plus fa-fw"></i> {{ __('tran.newcategory') }}</button>
         </div>
         <div wire:ignore.self class="card-body p-0">
             <table class="table table-hover  table-striped">

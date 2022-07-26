@@ -13,12 +13,12 @@ class Maincategory extends Component
 {
     use WithPagination;
     use WithFileUploads;
-  
+
 
     protected $paginationTheme = 'bootstrap';
-    public $photo, $name, $slug,$image,$iteration;
+    public $photo, $name, $slug,$image;
 
-    public function new()
+    public function newcat()
     {
         $this->reset();
     }
@@ -91,7 +91,7 @@ class Maincategory extends Component
                 'active' => 0
             ]);
         $this->reset();
-        $this->iteration++;
+        // $this->iteration++;
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'Created '.$this->name.' Done']);
 

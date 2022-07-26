@@ -14,12 +14,13 @@ class Subcategory extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat=[],$image,$photo ;
+    public $maincat,$categorys,$slug ,$parent,$mainslug, $name,$cat=[],$image,$photo;
+
     public function mount($mainslug)
     {
         $this->mainslug = $mainslug ;
         $this->categorys = categories::get();
-        $this->cat = categories::where('slug', $this->mainslug)->first();
+        $this->cat = categories::where('slug', $this->mainslug)->first()->toarray();
     }
     public function view($slug,$name1)
     {
@@ -30,12 +31,12 @@ class Subcategory extends Component
     {
 
         if ($this->image != null){
-           $this->image = $this->uploadimages('category',$this->image);
+           $this->image = uploadimages('category',$this->image);
         }
             categories::create([
                 'name' => $this->name,
                 'slug' => Str::slug($this->name),
-                'parent_id'=>  $this->cat->id??null,
+                'parent_id'=>  $this->cat['id']??null,
                 'image' => $this->image??null,
                 'active' => 0
             ]);
@@ -51,7 +52,7 @@ class Subcategory extends Component
 
         dd($this->name,$this->cat['id']);
         if ($this->image != null){
-           $this->image = $this->uploadimages('category',$this->image);
+           $this->image = uploadimages('category',$this->image);
         }
         $category = categories::where('slug',$this->slug)->first();
 
