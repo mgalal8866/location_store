@@ -167,7 +167,7 @@
                                 <td>{{$category->name}}</td>
                                 <td>
 
-                                     <a href="{{ route('subcategory', ['slug'=> $category->slug ]) }}">
+                                     <a href="{{ route('subcategory', ['mainslug'=> $category->slug ]) }}">
                                         <span class="badge badge-info"><i class="far fa-eye"></i>
                                                 {{$category->childrens->count() }}
                                         </span>
