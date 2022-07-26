@@ -119,8 +119,8 @@
                             <td>{{$store->branch->count()}}</td>
                             <td><span class="badge badge-pill badge-{{ $store->active_badge }} ">{{ $store->active }}</span></td>
                             <td>
-                                <a class="btn btn-info  btn-sm"  href="{{route('branch',['slug' => $store->slug]) }}"><i class="far fa-eye"></i>{{ __('show') }}</a>
-                                <a class="btn btn-info  btn-sm"  href="{{route('viewbranch',['slug' => $store->slug]) }}"><i class="far fa-eye"></i>{{ __('newshow') }}</a>
+                                <a class="btn btn-info  btn-sm"  href="{{route('viewbranch',['slug' => $store->slug]) }}"><i class="far fa-eye"></i>{{ __('show') }}</a>
+                                {{-- <a class="btn btn-info  btn-sm"  href="{{route('viewbranch',['slug' => $store->slug]) }}"><i class="far fa-eye"></i>{{ __('newshow') }}</a> --}}
                                 {{-- <button class="btn btn-danger  btn-sm"  data-toggle="modal" data-target="#modal-edit"><i class="fas fa-trash-alt"></i>{{ __('tran.delete') }}</button> --}}
                                 <button type="button" wire:click="deleteId({{$store->id}})" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button>
 

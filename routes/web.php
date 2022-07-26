@@ -12,6 +12,7 @@ use App\Http\Livewire\Dashborad\Store\Store;
 use App\Http\Livewire\Dashborad\Users\Users;
 use App\Http\Livewire\Dashborad\City\Regions;
 use App\Http\Livewire\Dashborad\Branch\Branch;
+use App\Http\Livewire\Dashborad\Branch\Editbranch;
 use App\Http\Livewire\Dashborad\Slider\Slider;
 use App\Http\Livewire\Dashborad\Users\Message;
 use App\Http\Livewire\Dashborad\Users\NewUser;
@@ -111,7 +112,8 @@ Route::group(
         Route::get('/slider/front',Sliderfront::class)->name('sliderfront');
         Route::get('/store/branch/product/{slug?}',Product::class)->name('product');
         Route::get('/stores',Store::class)->name('stores');
-        Route::get('/store/branchse/{slug?}',Branch::class)->name('branch');
+        // Route::get('/store/branchse/{slug?}',Branch::class)->name('branch');
+        Route::get('/store/branch/edit/{slug?}',Editbranch::class)->name('editbranch');
         Route::get('/store/branchs/{slug?}',Viewbranch::class)->name('viewbranch');
         Route::get('/store/new',Newstore::class)->name('newstore');
         Route::get('/users',Users::class)->name('users');

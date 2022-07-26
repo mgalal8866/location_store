@@ -19,14 +19,14 @@
                                     <div class="col-md-6" >
                                         <div class="form-group">
                                             <label for="inputName">{{ __('minestore')}}</label>
-                                            <input type="text" id="inputName" wire:model.lazy='name' class="form-control @error('name') is-invalid @enderror" >
+                                            <input type="text" id="inputName" wire:model.dafer='name' class="form-control @error('name') is-invalid @enderror" >
                                             @error('name')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-3" >
                                         <div  class="form-group">
                                             <label for="selectactive1">{{ __('active') }}</label>
-                                            <select id="selectactive1"  wire:model.lazy='activestore' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
+                                            <select id="selectactive1"  wire:model.dafer='activestore' class="form-control pt-1   @error('activestore') is-invalid @enderror" >
                                                 <option value="">Select active</option>
                                                 <option value="0">{{ __('active') }}</option>
                                                 <option value="1">{{ __('unactive') }}</option>
@@ -39,7 +39,7 @@
                                     <div class="col-md-3" >
                                         <div class="form-group">
                                             <label for="inputnumberbranch">{{ __('numberbranch')}}</label>
-                                            <input type="text" id="inputnumberbranch" wire:model.lazy='numberbranch' class="form-control @error('numberbranch') is-invalid @enderror" >
+                                            <input type="text" id="inputnumberbranch" wire:model.dafer='numberbranch' class="form-control @error('numberbranch') is-invalid @enderror" >
                                             @error('numberbranch')<span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>@enderror
 
                                         </div>
@@ -49,7 +49,7 @@
                                     <div class="col-md-6" >
                                         <div   class="form-group">
                                             <label for="selectcategory">{{ __('category') }}</label>
-                                            <select id="selectcategory"  wire:model='selectcategory' class="form-control pt-1   @error('selectcategory') is-invalid @enderror" >
+                                            <select id="selectcategory"  wire:model.lazy='selectcategory' class="form-control pt-1   @error('selectcategory') is-invalid @enderror" >
                                                 <option value="">Select category</option>
                                                 @foreach ( $categorys as $category )
                                                     @if(!$category->parent_id)
@@ -64,7 +64,7 @@
                                         @empty(!$subcategorys)
                                             <div   class="form-group">
                                                 <label for="selectsubcategory">{{ __('subcategory') }}</label>
-                                                <select id="selectsubcategory"  wire:model='selectsubcategory' class="form-control pt-1   @error('selectsubcategory') is-invalid @enderror"  required>
+                                                <select id="selectsubcategory"  wire:model.lazy='selectsubcategory' class="form-control pt-1   @error('selectsubcategory') is-invalid @enderror"  required>
                                                     <option value="">Select Sub category</option>
                                                         @foreach ( $subcategorys as $subcategory )
                                                             <option value="{{$subcategory->id}}" >{{$subcategory->name}}</option>
@@ -106,7 +106,7 @@
                       </div> --}}
                </div>
             </td>
-            <td><button type="button" class="btn btn-outline-success"> <i class="fas fa-edit"></i>View</button></td>
+            <td><a href="{{route('editbranch',['slug'=>$branch->slug])}}" class="btn btn-outline-success btn-sm"> <i class="fas fa-edit"></i> view</a></td>
         </tr>
         @endforeach
     </x-table.table>
