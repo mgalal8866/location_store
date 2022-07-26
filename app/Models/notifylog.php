@@ -18,8 +18,8 @@ class notifylog extends Model
 
 	    $this->attributes['filter'] = json_encode($value);
 	}
-    public function admin()
+    public function user()
     {
-        return $this->belongsTo(admin::class,'admin_id');
+        return $this->belongsTo(user::class,'admin_id');
     }
 }

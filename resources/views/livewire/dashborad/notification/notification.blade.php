@@ -402,7 +402,7 @@
                                            <tbody>
                                                @forelse ( $notifylog as $log )
                                                     <tr>
-                                                        <td>{{ $log->admin->name??'' }}</td>
+                                                        <td>{{ $log->user->name??'' }}</td>
                                                         <td>{{ $log->title }}</td>
                                                         <td>{{ $log->body }}</td>
                                                         <td>
