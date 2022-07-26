@@ -49,22 +49,18 @@ class Subcategory extends Component
     }
     public function update()
     {
-
-        dd($this->name,$this->cat['id']);
         if ($this->image != null){
            $this->image = uploadimages('category',$this->image);
         }
         $category = categories::where('slug',$this->slug)->first();
-
-
         $category->update([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
             'parent_id' => $this->cat['id'] ,
             'image' => $this->image??$category->getAttributes()['image']
         ]);
-        // $this->resetExcept('cat');
-        // $this->image = null;
+        $this->resetExcept('cat');
+        $this->image = null;
         $this->dispatchBrowserEvent('closeModal');
         $this->dispatchBrowserEvent('Toast',['ev' => 'success','msg' => 'update '.$this->name.' Done']);
 
