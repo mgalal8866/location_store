@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-secondary">
-                        <button class="btn btn-primary" wire:click.prevent='savestore()'> Save </button>
+                        <button  wire:loading.attr="disabled" class="btn btn-primary" wire:click.prevent='savestore()'> Save </button>
                     </div>
                 </div>
             </div>

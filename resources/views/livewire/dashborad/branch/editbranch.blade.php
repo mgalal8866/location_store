@@ -290,7 +290,7 @@
                                     @endif
                                 </div>
                                 <div class="card-footer bg-secondary">
-                                    <button class="btn btn-success" wire:click.prevent="save()"> Save </button>
+                                    <button  wire:loading.attr="disabled"  class="btn btn-success" wire:click.prevent="save()"> Save </button>
                                 </div>
                             </div>
                         </form>
