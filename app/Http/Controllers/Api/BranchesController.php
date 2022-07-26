@@ -51,19 +51,18 @@ class BranchesController extends Controller
 // احضار الفروع  حسب الاى دى القسم والمنطقه
     public function getbranchesbyid(Request $request)
     {
-       
+
         $branches = branchs::whereActive(0)->whereAccept(0)->WhereHas('stores', function($q)  use ($request)
         {$q->whereCategoryId($request->category_id)->whereActive(0);})->
             where(function ($query) use ($request) {
                 $reg = regions::main($request->region_id) ;
-
                 if( $reg->main != null and $reg->main == true){
                     $query->whereCityId($reg->city_id);
                 }else{
                     $query->whereRegionId($request->region_id);
                 };
-            })->orderBy('top', 'DESC')->
-            paginate(getSettingsOf('app_page_branch'));
+            })->
+            orderBy('top', 'DESC')->orderBy('created_at', 'DESC')->paginate(getSettingsOf('app_page_branch'));
             return $this->returnData('branches',new branchesCollection($branches) ,'Done');
 
     }
@@ -71,9 +70,6 @@ class BranchesController extends Controller
 // احضار الفروع الخاصه بالمستخدم
     public function getbranchesbyuser(Request $request)
     {
-        // $branches = branchs::WhereHas('stores', function($q)  use ($request){
-        //     $q->whereUserId(auth('api')->user()->id)->whereActive(0);
-        // })->
         $branches = branchs::WhereHas('stores', function($q)  use ($request)
         {$q->whereUserId(auth('api')->user()->id); })->
             latest()->
@@ -121,15 +117,7 @@ class BranchesController extends Controller
                                         });
 
                                 })->paginate((int)getSettingsOf('app_pagforsearch_branch'));
-            //     $ss = branchs::where('region_id','=',$request->region_id)->whereActive(0)->whereAccept(0)->
-            //     WhereHas('stores', function($query) use ($searchq){
-            //     $query->Where('name','like', "%{$searchq}%")->whereActive(0);
-            //     })->
-            // orwhereHas('product', function($query) use ($searchq) {
-            //     $query->Where('name','like', "%{$searchq}%")->whereActive(0);
-            // })->orderBy('top', 'DESC')-> paginate(getSettingsOf('app_pagforsearch_branch'));
 
-            // }
         }else{
              $ss = branchs::whereRegionId($request->region_id)->whereActive(55)->paginate(setting('app_pagforsearch_branch'));
         }
