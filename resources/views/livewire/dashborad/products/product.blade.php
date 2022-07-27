@@ -67,7 +67,7 @@
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
                                                         accept=".png, .jpg, .jpeg, .gif"
-                                                        wire:model.dafer='productlist.{{ $loop->index }}.image1'>
+                                                        wire:model='productlist.{{ $loop->index }}.image1'>
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading"
@@ -100,7 +100,7 @@
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
                                                         accept=".png, .jpg, .jpeg, .gif"
-                                                        wire:model.dafer='productlist.{{ $loop->index }}.image2'>
+                                                        wire:model='productlist.{{ $loop->index }}.image2'>
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading"
@@ -133,7 +133,7 @@
                                                 <a class="btn btn-success btn-sm btn-file-upload">
                                                     اختر صورة <input type="file" name="file" size="40"
                                                         accept=".png, .jpg, .jpeg, .gif"
-                                                        wire:model.dafer='productlist.{{ $loop->index }}.image3'>
+                                                        wire:model.defer='productlist.{{ $loop->index }}.image3'>
                                                 </a>
                                             </div>
                                             <div x-show.transition="isUploading"
@@ -199,7 +199,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <x-datepicker wire:model.dafer="productlist.{{ $loop->index }}.start_date"
+                                        <x-datepicker wire:model.defer="productlist.{{ $loop->index }}.start_date"
                                             id="prostart_date{{ $loop->index }}" :error="'productlist.{{ $loop->index }}.start_date'" />
 
                                         @error('productlist.' . $loop->index . '.start_date')
@@ -215,7 +215,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <x-datepicker wire:model.dafer="productlist.{{ $loop->index }}.expiry_date"
+                                        <x-datepicker wire:model.defer="productlist.{{ $loop->index }}.expiry_date"
                                             id="proexpiry_date{{ $loop->index }}" :error="'productlist.{{ $loop->index }}.expiry_date'" />
                                         @error('productlist.' . $loop->index . '.expiry_date')
                                             <div class="invalid-feedback">
@@ -239,13 +239,17 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button  class="btn btn-success" wire:click.prevent="save({{ $loop->index }})" wire:loading.attr="disabled"  >
-                                    {{ __('save') }} </button>
-                                {{-- <button class="btn btn-danger" wire:click.prevent="deleteId({{$loop->index}})"> {{ __('delete') }} </button> --}}
-                                <button type="button" wire:click="deleteId({{ $loop->index }})"
-                                    class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                                    {{ __('delete') }}</button>
 
+                                <div wire:loading>
+                                    please wait...
+                                </div>
+                                <div wire:loading.remove>
+                                    <button class="btn btn-success" wire:click.prevent="save({{ $loop->index }})">
+                                        {{ __('save') }} </button>
+                                    <button type="button" wire:click="deleteId({{ $loop->index }})"
+                                        class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                        {{ __('delete') }}</button>
+                                </div>
                             </div>
                         </form>
                     </div>
