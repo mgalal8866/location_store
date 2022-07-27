@@ -100,7 +100,7 @@
 
                 <p> دليلك الشامل الذى يحتوى على ارقام الطوارئ و الخدمات العامة و الخاصة
         مثل المستشفيات و العيادات و الصيدليات و السوبر ماركت و المطاعم و البنوك وانشطة اخرة كثيرة
-        من خلال  <strong> دليل مصر </strong> يوضح لك ارقام التليفون و العنوان و مواعيد العمل 
+        من خلال  <strong> دليل مصر </strong> يوضح لك ارقام التليفون و العنوان و مواعيد العمل
         و اللوكيشن لسهولة التوجة الية و عروض المتجر الجديدة
         </p>
        <h2> دليل مصر دليلك الشامل لكل ما تحتاج اليه </h2>
@@ -115,7 +115,7 @@
 
 	</div>
 </div>
-<div class="arrow-separator arrow-themelight"></div>
+{{-- <div class="arrow-separator arrow-themelight"></div>
 
 <div class="fullwidth colour3 clearfix">
 	<div id="quotecont" class="bodycontainer qq clearfix" data-uk-scrollspy="{cls:'uk-animation-fade', delay: 300, repeat: true}">
@@ -136,7 +136,7 @@
         </div>
 
 	</div>
-</div>
+</div> --}}
 
 
 <div class="center">
