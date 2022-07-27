@@ -34,7 +34,7 @@
          {{$setting->where('key','phone_number')->first()->value??''}}
         </a>
         <center>
-            <a class="navbar-brand" href="https://api.whatsapp.com/send?phone={{$setting->where('key','phone_number')->first()->value??''}}">
+            <a class="navbar-brand" href="">
                 {{$setting->where('key','site_title')->first()->value??''}}
               </a>
         </center>
