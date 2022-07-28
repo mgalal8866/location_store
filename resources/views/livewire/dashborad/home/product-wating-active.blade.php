@@ -36,7 +36,7 @@
                      <tr>
                          <td>{{ $products->firstItem() + $index }}</td>
                          <td class="text-success">
-                             <a href="{{route('branch',['slug' => $product->branch->stores->slug ]) }}" class="nav-link">{{ $product->branch->stores->name ??'N/A'}}</a>
+                             <a href="{{route('editbranch',['slug' => $product->branch->slug ]) }}" class="nav-link">{{ $product->branch->stores->name ??'N/A'}}</a>
                          </td>
                          <td>{{ $product->name ?? 'N/A'}}</td>
                          <td><span class="badge badge-info">{{ $product->branch->city->name??'N/A' }} - {{ $product->branch->region->name?? 'N/A'}}</span></td>
