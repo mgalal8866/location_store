@@ -1,7 +1,8 @@
 <?php
 
 return array (
-
+   'limit_branch' => 'تم الوصول للحد الاقصى لرفع الفرع',
+   'limit_product' => 'تم الوصول للحد الاقصى لرفع الاعلان',
   'task_notify_title_expire_date_branch' => '🕦 Alert Expire Branch',
   "task_notify_body_expire_date_branch"=>" تم انتهاء صلاحيه المتجر
    :expiry_date :newline متجرك الان معطل ولايظهر للمستخدمين 🔕 ",

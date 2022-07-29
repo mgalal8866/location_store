@@ -82,7 +82,7 @@ class StoresController extends Controller
             }else
             {
 
-                return $this->returnError('E0001',config('err_message.alert.limit_branch'));
+                return $this->returnError('E0001',__('notify.limit_branch'));
             }
     }
     public function storevistor($store_id)

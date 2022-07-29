@@ -61,7 +61,7 @@ class ProductController extends Controller
             return $this->returnData('product', new product($product),'تم اضافة المنتج بنجاح ');
         }else{
 
-            return $this->returnError('E0001',config('err_message.alert.limit_product'));
+            return $this->returnError('E0001',__('notify.limit_product'));
         }
     }
     public function get_product(Request $request)
