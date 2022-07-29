@@ -170,7 +170,7 @@ class ProductController extends Controller
             return response()->json([
                 'status' => false,
                 'number' => $num_product . ' / ' .$limit_peoduct  ,
-                'msg'    => config('err_message.alert.limit_product')
+                'msg'    => __('notify.limit_product')
             ]);
         }
     }

@@ -130,6 +130,7 @@ class BranchesController extends Controller
         try {
 
             $branch = branchs::findOrFail($request->branch_id);
+
                 $validatorvbranch = Validator::make($request->all(), [
                     'name'        => 'string',
                     'region_id'   => 'required|string|exists:regions,id',
@@ -202,7 +203,7 @@ class BranchesController extends Controller
         {
             return response()->json(['status' => false,
                 'number' =>  $store->branch_num  . ' / ' . $num_branch ,
-                'msg' => config('err_message.alert.limit_product')
+                'msg' => __('notify.limit_branch')
             ]);
         }
     }
